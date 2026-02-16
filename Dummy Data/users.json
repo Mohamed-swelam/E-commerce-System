@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Admin User",
+        "email": "admin@store.com",
+        "password": "123456",
+        "role": "admin"
+    },
+    {
+        "id": 2,
+        "name": "Seller One",
+        "email": "seller1@store.com",
+        "password": "123456",
+        "role": "seller"
+    },
+    {
+        "id": 3,
+        "name": "Kariem Tamer",
+        "email": "Kariem@gmail.com",
+        "password": "123456",
+        "role": "customer"
+    },
+    {
+        "id": 4,
+        "name": "Ahmed Mohamed",
+        "email": "ahmed@gmail.com",
+        "password": "123456",
+        "role": "customer"
+    },
+    {
+        "id": 5,
+        "name": "Sara Ali",
+        "email": "sara@gmail.com",
+        "password": "123456",
+        "role": "customer"
+    },
+    {
+        "id": 6,
+        "name": "Omar Hassan",
+        "email": "omar@gmail.com",
+        "password": "123456",
+        "role": "customer"
+    }
+]
