@@ -1,0 +1,96 @@
+[
+    {
+        "orderId": 1001,
+        "userId": 4,
+        "items": [
+            {
+                "productId": 1,
+                "quantity": 1
+            },
+            {
+                "productId": 5,
+                "quantity": 2
+            }
+        ],
+        "total": 655,
+        "status": "delivered",
+        "createdAt": "2026-02-10"
+    },
+    {
+        "orderId": 1002,
+        "userId": 6,
+        "items": [
+            {
+                "productId": 2,
+                "quantity": 1
+            }
+        ],
+        "total": 399,
+        "status": "shipped",
+        "createdAt": "2026-02-11"
+    },
+    {
+        "orderId": 1003,
+        "userId": 3,
+        "items": [
+            {
+                "productId": 9,
+                "quantity": 1
+            },
+            {
+                "productId": 3,
+                "quantity": 1
+            }
+        ],
+        "total": 780,
+        "status": "processing",
+        "createdAt": "2026-02-12"
+    },
+    {
+        "orderId": 1004,
+        "userId": 5,
+        "items": [
+            {
+                "productId": 13,
+                "quantity": 2
+            }
+        ],
+        "total": 1250,
+        "status": "delivered",
+        "createdAt": "2026-02-13"
+    },
+    {
+        "orderId": 1005,
+        "userId": 4,
+        "items": [
+            {
+                "productId": 6,
+                "quantity": 1
+            },
+            {
+                "productId": 8,
+                "quantity": 2
+            }
+        ],
+        "total": 920,
+        "status": "shipped",
+        "createdAt": "2026-02-14"
+    },
+    {
+        "orderId": 1006,
+        "userId": 5,
+        "items": [
+            {
+                "productId": 4,
+                "quantity": 1
+            },
+            {
+                "productId": 7,
+                "quantity": 1
+            }
+        ],
+        "total": 540,
+        "status": "processing",
+        "createdAt": "2026-02-15"
+    }
+]

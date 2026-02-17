@@ -47,5 +47,12 @@
         "email": "seller2@gmail.com",
         "password": "123456",
         "role": "seller"
+    },
+    {
+        "id": 8,
+        "name": "Seller Three",
+        "email": "seller3@gmail.com",
+        "password": "123456",
+        "role": "seller"
     }
 ]

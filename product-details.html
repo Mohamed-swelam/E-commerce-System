@@ -3,12 +3,208 @@
 <html>
     <head>
         <title></title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
         <link rel="stylesheet" href="">
+        <style>
+            body {
+                background-color: #fff;
+                font-family: "Segoe UI", Tahoma, sans-serif;
+            }
+
+            .product-image {
+                background: #fff;
+                height: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .product-image img {
+                max-height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+
+            .price {
+                font-size: 20px;
+                font-weight: 600;
+                color: #6c757d;
+            }
+
+            .section-title {
+                font-size: 14px;
+                color: #6c757d;
+                margin-bottom: 6px;
+            }
+
+            .btn-cart {
+                background-color: #2d2a4a;
+                color: #fff;
+                border-radius: 0;
+                padding: 12px 28px;
+                font-weight: 500;
+            }
+
+            .btn-cart:hover {
+                background-color: #1f1c38;
+                color: #fff;
+            }
+
+            .dimension-box small {
+                color: #6c757d;
+                display: block;
+            }
+
+            .related-card img {
+                height: 220px;
+                object-fit: contain;
+                cursor: pointer;
+            }
+
+            .feature-box {
+                background: #ffffff;
+                padding: 25px 15px;
+                border-radius: 8px;
+                text-align: center;
+                height: 100%;
+            }
+
+            .feature-icon {
+                font-size: 26px;
+                margin-bottom: 10px;
+                color: #adb5bd;
+            }
+
+            .feature-box {
+                background: #ffffff;
+                padding: 25px 15px;
+                border-radius: 8px;
+                text-align: center;
+                height: 100%;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto 12px;
+                border-radius: 50%;
+                background: #f3f4f6;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .feature-icon i {
+                font-size: 24px;
+                color: #4f46e5;
+            }
+
+            @media (max-width: 768px) {
+                .product-image {
+                    height: 320px;
+                }
+                .related-card img {
+                    height: 150px;
+                }
+                .btn-cart{
+                    width: 80%;
+                    margin:10px auto;
+                }
+            }
+            
+        </style>
     </head>
 
     <body>
-        
+            <div class="container-fluid container-md">
+                <div class="row g-5 align-items-start mt-4">
+                    <div class="col-lg-6 order-1">
+                        <div class="product-image">
+                            <img src="" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-2">
+                            <h2 class="mb-2" id="product_title">Xiaomi Wireless Earphones</h2>
+                            <h3 class="price mb-4" >$ <span id="product_price"></span></h3>
+                            <br>
+                            <div class="section-title" >Description</div>
+
+                            <p class="text-muted" id="product_description">Premium wireless headphones with noise-cancellation.</p>
+                            <p class="brand text-muted">Brand : <span id="product-brand">Samsung</span></p>
+
+                            <div class="d-flex align-items-center gap-3 mb-5">
+                                <div>
+                                    <label class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" value="1" min="1" style="width: 100px;">
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3">
+                                <button class="btn btn-cart">Add to cart</button>
+                                <!-- <button class="btn btn-outline-secondary">Save to favorites</button> -->
+                            </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 mt-lg-6">
+                    <h5 class="mb-4">You might also like</h5>
+
+                    <div class="row g-3 g-lg-4" id="related-products">
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-dark px-4">View collection</button>
+                    </div>
+                </div>
+
+
+                <div class="mt-5">
+                    <h5 class="text-center mb-4">What makes our brand different</h5>
+                    <div class="row g-3 g-lg-4">
+                        <div class="col-6 col-md-3">
+                        <div class="feature-box">
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-truck text-primary"></i>
+                            </div>
+                            <h6 class="small fw-semibold">Next day as standard</h6>
+                            <p class="text-muted small mb-0">Order before 3pm and get your order the next day.</p>
+                        </div>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                        <div class="feature-box">
+                            <div class="feature-icon"><i class="fa-solid fa-screwdriver-wrench text-success"></i></div>
+                            <h6 class="small fw-semibold">Made by true artisans</h6>
+                            <p class="text-muted small mb-0">Handmade crafted goods made with passion.</p>
+                        </div>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                        <div class="feature-box">
+                            <div class="feature-icon"><i class="fa-solid fa-tag text-warning"></i></div>
+                            <h6 class="small fw-semibold">Unbeatable prices</h6>
+                            <p class="text-muted small mb-0">Best prices for premium quality products.</p>
+                        </div>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                        <div class="feature-box">
+                            <div class="feature-icon"><i class="fa-solid fa-recycle text-info"></i></div>
+                            <h6 class="small fw-semibold">Recycled packaging</h6>
+                            <p class="text-muted small mb-0">We use 100% recycled packaging materials.</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </div>    
     </body>
 
-    <script src=""></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script src="JS/product_details.js"></script>
 </html>
