@@ -9,7 +9,7 @@
     {
         "id": 2,
         "name": "Seller One",
-        "email": "seller1@store.com",
+        "email": "seller1@gmail.com",
         "password": "123456",
         "role": "seller"
     },
@@ -40,5 +40,12 @@
         "email": "omar@gmail.com",
         "password": "123456",
         "role": "customer"
+    },
+    {
+        "id": 7,
+        "name": "Seller Two",
+        "email": "seller2@gmail.com",
+        "password": "123456",
+        "role": "seller"
     }
 ]

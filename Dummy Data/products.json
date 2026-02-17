@@ -13,6 +13,7 @@
     "dailySale": true,
     "monthSale": false,
     "rating": 4.5,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 1,
@@ -40,6 +41,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 3.7,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 3,
@@ -67,6 +69,7 @@
     "dailySale": false,
     "monthSale": false,
     "rating": 2.8,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 5,
@@ -94,6 +97,7 @@
     "dailySale": false,
     "monthSale": false,
     "rating": 3.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 7,
@@ -121,6 +125,7 @@
     "dailySale": true,
     "monthSale": false,
     "rating": 5,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 9,
@@ -148,6 +153,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 11,
@@ -175,6 +181,7 @@
     "dailySale": false,
     "monthSale": false,
     "rating": 4.4,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 13,
@@ -202,6 +209,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 15,
@@ -229,6 +237,7 @@
     "dailySale": true,
     "monthSale": false,
     "rating": 5,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 17,
@@ -256,6 +265,7 @@
     "dailySale": false,
     "monthSale": false,
     "rating": 3,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 19,
@@ -283,6 +293,7 @@
     "dailySale": false,
     "monthSale": false,
     "rating": 5,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 21,
@@ -310,6 +321,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 4.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 23,
@@ -337,6 +349,7 @@
     "dailySale": false,
     "monthSale": false,
     "rating": 4.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 25,
@@ -364,6 +377,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 2,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 27,
@@ -391,6 +405,7 @@
     "dailySale": true,
     "monthSale": false,
     "rating": 4.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 29,
@@ -418,6 +433,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 31,
@@ -445,6 +461,7 @@
     "dailySale": false,
     "monthSale": false,
     "rating": 5,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 33,
@@ -472,6 +489,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 5,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 35,
@@ -499,6 +517,7 @@
     "dailySale": true,
     "monthSale": false,
     "rating": 3,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 37,
@@ -526,6 +545,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 4.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 39,
@@ -553,6 +573,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 4.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 41,
@@ -580,6 +601,7 @@
     "dailySale": false,
     "monthSale": true,
     "rating": 4.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 43,
@@ -607,6 +629,7 @@
     "dailySale": true,
     "monthSale": false,
     "rating": 4.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 45,
@@ -634,6 +657,7 @@
     "dailySale": true,
     "monthSale": false,
     "rating": 4.6,
+    "seller_id": 2,
     "reviews": [
       {
         "user_id": 47,
