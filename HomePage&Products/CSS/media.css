@@ -1,0 +1,50 @@
+@media screen and (min-width: 992px) {
+    .bottom-bar {
+        margin-block: 0px;
+    }
+
+    .bottom-bar .nav-link {
+        padding-inline: 30px !important;
+    }
+
+    header {
+        background-image: url('../imgs/home7.jpg');
+        background-position: center;
+        background-size: cover;
+        /* height: calc(100vh - 128px); */
+        height: 100vh;
+        position: relative;
+    }
+
+    header #container {
+        height: 400px;
+        position: absolute;
+        border :1px solid black;
+        top: 50%;
+        right: 10%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+    }
+
+    header #container button,
+    #feature button {
+        position: absolute;
+        bottom: 10%;
+        width: fit-content;
+    }
+
+    header #container h2 {
+        font-weight: 300;
+    }
+
+    header #container p {
+        text-shadow: none;
+    }
+
+    .after-brdr::after {
+        width: 0;
+    }
+}
