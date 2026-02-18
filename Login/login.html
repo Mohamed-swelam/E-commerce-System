@@ -5,12 +5,23 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="">
+
+    <!--------------------- Bootstrap ----------------------------->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/08a50da474.js" crossorigin="anonymous"></script>
+
+
+    <!--------------------- Google fonts ----------------------->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Audiowide&family=Caveat:wght@400..700&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Geo:ital@0;1&family=Handjet:wght,ELSH@100..900,2&family=Lalezar&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Permanent+Marker&family=Playwrite+CU:wght@100..400&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Protest+Guerrilla&family=Sevillana&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Tiny5&family=Vibes&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- internal styles -->
     <style>
         body {
             min-height: 100vh;
@@ -20,17 +31,18 @@
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
         }
 
+        /* glass effect for the wellcome box */
         .glass {
-            /* background: rgba(255, 255, 255, 0.15); */
-            background: rgba(255, 255, 255, 0.845);
-            backdrop-filter: blur(30px);
+            background: rgba(255, 255, 255, 0.221);
+            backdrop-filter: blur(30px) brightness(150%);
             -webkit-backdrop-filter: blur(30px);
-            /* border: 1px solid rgba(255, 255, 255, 0.3); */
-            border: 1px solid rgba(255, 255, 255, 0.628);
+            border: 1px solid rgba(255, 255, 255, 0.221);
         }
 
+        /* styling the Seller and Customer boxes */
         .user-role {
             border: 2px solid #2A254B;
             border-radius: 10px;
@@ -39,6 +51,7 @@
             transition: all 200ms ease-in-out;
         }
 
+        /* styling the Seller and Customer boxes on hover and active class */
         .active-user-role,
         .user-role:hover {
             background-color: #2A254B;
@@ -46,6 +59,7 @@
             box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.635);
         }
 
+        /* styles for login button */
         button {
             background-color: #2A254B;
             color: aliceblue;
@@ -57,18 +71,18 @@
             box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.635);
         }
 
+        /* setting an animation  for the login page */
         .main-row {
-
             animation-name: fade-up;
             animation-duration: 1s;
-            animation-timing-function: ease-out;
+            animation-timing-function: ease-in-out;
             animation-iteration-count: 1;
         }
 
         @keyframes fade-up {
             from {
                 opacity: 0;
-                transform: translateY(-100%);
+                transform: translateY(-40%);
             }
 
             to {
@@ -76,6 +90,8 @@
                 transform: translateY(0);
             }
         }
+
+        /*  Google font  */
     </style>
 
 </head>
@@ -83,54 +99,62 @@
 <body class="d-flex justify-content-center align-items-center w-100">
     <!-- <div class="container-fluid p-0"> -->
     <div class="row p-0 m-auto text-center main-row" style="max-width: 900px;">
-        <div class="col-12 col-md-6 text-light  p-0">
-            <img src="./imgs/login_bg.jpeg" class="w-100 rounded-start-5">
-            <!-- <h2 class="">
-                    wellcome
-                </h2> -->
-            <!-- <p class="text-start">Get <br>Everything <br>You want</p> -->
+        <div class="col-12 col-md-6 text-light p-0 position-relative">
+            <img src="../imgs/login_bg.jpeg" class="w-100 rounded-start-5" alt="login_bg.jpeg">
+            <div class="position-absolute top-50 start-50 translate-middle glass p-2  rounded-3 w-75">
+                <h2>Welcome To ShopName</h2>
+                <p class="mb-0"><i>
+                        Power Your World
+                        With The Latest
+                        Tech & Gadgets
+                    </i>
+                </p>
+            </div>
         </div>
-        <div class="col-12 col-md-6 p-5 glass rounded-end-5">
-            <p class="h2">Login</p>
+        <!-- <div class="col-12 col-md-6 p-5 rounded-end-5" style="background: rgba(255, 255, 255, 0.845);"> -->
+        <div class="col-12 col-md-6 p-5 rounded-end-5" style="background: #fff;">
+            <p class="h2 ">Login</p>
             <p class="text-secondary mb-0"><i>Wellcome back!</i></p>
             <form class="form-group row text-start">
                 <div class="col-12">
                     <div class="row text-center">
                         <div class="col-12 col-sm-6 p-3">
-                            <p class="user-role position-relative">
-                                <img src="./imgs/seller_black.png" class="position-absolute top-0 start-0 mt-1 ms-2"
+                            <p class="user-role position-relative ">
+                                <img src="../imgs/seller_black.png" class="position-absolute top-0 start-0 mt-1 ms-2"
                                     style="width: 25px;" alt="">
                                 Seller
                             </p>
                         </div>
                         <div class="col-12 col-sm-6 p-3">
-                            <p class="user-role position-relative">
-                                <img src="./imgs/customer_black.png" class="position-absolute top-0 start-0 mt-1 ms-2 "
+                            <p class="user-role position-relative ">
+                                <img src="../imgs/customer_black.png" class="position-absolute top-0 start-0 mt-1 ms-2 "
                                     style="width: 25px;" alt="">
                                 <span class="ms-3">Customer</span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mb-3">
-                    <p>Email</p>
-                    <input type="email" class="form-control">
+                <div class="col-12 mb-3 form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput" class="ps-4">Email address</label>
                 </div>
-                <div class="col-12">
-                    <p>Password</p>
-                    <input type="password" class="form-control">
+                <div class="col-12 form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword" class="ps-4">Password</label>
                 </div>
                 <div class="col-12 text-center mt-3">
                     <p class="text-secondary" style="font-size: 0.8rem;"> new here? <a href="login.html" class="fw-bold"
                             style="color: #2A254B; font-style: italic;">sign-up</a> now and
                         power up your
                         digital lifestyle</p>
-                    <button>Login</button>
+                    <button id="loginBtn">Login</button>
                 </div>
             </form>
         </div>
     </div>
     <!-- </div> -->
+
+    <script src="./login.js"></script>
 </body>
 
 <script src=""></script>
