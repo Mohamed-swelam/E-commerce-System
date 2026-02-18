@@ -11,8 +11,6 @@ async function getProducts() {
         // console.log(localStorage.getItem("products"));
     }
 
-
-
     let products = JSON.parse(localStorage.getItem("products")) || [];
     console.log(products);
 
@@ -42,6 +40,8 @@ async function getProducts() {
         console.log(product);
     }
 
+
+    document.title = product.name;
 
     let productImage = document.querySelector(".product-image img");
     productImage.src = product.image;
