@@ -1,17 +1,47 @@
 
 
 async function getProducts() {
-    const response = await fetch('/Dummy Data/products.json');
-    let products = await response.json();
 
+    if (!localStorage.getItem("products")) {
+        const response = await fetch('../Dummy Data/products.json');
+        let productsFromJson = await response.json();
+
+
+        localStorage.setItem("products", JSON.stringify(productsFromJson));
+        // console.log(localStorage.getItem("products"));
+    }
+
+
+
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    console.log(products);
+
+    if (!products.length) {
+        console.error("No products found");
+        return;
+    }
 
     const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get("id"));
+    let id = parseInt(params.get("id"));
+    console.log(id);
+
+    if (isNaN(id) || id <= 0) {
+        id = 1;
+        console.log(id);
+    }
 
     // console.log(productId);
 
-    const product = products.find(p => p.product_id == id);
+    let product = products.find(p => p.product_id == id);
     // console.log(product);
+    console.log(product);
+    if (!product) {
+        // window.location.href = "products.html";
+        // return;
+        product = products[0];
+        console.log(product);
+    }
+
 
     let productImage = document.querySelector(".product-image img");
     productImage.src = product.image;
@@ -20,15 +50,13 @@ async function getProducts() {
     product_title.innerText = product.name;
 
     let product_price = document.getElementById("product_price");
-    product_price.innerText = product.price;
+    product_price.innerText = `£${product.price}`;
 
     let product_description = document.getElementById("product_description");
-    product_description.innerText = product.description;
+    product_description.innerText = product.description || "No description available for this product.";
 
     let product_brand = document.getElementById("product-brand");
     product_brand.innerText = product.brand;
-
-
 
     const relatedProducts = products
         .filter(p =>
@@ -41,14 +69,16 @@ async function getProducts() {
     // console.log(randomProducts);
     displayRelatedProducts(relatedProducts);
 
-    var card_images = document.getElementsByClassName("card-img-top");
-
-    for (let i = 0; i < card_images.length; i++) {
-        card_images[i].addEventListener("click", function (e) {
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("card-img-top")) {
             const productId = e.target.dataset.id;
             window.location.href = `product-details.html?id=${productId}`;
-        })
-    }
+        }
+    });
+
+
+    getCarts(product);
+
 
 }
 
@@ -72,5 +102,66 @@ function displayRelatedProducts(productsArray) {
     `).join("");
 }
 
-getProducts();
 
+async function getCarts(product) {
+    if (!localStorage.getItem("carts")) {
+        const response_2 = await fetch('../Dummy Data/carts.json');
+        let cartsFromJson = await response_2.json();
+
+
+        localStorage.setItem("carts", JSON.stringify(cartsFromJson));
+        // console.log(localStorage.getItem("carts"));
+    }
+
+
+    const addBtn = document.getElementById("add-to-cart-btn");
+    if (!addBtn) return;
+
+    addBtn.addEventListener("click", function () {
+        const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
+
+        if (!currentUserId) {
+            alert("Please login first to add items to cart.");
+            window.location.href = "login.html";
+            return;
+        }
+
+
+
+        let carts = JSON.parse(localStorage.getItem("carts")) || [];
+        let userCart = carts.find(c => c.userId === currentUserId);
+
+        if (!userCart) {
+            userCart = {
+                userId: currentUserId,
+                items: []
+            };
+            carts.push(userCart);
+        }
+
+        let existingItem = userCart.items.find(
+            item => item.productId === product.product_id
+        );
+
+        const quantityInput = document.getElementById("quantity");
+        const quantity = Math.max(1, parseInt(quantityInput?.value) || 1);
+
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            userCart.items.push({
+                productId: product.product_id,
+                quantity: quantity
+            });
+        }
+
+        localStorage.setItem("carts", JSON.stringify(carts));
+        console.log(carts);
+        alert("Product added to cart successfully 🛒");
+
+
+    });
+
+}
+
+getProducts();
