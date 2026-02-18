@@ -16,20 +16,26 @@
     font-weight: bold;
 }
 
+.tabs-container{
+    background-color: var(--primary-bg-color);
+    color: #fff;
+}
 .main-tab{
     cursor: pointer;
     text-transform: capitalize;
     transition: all 200ms ease-in-out;
 }
 .sub-tab{
-    display: none;
+    display: none; /* initial style to show only sub-tab that is related to the clicked main tab*/
 }
+
 /* to highlight active tab in dashboard */
 .active-tab{
-    background-color: var(--primary-bg-color);
-    color: #fff;
+    background-color: #fff;
+    color: black;
     box-shadow: 1px 1px 10px black;
 }
+/* to open active sub-tab in dashboard */
 .active-sub-tab{
     display: block;
 }
