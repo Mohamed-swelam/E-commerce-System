@@ -4,55 +4,79 @@
         "name": "Admin User",
         "email": "admin@store.com",
         "password": "123456",
-        "role": "admin"
+        "role": "admin",
+        "city": "Alexandria",
+        "street": "Corniche Road",
+        "phone": "01204520540"
     },
     {
         "id": 2,
         "name": "Seller One",
         "email": "seller1@gmail.com",
         "password": "123456",
-        "role": "seller"
+        "role": "seller",
+        "city": "Mansoura",
+        "street": "El Geish Street",
+        "phone": "01228774138"
     },
     {
         "id": 3,
         "name": "Kariem Tamer",
         "email": "Kariem@gmail.com",
         "password": "123456",
-        "role": "customer"
+        "role": "customer",
+        "city": "Mansoura",
+        "street": "El Geish Street",
+        "phone": "01040393484"
     },
     {
         "id": 4,
         "name": "Ahmed Mohamed",
         "email": "ahmed@gmail.com",
         "password": "123456",
-        "role": "customer"
+        "role": "customer",
+        "city": "6th of October",
+        "street": "Al Hosary Square",
+        "phone": "01169570136"
     },
     {
         "id": 5,
         "name": "Sara Ali",
         "email": "sara@gmail.com",
         "password": "123456",
-        "role": "customer"
+        "role": "customer",
+        "city": "Port Said",
+        "street": "Al Gomhoria Street",
+        "phone": "01551258391"
     },
     {
         "id": 6,
         "name": "Omar Hassan",
         "email": "omar@gmail.com",
         "password": "123456",
-        "role": "customer"
+        "role": "customer",
+        "city": "Maadi",
+        "street": "Road 9",
+        "phone": "01185057916"
     },
     {
         "id": 7,
         "name": "Seller Two",
         "email": "seller2@gmail.com",
         "password": "123456",
-        "role": "seller"
+        "role": "seller",
+        "city": "Maadi",
+        "street": "Road 9",
+        "phone": "01191723816"
     },
     {
         "id": 8,
         "name": "Seller Three",
         "email": "seller3@gmail.com",
         "password": "123456",
-        "role": "seller"
+        "role": "seller",
+        "city": "Nasr City",
+        "street": "Makram Ebeid Street",
+        "phone": "01150374216"
     }
 ]

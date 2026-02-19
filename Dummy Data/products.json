@@ -9,7 +9,7 @@
     "discount": 10,
     "availability": true,
     "brand": "Samsung",
-    "category": "Phone",
+    "category": "Phones",
     "dailySale": true,
     "monthSale": false,
     "rating": 4.5,
@@ -25,7 +25,8 @@
         "rating": 4,
         "comment": "Good performance, but the battery life could be better."
       }
-    ]
+    ],
+    "quantity": 11
   },
   {
     "product_id": 2,
@@ -37,7 +38,7 @@
     "discount": 5,
     "availability": true,
     "brand": "acer",
-    "category": "Laptop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 3.7,
@@ -53,7 +54,8 @@
         "rating": 4,
         "comment": "Good value for the price."
       }
-    ]
+    ],
+    "quantity": 8
   },
   {
     "product_id": 3,
@@ -81,7 +83,8 @@
         "rating": 4,
         "comment": "Impressive noise-cancellation, but a bit pricey."
       }
-    ]
+    ],
+    "quantity": 10
   },
   {
     "product_id": 4,
@@ -109,7 +112,8 @@
         "rating": 5,
         "comment": "Sleek design and accurate fitness tracking."
       }
-    ]
+    ],
+    "quantity": 9
   },
   {
     "product_id": 5,
@@ -121,7 +125,7 @@
     "discount": 15,
     "availability": true,
     "brand": "Samsung",
-    "category": "Tv",
+    "category": "TV",
     "dailySale": true,
     "monthSale": false,
     "rating": 5,
@@ -137,7 +141,8 @@
         "rating": 4,
         "comment": "A bit heavy, but the results are worth it."
       }
-    ]
+    ],
+    "quantity": 12
   },
   {
     "product_id": 6,
@@ -149,7 +154,7 @@
     "discount": 8,
     "availability": true,
     "brand": "samsung",
-    "category": "Monitor",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
@@ -165,7 +170,8 @@
         "rating": 4,
         "comment": "A great addition to our home entertainment setup."
       }
-    ]
+    ],
+    "quantity": 6
   },
   {
     "product_id": 7,
@@ -177,7 +183,7 @@
     "discount": 0,
     "availability": true,
     "brand": "hp",
-    "category": "Desktop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": false,
     "rating": 4.4,
@@ -193,7 +199,8 @@
         "rating": 5,
         "comment": "Ideal for both work and entertainment on the go."
       }
-    ]
+    ],
+    "quantity": 18
   },
   {
     "product_id": 8,
@@ -205,7 +212,7 @@
     "discount": 5,
     "availability": true,
     "brand": "lenovo",
-    "category": "Laptop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
@@ -221,7 +228,8 @@
         "rating": 4,
         "comment": "Good value for the price."
       }
-    ]
+    ],
+    "quantity": 12
   },
   {
     "product_id": 9,
@@ -249,7 +257,8 @@
         "rating": 4,
         "comment": "A must-have for gaming enthusiasts."
       }
-    ]
+    ],
+    "quantity": 6
   },
   {
     "product_id": 10,
@@ -277,7 +286,8 @@
         "rating": 4,
         "comment": "A must-have for gaming enthusiasts."
       }
-    ]
+    ],
+    "quantity": 15
   },
   {
     "product_id": 11,
@@ -305,7 +315,8 @@
         "rating": 4,
         "comment": "A must-have for gaming enthusiasts."
       }
-    ]
+    ],
+    "quantity": 12
   },
   {
     "product_id": 12,
@@ -333,7 +344,8 @@
         "rating": 4,
         "comment": "A must-have for gaming enthusiasts."
       }
-    ]
+    ],
+    "quantity": 20
   },
   {
     "product_id": 13,
@@ -345,7 +357,7 @@
     "discount": 0,
     "availability": true,
     "brand": "apple",
-    "category": "Phone",
+    "category": "Phones",
     "dailySale": false,
     "monthSale": false,
     "rating": 4.6,
@@ -361,7 +373,8 @@
         "rating": 4,
         "comment": "You can’t be wrong going with this choice if you’re coming from iPhone 12 or lesser"
       }
-    ]
+    ],
+    "quantity": 5
   },
   {
     "product_id": 14,
@@ -389,7 +402,8 @@
         "rating": 4,
         "comment": "Not suitable for outdoors"
       }
-    ]
+    ],
+    "quantity": 6
   },
   {
     "product_id": 15,
@@ -401,7 +415,7 @@
     "discount": 5,
     "availability": true,
     "brand": "apple",
-    "category": "Laptop",
+    "category": "Computers",
     "dailySale": true,
     "monthSale": false,
     "rating": 4.6,
@@ -417,7 +431,8 @@
         "rating": 4,
         "comment": "Not suitable for outdoors"
       }
-    ]
+    ],
+    "quantity": 10
   },
   {
     "product_id": 16,
@@ -429,7 +444,7 @@
     "discount": 5,
     "availability": true,
     "brand": "hp",
-    "category": "Desktop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
@@ -445,7 +460,8 @@
         "rating": 4,
         "comment": "Not suitable for outdoors"
       }
-    ]
+    ],
+    "quantity": 16
   },
   {
     "product_id": 17,
@@ -457,7 +473,7 @@
     "discount": 0,
     "availability": true,
     "brand": "apple",
-    "category": "Tv",
+    "category": "TV",
     "dailySale": false,
     "monthSale": false,
     "rating": 5,
@@ -473,7 +489,8 @@
         "rating": 4,
         "comment": "Not suitable for outdoors"
       }
-    ]
+    ],
+    "quantity": 14
   },
   {
     "product_id": 18,
@@ -485,7 +502,7 @@
     "discount": 5,
     "availability": true,
     "brand": "apple",
-    "category": "Tv",
+    "category": "TV",
     "dailySale": false,
     "monthSale": true,
     "rating": 5,
@@ -501,7 +518,8 @@
         "rating": 4,
         "comment": "Not suitable for outdoors"
       }
-    ]
+    ],
+    "quantity": 20
   },
   {
     "product_id": 19,
@@ -529,7 +547,8 @@
         "rating": 2,
         "comment": "Everything was great with this controller out of the box, but after a few weeks the right trigger button sticks down. It feels like there is some sort of adhesive inside the button that keeps it from coming back up. Anyway, the controller is pretty much useless now."
       }
-    ]
+    ],
+    "quantity": 5
   },
   {
     "product_id": 20,
@@ -557,7 +576,8 @@
         "rating": 5,
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
-    ]
+    ],
+    "quantity": 9
   },
   {
     "product_id": 21,
@@ -569,7 +589,7 @@
     "discount": 5,
     "availability": true,
     "brand": "apple",
-    "category": "Laptop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 4.6,
@@ -585,7 +605,8 @@
         "rating": 5,
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
-    ]
+    ],
+    "quantity": 9
   },
   {
     "product_id": 22,
@@ -613,7 +634,8 @@
         "rating": 5,
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
-    ]
+    ],
+    "quantity": 12
   },
   {
     "product_id": 23,
@@ -641,7 +663,8 @@
         "rating": 5,
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
-    ]
+    ],
+    "quantity": 7
   },
   {
     "product_id": 24,
@@ -669,7 +692,8 @@
         "rating": 5,
         "comment": "Excellent, it does what it is meant to do."
       }
-    ]
+    ],
+    "quantity": 15
   },
   {
     "product_id": 25,
@@ -681,7 +705,7 @@
     "rating": 0,
     "brand": "Sharp",
     "description": "55-inch LED 4K UHD Smart TV with built-in Google and receiver, frameless design.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -704,7 +728,8 @@
         "rating": 4,
         "comment": "The frameless design looks modern and sleek in my living room"
       }
-    ]
+    ],
+    "quantity": 18
   },
   {
     "product_id": 26,
@@ -716,7 +741,7 @@
     "rating": 0,
     "brand": "Xiaomi",
     "description": "32-inch LED HD Smart TV with built-in Google TV.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "32 inches",
     "resolution": "Full HD",
     "displayType": "LED",
@@ -739,7 +764,8 @@
         "comment": "Perfect size for my bedroom, very happy with this purchase"
       }
     ],
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 14
   },
   {
     "product_id": 27,
@@ -751,7 +777,7 @@
     "rating": 0,
     "brand": "Xiaomi",
     "description": "55-inch LED 4K UHD Smart TV with built-in Google TV.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -774,7 +800,8 @@
         "comment": "Great value for a 4K smart TV"
       }
     ],
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 14
   },
   {
     "product_id": 28,
@@ -786,7 +813,7 @@
     "rating": 0,
     "brand": "Samsung",
     "description": "55-inch QLED 4K UHD Smart TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "QLED",
@@ -809,7 +836,8 @@
         "comment": "Expensive but worth it for movie nights"
       }
     ],
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 7
   },
   {
     "product_id": 29,
@@ -820,7 +848,7 @@
     "rating": 0,
     "brand": "Samsung",
     "description": "55-inch Crystal UHD Smart TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -844,7 +872,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv404-1-min_2.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 5
   },
   {
     "product_id": 30,
@@ -855,7 +884,7 @@
     "rating": 0,
     "brand": "Armadillo",
     "description": "55-inch UHD Smart LED TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -879,7 +908,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv110-2_1.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 19
   },
   {
     "product_id": 31,
@@ -890,7 +920,7 @@
     "rating": 0,
     "brand": "Jac",
     "description": "55-inch 4K UHD Smart Android TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -914,7 +944,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv527-1.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 9
   },
   {
     "product_id": 32,
@@ -925,7 +956,7 @@
     "rating": 0,
     "brand": "Jac",
     "description": "50-inch 4K Ultra HD Smart Android TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "50 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -949,7 +980,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv524-2_1.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 13
   },
   {
     "product_id": 33,
@@ -960,7 +992,7 @@
     "rating": 100,
     "brand": "Syinix",
     "description": "55-inch FHD Smart Android HDR LED TV with A+ panel and built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "FHD",
     "displayType": "LED",
@@ -984,7 +1016,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv353-1-min_1.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 5
   },
   {
     "product_id": 34,
@@ -995,7 +1028,7 @@
     "rating": 100,
     "brand": "Samsung",
     "description": "65-inch Crystal UHD Smart TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "65 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -1019,7 +1052,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv264-1-min_1_1_1.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 19
   },
   {
     "product_id": 35,
@@ -1030,7 +1064,7 @@
     "rating": 0,
     "brand": "Samsung",
     "description": "55-inch Crystal UHD Smart TV with built-in receiver, 2024 model.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -1054,7 +1088,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv264-1-min_1_1_1.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 9
   },
   {
     "product_id": 36,
@@ -1065,7 +1100,7 @@
     "rating": 0,
     "brand": "Samsung",
     "description": "43-inch Crystal UHD Smart TV with built-in receiver, 2024 model.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "43 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -1089,7 +1124,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv264-1-min_1_1_1.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 17
   },
   {
     "product_id": 37,
@@ -1100,7 +1136,7 @@
     "rating": 0,
     "brand": "Sharp",
     "description": "32-inch LED HD Smart Google TV with frameless design and built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "32 inches",
     "resolution": "Full HD",
     "displayType": "LED",
@@ -1124,7 +1160,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv526-33.png",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 15
   },
   {
     "product_id": 38,
@@ -1135,7 +1172,7 @@
     "rating": 0,
     "brand": "Samsung",
     "description": "55-inch Neo QLED 4K UHD Smart TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "QLED",
@@ -1159,7 +1196,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv757-min.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 6
   },
   {
     "product_id": 39,
@@ -1170,7 +1208,7 @@
     "rating": 0,
     "brand": "Lg",
     "description": "60-inch 4K UHD Smart LED TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "60 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -1194,7 +1232,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv383-1.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 18
   },
   {
     "product_id": 40,
@@ -1205,7 +1244,7 @@
     "rating": 0,
     "brand": "Lg",
     "description": "65-inch OLED Smart 4K UHD TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "65 inches",
     "resolution": "4K UHD",
     "displayType": "OLED",
@@ -1229,7 +1268,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv225.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 17
   },
   {
     "product_id": 41,
@@ -1240,7 +1280,7 @@
     "rating": 0,
     "brand": "Tornado",
     "description": "43-inch FHD Smart LED TV with Wi-Fi connection.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "43 inches",
     "resolution": "FHD",
     "displayType": "LED",
@@ -1264,7 +1304,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/t/v/tv226.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 11
   },
   {
     "product_id": 42,
@@ -1275,7 +1316,7 @@
     "rating": 0,
     "brand": "Haier",
     "description": "50-inch Smart 4K UHD LED TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "50 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -1299,7 +1340,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/d33f1c152d6eb7e8608a208d80f21a14/t/v/tv365_3.gif",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 15
   },
   {
     "product_id": 43,
@@ -1310,7 +1352,7 @@
     "rating": 0,
     "brand": "Haier",
     "description": "55-inch Smart 4K UHD LED TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "55 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -1334,7 +1376,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/d33f1c152d6eb7e8608a208d80f21a14/t/v/tv365_3.gif",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 12
   },
   {
     "product_id": 44,
@@ -1345,7 +1388,7 @@
     "rating": 0,
     "brand": "Haier",
     "description": "65-inch Smart 4K UHD QLED TV with built-in receiver.",
-    "category": "Tv",
+    "category": "TV",
     "displaySize": "65 inches",
     "resolution": "4K UHD",
     "displayType": "LED",
@@ -1369,7 +1412,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/d33f1c152d6eb7e8608a208d80f21a14/t/v/tv365_3.gif",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 17
   },
   {
     "product_id": 45,
@@ -1381,7 +1425,7 @@
     "discount": 15,
     "availability": true,
     "brand": "Samsung",
-    "category": "Tv",
+    "category": "TV",
     "dailySale": true,
     "monthSale": false,
     "rating": 5,
@@ -1402,7 +1446,8 @@
         "comment": "Great smart features and picture quality"
       }
     ],
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 18
   },
   {
     "product_id": 46,
@@ -1414,7 +1459,7 @@
     "discount": 0,
     "availability": true,
     "brand": "Apple",
-    "category": "Tv",
+    "category": "TV",
     "dailySale": false,
     "monthSale": false,
     "rating": 5,
@@ -1435,7 +1480,8 @@
         "comment": "Great streaming device for Apple ecosystem"
       }
     ],
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 17
   },
   {
     "product_id": 47,
@@ -1468,7 +1514,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/g/m/gm701-4-min.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 8
   },
   {
     "product_id": 48,
@@ -1501,7 +1548,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/g/m/gm700-min.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 11
   },
   {
     "product_id": 49,
@@ -1534,7 +1582,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/g/m/gm512-min.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 13
   },
   {
     "product_id": 50,
@@ -1567,7 +1616,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/g/m/gm642-1-min.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 5
   },
   {
     "product_id": 51,
@@ -1579,7 +1629,7 @@
     "brand": "Xiaomi",
     "connectivity": "Wireless",
     "description": "Lightweight and powerful electric scooter with long range.",
-    "category": "Mobility",
+    "category": "Accessories",
     "dailySale": true,
     "monthSale": false,
     "reviews": [
@@ -1600,7 +1650,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm963-1-min.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 19
   },
   {
     "product_id": 52,
@@ -1612,7 +1663,7 @@
     "brand": "Sony",
     "connectivity": "wired",
     "description": "High-end PS5 Pro with enhanced performance and visuals.",
-    "category": "Consoles",
+    "category": "Gaming",
     "dailySale": false,
     "monthSale": true,
     "reviews": [
@@ -1633,7 +1684,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm721_1.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 16
   },
   {
     "product_id": 53,
@@ -1645,7 +1697,7 @@
     "brand": "Sony",
     "connectivity": "wired",
     "description": "Slim digital edition of the PlayStation 5 with 1TB storage.",
-    "category": "Consoles",
+    "category": "Gaming",
     "dailySale": true,
     "monthSale": false,
     "reviews": [
@@ -1666,7 +1718,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm721_1.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 16
   },
   {
     "product_id": 54,
@@ -1699,7 +1752,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm983-min.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 5
   },
   {
     "product_id": 55,
@@ -1710,7 +1764,7 @@
     "rating": 0,
     "brand": "Sony",
     "description": "Slim version of PS5 with 1 year warranty.",
-    "category": "Consoles",
+    "category": "Gaming",
     "connectivity": "Wired",
     "dailySale": false,
     "monthSale": false,
@@ -1732,7 +1786,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm721_1.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 19
   },
   {
     "product_id": 56,
@@ -1765,7 +1820,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm642-1-min_1.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 8
   },
   {
     "product_id": 57,
@@ -1798,7 +1854,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/l/f/lf206-1-min.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 17
   },
   {
     "product_id": 58,
@@ -1831,7 +1888,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm515-min.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 10
   },
   {
     "product_id": 59,
@@ -1864,7 +1922,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm966-2-min.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 13
   },
   {
     "product_id": 60,
@@ -1897,7 +1956,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/m/o/mo437-1-min.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 14
   },
   {
     "product_id": 61,
@@ -1930,7 +1990,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/m/o/mo436-1-min.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 11
   },
   {
     "product_id": 62,
@@ -1963,7 +2024,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/h/p/hp655-1-min.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 5
   },
   {
     "product_id": 63,
@@ -1996,7 +2058,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm099-1-min.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 17
   },
   {
     "product_id": 64,
@@ -2029,7 +2092,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/08a84a1c53d21da95cee3377f8156b2c/g/m/gm038-2-min.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 9
   },
   {
     "product_id": 65,
@@ -2062,7 +2126,8 @@
         "comment": "Comfortable and responsive controller"
       }
     ],
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 18
   },
   {
     "product_id": 66,
@@ -2095,7 +2160,8 @@
         "comment": "Decent budget controller"
       }
     ],
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 13
   },
   {
     "product_id": 67,
@@ -2128,7 +2194,8 @@
         "comment": "Classic console with great games"
       }
     ],
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 16
   },
   {
     "product_id": 68,
@@ -2161,7 +2228,8 @@
         "comment": "Next-gen gaming at its best"
       }
     ],
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 18
   },
   {
     "product_id": 69,
@@ -2194,7 +2262,8 @@
         "comment": "Comfortable and precise controls"
       }
     ],
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 18
   },
   {
     "product_id": 70,
@@ -2227,7 +2296,8 @@
         "comment": "Excellent precision for FPS games"
       }
     ],
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 13
   },
   {
     "product_id": 71,
@@ -2239,7 +2309,7 @@
     "discount": 10,
     "availability": true,
     "brand": "Samsung",
-    "category": "Phone",
+    "category": "Phones",
     "dailySale": true,
     "monthSale": false,
     "rating": 4.5,
@@ -2260,7 +2330,8 @@
         "comment": "Excellent value flagship phone"
       }
     ],
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 16
   },
   {
     "product_id": 72,
@@ -2272,7 +2343,7 @@
     "discount": 5,
     "availability": true,
     "brand": "Acer",
-    "category": "Laptop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 3.7,
@@ -2293,7 +2364,8 @@
         "comment": "Reliable performance"
       }
     ],
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 19
   },
   {
     "product_id": 73,
@@ -2326,7 +2398,8 @@
         "comment": "Good but limited app support"
       }
     ],
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 18
   },
   {
     "product_id": 74,
@@ -2338,7 +2411,7 @@
     "discount": 8,
     "availability": true,
     "brand": "Samsung",
-    "category": "Monitor",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
@@ -2359,7 +2432,8 @@
         "comment": "Excellent gaming monitor"
       }
     ],
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 7
   },
   {
     "product_id": 75,
@@ -2371,7 +2445,7 @@
     "discount": 0,
     "availability": true,
     "brand": "Hp",
-    "category": "Desktop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": false,
     "rating": 4.4,
@@ -2392,7 +2466,8 @@
         "comment": "Reliable workhorse"
       }
     ],
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 14
   },
   {
     "product_id": 76,
@@ -2404,7 +2479,7 @@
     "discount": 5,
     "availability": true,
     "brand": "Lenovo",
-    "category": "Laptop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
@@ -2425,7 +2500,8 @@
         "comment": "Solid performance"
       }
     ],
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 5
   },
   {
     "product_id": 77,
@@ -2458,7 +2534,8 @@
         "comment": "Great smartwatch for iPhone users"
       }
     ],
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 19
   },
   {
     "product_id": 78,
@@ -2470,7 +2547,7 @@
     "discount": 5,
     "availability": true,
     "brand": "Apple",
-    "category": "Laptop",
+    "category": "Computers",
     "dailySale": true,
     "monthSale": false,
     "rating": 4.6,
@@ -2491,7 +2568,8 @@
         "comment": "Incredibly thin and powerful"
       }
     ],
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 6
   },
   {
     "product_id": 79,
@@ -2503,7 +2581,7 @@
     "discount": 5,
     "availability": true,
     "brand": "Hp",
-    "category": "Desktop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 3,
@@ -2524,7 +2602,8 @@
         "comment": "Reliable office computer"
       }
     ],
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 19
   },
   {
     "product_id": 80,
@@ -2536,7 +2615,7 @@
     "discount": 5,
     "availability": true,
     "brand": "Apple",
-    "category": "Laptop",
+    "category": "Computers",
     "dailySale": false,
     "monthSale": true,
     "rating": 4.6,
@@ -2557,7 +2636,8 @@
         "comment": "Powerful and portable"
       }
     ],
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 15
   },
   {
     "product_id": 81,
@@ -2590,7 +2670,8 @@
         "comment": "Great ergonomic accessory"
       }
     ],
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 9
   },
   {
     "product_id": 82,
@@ -2602,7 +2683,7 @@
     "discount": 0,
     "availability": true,
     "brand": "Apple",
-    "category": "Phone",
+    "category": "Phones",
     "dailySale": false,
     "monthSale": false,
     "rating": 4.6,
@@ -2623,7 +2704,8 @@
         "comment": "The best iPhone yet"
       }
     ],
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 13
   },
   {
     "product_id": 83,
@@ -2660,7 +2742,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp703-1-min.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 19
   },
   {
     "product_id": 84,
@@ -2696,7 +2779,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp11r-1.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 13
   },
   {
     "product_id": 85,
@@ -2732,7 +2816,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp11b-1.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 11
   },
   {
     "product_id": 86,
@@ -2768,7 +2853,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp236-4-min.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 6
   },
   {
     "product_id": 87,
@@ -2804,7 +2890,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp15b-24-11.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 13
   },
   {
     "product_id": 88,
@@ -2840,7 +2927,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp235-1-min.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 8
   },
   {
     "product_id": 89,
@@ -2876,7 +2964,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/d33f1c152d6eb7e8608a208d80f21a14/h/p/hp11w-111.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 9
   },
   {
     "product_id": 90,
@@ -2912,7 +3001,8 @@
       }
     ],
     "image": "https://albadrlaptop.com/wp-content/uploads/2023/05/hp15r-1-min-1-350x462.jpg",
-    "seller_id": 8
+    "seller_id": 8,
+    "quantity": 11
   },
   {
     "product_id": 91,
@@ -2948,7 +3038,8 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp25l-1.jpg",
-    "seller_id": 2
+    "seller_id": 2,
+    "quantity": 7
   },
   {
     "product_id": 92,
@@ -2984,6 +3075,7 @@
       }
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp15p-7-min.jpg",
-    "seller_id": 7
+    "seller_id": 7,
+    "quantity": 8
   }
 ]
