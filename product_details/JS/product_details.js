@@ -3,7 +3,7 @@
 async function getProducts() {
 
     if (!localStorage.getItem("products")) {
-        const response = await fetch('../Dummy Data/products.json');
+        const response = await fetch('../../Dummy Data/products.json');
         let productsFromJson = await response.json();
 
 
@@ -105,7 +105,7 @@ function displayRelatedProducts(productsArray) {
 
 async function getCarts(product) {
     if (!localStorage.getItem("carts")) {
-        const response_2 = await fetch('../Dummy Data/carts.json');
+        const response_2 = await fetch('../../Dummy Data/carts.json');
         let cartsFromJson = await response_2.json();
 
 
@@ -165,3 +165,6 @@ async function getCarts(product) {
 }
 
 getProducts();
+
+
+
