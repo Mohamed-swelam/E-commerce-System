@@ -18,10 +18,6 @@ window.addEventListener("scroll", () => {
 
 
 
-
-
-
-
 products =
     [
         {
