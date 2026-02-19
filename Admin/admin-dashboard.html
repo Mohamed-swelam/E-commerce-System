@@ -103,19 +103,45 @@
             <!-- Start of products section -->
             <div id="products" class="sub-tab">
                 <div class="row mb-3 w-100 m-auto justify-content-between">
-                    <div class="col-3 bg-light rounded-3 text-center p-3">
-                        <span class="fs-3" id="total-products">90</span><br>products
+                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
+                        <span class="fs-3" id="total-products">90</span><br>Products
                     </div>
-                    <div class="col-3 bg-light rounded-3 text-center p-3">
-                        <span class="fs-3">90</span><br>products
+                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
+                        <span class="fs-3" id="total-categories">90</span><br>Categories
                     </div>
-                    <div class="col-3 bg-light rounded-3 text-center p-3">
-                        <span class="fs-3">90</span><br>products
+                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
+                        <span class="fs-3" id="total-brands">90</span><br>Brands
                     </div>
                 </div>
-                <!-- displaying products -->
-                <div class="row w-100 m-auto" id="products-container">
-                    <!-- <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap">
+                <div class="row w-100 m-auto">
+                    <div class="col-12 col-md-2 bg-light p-2 rounded-3 align-self-start mb-3 mb-md-0">
+                        <div class="row w-100 m-auto" id="filters">
+                            <div class="col-12">
+                                <p class="fs-5">Filter By</p>
+                                <label for="range4" class="form-label mt-4">Price</label>
+                                <input type="range" class="form-range" min="0" max="1000" value="0" id="range4">
+                                <output for="range4" id="rangeValue" aria-hidden="true"></output>
+                            </div>
+                        </div>
+
+                        <script>
+                            const rangeInput = document.getElementById('range4');
+                            const rangeOutput = document.getElementById('rangeValue');
+
+                            // Set initial value
+                            rangeOutput.textContent = rangeInput.value;
+
+                            rangeInput.addEventListener('input', function () {
+                                rangeOutput.textContent = this.value;
+                            });
+                        </script>
+                    </div>
+
+
+                    <!-- displaying products -->
+                    <div class="col-12 col-md-10">
+                        <div class="row w-100 m-auto" id="products-container">
+                            <!-- <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap">
                         <img src="./iti.jpg" width="100px" alt="">
                         <div>
                             <p class="fs-4 mb-0">Name</p>
@@ -130,6 +156,8 @@
                             <p class="fs-3">100$</p>
                         </div>
                     </div> -->
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- End of products section -->
