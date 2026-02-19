@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+:root{
+    --dark-primary: #2A254B;
+}
+
+.homeLogin{
+    position: relative; 
+    background-image: url("../HomePage&Products/imgs/home7.jpg");
+    width: 100%;
+    min-height: 100vh ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 25px;
+    color: white !important;
+}
+
+/* overlay */
+.homeLogin::before {
+    content: "";
+    position: absolute;
+    inset: 0;   
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+.homeLogin>* {
+    position: relative;
+    z-index: 2;
+}
+
+.logo img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}  
+.logo {
+    width: 100%;
+    text-align:end;
+}
+
+.btnlog button {
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.form {
+    position: relative;
+    width: 38vw;
+    /* height: 82vh; */
+    height: auto;
+    margin: 0px auto;
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px white;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    padding: 20px 25px;
+    font-size: 13px;
+    justify-content: center !important;
+    
+}
+
+.form h4 {
+    font-size: 23px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-align: center ;
+}
+
+input ,.form-select {
+    height: 30px;
+    font-size: 13px !important;
+    color: #383838 !important;
+}
+
+input::placeholder ,select::placeholder {
+    font-size: 13px !important;
+    color: gray !important;
+}
+.form-control,
+.form-select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btnlog button:focus,
+.form-select:focus {
+    box-shadow: none !important;
+}
+
+.btnlog button:hover  {
+    background-color: transparent;
+    border: 1px solid gray;
+    color: white;
+}
+
+
+.btnlog button ,.btnlog a{
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    margin: 5px auto !important;
+    color: white ;
+
+}
+.btnlog a{
+    margin-top: 15px !important;
+    font-size: 15px;
+}
+.btnlog a:hover{
+    color: var(--dark-primary) !important;
+}
+
+/* Animation of Form  */
+
+.form {
+    animation: zoomIn 0.9s ease forwards;
+}
+.form {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/*  Mobile Responsive */
+@media (max-width: 767px) {
+
+    .form {
+        width: 90% !important;
+        height:auto;
+        border-radius: 0;
+        margin: auto ;
+        padding: 30px 25px;
+        justify-content: center;
+    }
+
+    .logo {
+        top: 15px;
+        left: 15px;
+    }
+
+    .btnlog button {
+        width: 80%;
+    }
+
+}
+
+
+/*  Tablet Responsive */
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    .form {
+        width: 75%;
+        height: auto;
+        padding: 30px;
+    }
+
+}
+
+
+/* Large Screens */
+@media (min-width: 1200px) {
+    .form {
+        width: 38vw;
+    }
+}
