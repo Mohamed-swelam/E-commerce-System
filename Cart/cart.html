@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Shopping Cart</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="CSS/style.css">
+    </head>
+
+    <body>
+
+            <div class="container py-5">
+                <!-- Title -->
+                <div class="mb-5 d-flex flex-column flex-md-row justify-content-between">
+                    <h2 class="fw-semibold d-md-inline-block mb-3 mb-md-0">Your shopping cart</h2>
+                    <button class="btn btn-primary align-self-end" id="continue">Continue Shopping</button>
+
+                </div>
+                <!-- Table Header -->
+                <div class="row fw-semibold border-bottom  pb-2 d-none d-md-flex">
+                    <div class="col-md-6">Product</div>
+                    <div class="col-md-3 text-center">Quantity</div>
+                    <div class="col-md-3 text-end">Total</div>
+                </div>
+
+
+                <!-- Cart Items -->
+                <div id="cart-items">
+                    <!-- Item -->
+                    
+                    </div>
+                    <!--end of item-->
+
+                    
+                    <!-- Subtotal Section -->
+                    <div class="row justify-content-end mt-5">
+                        <div class="col-12 col-md-4">
+
+                            <div class="d-flex justify-content-end gap-3 mb-2" style="font-size: 20px;">
+                                <span class="fw-semibold">Subtotal </span>
+                                <span class="fw-bold" id="total-price">£210</span>
+                            </div>
+
+                            <p class="small mb-3 text-end">
+                                Taxes and shipping are calculated at checkout
+                            </p>
+
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-dark w-75 py-3">
+                                    Go to checkout
+                                </button>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+    </body> 
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script src="JS/cart.js"></script>
+</html>
