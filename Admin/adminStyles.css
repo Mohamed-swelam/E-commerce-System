@@ -39,3 +39,7 @@
 .active-sub-tab{
     display: block;
 }
+
+.product-img{
+    width: 100px;
+}

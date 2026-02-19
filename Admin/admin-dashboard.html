@@ -87,19 +87,58 @@
             <p class="p-2 pe-md-0 rounded-3 main-tab">products</p>
             <p class="p-2 pe-md-0 rounded-3 main-tab">account</p>
         </div>
-        <div class="col-12 col-md-9 p-3" style="min-height: 100vh;">
+        <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
+            <!-- Start of customers section -->
             <div id="customers" class="sub-tab active-sub-tab">
                 this is from customers
             </div>
+            <!-- End of customers section -->
+
+            <!-- Start of sellers section -->
             <div id="sellers" class="sub-tab">
                 this is from sellers
             </div>
+            <!-- End of sellers section -->
+
+            <!-- Start of products section -->
             <div id="products" class="sub-tab">
-                this is from products
+                <div class="row mb-3 w-100 m-auto justify-content-between">
+                    <div class="col-3 bg-light rounded-3 text-center p-3">
+                        <span class="fs-3" id="total-products">90</span><br>products
+                    </div>
+                    <div class="col-3 bg-light rounded-3 text-center p-3">
+                        <span class="fs-3">90</span><br>products
+                    </div>
+                    <div class="col-3 bg-light rounded-3 text-center p-3">
+                        <span class="fs-3">90</span><br>products
+                    </div>
+                </div>
+                <!-- displaying products -->
+                <div class="row w-100 m-auto" id="products-container">
+                    <!-- <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap">
+                        <img src="./iti.jpg" width="100px" alt="">
+                        <div>
+                            <p class="fs-4 mb-0">Name</p>
+                            <p>Seller: <i>nawal</i></p>
+                        </div>
+                        <div>
+                            <p class="text-secondary">Category:</p>
+                            <p class="text-secondary">Brand:</p>
+                            <p class="text-secondary">Quantity:</p>
+                        </div>
+                        <div class="ms-auto d-flex align-items-center me-2">
+                            <p class="fs-3">100$</p>
+                        </div>
+                    </div> -->
+                </div>
             </div>
+            <!-- End of products section -->
+
+            <!-- Start of account section -->
             <div id="account" class="sub-tab">
                 this is from account
             </div>
+            <!-- End of account section -->
         </div>
     </div>
     <!-- End of dashboard -->
