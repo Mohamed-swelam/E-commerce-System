@@ -87,12 +87,67 @@
         <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
             <!-- Start of customers section -->
             <div id="customers" class="sub-tab active-sub-tab">
-                this is from customers
+                <div class="bg-light w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center">
+                    <p><span id="total-customers"></span> <br> Customers</p>
+                </div>
+                <div class="text-end mb-3">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
+                        Customer</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Customer</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="needs-validation" novalidate>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">User Name:</label>
+                                        <input type="text" class="form-control" id="recipient-name" required
+                                            minlength="3">
+                                        <div class="invalid-feedback">
+                                            please fill in the user name!
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Email:</label>
+                                        <input type="email" class="form-control" id="email" required
+                                            minlength="15"></input>
+                                        <div class="invalid-feedback">
+                                            please fill in email!
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Password:</label>
+                                        <input type="password" class="form-control" id="password" required
+                                            minlength="6"></input>
+                                        <div class="invalid-feedback">
+                                            please fill in password 6 characters at least!
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">ADD</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Modal -->
+                <div class="row w-100 m-auto" id="customers-container"></div>
             </div>
             <!-- End of customers section -->
             <!-- Start of sellers section -->
             <div id="sellers" class="sub-tab">
-                this is from sellers
+                <div class="row w-100 m-auto" id="sellers-container">
+
+                </div>
             </div>
             <!-- End of sellers section -->
             <!-- Start of products section -->
@@ -123,21 +178,22 @@
                     <!-- displaying products -->
                     <div class="col-12 col-md-10">
                         <div class="row w-100 m-auto" id="products-container">
-                            <!-- <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap">
-                        <img src="./iti.jpg" width="100px" alt="">
-                        <div>
-                            <p class="fs-4 mb-0">Name</p>
-                            <p>Seller: <i>nawal</i></p>
-                        </div>
-                        <div>
-                            <p class="text-secondary">Category:</p>
-                            <p class="text-secondary">Brand:</p>
-                            <p class="text-secondary">Quantity:</p>
-                        </div>
-                        <div class="ms-auto d-flex align-items-center me-2">
-                            <p class="fs-3">100$</p>
-                        </div>
-                    </div> -->
+                            <!-- <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap mb-3">
+                                <img src="./iti.jpg" width="100px" alt="">
+                                <div>
+                                    <p class="fs-4 mb-0">Name</p>
+                                    <p>Seller: <i>nawal</i></p>
+                                </div>
+                                <div>
+                                    <p class="text-secondary">Category:</p>
+                                    <p class="text-secondary">Brand:</p>
+                                    <p class="text-secondary">Quantity:</p>
+                                </div>
+                                <div class="ms-auto d-flex flex-column align-items-center me-2">
+                                    <p class="fs-3">100$</p>
+                                    <button class="btn btn-danger">Delete</button>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

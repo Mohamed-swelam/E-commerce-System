@@ -1,4 +1,4 @@
-
+'use strict'
 // // linked main tabs with its sub ones
 // mainTabs = document.querySelectorAll('.main-tab')
 // subTabs = document.querySelectorAll('.sub-tab')
@@ -173,8 +173,8 @@
 // ==============================
 
 // Select all main tabs and their corresponding sub sections
-mainTabs = document.querySelectorAll('.main-tab')
-subTabs = document.querySelectorAll('.sub-tab')
+const mainTabs = document.querySelectorAll('.main-tab')
+const subTabs = document.querySelectorAll('.sub-tab')
 
 // Add click event to each main tab
 mainTabs.forEach(p => {
@@ -229,6 +229,99 @@ let sellers = users.filter(user => user.role == 'seller')
 let customers = users.filter(user => user.role == 'customer')
 
 
+// ======================================================
+// Customers Logic
+// ======================================================
+// const customersContainer = document.getElementById('customers-container');
+// let totalCustomers = document.getElementById('total-customers');
+// totalCustomers.innerText = customers.length;
+// console.log(customers);
+// function displayCustomer(customers) {
+//     let col = document.createElement('div');
+//     col.classList.add(
+//         'col-4','col-md-3', 'p-2', 'd-flex',
+//         'bg-light', 'rounded-3',
+//         'gap-5', 'flex-wrap', 'mb-3'
+//     )
+//     let 
+// }
+
+const customersContainer = document.getElementById('customers-container');
+let totalCustomers = document.getElementById('total-customers');
+totalCustomers.innerText = customers.length;
+// Function to render one customer card
+function displayCustomer(customer) {
+
+    // Main row container (same style as product)
+    let col = document.createElement('div');
+    col.classList.add(
+        'col-12', 'p-3', 'd-flex',
+        'bg-light', 'rounded-3',
+        'gap-5', 'flex-wrap', 'mb-3'
+    );
+
+    // ---------------- Name + Email ----------------
+    let div1 = document.createElement('div');
+
+    let customerName = document.createElement('p');
+    customerName.classList.add('fs-4', 'mb-0');
+    customerName.innerText = customer.name;
+
+    let customerEmail = document.createElement('a');
+    customerEmail.classList.add('text-secondary');
+    customerEmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${customer.email}`;
+    customerEmail.target = "_blank";
+    customerEmail.innerText = customer.email;
+    customerEmail.style.textDecoration = "none";
+
+
+    // ---------------- Role ----------------
+    // let div2 = document.createElement('div');
+
+    // let customerRole = document.createElement('p');
+    // customerRole.classList.add('text-secondary');
+    // customerRole.innerText = "Role: " + customer.role;
+
+    // ---------------- ID Section ----------------
+    let div3 = document.createElement('div');
+    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center');
+
+    let customerId = document.createElement('p');
+    customerId.classList.add('fs-5');
+    customerId.innerText = "ID: " + customer.id;
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('btn', 'btn-danger');
+    deleteBtn.innerText = 'Delete'
+
+    // ---------------- Append ----------------
+    customersContainer.appendChild(col);
+
+    col.appendChild(div1);
+    // col.appendChild(div2);
+    col.appendChild(div3);
+
+    div1.appendChild(customerName);
+    div1.appendChild(customerEmail);
+
+    // div2.appendChild(customerRole);
+
+    div3.appendChild(customerId);
+    div3.appendChild(deleteBtn)
+}
+customers.forEach(customer => displayCustomer(customer))
+
+
+// Bootstrap validation on Modal form
+let Modalform = document.querySelector('.needs-validation')
+Modalform.addEventListener('submit', event => {
+    if (!Modalform.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+    }
+    Modalform.classList.add('was-validated')
+}, false)
+
 
 // ======================================================
 // Products Logic
@@ -249,7 +342,7 @@ function displayProduct(product) {
     // Create main container for product row
     let col = document.createElement('div');
     col.classList.add(
-        'col-12', 'p-2', 'd-flex',
+        'col-12', 'p-3', 'd-flex',
         'bg-light', 'rounded-3',
         'gap-5', 'flex-wrap', 'mb-3'
     )
@@ -288,11 +381,15 @@ function displayProduct(product) {
 
     // ----------------- Price Section -----------------
     let div3 = document.createElement('div');
-    div3.classList.add('ms-auto', 'd-flex', 'align-items-center', 'me-2')
+    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2')
 
     let productPrice = document.createElement('p');
     productPrice.classList.add('fs-3')
     productPrice.innerText = product.price + '$'
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('btn', 'btn-danger');
+    deleteBtn.innerText = 'Delete'
 
     // Append elements to DOM in structured hierarchy
     productsContainer.appendChild(col);
@@ -309,6 +406,7 @@ function displayProduct(product) {
     div2.appendChild(productQuantity)
 
     div3.appendChild(productPrice)
+    div3.appendChild(deleteBtn)
 }
 
 
