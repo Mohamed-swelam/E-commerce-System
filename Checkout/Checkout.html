@@ -133,97 +133,122 @@
 
                 <!-- LEFT (FORM) -->
                 <div class="col-12 col-lg-7 order-2 order-lg-1" id="shipping_data">
-                    <div class="section-heading">
-                        <span class="step-badge">1</span> Delivery Information
-                    </div>
-
-                    <div class="mb-3 form-floating col-12 col-lg-10">
-                        <input type="text" class="form-control" id="user_name" placeholder="Name">
-                        <label for="user_name">Name</label>
-                    </div>
-
-                    <div class="mb-3 form-floating col-12 col-lg-10">
-                        <input type="text" class="form-control" id="Address" placeholder="Address">
-                        <label for="Address">Address</label>
-                    </div>
-
-                    <!-- <div class="col-12 col-lg-10">
-                        <div class="mb-3 form-floating">
-                            <input type="text" class="form-control" id="Appartment" placeholder="Appartment(Optional)">
-                            <label for="Appartment">Appartment (Optional)</label>
+                    <form id="checkoutForm" class="needs-validation" novalidate>
+                        <div class="section-heading">
+                            <span class="step-badge">1</span> Delivery Information
                         </div>
-                    </div> -->
 
-                    <div class="col-12 col-lg-10">
-                        <div class="row">
-                            
-                            <div class="col-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="city" placeholder="City">
-                                <label for="city">City</label>
+                        <div class="mb-3 form-floating col-12 col-lg-10">
+                            <input type="text" class="form-control" id="user_name" placeholder="Name" required>
+                            <label for="user_name">Name</label>
+                            <div class="invalid-feedback">
+                                Please enter your name
                             </div>
-                            </div>
-
-                            <div class="col-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="Phone" placeholder="Phone">
-                                <label for="Phone">Phone</label>
-                            </div>
-                            </div>
-
                         </div>
-                    </div>
 
-                    <div class="section-heading mt-4">
-                        <span class="step-badge">2</span> Payment
-                    </div>
+                        <div class="mb-3 form-floating col-12 col-lg-10">
+                            <input type="text" class="form-control" id="Address" placeholder="Address" required minlength="5">
+                            <label for="Address">Address</label>
+                            <div class="invalid-feedback">
+                                Please enter a valid address (at least 5 characters)
+                            </div>
+                        </div>
 
-                    <p class="text-muted">All transactions are secure and encrypted.</p>
+                        <!-- <div class="col-12 col-lg-10">
+                            <div class="mb-3 form-floating">
+                                <input type="text" class="form-control" id="Appartment" placeholder="Appartment(Optional)">
+                                <label for="Appartment">Appartment (Optional)</label>
+                            </div>
+                        </div> -->
 
-                    <div class="d-flex align-items-center my-4 col-12 col-lg-10">
-                        <hr class="flex-grow-1">
-                        <span class="px-3 text-muted small text-uppercase" style="letter-spacing: 2px;">
-                            Card Details
-                        </span>
-                        <hr class="flex-grow-1">
-                    </div>
+                        <div class="col-12 col-lg-10">
+                            <div class="row">
+                                
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="city" placeholder="City" required>
+                                        <label for="city">City</label>
+                                        <div class="invalid-feedback">City is required</div>
+                                    </div>
+                                </div>
 
-                    <div class="mb-3 form-floating col-12 col-lg-10">
-                        <input type="text" class="form-control" id="Card_Number" placeholder="Card Number">
-                        <label for="Card_Number">CARD NUMBER</label>
-                    </div>
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control" id="Phone" placeholder="Phone" required pattern="[0-9]{11}">
+                                        <label for="Phone">Phone</label>
+                                        <div class="invalid-feedback">
+                                            Enter a valid phone number (11 digits)
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <div class="col-12 col-lg-10">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="Expiry_Date" placeholder="Expiry_Date">
-                                    <label for="Expiry_Date">EXPIRY DATE ( MM / YY )</label>
+                            </div>
+                        </div>
+
+                        <div class="section-heading mt-4">
+                            <span class="step-badge">2</span> Payment
+                        </div>
+
+                        <p class="text-muted">All transactions are secure and encrypted.</p>
+
+                        <div class="d-flex align-items-center my-4 col-12 col-lg-10">
+                            <hr class="flex-grow-1">
+                            <span class="px-3 text-muted small text-uppercase" style="letter-spacing: 2px;">
+                                Card Details
+                            </span>
+                            <hr class="flex-grow-1">
+                        </div>
+
+                        <div class="mb-3 form-floating col-12 col-lg-10">
+                            <input type="text" class="form-control" id="Card_Number" placeholder="Card Number" required pattern="[0-9]{16}">
+                            <label for="Card_Number">CARD NUMBER</label>
+                            <div class="invalid-feedback">
+                                Card number must be 16 digits
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-10">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="Expiry_Date" placeholder="Expiry_Date" required pattern="(0[1-9]|1[0-2])\/[0-9]{2}">
+                                        <label for="Expiry_Date">EXPIRY DATE ( MM / YY )</label>
+                                        <div class="invalid-feedback">
+                                            Format must be MM/YY (e.g. 05/27)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="CVV" placeholder="CVV" required pattern="[0-9]{3}">
+                                        <label for="CVV">Security code (CVV)</label>
+                                        <div class="invalid-feedback">
+                                            CVV must be 3 or 4 digits
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        
 
-                            <div class="col-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="CVV" placeholder="CVV">
-                                    <label for="CVV">Security code (CVV)</label>
-                                </div>
+                        <div class="mb-3 form-floating col-12 col-lg-10">
+                            <input type="text" class="form-control" id="Name_on_Card" placeholder="Name_on_Card" required>
+                            <label for="Name_on_Card">NAME ON CARD</label>
+                            <div class="invalid-feedback">
+                                Name on card is required
                             </div>
                         </div>
-                    </div>
-                    
 
-                    <div class="mb-3 form-floating col-12 col-lg-10">
-                        <input type="text" class="form-control" id="Name_on_Card" placeholder="Name_on_Card">
-                        <label for="Name_on_Card">NAME ON CARD</label>
-                    </div>
-
-                    <div class="col-12 col-lg-10">
-                        <button class="btn btn-primary w-100" style="height: 60px;font-size: 20px;font-weight: bold;">
-                            Complete Order
-                        </button>
-                    </div>
-                    
+                        <div class="col-12 col-lg-10">
+                            <button type="submit" class="btn btn-primary w-100" style="height: 60px;font-size: 20px;font-weight: bold;">
+                                Complete Order
+                            </button>
+                        </div>
+                        
+                    </form>
                 </div>
+                
 
             </div>
         </div>

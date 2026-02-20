@@ -202,6 +202,11 @@ document.addEventListener("click", function (e) {
     displaycart();
 });
 
+
+document.getElementById("go_Checkout").addEventListener("click", function () {
+    window.location.href = "../../Checkout/Checkout.html";
+})
+
 displaycart();
 
 

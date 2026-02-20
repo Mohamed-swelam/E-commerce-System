@@ -1,4 +1,12 @@
+const form = document.getElementById("checkoutForm");
 
+form.addEventListener("submit", function (event) {
+    if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    form.classList.add("was-validated");
+});
 
 
 async function DisplayProducts() {
@@ -12,17 +20,50 @@ async function DisplayProducts() {
         // console.log(localStorage.getItem("carts"));
     }
     //check login
-    const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
+    // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
 
-    if (!currentUserId) {
+    // if (!currentUserId) {
+    //     alert("Please login first to add items to cart.");
+    //     window.location.href = "../../login/login.html";
+    //     return;
+    // }
+
+    //test
+    // let user = {
+    //     "id": 3,
+    //     "name": "Kariem Tamer",
+    //     "email": "Kariem@gmail.com",
+    //     "password": "123456",
+    //     "role": "customer",
+    //     "city": "Mansoura",
+    //     "street": "El Geish Street",
+    //     "phone": "01040393484"
+    // };
+
+    // localStorage.setItem("currentUser", JSON.stringify(user));
+
+
+    //check user login
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
         alert("Please login first to add items to cart.");
         window.location.href = "../../login/login.html";
         return;
     }
 
-
     let carts = JSON.parse(localStorage.getItem("carts")) || [];
-    let userCart = carts.find(c => c.userId === currentUserId);
+    let userCart = carts.find(c => c.userId === currentUser.id);
+
+
+    //fill default values
+    document.getElementById("city").value = currentUser.city;
+    document.getElementById("user_name").value = currentUser.name;
+    document.getElementById("Address").value = currentUser.city;
+    document.getElementById("Phone").value = currentUser.phone;
+
+
+
 
     // console.log(userCart);
 
@@ -72,15 +113,18 @@ async function DisplayProducts() {
 
                                 </div>
 
-                                <div class="price fw-medium">${total}</div>
+                                <div class="price fw-medium">£${total.toFixed(2)}</div>
                             </div>`);
 
     }
-
     document.getElementById("totlaItems").innerText = totalItems;
-    document.getElementById("subtotal").innerText = subtotal;
+    document.getElementById("subtotal").innerText = `£${subtotal}`;
 
-    document.getElementById("totalAll").innerText = (subtotal + 90.00);
+    document.getElementById("totalAll").innerText = `£${(subtotal + 90.00)}`;
 }
+
+
+
+
 
 DisplayProducts();
