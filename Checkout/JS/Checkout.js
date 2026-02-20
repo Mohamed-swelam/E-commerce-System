@@ -1,0 +1,86 @@
+
+
+
+async function DisplayProducts() {
+
+    //load carts
+    if (!localStorage.getItem("carts")) {
+        const response_2 = await fetch('../../Dummy Data/carts.json');
+        let cartsFromJson = await response_2.json();
+
+        localStorage.setItem("carts", JSON.stringify(cartsFromJson));
+        // console.log(localStorage.getItem("carts"));
+    }
+    //check login
+    const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
+
+    if (!currentUserId) {
+        alert("Please login first to add items to cart.");
+        window.location.href = "../../login/login.html";
+        return;
+    }
+
+
+    let carts = JSON.parse(localStorage.getItem("carts")) || [];
+    let userCart = carts.find(c => c.userId === currentUserId);
+
+    // console.log(userCart);
+
+    if (!userCart || userCart.items.length === 0) {
+        alert("There is no items in the cart");
+        window.location.href = "../../Cart/cart.html";
+        return;
+    }
+
+    const products = JSON.parse(localStorage.getItem("products"));
+    let itemsDiv = document.getElementById("items");
+    let totalItems = 0;
+    let subtotal = 0;
+    for (let i = 0; i < userCart.items.length; i++) {
+
+        let product = products.find(p => p.product_id == userCart.items[i].productId);
+
+        //check and transform string to numeric
+        const idealPrice = product.price;
+
+        const numericPrice =
+            typeof idealPrice === "string"
+                ? Number(idealPrice.replace(/,/g, ""))
+                : Number(idealPrice);
+
+        let total = userCart.items[i].quantity * numericPrice;
+        subtotal += total;
+        totalItems += userCart.items[i].quantity;
+
+        itemsDiv.insertAdjacentHTML("afterbegin", `
+                        <div class="item d-flex align-items-start justify-content-between mb-3 gap-2">
+                                <div class="d-flex align-items-start gap-4">
+                    
+                                    <div class="image position-relative">
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">${userCart.items[i].quantity}</span>
+                                        <img 
+                                            src=${product.image}
+                                            class="rounded"
+                                            style="width: 70px; height: 78px; object-fit: contain; ">
+                                    </div>
+
+                                    <div class="title">
+                                        <div class="fw-medium">
+                                            ${product.description || "No description available for this product."}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="price fw-medium">${total}</div>
+                            </div>`);
+
+    }
+
+    document.getElementById("totlaItems").innerText = totalItems;
+    document.getElementById("subtotal").innerText = subtotal;
+
+    document.getElementById("totalAll").innerText = (subtotal + 90.00);
+}
+
+DisplayProducts();
