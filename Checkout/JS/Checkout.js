@@ -1,14 +1,3 @@
-const form = document.getElementById("checkoutForm");
-
-form.addEventListener("submit", function (event) {
-    if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    form.classList.add("was-validated");
-});
-
-
 async function DisplayProducts() {
 
     //load carts
@@ -121,7 +110,83 @@ async function DisplayProducts() {
     document.getElementById("subtotal").innerText = `£${subtotal}`;
 
     document.getElementById("totalAll").innerText = `£${(subtotal + 90.00)}`;
+
+    let totalAll = subtotal + 90.00;
+
+
+    const form = document.getElementById("checkoutForm");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add("was-validated");
+
+
+
+        //getAllValues
+        let name = document.getElementById("user_name").value;
+        let city = document.getElementById("city").value;
+        let address = document.getElementById("Address").value;
+        let phone = document.getElementById("Phone").value;
+
+        // let card_Number = document.getElementById("Card_Number").value;
+        // let expiry_date = document.getElementById("Expiry_Date").value;
+        // let cvv = document.getElementById("CVV").value;
+        // let name_on_Card = document.getElementById("Name_on_Card").value;
+
+
+        //create order
+        let order = {
+            orderId: Date.now(),
+            userId: currentUser.id,
+            customerName: name,
+            city: city,
+            address: address,
+            phone: phone,
+            total: totalAll,
+            status: "processing",
+            createdAt: new Date().toISOString(),
+            items: userCart.items,
+        };
+
+        //decrease product quantity
+        for (let i = 0; i < userCart.items.length; i++) {
+            let product = products.find(p => p.product_id == userCart.items[i].productId);
+            if (product) {
+                product.quantity -= userCart.items[i].quantity;
+            }
+        }
+        localStorage.setItem("products", JSON.stringify(products));
+
+        //reomve usercart
+        let userCartIndex = carts.findIndex(c => c.userId === currentUser.id);
+        if (userCartIndex !== -1) {
+            carts[userCartIndex].items = [];
+        }
+        localStorage.setItem("carts", JSON.stringify(carts));
+
+
+        //update orders
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        orders.push(order);
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        alert("Order placed successfully!");
+        window.location.href = "../../Cart/cart.html";
+        // window.location.href = "../../HomePage&Products/home.html";
+    });
+
 }
+
+
+
+
+
+
 
 
 
