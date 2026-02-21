@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avion</title>
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+        integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--My Style -->
+    <link rel="stylesheet" href="./CSS/category.css">
+    <!-- Media -->
+    <link rel="stylesheet" href="./CSS/media.css">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Start NavBar -->
+    <section id="nav">
+        <nav class="navbar navbar-expand-lg  bg-white px-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./home.html">Avion</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                    <ul class="navbar-nav  ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                    </ul>
+
+
+                    <ul class="list-unstyled d-flex gap-3 mt-3 ">
+                        <li class="icon-il">
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+
+                        <li class="icon-il">
+                            <a href="">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+
+
+            </div>
+        </nav>
+        <nav class="bottom-bar   p-2">
+            <div class="container-fluid">
+                <div class="flex justify-content-center align-items-center">
+                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                        id="bottom-navbar">
+                        <li>
+                            <a class="nav-link " href="./AllProducts.html">All products</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=TV">Tvs</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Gaming">Gaming</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Computers">Computers</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Bluetooth">Bluetooth</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Accessories">Accessories</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Phones">Phones</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- End NavBar -->
+
+
+
+    <!-- Start Categroy -->
+    <header id="category" style="padding-top: 100px;  padding-bottom: 40px; ">
+        <div class="container">
+            <div class="row g-3" id="data">
+            </div>
+
+            
+                <div>
+                    <div class="row" id="prds-data"></div>
+                    <div id="controls" class="d-flex justify-content-around align-items-center my-3 py-3 w-100">
+                        <span><i class="fa-solid fa-circle-arrow-left" id="prev"></i></span>
+                        <span id="navigators" class="d-flex flex-wrap flex-lg-nowrap  justify-content-center align-items-center gap-2"></span>
+                        <span><i class="fa-solid fa-circle-arrow-right" id="next"></i></span>
+                    </div>
+                </div>
+
+
+        </div>
+    </header>
+    <!-- End Categroy -->
+
+    
+    <!-- Start Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-6  col-lg-2">
+                    <ul class="list-unstyled">
+                        <h5>Categroies</h5>
+                        <li>Tvs</li>
+                        <li>Gaming</li>
+                        <li>BluetoothSpeaker</li>
+                        <li>Others</li>
+                    </ul>
+                </div>
+
+                <div class="col-6  col-lg-2">
+                    <ul class="list-unstyled">
+                        <h5>Menu</h5>
+                        <li>New arrivals</li>
+                        <li>Best sellers</li>
+                        <li>Recently viewed</li>
+                        <li>Popular this week</li>
+                        <li>All products</li>
+                    </ul>
+                </div>
+
+
+                <div class="col-12  col-lg-2">
+                    <ul class="list-unstyled">
+                        <h5>Our company</h5>
+                        <li>About us</li>
+                        <li>Vacancies</li>
+                        <li>Contact us</li>
+                        <li>Privacy</li>
+                        <li>Returns policy</li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <h6>Join our mailing list</h6>
+                    <div class="d-flex  justify-content-center after-brdr">
+                        <input type="email" placeholder="your@email.com" style="width:75%">
+                        <button style="width:25%;">Sign Up</button>
+                    </div>
+
+                </div>
+                <hr class="d-none d-lg-block">
+                <div class="row justify-content-between  align-items-center">
+
+                    <h6 class="p-3 text-center col-lg-3">Copyright 2026 Avion LTD</h6>
+
+                    <ul class="list-unstyled col-lg-3  gap-3 d-none d-lg-flex ">
+                        <li><span><i class="fa-brands fa-linkedin"></i></span></li>
+                        <li><span><i class="fa-brands fa-facebook"></i></span></li>
+                        <li><span><i class="fa-brands fa-instagram"></i></span></li>
+                        <li><span><i class="fa-brands fa-skype"></i></span></li>
+                        <li><span><i class="fa-brands fa-twitter"></i></span></li>
+                        <li><span><i class="fa-brands fa-pinterest"></i></span></li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+
+
+
+
+
+
+
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"
+        integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- My Script -->
+    <script src="./JS/categroy.js"></script>
+</body>
+
+</html>
