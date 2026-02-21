@@ -94,6 +94,7 @@
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
                         Customer</button>
                 </div>
+                <p class="text-center fs-3 mt-5 fst-italic text-body-tertiary d-none" id="customers-empty-message"></p>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -107,24 +108,23 @@
                             <div class="modal-body">
                                 <form class="needs-validation" novalidate>
                                     <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">User Name:</label>
-                                        <input type="text" class="form-control" id="recipient-name" required
-                                            minlength="3">
+                                        <label for="cust-name" class="col-form-label">User Name:</label>
+                                        <input type="text" class="form-control" id="cust-name" required minlength="3">
                                         <div class="invalid-feedback">
                                             please fill in the user name!
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Email:</label>
-                                        <input type="email" class="form-control" id="email" required
+                                        <label for="cust-email" class="col-form-label">Email:</label>
+                                        <input type="email" class="form-control" id="cust-email" required
                                             minlength="15"></input>
                                         <div class="invalid-feedback">
                                             please fill in email!
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Password:</label>
-                                        <input type="password" class="form-control" id="password" required
+                                        <label for="cust-password" class="col-form-label">Password:</label>
+                                        <input type="password" class="form-control" id="cust-password" required
                                             minlength="6"></input>
                                         <div class="invalid-feedback">
                                             please fill in password 6 characters at least!
@@ -133,7 +133,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">ADD</button>
+                                <button type="submit" class="btn btn-success" id="customer-modal-add-btn">ADD</button>
                                 </form>
                             </div>
                         </div>
@@ -145,8 +145,14 @@
             <!-- End of customers section -->
             <!-- Start of sellers section -->
             <div id="sellers" class="sub-tab">
+                <div class="bg-light w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center">
+                    <p><span id="total-sellers"></span> <br> Sellers</p>
+                </div>
+                <div class="text-end mb-3">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
+                        Seller</button>
+                </div>
                 <div class="row w-100 m-auto" id="sellers-container">
-
                 </div>
             </div>
             <!-- End of sellers section -->

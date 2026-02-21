@@ -1,173 +1,4 @@
 'use strict'
-// // linked main tabs with its sub ones
-// mainTabs = document.querySelectorAll('.main-tab')
-// subTabs = document.querySelectorAll('.sub-tab')
-// mainTabs.forEach(p => {
-//     p.addEventListener('click', (e) => {
-//         mainTabs.forEach(p => p.classList.remove('active-tab'))
-//         p.classList.add('active-tab')
-//         subTabs.forEach(div => { div.classList.remove('active-sub-tab') })
-//         subTabs.forEach(div => {
-//             if (div.id == e.target.innerHTML) {
-//                 div.classList.add('active-sub-tab')
-//             }
-//         })
-//     })
-// });
-// //------------------------------------------- Users logic --------------------------------------------
-
-
-// // fetching users data from the json file and storing it on local storage
-// fetch('../Dummy Data/users.json')
-//     .then(res => {
-//         if (!res.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-//         return res.json();
-//     }).then(users => {
-//         localStorage.setItem('users', JSON.stringify(users))
-//     })
-//     .catch(error => {
-//         console.error('There was a problem with the fetch operation:', error);
-//     });
-// // getting users data from local storage
-// const users = JSON.parse(localStorage.getItem('users'));
-// // filtring sellers and customers
-// let sellers = users.filter(user => user.role == 'seller')
-// let customers = users.filter(user => user.role == 'customer')
-
-
-// //------------------------------------------- Products logic --------------------------------------------
-
-
-// // function to display product
-// function displayProduct(product) {
-//     const productsContainer = document.getElementById('products-container');
-//     let col = document.createElement('div');
-//     col.classList.add('col-12', 'p-2', 'd-flex', 'bg-light', 'rounded-3', 'gap-5', 'flex-wrap', 'mb-3')
-//     //Image
-//     let productImg = document.createElement('img')
-//     productImg.classList.add('product-img')
-//     productImg.src = product.image
-//     // div for the name and seller
-//     let div1 = document.createElement('div');
-//     //Name
-//     let productName = document.createElement('p');
-//     productName.innerText = product.name;
-//     productName.classList.add('fs-4', 'mb-0');
-//     // Seller
-//     let productSeller = document.createElement('p');
-//     // productSeller.innerText = 'Seller: ' + sellers.filter(s => s.id == product.sellerId)[0].name
-//     productSeller.innerText = 'Seller: ' + sellers.filter(s => s.id == product.seller_id)[0].name
-//     // div for Brand, Category, Quantity
-//     let div2 = document.createElement('div');
-//     // Brand
-//     let productBrand = document.createElement('p');
-//     productBrand.classList.add('text-secondary');
-//     productBrand.innerText = 'Brand:  ' + product.brand;
-//     //Category
-//     let productCategory = document.createElement('p');
-//     productCategory.classList.add('text-secondary');
-//     productCategory.innerText = 'Category:  ' + product.category
-//     //Quantity
-//     let productQuantity = document.createElement('p');
-//     productQuantity.classList.add('text-secondary');
-//     productQuantity.innerText = 'Quantity:  ' + product.rating
-//     // div for the price
-//     let div3 = document.createElement('div');
-//     div3.classList.add('ms-auto', 'd-flex', 'align-items-center', 'me-2')
-//     //Price
-//     let productPrice = document.createElement('p');
-//     productPrice.classList.add('fs-3')
-//     productPrice.innerText = product.price + '$'
-
-
-//     // appending children
-//     productsContainer.appendChild(col);
-//     col.appendChild(productImg);
-//     col.appendChild(div1);
-//     col.appendChild(div2);
-//     col.appendChild(div3);
-//     div1.appendChild(productName)
-//     div1.appendChild(productSeller)
-//     div2.appendChild(productBrand)
-//     div2.appendChild(productCategory)
-//     div2.appendChild(productQuantity)
-//     div3.appendChild(productPrice)
-// }
-
-// // function to display filters
-// function displayFilters(arr, t) {
-//     const filters = document.getElementById('filters');
-//     let mainDiv = document.createElement('div');
-//     mainDiv.classList.add('col-6', 'col-md-12')
-//     let title = document.createElement('p');
-//     title.classList.add('mt-4', 'fs-5')
-//     title.innerText = t;
-//     mainDiv.appendChild(title)
-//     arr.forEach(element => {
-//         let div = document.createElement('div');
-//         div.classList.add('form-check');
-//         let input = document.createElement('input');
-//         input.classList.add('form-check-input');
-//         input.type = 'checkbox';
-//         input.value = element;
-//         input.id = element;
-//         let label = document.createElement('label');
-//         label.classList.add('form-check-label');
-//         label.for = element;
-//         label.innerText = element;
-//         // appending children
-//         mainDiv.appendChild(div);
-//         div.appendChild(input);
-//         div.appendChild(label);
-//     }
-//     )
-//     filters.appendChild(mainDiv);
-// }
-
-
-
-
-
-// // the 3 cards on top 
-// const totalProducts = document.getElementById('total-products');
-// const totalCategories = document.getElementById('total-categories');
-// const totalBrands = document.getElementById('total-brands');
-
-// // fetching products data from the json file
-// fetch('../Dummy Data/products.json')
-//     .then(res => {
-//         if (!res.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-//         return res.json();
-//     }).then(products => {
-//         for (let i = 0; i < products.length; i++) {
-//             displayProduct(products[i]);
-//         }
-//         // filtering categories
-//         let categories = []
-//         products.map(p => categories.push(p.category))
-//         categories = [...new Set(categories)] // to remove duplicated categories
-//         // filtering brands
-//         let brands = []
-//         products.map(p => brands.push(p.brand))
-//         brands = [...new Set(brands)] // to remove duplicated brands
-//         displayFilters(brands, 'Brands');
-//         displayFilters(categories, 'Categories')
-//         // setting span of the 3 cards on top
-//         totalProducts.innerText = products.length;
-//         totalCategories.innerHTML = categories.length
-//         totalBrands.innerText = brands.length
-//     })
-//     .catch(error => {
-//         console.error('There was a problem with fetching products:', error);
-//     });
-
-
-
-
 // ==============================
 // Navigation Tabs Logic
 // ==============================
@@ -207,52 +38,120 @@ mainTabs.forEach(p => {
 // ======================================================
 
 // Fetch users from JSON file and store them in localStorage
-fetch('../Dummy Data/users.json')
-    .then(res => {
-        if (!res.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return res.json();
-    })
-    .then(users => {
-        localStorage.setItem('users', JSON.stringify(users))
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
+// fetch('../Dummy Data/users.json')
+//     .then(res => {
+//         if (!res.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return res.json();
+//     })
+//     .then(users => {
+//         localStorage.setItem('users', JSON.stringify(users));
+//         // location.reload();
+//     })
+//     .catch(error => {
+//         console.error('There was a problem with the fetch operation:', error);
+//     });
 
-// Retrieve users from localStorage
-const users = JSON.parse(localStorage.getItem('users'));
+const usersData = [
+    {
+        "id": 1,
+        "name": "Admin User",
+        "email": "admin@store.com",
+        "password": "123456",
+        "role": "admin"
+    },
+    {
+        "id": 2,
+        "name": "Seller One",
+        "email": "seller1@gmail.com",
+        "password": "123456",
+        "role": "seller"
+    },
+    {
+        "id": 3,
+        "name": "Kariem Tamer",
+        "email": "Kariem@gmail.com",
+        "password": "123456",
+        "role": "customer"
+    },
+    {
+        "id": 4,
+        "name": "Ahmed Mohamed",
+        "email": "ahmed@gmail.com",
+        "password": "123456",
+        "role": "customer"
+    },
+    {
+        "id": 5,
+        "name": "Sara Ali",
+        "email": "sara@gmail.com",
+        "password": "123456",
+        "role": "customer"
+    },
+    {
+        "id": 6,
+        "name": "Omar Hassan",
+        "email": "omar@gmail.com",
+        "password": "123456",
+        "role": "customer"
+    },
+    {
+        "id": 7,
+        "name": "Seller Two",
+        "email": "seller2@gmail.com",
+        "password": "123456",
+        "role": "seller"
+    },
+    {
+        "id": 8,
+        "name": "Seller Three",
+        "email": "seller3@gmail.com",
+        "password": "123456",
+        "role": "seller"
+    }
+];
+
+// localStorage.clear()
+// localStorage.setItem('users', JSON.stringify(usersData));
+let users;
+// Only set default users if localStorage is empty
+if (!localStorage.getItem('users')) {
+    localStorage.setItem('users', JSON.stringify(usersData));
+    users = JSON.parse(localStorage.getItem('users'));
+}
+else {
+    users = JSON.parse(localStorage.getItem('users'));
+}
 
 // Separate users based on role
 let sellers = users.filter(user => user.role == 'seller')
-let customers = users.filter(user => user.role == 'customer')
+// localStorage.setItem('sellers', JSON.stringify(sellers))
 
+
+let customers = users.filter(user => user.role == 'customer');
+// localStorage.setItem('customers', JSON.stringify(customers))
+
+function deleteUser(id) {
+    let deletedUser = users.filter(u => u.id == id);
+    users.splice(users.indexOf(deletedUser[0]), 1);
+    localStorage.removeItem('users');
+    localStorage.setItem('users', JSON.stringify(users))
+    console.log(users);
+}
 
 // ======================================================
 // Customers Logic
 // ======================================================
-// const customersContainer = document.getElementById('customers-container');
-// let totalCustomers = document.getElementById('total-customers');
-// totalCustomers.innerText = customers.length;
-// console.log(customers);
-// function displayCustomer(customers) {
-//     let col = document.createElement('div');
-//     col.classList.add(
-//         'col-4','col-md-3', 'p-2', 'd-flex',
-//         'bg-light', 'rounded-3',
-//         'gap-5', 'flex-wrap', 'mb-3'
-//     )
-//     let 
-// }
 
 const customersContainer = document.getElementById('customers-container');
 let totalCustomers = document.getElementById('total-customers');
-totalCustomers.innerText = customers.length;
+
+
 // Function to render one customer card
 function displayCustomer(customer) {
 
-    // Main row container (same style as product)
+    // Main row container
     let col = document.createElement('div');
     col.classList.add(
         'col-12', 'p-3', 'd-flex',
@@ -274,14 +173,6 @@ function displayCustomer(customer) {
     customerEmail.innerText = customer.email;
     customerEmail.style.textDecoration = "none";
 
-
-    // ---------------- Role ----------------
-    // let div2 = document.createElement('div');
-
-    // let customerRole = document.createElement('p');
-    // customerRole.classList.add('text-secondary');
-    // customerRole.innerText = "Role: " + customer.role;
-
     // ---------------- ID Section ----------------
     let div3 = document.createElement('div');
     div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center');
@@ -293,6 +184,16 @@ function displayCustomer(customer) {
     let deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btn', 'btn-danger');
     deleteBtn.innerText = 'Delete'
+    deleteBtn.id = customer.id;
+    // delete logic
+    deleteBtn.addEventListener('click', (e) => {
+        deleteUser(e.target.id);
+        customersContainer.innerHTML = '';
+        customers.forEach(c => displayCustomer(c))
+        location.reload()
+    })
+
+    totalCustomers.innerText = customers.length;
 
     // ---------------- Append ----------------
     customersContainer.appendChild(col);
@@ -309,7 +210,45 @@ function displayCustomer(customer) {
     div3.appendChild(customerId);
     div3.appendChild(deleteBtn)
 }
-customers.forEach(customer => displayCustomer(customer))
+
+if (customers.length == 0) {
+    console.log('empty');
+    totalCustomers.innerText = '0'
+    const customersEmptyMessage = document.getElementById('customers-empty-message');
+    customersEmptyMessage.classList.remove('d-none')
+    customersEmptyMessage.innerText = 'No customers found. Try adding some!'
+}
+else {
+    customers.forEach(customer => {
+        displayCustomer(customer)
+    })
+}
+
+
+const customerName = document.getElementById('cust-name')
+const cutomerEmail = document.getElementById('cust-email')
+const cutomerPassword = document.getElementById('cust-password')
+const customerModalAddBtn = document.getElementById('customer-modal-add-btn')
+customerModalAddBtn.addEventListener('click', addCustomer);
+
+
+
+function addCustomer() {
+
+    const newCustomer = {
+        id: users.length + 1,
+        role: 'customer',
+        name: customerName.value,
+        email: cutomerEmail.value,
+        password: cutomerPassword.value
+    }
+    users.push(newCustomer);
+    localStorage.removeItem('users');
+    localStorage.setItem('users', JSON.stringify(users))
+    displayCustomer(newCustomer);
+}
+
+
 
 
 // Bootstrap validation on Modal form
@@ -321,6 +260,12 @@ Modalform.addEventListener('submit', event => {
     }
     Modalform.classList.add('was-validated')
 }, false)
+
+
+// ======================================================
+// Sellers Logic
+// ======================================================
+
 
 
 // ======================================================
@@ -416,6 +361,7 @@ function displayProduct(product) {
 // ======================================================
 
 // This function creates a group of checkboxes
+// t is for title and arr is for brands and categories arrays
 function displayFilters(arr, t) {
 
     const filters = document.getElementById('filters');
