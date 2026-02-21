@@ -226,13 +226,6 @@ else {
 }
 
 
-// addCustomer()
-// ======================================================
-// Sellers Logic
-// ======================================================
-
-
-
 // ======================================================
 // Products Logic
 // ======================================================
@@ -319,6 +312,14 @@ function displayProduct(product) {
     div3.appendChild(deleteBtn)
 }
 
+// range
+const rangeInput = document.getElementById('range4');
+const rangeOutput = document.getElementById('rangeValue');
+// Set initial value
+rangeOutput.textContent = rangeInput.value;
+rangeInput.addEventListener('input', function () {
+    rangeOutput.textContent = this.value;
+});
 
 
 // ======================================================
@@ -411,48 +412,75 @@ fetch('../Dummy Data/products.json')
     })
     .then(products => {
         allProducts = products;
+        localStorage.setItem('products', JSON.stringify(products))
         // Render all products
-        for (let i = 0; i < products.length; i++) {
-            displayProduct(products[i]);
-        }
+        // for (let i = 0; i < products.length; i++) {
+        //     displayProduct(products[i]);
+        // }
 
-        // Extract unique categories
-        let categories = []
-        products.map(p => categories.push(p.category))
-        categories = [...new Set(categories)]
+        // // Extract unique categories
+        // let categories = []
+        // products.map(p => categories.push(p.category))
+        // categories = [...new Set(categories)]
 
-        // Extract unique brands
-        let brands = []
-        products.map(p => brands.push(p.brand))
-        brands = [...new Set(brands)]
+        // // Extract unique brands
+        // let brands = []
+        // products.map(p => brands.push(p.brand))
+        // brands = [...new Set(brands)]
 
-        // Render filter checkboxes
-        displayFilters(brands, 'Brands');
-        displayFilters(categories, 'Categories')
+        // // Render filter checkboxes
+        // displayFilters(brands, 'Brands');
+        // displayFilters(categories, 'Categories')
 
-        // filtering(products, 'brand')
-        // filtering(products, 'category')
-        filtering(products);
-        FilterByPrice(products)
+        // // filtering(products, 'brand')
+        // // filtering(products, 'category')
+        // filtering(products);
+        // FilterByPrice(products)
 
-        // Update dashboard summary cards
-        totalProducts.innerText = products.length;
-        totalCategories.innerHTML = categories.length
-        totalBrands.innerText = brands.length
+        // // Update dashboard summary cards
+        // totalProducts.innerText = products.length;
+        // totalCategories.innerHTML = categories.length
+        // totalBrands.innerText = brands.length
     })
     .catch(error => {
         console.error('There was a problem with fetching products:', error);
     });
 
 
-//getting the products from the local storage
-// const products = JSON.parse(localStorage.getItem('products'));
-// totalProducts.innerText = products.length; // setting card 1 of 3 in top of products cards
-// console.log(products);
-// for (let i = 0; i < products.length; i++) {
-//     displayProduct(products[i]);
-// }
 
+
+//getting the products from the local storage
+const products = JSON.parse(localStorage.getItem('products'));
+
+
+
+
+// Extract unique categories
+let categories = []
+products.map(p => categories.push(p.category))
+categories = [...new Set(categories)]
+
+// Extract unique brands
+let brands = []
+products.map(p => brands.push(p.brand))
+brands = [...new Set(brands)]
+
+// Render filter checkboxes
+displayFilters(brands, 'Brands');
+displayFilters(categories, 'Categories')
+
+// filtering(products, 'brand')
+// filtering(products, 'category')
+filtering(products);
+FilterByPrice(products)
+
+
+
+// setting top 3 products cards
+totalProducts.innerText = products.length;
+totalCategories.innerHTML = categories.length
+totalBrands.innerText = brands.length
+console.log(products);
 
 
 function filtering() {
@@ -473,15 +501,6 @@ function filtering() {
     })
 }
 
-// range
-const rangeInput = document.getElementById('range4');
-const rangeOutput = document.getElementById('rangeValue');
-// Set initial value
-rangeOutput.textContent = rangeInput.value;
-rangeInput.addEventListener('input', function () {
-    rangeOutput.textContent = this.value;
-});
-
 
 function FilterByPrice() {
     rangeInput.addEventListener('input', (e) => {
@@ -491,5 +510,100 @@ function FilterByPrice() {
 }
 
 
+for (let i = 0; i < products.length; i++) {
+    displayProduct(products[i]);
+}
+
+
 filtering();
 FilterByPrice();
+
+
+
+
+// ======================================================
+// Sellers Logic
+// ======================================================
+const sellersContainer = document.getElementById('sellers-container');
+let totalSellers = document.getElementById('total-sellers');
+
+
+// Function to render one seller card
+function displaySeller(seller) {
+    // Main row container
+    let col = document.createElement('div');
+    col.classList.add(
+        'col-12', 'p-3', 'd-flex',
+        'bg-light', 'rounded-3',
+        'gap-5', 'flex-wrap', 'mb-3'
+    );
+
+    // ---------------- Name + Email ----------------
+    let div1 = document.createElement('div');
+
+    let sellerName = document.createElement('p');
+    sellerName.classList.add('fs-4', 'mb-0');
+    sellerName.innerText = seller.name;
+
+    let sellerrEmail = document.createElement('a');
+    sellerrEmail.classList.add('text-secondary');
+    sellerrEmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${seller.email}`;
+    sellerrEmail.target = "_blank";
+    sellerrEmail.innerText = seller.email;
+    sellerrEmail.style.textDecoration = "none";
+
+    // ---------------- Products -------------------
+    let div2 = document.createElement('div')
+    let sellerProducts = document.createElement('p')
+    sellerProducts.innerText = `Seller Products : ${(products.filter(p => p.seller_id == seller.id)).length}`
+
+    // ---------------- ID Section ----------------
+    let div3 = document.createElement('div');
+    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center');
+
+    let sellerId = document.createElement('p');
+    sellerId.classList.add('fs-5');
+    sellerId.innerText = "ID: " + seller.id;
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('btn', 'btn-danger');
+    deleteBtn.innerText = 'Delete'
+    deleteBtn.id = seller.id;
+    // delete logic
+    deleteBtn.addEventListener('click', (e) => {
+        deleteUser(e.target.id);
+        sellersContainer.innerHTML = '';
+        sellers.forEach(c => displaySeller(c))
+        location.reload()
+    })
+
+    totalSellers.innerText = sellers.length;
+
+    // ---------------- Append ----------------
+    sellersContainer.appendChild(col);
+
+    col.appendChild(div1);
+    col.appendChild(div2);
+    col.appendChild(div3);
+
+    div1.appendChild(sellerName);
+    div1.appendChild(sellerrEmail);
+
+    div2.appendChild(sellerProducts);
+
+    div3.appendChild(sellerId);
+    div3.appendChild(deleteBtn)
+}
+
+if (sellers.length == 0) {
+    console.log('empty');
+    totalSellers.innerText = '0'
+    const sellersEmptyMessage = document.getElementById('sellers-empty-message');
+    sellersEmptyMessage.classList.remove('d-none')
+    sellersEmptyMessage.innerText = 'No Sellers found. Try adding some!'
+}
+else {
+    sellers.forEach(s => displaySeller(s))
+}
+
+sellers.forEach(s => console.log(s))
