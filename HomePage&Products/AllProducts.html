@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avion</title>
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+        integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--My Style -->
+    <link rel="stylesheet" href="./CSS/products.css">
+    <!-- Media -->
+    <link rel="stylesheet" href="./CSS/media.css">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Start NavBar -->
+    <section id="nav">
+        <nav class="navbar navbar-expand-lg  bg-white px-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./home.html">Avion</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                    <ul class="navbar-nav  ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                    </ul>
+
+
+
+                    <ul class="list-unstyled d-flex gap-3 mt-3 ">
+                        <li class="icon-il">
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+
+                        <li class="icon-il">
+                            <a href="">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+
+
+            </div>
+        </nav>
+        <nav class="bottom-bar   p-2">
+            <div class="container-fluid">
+                <div class="flex justify-content-center align-items-center">
+                       <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                    id="bottom-navbar">
+                    <li>
+                        <a class="nav-link " href="./AllProducts.html">All products</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./categroy.html?categroy=TV">Tvs</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./categroy.html?categroy=Gaming">Gaming</a>
+                    </li>
+                     <li>
+                        <a class="nav-link" href="./categroy.html?categroy=Computers">Computers</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./categroy.html?categroy=Bluetooth">Bluetooth</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./categroy.html?categroy=Accessories">Accessories</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./categroy.html?categroy=Phones">Phones</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- End NavBar -->
+
+    <!-- Start Header -->
+    <header id="headerPrds">
+        <div class="container">
+            <h1 class="text-white fw-light ">All Products</h1>
+        </div>
+    </header>
+    <!-- End Header -->
+
+
+    <!-- Start Mian -->
+    <main class="container">
+        <section style="padding-top: 60px;">
+            <div class="row">
+                <div class="d-lg-none d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="dropdown" id="price">
+                        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Price
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="priceone" type="checkbox" name="price" value="0 - 200">
+                                    <label for="priceone" class="fw-light">0 - 200</label>
+                                </div>
+                            </li>
+
+
+
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="pricetwo" type="checkbox" name="price" value="201 - 1000">
+                                    <label for="pricetwo" class="fw-light">201 - 1000</label>
+                                </div>
+                            </li>
+
+
+
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="pricethree" type="checkbox" name="price" value="500 - 2000">
+                                    <label for="pricethree" class="fw-light">500 -2000</label>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                    <div class="dropdown" id="brands">
+                        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Brands
+                        </button>
+
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="brandeone" type="checkbox" name="brand" value="Samsung">
+                                    <label for="priceone" class="fw-light">SamSung</label>
+                                </div>
+                            </li>
+
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="pricetwo" type="checkbox" name="brand" value="Microsoft">
+                                    <label for="brandtwo" class="fw-light">Microsoft</label>
+                                </div>
+                            </li>
+
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="brandthree" type="checkbox" name="brand" value="Apple">
+                                    <label for="brandthree" class="fw-light">Apple</label>
+                                </div>
+                            </li>
+
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="brandthree" type="checkbox" name="brand" value="Sony">
+                                    <label for="brandthree" class="fw-light">Sony</label>
+                                </div>
+                            </li>
+
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="brandthree" type="checkbox" name="brand" value="L'Avvento">
+                                    <label for="brandthree" class="fw-light">L'Avvento</label>
+                                </div>
+                            </li>
+
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="brandthree" type="checkbox" name="brand" value="Marvo">
+                                    <label for="brandthree" class="fw-light">Marvo</label>
+                                </div>
+                            </li>
+
+                            <li class="dropdown-item">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input id="brandthree" type="checkbox" name="brand" value="other">
+                                    <label for="brandthree" class="fw-light">Others</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="d-none d-lg-flex flex-lg-column gap-5 pt-5   col-lg-3" id="cc">
+                    <div>
+                        <h5>Price</h5>
+                        <div class="d-flex flex-column" id="price">
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="priceone" type="checkbox" name="price" value="0 - 200">
+                                <label for="priceone" class="fw-light">0 - 200</label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="pricetwo" type="checkbox" name="price" value="201 - 1000">
+                                <label for="pricetwo" class="fw-light">201 - 1000</label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="pricethree" type="checkbox" name="price" value="500 - 2000">
+                                <label for="pricethree" class="fw-light">500 -2000</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5>Brand</h5>
+                        <div class="d-flex flex-column" id="brands">
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="brandeone" type="checkbox" name="brand" value="Samsung">
+                                <label for="priceone" class="fw-light">SamSung</label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="pricetwo" type="checkbox" name="brand" value="Microsoft">
+                                <label for="brandtwo" class="fw-light">Microsoft</label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="brandthree" type="checkbox" name="brand" value="Apple">
+                                <label for="brandthree" class="fw-light">Apple</label>
+                            </div>
+
+
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="brandthree" type="checkbox" name="brand" value="Sony">
+                                <label for="brandthree" class="fw-light">Sony</label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="brandthree" type="checkbox" name="brand" value="L'Avvento">
+                                <label for="brandthree" class="fw-light">L'Avvento</label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="brandthree" type="checkbox" name="brand" value="Marvo">
+                                <label for="brandthree" class="fw-light">Marvo</label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <input id="brandthree" type="checkbox" name="brand" value="other">
+                                <label for="brandthree" class="fw-light">Others</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="row" id="prds-data"></div>
+                    <div id="controls" class="d-flex justify-content-around align-items-center my-3 py-3 w-100">
+                        <span><i class="fa-solid fa-circle-arrow-left" id="prev"></i></span>
+                        <span id="navigators"
+                            class="d-flex flex-wrap flex-lg-nowrap  justify-content-center   align-items-center gap-2"></span>
+                        <span><i class="fa-solid fa-circle-arrow-right" id="next"></i></span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+    <!-- End Main -->
+
+     <!-- Start Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-6  col-lg-2">
+                    <ul class="list-unstyled">
+                        <h5>Categroies</h5>
+                        <li>Tvs</li>
+                        <li>Gaming</li>
+                        <li>BluetoothSpeaker</li>
+                        <li>Others</li>
+                    </ul>
+                </div>
+
+                <div class="col-6  col-lg-2">
+                    <ul class="list-unstyled">
+                        <h5>Menu</h5>
+                        <li>New arrivals</li>
+                        <li>Best sellers</li>
+                        <li>Recently viewed</li>
+                        <li>Popular this week</li>
+                        <li>All products</li>
+                    </ul>
+                </div>
+
+
+                <div class="col-12  col-lg-2">
+                    <ul class="list-unstyled">
+                        <h5>Our company</h5>
+                        <li>About us</li>
+                        <li>Vacancies</li>
+                        <li>Contact us</li>
+                        <li>Privacy</li>
+                        <li>Returns policy</li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <h6>Join our mailing list</h6>
+                    <div class="d-flex  justify-content-center after-brdr">
+                        <input type="email" placeholder="your@email.com" style="width:75%">
+                        <button style="width:25%;">Sign Up</button>
+                    </div>
+
+                </div>
+                <hr class="d-none d-lg-block">
+                <div class="row justify-content-between  align-items-center">
+
+                    <h6 class="p-3 text-center col-lg-3">Copyright 2026 Avion LTD</h6>
+
+                    <ul class="list-unstyled col-lg-3  gap-3 d-none d-lg-flex ">
+                        <li><span><i class="fa-brands fa-linkedin"></i></span></li>
+                        <li><span><i class="fa-brands fa-facebook"></i></span></li>
+                        <li><span><i class="fa-brands fa-instagram"></i></span></li>
+                        <li><span><i class="fa-brands fa-skype"></i></span></li>
+                        <li><span><i class="fa-brands fa-twitter"></i></span></li>
+                        <li><span><i class="fa-brands fa-pinterest"></i></span></li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"
+        integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- My Script -->
+    <script src="./JS/products.js"></script>
+</body>
+
+</html>
