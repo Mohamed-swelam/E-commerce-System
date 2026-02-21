@@ -1,7 +1,7 @@
 'use strict'
 // import { addCustomer } from "./validation.js";
 
-// ==============================
+
 // Navigation Tabs Logic
 // ==============================
 
@@ -35,7 +35,7 @@ mainTabs.forEach(p => {
 
 
 
-// ======================================================
+
 // Users Logic
 // ======================================================
 
@@ -142,7 +142,7 @@ function deleteUser(id) {
     console.log(users);
 }
 
-// ======================================================
+
 // Customers Logic
 // ======================================================
 
@@ -226,7 +226,7 @@ else {
 }
 
 
-// ======================================================
+
 // Products Logic
 // ======================================================
 const productsContainer = document.getElementById('products-container');
@@ -322,7 +322,7 @@ rangeInput.addEventListener('input', function () {
 });
 
 
-// ======================================================
+
 // Dynamic Filters Rendering
 // ======================================================
 
@@ -368,7 +368,7 @@ function displayFilters(arr, t) {
 
 
 
-// ======================================================
+
 // Top Statistics Cards
 // ======================================================
 
@@ -516,7 +516,7 @@ FilterByPrice();
 
 
 
-// ======================================================
+
 // Sellers Logic
 // ======================================================
 const sellersContainer = document.getElementById('sellers-container');

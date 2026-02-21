@@ -144,9 +144,12 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
 
         if (adminUser && adminUser.email === email && adminUser.password === password) {
             showMessage("Admin Login Successful", "success", "loginMessage");
-            window.location.href = '../admin-dashboard.html';
+            setTimeout(() => {
+                window.location.href = '/Admin/admin-dashboard.html';
+            }, 1000);
             return;
         }
+
 
     } catch (error) {
         console.error("Error loading users:", error);
