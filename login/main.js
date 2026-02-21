@@ -118,9 +118,9 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Redirect based on role
     if (role === 'seller') {
-        window.location.href = '../HomePage&Products/home.html';
+        window.location.href = '/HomePage&Products/home.html';
     } else if (role === 'customer') {
-        window.location.href = '../HomePage&Products/home.html';
+        window.location.href = '/HomePage&Products/home.html';
     }
 });
 
@@ -189,7 +189,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
     if (validUser.role === 'seller') {
         window.location.href = '../product-details.html';
     } else {
-        window.location.href = '../HomePage&Products/home.html';
+        window.location.href = '/HomePage&Products/home.html';
     }
 });
 
