@@ -226,180 +226,179 @@ else {
 }
 
 
-// ======================================================
-// Products Logic
-// ======================================================
-const productsContainer = document.getElementById('products-container');
-let allProducts = [];
-let activeFilters = {
-    brands: [],
-    categories: [],
-    maxPrice: 0
-};
+// // ======================================================
+// // Products Logic
+// // ======================================================
+// const productsContainer = document.getElementById('products-container');
+// let allProducts = [];
+// let activeFilters = {
+//     brands: [],
+//     categories: [],
+//     maxPrice: 0
+// };
 
 
-// Function responsible for rendering a single product card in the UI
-function displayProduct(product) {
+// // Function responsible for rendering a single product card in the UI
+// function displayProduct(product) {
 
 
-    // Create main container for product row
-    let col = document.createElement('div');
-    col.classList.add(
-        'col-12', 'p-3', 'd-flex',
-        'bg-light', 'rounded-3',
-        'gap-5', 'flex-wrap', 'mb-3'
-    )
+//     // Create main container for product row
+//     let col = document.createElement('div');
+//     col.classList.add(
+//         'col-12', 'p-3', 'd-flex',
+//         'bg-light', 'rounded-3',
+//         'gap-5', 'flex-wrap', 'mb-3'
+//     )
 
-    // ----------------- Product Image -----------------
-    let productImg = document.createElement('img')
-    productImg.classList.add('product-img')
-    productImg.src = product.image
+//     // ----------------- Product Image -----------------
+//     let productImg = document.createElement('img')
+//     productImg.classList.add('product-img')
+//     productImg.src = product.image
 
-    // ----------------- Name + Seller -----------------
-    let div1 = document.createElement('div');
+//     // ----------------- Name + Seller -----------------
+//     let div1 = document.createElement('div');
 
-    let productName = document.createElement('p');
-    productName.innerText = product.name;
-    productName.classList.add('fs-4', 'mb-0');
+//     let productName = document.createElement('p');
+//     productName.innerText = product.name;
+//     productName.classList.add('fs-4', 'mb-0');
 
-    let productSeller = document.createElement('p');
+//     let productSeller = document.createElement('p');
 
-    // Find seller name using seller_id
-    productSeller.innerText = 'Seller: ' + sellers.filter(s => s.id == product.seller_id)[0].name
+//     // Find seller name using seller_id
+//     productSeller.innerText = 'Seller: ' + sellers.filter(s => s.id == product.seller_id)[0].name
 
-    // ----------------- Brand / Category / Quantity -----------------
-    let div2 = document.createElement('div');
+//     // ----------------- Brand / Category / Quantity -----------------
+//     let div2 = document.createElement('div');
 
-    let productBrand = document.createElement('p');
-    productBrand.classList.add('text-secondary');
-    productBrand.innerText = 'Brand:  ' + product.brand;
+//     let productBrand = document.createElement('p');
+//     productBrand.classList.add('text-secondary');
+//     productBrand.innerText = 'Brand:  ' + product.brand;
 
-    let productCategory = document.createElement('p');
-    productCategory.classList.add('text-secondary');
-    productCategory.innerText = 'Category:  ' + product.category
+//     let productCategory = document.createElement('p');
+//     productCategory.classList.add('text-secondary');
+//     productCategory.innerText = 'Category:  ' + product.category
 
-    let productQuantity = document.createElement('p');
-    productQuantity.classList.add('text-secondary');
-    productQuantity.innerText = 'Quantity:  ' + product.quantity
+//     let productQuantity = document.createElement('p');
+//     productQuantity.classList.add('text-secondary');
+//     productQuantity.innerText = 'Quantity:  ' + product.quantity
 
-    // ----------------- Price Section -----------------
-    let div3 = document.createElement('div');
-    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2')
+//     // ----------------- Price Section -----------------
+//     let div3 = document.createElement('div');
+//     div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2')
 
-    let productPrice = document.createElement('p');
-    productPrice.classList.add('fs-3')
-    productPrice.innerText = product.price + '$'
+//     let productPrice = document.createElement('p');
+//     productPrice.classList.add('fs-3')
+//     productPrice.innerText = product.price + '$'
 
-    let deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('btn', 'btn-danger');
-    deleteBtn.innerText = 'Delete'
+//     let deleteBtn = document.createElement('button');
+//     deleteBtn.classList.add('btn', 'btn-danger');
+//     deleteBtn.innerText = 'Delete'
 
-    // Append elements to DOM in structured hierarchy
-    productsContainer.appendChild(col);
-    col.appendChild(productImg);
-    col.appendChild(div1);
-    col.appendChild(div2);
-    col.appendChild(div3);
+//     // Append elements to DOM in structured hierarchy
+//     productsContainer.appendChild(col);
+//     col.appendChild(productImg);
+//     col.appendChild(div1);
+//     col.appendChild(div2);
+//     col.appendChild(div3);
 
-    div1.appendChild(productName)
-    div1.appendChild(productSeller)
+//     div1.appendChild(productName)
+//     div1.appendChild(productSeller)
 
-    div2.appendChild(productBrand)
-    div2.appendChild(productCategory)
-    div2.appendChild(productQuantity)
+//     div2.appendChild(productBrand)
+//     div2.appendChild(productCategory)
+//     div2.appendChild(productQuantity)
 
-    div3.appendChild(productPrice)
-    div3.appendChild(deleteBtn)
-}
+//     div3.appendChild(productPrice)
+//     div3.appendChild(deleteBtn)
+// }
 
-// range
-const rangeInput = document.getElementById('range4');
-const rangeOutput = document.getElementById('rangeValue');
-// Set initial value
-rangeOutput.textContent = rangeInput.value;
-rangeInput.addEventListener('input', function () {
-    rangeOutput.textContent = this.value;
-});
+// // range
+// const rangeInput = document.getElementById('range4');
+// const rangeOutput = document.getElementById('rangeValue');
+// // Set initial value
+// rangeOutput.textContent = rangeInput.value;
+// rangeInput.addEventListener('input', function () {
+//     rangeOutput.textContent = this.value;
+// });
 
+// // ======================================================
+// // Dynamic Filters Rendering
+// // ======================================================
 
-// ======================================================
-// Dynamic Filters Rendering
-// ======================================================
+// // This function creates a group of checkboxes
+// // t is for title (categories or brands) and arr is for brands and categories arrays
+// function displayFilters(arr, t) {
 
-// This function creates a group of checkboxes
-// t is for title and arr is for brands and categories arrays
-function displayFilters(arr, t) {
+//     const filters = document.getElementById('filters');
+//     let mainDiv = document.createElement('div');
+//     mainDiv.classList.add('col-6', 'col-md-12')
 
-    const filters = document.getElementById('filters');
-    let mainDiv = document.createElement('div');
-    mainDiv.classList.add('col-6', 'col-md-12')
+//     // Filter group title
+//     let title = document.createElement('p');
+//     title.classList.add('mt-4', 'fs-5')
+//     title.innerText = t;
 
-    // Filter group title
-    let title = document.createElement('p');
-    title.classList.add('mt-4', 'fs-5')
-    title.innerText = t;
+//     mainDiv.appendChild(title)
 
-    mainDiv.appendChild(title)
+//     // Create checkbox for each element in array
+//     arr.forEach(element => {
 
-    // Create checkbox for each element in array
-    arr.forEach(element => {
+//         let div = document.createElement('div');
+//         div.classList.add('form-check');
 
-        let div = document.createElement('div');
-        div.classList.add('form-check');
+//         let input = document.createElement('input');
+//         input.classList.add('form-check-input');
+//         input.type = 'checkbox';
+//         input.value = element;
+//         input.classList.add(element);
 
-        let input = document.createElement('input');
-        input.classList.add('form-check-input');
-        input.type = 'checkbox';
-        input.value = element;
-        input.classList.add(element);
+//         let label = document.createElement('label');
+//         label.classList.add('form-check-label');
+//         label.for = element;
+//         label.innerText = element;
 
-        let label = document.createElement('label');
-        label.classList.add('form-check-label');
-        label.for = element;
-        label.innerText = element;
+//         mainDiv.appendChild(div);
+//         div.appendChild(input);
+//         div.appendChild(label);
+//     })
 
-        mainDiv.appendChild(div);
-        div.appendChild(input);
-        div.appendChild(label);
-    })
-
-    filters.appendChild(mainDiv);
-}
-
+//     filters.appendChild(mainDiv);
+// }
 
 
-// ======================================================
-// Top Statistics Cards
-// ======================================================
 
-// Select elements that display summary statistics
-const totalProducts = document.getElementById('total-products');
-const totalCategories = document.getElementById('total-categories');
-const totalBrands = document.getElementById('total-brands');
+// // ======================================================
+// // Top Statistics Cards
+// // ======================================================
 
-function applyFilters() {
+// // Select elements that display summary statistics
+// const totalProducts = document.getElementById('total-products');
+// const totalCategories = document.getElementById('total-categories');
+// const totalBrands = document.getElementById('total-brands');
 
-    let filtered = allProducts;
-    // Brand & Category filtering
-    if (activeFilters.brands.length > 0 || activeFilters.categories.length > 0) {
-        filtered = filtered.filter(product =>
-            activeFilters.brands.includes(product.brand) ||
-            activeFilters.categories.includes(product.category)
-        );
-    }
+// function applyFilters() {
 
-    // Price filtering
-    if (activeFilters.maxPrice > 0) {
-        filtered = filtered.filter(product =>
-            product.price >= activeFilters.maxPrice &&
-            product.price <= activeFilters.maxPrice + 100
-        );
-    }
+//     let filtered = allProducts;
+//     // Brand & Category filtering
+//     if (activeFilters.brands.length > 0 || activeFilters.categories.length > 0) {
+//         filtered = filtered.filter(product =>
+//             activeFilters.brands.includes(product.brand) ||
+//             activeFilters.categories.includes(product.category)
+//         );
+//     }
 
-    // Render
-    productsContainer.innerHTML = '';
-    filtered.forEach(p => displayProduct(p));
-}
+//     // Price filtering
+//     if (activeFilters.maxPrice > 0) {
+//         filtered = filtered.filter(product =>
+//             product.price >= activeFilters.maxPrice &&
+//             product.price <= activeFilters.maxPrice + 100
+//         );
+//     }
+
+//     // Render
+//     productsContainer.innerHTML = '';
+//     filtered.forEach(p => displayProduct(p));
+// }
 
 
 // Fetch products data from JSON file
@@ -452,66 +451,382 @@ fetch('../Dummy Data/products.json')
 //getting the products from the local storage
 const products = JSON.parse(localStorage.getItem('products'));
 
-// Extract unique categories
-let categories = []
-products.map(p => categories.push(p.category))
-categories = [...new Set(categories)]
+// // Extract unique categories
+// let categories = []
+// products.map(p => categories.push(p.category))
+// categories = [...new Set(categories)]
 
-// Extract unique brands
-let brands = []
-products.map(p => brands.push(p.brand))
-brands = [...new Set(brands)]
+// // Extract unique brands
+// let brands = []
+// products.map(p => brands.push(p.brand))
+// brands = [...new Set(brands)]
 
-// Render filter checkboxes
-displayFilters(brands, 'Brands');
-displayFilters(categories, 'Categories')
+// // Render filter checkboxes
+// displayFilters(brands, 'Brands');
+// displayFilters(categories, 'Categories')
 
-filtering(products);
-FilterByPrice(products)
-
-
-
-// setting top 3 products cards
-totalProducts.innerText = products.length;
-totalCategories.innerHTML = categories.length
-totalBrands.innerText = brands.length
-console.log(products);
+// filtering(products);
+// FilterByPrice(products)
 
 
-function filtering() {
-    const filtersContainer = document.getElementById('filters');
-    filtersContainer.addEventListener('change', function () {
-        const checkedBoxes = [...document.querySelectorAll("input[type='checkbox']:checked")];
-        activeFilters.brands = [];
-        activeFilters.categories = [];
-        checkedBoxes.forEach(cb => {
-            if (allProducts.some(p => p.brand === cb.value)) {
-                activeFilters.brands.push(cb.value);
-            }
-            if (allProducts.some(p => p.category === cb.value)) {
-                activeFilters.categories.push(cb.value);
-            }
+
+// // setting top 3 products cards
+// totalProducts.innerText = products.length;
+// totalCategories.innerHTML = categories.length
+// totalBrands.innerText = brands.length
+// console.log(products);
+
+
+// function filtering() {
+//     const filtersContainer = document.getElementById('filters');
+//     filtersContainer.addEventListener('change', function () {
+//         const checkedBoxes = [...document.querySelectorAll("input[type='checkbox']:checked")];
+//         activeFilters.brands = [];
+//         activeFilters.categories = [];
+//         checkedBoxes.forEach(cb => {
+//             if (allProducts.some(p => p.brand === cb.value)) {
+//                 activeFilters.brands.push(cb.value);
+//             }
+//             if (allProducts.some(p => p.category === cb.value)) {
+//                 activeFilters.categories.push(cb.value);
+//             }
+//         });
+//         applyFilters();
+//     })
+// }
+// function FilterByPrice() {
+//     rangeInput.addEventListener('input', (e) => {
+//         activeFilters.maxPrice = parseInt(e.target.value);
+//         applyFilters();
+//     })
+// }
+
+
+
+
+// for (let i = 0; i < products.length; i++) {
+//     displayProduct(products[i]);
+// }
+
+
+
+
+
+
+
+
+
+// ======================================================
+// Products Logic
+// ======================================================
+
+const productsContainer = document.getElementById('products-container');
+
+let allProducts = [];
+
+let activeFilters = {
+    brands: [],
+    categories: [],
+    maxPrice: 0
+};
+
+// ======================================================
+// Product Rendering
+// ======================================================
+
+function displayProduct(product) {
+
+    let col = document.createElement('div');
+    col.classList.add(
+        'col-12', 'p-3', 'd-flex',
+        'bg-light', 'rounded-3',
+        'gap-5', 'flex-wrap', 'mb-3'
+    );
+
+    // ----------------- Image -----------------
+    let productImg = document.createElement('img');
+    productImg.classList.add('product-img');
+    productImg.src = product.image;
+
+    // ----------------- Name + Seller -----------------
+    let div1 = document.createElement('div');
+
+    let productName = document.createElement('p');
+    productName.innerText = product.name;
+    productName.classList.add('fs-4', 'mb-0');
+
+    let productSeller = document.createElement('p');
+
+    const seller = sellers.find(s => s.id == product.seller_id);
+    productSeller.innerText = 'Seller: ' + (seller ? seller.name : 'Unknown');
+
+    // ----------------- Brand / Category / Quantity -----------------
+    let div2 = document.createElement('div');
+
+    let productBrand = document.createElement('p');
+    productBrand.classList.add('text-secondary');
+    productBrand.innerText = 'Brand:  ' + product.brand;
+
+    let productCategory = document.createElement('p');
+    productCategory.classList.add('text-secondary');
+    productCategory.innerText = 'Category:  ' + product.category;
+
+    let productQuantity = document.createElement('p');
+    productQuantity.classList.add('text-secondary');
+    productQuantity.innerText = 'Quantity:  ' + product.quantity;
+
+    // ----------------- Price + Delete -----------------
+    let div3 = document.createElement('div');
+    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2');
+
+    let productPrice = document.createElement('p');
+    productPrice.classList.add('fs-3');
+    productPrice.innerText = product.price + '$';
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('btn', 'btn-danger');
+    deleteBtn.innerText = 'Delete';
+
+    deleteBtn.addEventListener('click', function () {
+        allProducts = allProducts.filter(p => p.id !== product.id);
+        localStorage.setItem('products', JSON.stringify(allProducts));
+        applyFilters();
+        updateStatistics();
+    });
+
+    // Append structure
+    productsContainer.appendChild(col);
+    col.appendChild(productImg);
+    col.appendChild(div1);
+    col.appendChild(div2);
+    col.appendChild(div3);
+
+    div1.appendChild(productName);
+    div1.appendChild(productSeller);
+
+    div2.appendChild(productBrand);
+    div2.appendChild(productCategory);
+    div2.appendChild(productQuantity);
+
+    div3.appendChild(productPrice);
+    div3.appendChild(deleteBtn);
+}
+
+// ======================================================
+// Dynamic Filters Rendering
+// ======================================================
+
+function displayFilters(arr, titleText) {
+
+    const filterContainers = document.querySelectorAll('.filters');
+
+    filterContainers.forEach(container => {
+
+        let mainDiv = document.createElement('div');
+        mainDiv.classList.add('col-6', 'col-md-12');
+
+        let title = document.createElement('p');
+        title.classList.add('mt-4', 'fs-5');
+        title.innerText = titleText;
+
+        mainDiv.appendChild(title);
+
+        arr.forEach(value => {
+
+            let div = document.createElement('div');
+            div.classList.add('form-check');
+
+            let input = document.createElement('input');
+            input.classList.add('form-check-input');
+            input.type = 'checkbox';
+            input.value = value;
+
+            let label = document.createElement('label');
+            label.classList.add('form-check-label');
+            label.innerText = value;
+
+            div.appendChild(input);
+            div.appendChild(label);
+            mainDiv.appendChild(div);
         });
-        applyFilters();
-    })
+
+        container.appendChild(mainDiv);
+    });
 }
 
+// ======================================================
+// Filtering Logic
+// ======================================================
 
-function FilterByPrice() {
-    rangeInput.addEventListener('input', (e) => {
-        activeFilters.maxPrice = parseInt(e.target.value);
-        applyFilters();
-    })
+function applyFilters() {
+
+    let filtered = [...allProducts];
+
+    // Brand & Category
+    if (activeFilters.brands.length > 0 || activeFilters.categories.length > 0) {
+        filtered = filtered.filter(product =>
+            activeFilters.brands.includes(product.brand) ||
+            activeFilters.categories.includes(product.category)
+        );
+    }
+
+    // Price
+    if (activeFilters.maxPrice > 0) {
+        filtered = filtered.filter(product =>
+            product.price <= activeFilters.maxPrice
+        );
+    }
+
+    productsContainer.innerHTML = '';
+
+    if (filtered.length === 0) {
+        productsContainer.innerHTML =
+            `<div class="col-12 text-center p-5 bg-light rounded-3">
+                <p class="fs-4 text-muted">No products found!</p>
+            </div>`;
+        return;
+    }
+
+    filtered.forEach(product => displayProduct(product));
 }
 
+// ======================================================
+// Checkbox Filtering
+// ======================================================
 
-for (let i = 0; i < products.length; i++) {
-    displayProduct(products[i]);
+function initializeCheckboxFiltering() {
+
+    const filterContainers = document.querySelectorAll('.filters');
+
+    filterContainers.forEach(container => {
+
+        container.addEventListener('change', function () {
+
+            const checkedBoxes = [
+                ...document.querySelectorAll(".filters input[type='checkbox']:checked")
+            ];
+
+            activeFilters.brands = [];
+            activeFilters.categories = [];
+
+            checkedBoxes.forEach(cb => {
+
+                if (allProducts.some(p => p.brand === cb.value)) {
+                    activeFilters.brands.push(cb.value);
+                }
+
+                if (allProducts.some(p => p.category === cb.value)) {
+                    activeFilters.categories.push(cb.value);
+                }
+            });
+
+            applyFilters();
+        });
+    });
 }
 
+// ======================================================
+// Price Range Filtering
+// ======================================================
 
-filtering();
-FilterByPrice();
+function initializePriceFiltering() {
+
+    const ranges = document.querySelectorAll('.price-range');
+    const outputs = document.querySelectorAll('.range-value');
+
+    ranges.forEach((range, index) => {
+
+        outputs[index].textContent = range.value;
+
+        range.addEventListener('input', function () {
+
+            outputs[index].textContent = this.value;
+            activeFilters.maxPrice = parseInt(this.value);
+            applyFilters();
+        });
+    });
+}
+
+// ======================================================
+// Statistics
+// ======================================================
+
+const totalProducts = document.getElementById('total-products');
+const totalCategories = document.getElementById('total-categories');
+const totalBrands = document.getElementById('total-brands');
+
+function updateStatistics() {
+
+    const categories = [...new Set(allProducts.map(p => p.category))];
+    const brands = [...new Set(allProducts.map(p => p.brand))];
+
+    totalProducts.innerText = allProducts.length;
+    totalCategories.innerText = categories.length;
+    totalBrands.innerText = brands.length;
+}
+
+// ======================================================
+// Initialization
+// ======================================================
+
+function initializeProducts() {
+
+    const storedProducts = localStorage.getItem('products');
+
+    if (storedProducts) {
+        allProducts = JSON.parse(storedProducts);
+        renderEverything();
+    } else {
+        fetch('../Dummy Data/products.json')
+            .then(res => res.json())
+            .then(products => {
+                allProducts = products;
+                localStorage.setItem('products', JSON.stringify(products));
+                renderEverything();
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
+    }
+}
+
+function renderEverything() {
+
+    productsContainer.innerHTML = '';
+
+    const categories = [...new Set(allProducts.map(p => p.category))];
+    const brands = [...new Set(allProducts.map(p => p.brand))];
+
+    displayFilters(brands, 'Brands');
+    displayFilters(categories, 'Categories');
+
+    initializeCheckboxFiltering();
+    initializePriceFiltering();
+
+    updateStatistics();
+
+    allProducts.forEach(product => displayProduct(product));
+}
+
+initializeProducts();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
