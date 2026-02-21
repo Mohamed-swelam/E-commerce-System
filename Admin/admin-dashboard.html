@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- bootstrap links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- custom styles -->
+    <link rel="stylesheet" href="./adminStyles.css">
+</head>
+
+<body>
+    <!-- Start NavBar -->
+    <section id="nav">
+        <nav class="navbar navbar-expand-lg  bg-white px-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../HomePage&Products/home.html">Avion</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                    <ul class="navbar-nav  ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active-nav" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled d-flex gap-3 mt-3 ">
+                        <li class="icon-il">
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+                        <li class="icon-il">
+                            <a href="">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- <nav class="bottom-bar   p-2">
+            <div class="container-fluid">
+                <div class="flex justify-content-center align-items-center">
+                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                        id="bottom-navbar">
+                        <li>
+                            <a class="nav-link " href="#"></a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> -->
+    </section>
+    <!-- End NavBar -->
+    <!-- Start of dashboard -->
+    <div class="row w-100 m-auto justify-content-between" style="background-color: rgba(215, 215, 215, 0.482); ">
+        <div
+            class="col-12 col-md-2 p-2 py-md-5 fs-5 d-flex flex-row flex-md-column justify-content-between justify-content-md-start flex-wrap tabs-container">
+            <p class="p-2 pe-md-0 rounded-3 main-tab active-tab">customers</p>
+            <p class="p-2 pe-md-0 rounded-3 main-tab">sellers</p>
+            <p class="p-2 pe-md-0 rounded-3 main-tab">products</p>
+            <p class="p-2 pe-md-0 rounded-3 main-tab">account</p>
+        </div>
+        <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
+            <!-- Start of customers section -->
+            <div id="customers" class="sub-tab active-sub-tab">
+                <div class="bg-light w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center">
+                    <p><span id="total-customers"></span> <br> Customers</p>
+                </div>
+                <div class="text-end mb-3">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
+                        Customer</button>
+                </div>
+                <p class="text-center fs-3 mt-5 fst-italic text-body-tertiary d-none" id="customers-empty-message"></p>
+                <!-- Modal -->
+                <div class="modal fade" data-bs-backdrop="static" id="exampleModal" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Customer</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="add-customer-form" autocomplete="off">
+                                    <div class="mb-3 position-relative">
+                                        <label for="cust-name" class="col-form-label">User Name:</label>
+                                        <input type="text" class="form-control" id="cust-name" required minlength="3">
+                                        <!-- error message -->
+                                        <div id="name-msg"
+                                            class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message  position-absolute top-100 start-0 w-100"
+                                            style="font-size: 0.8rem;">
+                                            <p class="mb-0"><i> name must contain the following:</i></p>
+                                            <p id="name-letters" class="invalid mb-0">start with a <b>letters</b> and
+                                                Only <b>_</b> is allowed</p>
+                                            <p id="name-length" class="invalid mb-0">Minimum <b>3 characters</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3 position-relative">
+                                                <label for="cust-email" class="col-form-label">Email:</label>
+                                                <input type="email" class="form-control" id="cust-email" required
+                                                    minlength="10"
+                                                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"></input>
+                                                <!-- error message -->
+                                                <div id="email-msg"
+                                                    class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                                    style="font-size: 0.8rem;">
+                                                    <p class="mb-0"><i> </i></p>
+                                                    <p id="email-pattern" class="invalid mb-0">email must follow the
+                                                        pattern:<b>example@gmail.com</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3 position-relative">
+                                                <label for="cust-phone" class="col-form-label">Phone:</label>
+                                                <input type="tel" class="form-control" id="cust-phone" required
+                                                    min="11"></input>
+                                                <!-- error message -->
+                                                <div id="phone-msg"
+                                                    class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                                    style="font-size: 0.8rem;">
+                                                    <p class="mb-0"><i> Phone must contain the following:</i></p>
+                                                    <p id="phone-numbers" class="invalid mb-0"><b>numbers only</b></p>
+                                                    <p id="phone-length" class="invalid mb-0">Minimum <b>11
+                                                            characters</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3 position-relative">
+                                                <label for="cust-city" class="col-form-label">City:</label>
+                                                <input type="text" class="form-control" id="cust-city" required
+                                                    min="3"></input>
+                                                <!-- <select name="city" id="cust-city" class="form-select" required>
+                                                    <option value="" selected hidden disabled class="text-secondary">
+                                                        Select your city
+                                                    </option>
+                                                    <option value="tanta">Tanta</option>
+                                                    <option value="cairo">Cairo</option>
+                                                    <option value="alexandria">Alexandria</option>
+                                                    <option value="aswan">Aswan</option>
+                                                    <option value="mansoura">Mansoura</option>
+                                                </select> -->
+                                                <!-- error message -->
+                                                <div id="city-msg"
+                                                    class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                                    style="font-size: 0.8rem;">
+                                                    <p class="mb-0"><i> </i></p>
+                                                    <p id="city-empty" class="invalid mb-0">City cannot be empty
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3 position-relative">
+                                                <label for="cust-street" class="col-form-label">Street:</label>
+                                                <input type="text" class="form-control" id="cust-street" required
+                                                    minlength="3"></input>
+                                                <!-- error message -->
+                                                <div id="street-msg"
+                                                    class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                                    style="font-size: 0.8rem;">
+                                                    <p id="street-length" class="invalid mb-0">Street must be minimum
+                                                        <b>3
+                                                            characters</b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 position-relative">
+                                        <label for="cust-password" class="col-form-label">Password:</label>
+                                        <input type="password" class="form-control" id="cust-password" required
+                                            minlength="8"></input>
+                                        <!-- error message -->
+                                        <div id="pass-msg"
+                                            class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                            style="font-size: 0.8rem;">
+                                            <p class="mb-0"><i> Password must contain the following:</i></p>
+                                            <p id="letter" class="invalid mb-0">A <b>lowercase</b> letter</p>
+                                            <p id="capital" class="invalid mb-0">A <b>capital (uppercase)</b> letter</p>
+                                            <p id="number" class="invalid mb-0">A <b>number</b></p>
+                                            <p id="length" class="invalid mb-0">Minimum <b>8 characters</b></p>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" id="customer-modal-add-btn">ADD</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Modal -->
+                <div class="row w-100 m-auto" id="customers-container"></div>
+            </div>
+            <!-- End of customers section -->
+            <!-- Start of sellers section -->
+            <div id="sellers" class="sub-tab">
+                <div class="bg-light w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center">
+                    <p><span id="total-sellers"></span> <br> Sellers</p>
+                </div>
+                <div class="text-end mb-3">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
+                        Seller</button>
+                </div>
+                <p class="text-center fs-3 mt-5 fst-italic text-body-tertiary d-none" id="sellers-empty-message"></p>
+                <div class="row w-100 m-auto" id="sellers-container">
+                </div>
+            </div>
+            <!-- End of sellers section -->
+            <!-- Start of products section -->
+            <div id="products" class="sub-tab">
+                <div class="row mb-3 w-100 m-auto justify-content-between">
+                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
+                        <span class="fs-3" id="total-products">90</span><br>Products
+                    </div>
+                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
+                        <span class="fs-3" id="total-categories">90</span><br>Categories
+                    </div>
+                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
+                        <span class="fs-3" id="total-brands">90</span><br>Brands
+                    </div>
+                </div>
+                <div class="row w-100 m-auto">
+                    <div
+                        class="col-12 col-md-3 col-lg-2 bg-light p-2 rounded-3 align-self-start mb-3 mb-md-0 d-none d-md-block">
+                        <div class="row w-100 m-auto " id="filters">
+                            <div class="col-12">
+                                <p class="fs-5">Filter By</p>
+                                <label for="range4" class="form-label mt-4">Price</label>
+                                <input type="range" class="form-range" id="range4" min="0" max="1000" value="0"
+                                    step="100">
+                                <output for="range4" id="rangeValue" aria-hidden="true"></output>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 d-block mb-3 d-md-none">
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne">
+                                        Filter By
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <div class="row w-100 m-auto filters" id="">
+                                            <div class="col-12">
+                                                <p class="fs-5">Filter By</p>
+                                                <label for="range4" class="form-label mt-4">Price</label>
+                                                <input type="range" class="form-range range4" min="0" max="1000"
+                                                    value="0" step="100">
+                                                <output for="range4" class="rangeValue" aria-hidden="true"></output>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- displaying products -->
+                    <div class="col-12 col-md-9 col-lg-10">
+                        <div class="row w-100 m-auto" id="products-container">
+                            <!-- <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap mb-3">
+                                <img src="./iti.jpg" width="100px" alt="">
+                                <div>
+                                    <p class="fs-4 mb-0">Name</p>
+                                    <p>Seller: <i>nawal</i></p>
+                                </div>
+                                <div>
+                                    <p class="text-secondary">Category:</p>
+                                    <p class="text-secondary">Brand:</p>
+                                    <p class="text-secondary">Quantity:</p>
+                                </div>
+                                <div class="ms-auto d-flex flex-column align-items-center me-2">
+                                    <p class="fs-3">100$</p>
+                                    <button class="btn btn-danger">Delete</button>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of products section -->
+            <!-- Start of account section -->
+            <div id="account" class="sub-tab">
+                this is from account
+            </div>
+            <!-- End of account section -->
+        </div>
+    </div>
+    <!-- End of dashboard -->
+    <!-- <script src="./admin.js" type="module"></script>
+    <script src="./validation.js" type="module"></script> -->
+    <script src="./admin.js"></script>
+    <script src="./validation.js"></script>
+</body>
+
+</html>

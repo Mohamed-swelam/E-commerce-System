@@ -1,0 +1,62 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --primary-color: #2A254B;
+    --primary-bg-color: #2A254B;
+}
+
+
+/* to highlight active nav link */
+.active-nav{
+    color: var(--primary-color) ;
+    font-weight: bold;
+}
+
+.tabs-container{
+    background-color: var(--primary-bg-color);
+    color: #fff;
+}
+.main-tab{
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: all 200ms ease-in-out;
+}
+.sub-tab{
+    display: none; /* initial style to show only sub-tab that is related to the clicked main tab*/
+}
+
+/* to highlight active tab in dashboard */
+.active-tab{
+    background-color: #fff;
+    color: black;
+    box-shadow: 1px 1px 10px black;
+}
+/* to open active sub-tab in dashboard */
+.active-sub-tab{
+    display: block;
+}
+
+.product-img{
+    width: 100px;
+}
+
+
+/* styles for the error msg for the password */
+.message {
+    display:none;
+    background: #f1f1f1;
+    z-index: 10;
+}
+/* make the color green when the password is valid*/
+.valid {
+    color: green;
+}
+/* make the color red when the password is invalid*/
+.invalid {
+    color: red;
+}
+
