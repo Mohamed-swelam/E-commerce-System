@@ -322,7 +322,7 @@ function displayProduct(product) {
 
     let productQuantity = document.createElement('p');
     productQuantity.classList.add('text-secondary');
-    productQuantity.innerText = 'Quantity:  ' + product.rating
+    productQuantity.innerText = 'Quantity:  ' + product.quantity
 
     // ----------------- Price Section -----------------
     let div3 = document.createElement('div');
