@@ -25,53 +25,36 @@
 
         <!--section of Form (Login Form ) -->
         <section class="form" id="loginForm">
+
+            <!-- display (Msg error) here instead of Alert  -->
+            <div id="loginMessage"></div>
+
+
             <div class="logo">
                 <a href="../../E-commerce-System/HomePage&Products/home.html">
                     <img src="../HomePage&Products/imgs/favicon.png" />
                 </a>
             </div>
 
-
             <!--Form structure (Login Form )  -->
             <form class="row g-2 needs-validation" novalidate>
                 <h4>LOGIN Now </h4>
-                <div class="col-md-12">
-                    <label for="validationCustom01" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="validationCustom01" required
-                        placeholder="Enter Your Name ">
+
+                <!-- Email address input  -->
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" required placeholder="name@example.com">
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
-                        Please choose a username.
+                        Please Enter a Valid Email .
                     </div>
                 </div>
-
-
-
-                <label></label>
-                <select class="form-select" aria-label="Default select example">
-                    <option value="admin">Admin </option>
-                    <option value="seller">Seller </option>
-                    <option value="customer">Customer </option>
-                </select>
-
-
+                <!--  Password input -->
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" required
-                        placeholder="name@example.com">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div class="invalid-feedback">
-                        Please Enter an Email .
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="password" required>
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="password" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -79,7 +62,7 @@
                         Please Enter password.
                     </div>
                 </div>
-
+                <!-- checkbox input (constrains ) -->
                 <div class="col-12">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="invalidCheck" required>
@@ -105,6 +88,12 @@
         <!--section of Form (Register Form ) -->
         <section class="form" id="registerForm" style="display: none;">
 
+
+            <!-- display (Msg error ) here  instead of Alert  -->
+            <div id="registerMessage"></div>
+
+
+
             <div class="logo">
                 <a href="../../E-commerce-System/HomePage&Products/home.html">
                     <img src="../HomePage&Products/imgs/favicon.png" />
@@ -112,97 +101,101 @@
             </div>
 
             <!--Form structure (Register Form )  -->
-
             <form class="row g-2 needs-validation" novalidate>
                 <h4>Create Account </h4>
 
-                <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-md-6">
-                        <label for="validationCustom01" class="form-label">First name</label>
-                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name"
-                            required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                        <div class="invalid-feedback">
-                            Please choose a username.
-                        </div>
+                <!-- First name -->
+                <div class="col-md-6">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First name" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a username.
+                    </div>
+                </div>
+
+                <!-- Last name -->
+                <div class="col-md-6">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last name" required>
+                    <div class="valid-feedback">
+                        Looks good!
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="validationCustom02" class="form-label">Last name</label>
-                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-
-                    </div>
-
-
-                    <label></label>
-                    <select class="form-select" aria-label="Default select example">
+                </div>
+                <!-- select Role -->
+                <div class="select">
+                    <label for="roleSelect">
+                        do you want to register as a Seller OR Customer ..? </label>
+                    <select class="form-select" id="roleSelect" aria-label="Default select example">
+                        <option value="" disabled selected>Select Role</option>
                         <option value="seller">Seller </option>
                         <option value="customer">Customer </option>
                     </select>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" required
-                            placeholder="name@example.com">
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                        <div class="invalid-feedback">
-                            Please Enter an Email .
-                        </div>
+                </div>
+
+
+                <!-- Email address -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" required placeholder="name@example.com">
+                    <div class="valid-feedback">
+                        Looks good!
                     </div>
-
-
-                    <div class="mb-3">
-                        <label for="inputPassword" class="form-label">Password</label>
-
-                        <input type="password" class="form-control" id="inputPassword4" placeholder="password" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                        <div class="invalid-feedback">
-                            Please Enter password.
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <label for="validationCustom03" class="form-label">City</label>
-                            <input type="text" class="form-control" id="validationCustom03" placeholder="Enter City"
-                                required>
-                            <div class="invalid-feedback">
-                                Please provide a valid city.
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="validationCustom03" class="form-label">phone</label>
-                            <input type="tel" id="phone"  placeholder="123-45-678"  class="form-control" id="validationCustom03"
-                                placeholder="Enter Phone number " required>
-                            <div class="invalid-feedback">
-                                Please provide a valid phone.
-                            </div>
-                        </div>
+                    <div class="invalid-feedback">
+                        Please Enter an Email .
                     </div>
+                </div>
 
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Password</label>
 
-                    <div class="btnlog">
-                        <button class="btn" type="submit"> Create Account </button>
-                        <a href="#" id="showLogin">Already have an account?</a>
+                    <input type="password" class="form-control" id="password" placeholder="password" required>
+                    <div class="valid-feedback">
+                        Looks good!
                     </div>
+                    <div class="invalid-feedback">
+                        Please Enter password.
+                    </div>
+                </div>
 
-                </form>
+                <!-- city -->
+                <div class="col-md-12">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="Enter City" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid city.
+                    </div>
+                </div>
+
+
+                <!-- phone  -->
+                <div class="col-md-12">
+                    <label for="phone" class="form-label">phone</label>
+                    <input type="tel" id="phone" placeholder="123-45-678" class="form-control" id="phone"
+                        placeholder="Enter Phone number " required>
+                    <div class="invalid-feedback">
+                        Please provide a valid phone.
+                    </div>
+                </div>
+
+
+                <!-- login button  -->
+                <div class="btnlog">
+                    <button class="btn" type="submit"> Create Account </button>
+                    <a href="#" id="showLogin">Already have an account?</a>
+                </div>
+
             </form>
-            <!--Form structure (Login Form )  -->
 
 
         </section>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./main.js"></script>
 </body>
 

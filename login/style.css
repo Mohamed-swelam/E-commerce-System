@@ -16,7 +16,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding-top: 25px;
+    padding: 25px 0px;
     color: white !important;
 }
 
@@ -72,7 +72,7 @@
 
 .form h4 {
     font-size: 23px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     letter-spacing: 2px;
     text-align: center ;
 }
@@ -92,6 +92,7 @@ input::placeholder ,select::placeholder {
     width: 100%;
     box-sizing: border-box;
 }
+.select {margin:10px 0px ;}
 
 .btnlog button:focus,
 .form-select:focus {
