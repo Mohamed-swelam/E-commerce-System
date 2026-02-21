@@ -77,6 +77,9 @@ async function getProducts() {
     });
 
 
+    quantityInput = document.getElementById("quantity");
+    quantityInput.max = product.quantity;
+
     getCarts(product);
 
 
@@ -129,8 +132,10 @@ async function getCarts(product) {
 
 
         let carts = JSON.parse(localStorage.getItem("carts")) || [];
-        let userCart = carts.find(c => c.userId === currentUserId);
 
+        const maxStock = product.quantity || 0;
+
+        let userCart = carts.find(c => c.userId === currentUserId);
         if (!userCart) {
             userCart = {
                 userId: currentUserId,
@@ -147,8 +152,21 @@ async function getCarts(product) {
         const quantity = Math.max(1, parseInt(quantityInput?.value) || 1);
 
         if (existingItem) {
-            existingItem.quantity += quantity;
+            const newTotalQuantity = existingItem.quantity + quantity;
+
+            if (newTotalQuantity > maxStock) {
+                alert(`You can only add ${maxStock - existingItem.quantity} more item(s). Stock limit reached.`);
+                return;
+            }
+
+            existingItem.quantity = newTotalQuantity;
         } else {
+            if (quantity > maxStock) {
+                alert("Selected quantity exceeds available stock.");
+                return;
+            }
+
+
             userCart.items.push({
                 productId: product.product_id,
                 quantity: quantity

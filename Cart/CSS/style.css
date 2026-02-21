@@ -1,0 +1,16 @@
+* {
+    color: #2A254B;
+}
+
+h2 {
+    color: #2a254b;
+}
+
+.btn-dark {
+    background-color: #2a254b;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #1e1a38;
+}

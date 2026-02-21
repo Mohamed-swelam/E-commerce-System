@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Checkout</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="CSS/style.css">
+    </head>
+
+    <body>
+        
+        <!-- Start NavBar -->
+        <section id="nav">
+        <nav class="navbar navbar-expand-lg  bg-white px-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Avion</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                    <ul class="navbar-nav  ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                    </ul>
+
+
+                    <ul class="list-unstyled d-flex gap-3 mt-3 ">
+                        <li class="icon-il">
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+
+                    
+                </div>
+
+
+            </div>
+        </nav>
+        <nav class="bottom-bar   p-2">
+            <div class="container-fluid">
+                <div class="flex justify-content-center align-items-center">
+                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                        id="bottom-navbar">
+                        <li>
+                            <a class="nav-link " href="#">All products</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#">Tvs</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#">Gaming</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#">BluetoothSpeaker</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#">Others</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        </section>
+        <!-- End NavBar -->
+
+
+        <!--Checkout-->
+        <div class="container">
+            <div class="row mt-5" style="margin-bottom: 100px;">
+
+                <!-- ORDER SUMMARY -->
+                <div class="col-12 col-lg-5 order-1 order-lg-2">
+
+                    <!-- Mobile Toggle Bar -->
+                    <div class="d-lg-none bg-light border rounded mb-3">
+                        <div class="d-flex justify-content-between align-items-center p-3"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#orderSummary"
+                            style="cursor: pointer;">
+                
+                            <span class="fw-medium">
+                                Order summary
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+
+                            <span class="fw-bold" id="mobileTotal">£2,470.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div id="orderSummary" class="collapse d-lg-block">
+                        <div class="py-5 px-4 bg-light rounded" id="items">
+
+                            <div class="d-flex justify-content-between mb-2 order-2">
+                                <span class="text-muted">Subtotal · <span id="totlaItems"></span> items</span>
+                                <span id="subtotal"></span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 order-3">
+                                <span class="text-muted">
+                                    Shipping
+                                </span>
+                                <span id="shipping">£90.00</span>
+                            </div>
+
+                            <hr class="my-3 order-4">
+
+                            <div class="d-flex justify-content-between align-items-center order-5">
+                                <h5 class="mb-0 fw-bold">Total</h5>
+                                <div class="text-end">
+                                <span class="fs-4 fw-medium" id="totalAll">£2,470.00</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!--End Right-->
+
+                <!-- LEFT (FORM) -->
+                <div class="col-12 col-lg-7 order-2 order-lg-1" id="shipping_data">
+                    <form id="checkoutForm" class="needs-validation" novalidate>
+                        <div class="section-heading">
+                            <span class="step-badge">1</span> Delivery Information
+                        </div>
+
+                        <div class="mb-3 form-floating col-12 col-lg-10">
+                            <input type="text" class="form-control" id="user_name" placeholder="Name" required>
+                            <label for="user_name">Name</label>
+                            <div class="invalid-feedback">
+                                Please enter your name
+                            </div>
+                        </div>
+
+                        <div class="mb-3 form-floating col-12 col-lg-10">
+                            <input type="text" class="form-control" id="Address" placeholder="Address" required minlength="5">
+                            <label for="Address">Address</label>
+                            <div class="invalid-feedback">
+                                Please enter a valid address (at least 5 characters)
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-12 col-lg-10">
+                            <div class="mb-3 form-floating">
+                                <input type="text" class="form-control" id="Appartment" placeholder="Appartment(Optional)">
+                                <label for="Appartment">Appartment (Optional)</label>
+                            </div>
+                        </div> -->
+
+                        <div class="col-12 col-lg-10">
+                            <div class="row">
+                                
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="city" placeholder="City" required>
+                                        <label for="city">City</label>
+                                        <div class="invalid-feedback">City is required</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control" id="Phone" placeholder="Phone" required pattern="[0-9]{11}">
+                                        <label for="Phone">Phone</label>
+                                        <div class="invalid-feedback">
+                                            Enter a valid phone number (11 digits)
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="section-heading mt-4">
+                            <span class="step-badge">2</span> Payment
+                        </div>
+
+                        <p class="text-muted">All transactions are secure and encrypted.</p>
+
+                        <div class="d-flex align-items-center my-4 col-12 col-lg-10">
+                            <hr class="flex-grow-1">
+                            <span class="px-3 text-muted small text-uppercase" style="letter-spacing: 2px;">
+                                Card Details
+                            </span>
+                            <hr class="flex-grow-1">
+                        </div>
+
+                        <div class="mb-3 form-floating col-12 col-lg-10">
+                            <input type="text" class="form-control" id="Card_Number" placeholder="Card Number" required pattern="[0-9]{16}">
+                            <label for="Card_Number">CARD NUMBER</label>
+                            <div class="invalid-feedback">
+                                Card number must be 16 digits
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-10">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="Expiry_Date" placeholder="Expiry_Date" required pattern="(0[1-9]|1[0-2])\/[0-9]{2}">
+                                        <label for="Expiry_Date">EXPIRY DATE ( MM / YY )</label>
+                                        <div class="invalid-feedback">
+                                            Format must be MM/YY (e.g. 05/27)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="CVV" placeholder="CVV" required pattern="[0-9]{3}">
+                                        <label for="CVV">Security code (CVV)</label>
+                                        <div class="invalid-feedback">
+                                            CVV must be 3 or 4 digits
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-3 form-floating col-12 col-lg-10">
+                            <input type="text" class="form-control" id="Name_on_Card" placeholder="Name_on_Card" required>
+                            <label for="Name_on_Card">NAME ON CARD</label>
+                            <div class="invalid-feedback">
+                                Name on card is required
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-10">
+                            <button type="submit" class="btn btn-primary w-100" style="height: 60px;font-size: 20px;font-weight: bold;">
+                                Complete Order
+                            </button>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+
+            </div>
+        </div>
+        <!--End Checkout-->
+    
+        <!-- Start Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6  col-lg-2">
+                        <ul class="list-unstyled">
+                            <h5>Categroies</h5>
+                            <li>Tvs</li>
+                            <li>Gaming</li>
+                            <li>BluetoothSpeaker</li>
+                            <li>Others</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6  col-lg-2">
+                        <ul class="list-unstyled">
+                            <h5>Menu</h5>
+                            <li>New arrivals</li>
+                            <li>Best sellers</li>
+                            <li>Recently viewed</li>
+                            <li>Popular this week</li>
+                            <li>All products</li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-12  col-lg-2">
+                        <ul class="list-unstyled">
+                            <h5>Our company</h5>
+                            <li>About us</li>
+                            <li>Vacancies</li>
+                            <li>Contact us</li>
+                            <li>Privacy</li>
+                            <li>Returns policy</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <h6>Join our mailing list</h6>
+                        <div class="d-flex  justify-content-center after-brdr">
+                            <input type="email" placeholder="your@email.com" style="width:75%">
+                            <button style="width:25%;">Sign Up</button>
+                        </div>
+
+                    </div>
+                    <hr class="d-none d-lg-block">
+                    <div class="row justify-content-between  align-items-center">
+
+                        <h6 class="p-3 text-center col-lg-3">Copyright 2026 Avion LTD</h6>
+
+                        <ul class="list-unstyled col-lg-3  gap-3 d-none d-lg-flex ">
+                            <li><span><i class="fa-brands fa-linkedin"></i></span></li>
+                            <li><span><i class="fa-brands fa-facebook"></i></span></li>
+                            <li><span><i class="fa-brands fa-instagram"></i></span></li>
+                            <li><span><i class="fa-brands fa-skype"></i></span></li>
+                            <li><span><i class="fa-brands fa-twitter"></i></span></li>
+                            <li><span><i class="fa-brands fa-pinterest"></i></span></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->      
+
+    </body>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./JS/Checkout.js"></script>
+</html>
