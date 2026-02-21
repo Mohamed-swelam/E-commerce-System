@@ -1,4 +1,6 @@
 'use strict'
+// import { addCustomer } from "./validation.js";
+
 // ==============================
 // Navigation Tabs Logic
 // ==============================
@@ -150,7 +152,6 @@ let totalCustomers = document.getElementById('total-customers');
 
 // Function to render one customer card
 function displayCustomer(customer) {
-
     // Main row container
     let col = document.createElement('div');
     col.classList.add(
@@ -225,43 +226,7 @@ else {
 }
 
 
-const customerName = document.getElementById('cust-name')
-const cutomerEmail = document.getElementById('cust-email')
-const cutomerPassword = document.getElementById('cust-password')
-const customerModalAddBtn = document.getElementById('customer-modal-add-btn')
-customerModalAddBtn.addEventListener('click', addCustomer);
-
-
-
-function addCustomer() {
-
-    const newCustomer = {
-        id: users.length + 1,
-        role: 'customer',
-        name: customerName.value,
-        email: cutomerEmail.value,
-        password: cutomerPassword.value
-    }
-    users.push(newCustomer);
-    localStorage.removeItem('users');
-    localStorage.setItem('users', JSON.stringify(users))
-    displayCustomer(newCustomer);
-}
-
-
-
-
-// Bootstrap validation on Modal form
-let Modalform = document.querySelector('.needs-validation')
-Modalform.addEventListener('submit', event => {
-    if (!Modalform.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-    }
-    Modalform.classList.add('was-validated')
-}, false)
-
-
+// addCustomer()
 // ======================================================
 // Sellers Logic
 // ======================================================
@@ -365,7 +330,6 @@ function displayProduct(product) {
 function displayFilters(arr, t) {
 
     const filters = document.getElementById('filters');
-
     let mainDiv = document.createElement('div');
     mainDiv.classList.add('col-6', 'col-md-12')
 
@@ -386,7 +350,7 @@ function displayFilters(arr, t) {
         input.classList.add('form-check-input');
         input.type = 'checkbox';
         input.value = element;
-        input.id = element;
+        input.classList.add(element);
 
         let label = document.createElement('label');
         label.classList.add('form-check-label');
@@ -506,7 +470,7 @@ function filtering() {
             }
         });
         applyFilters();
-    });
+    })
 }
 
 // range
@@ -517,11 +481,13 @@ rangeOutput.textContent = rangeInput.value;
 rangeInput.addEventListener('input', function () {
     rangeOutput.textContent = this.value;
 });
+
+
 function FilterByPrice() {
     rangeInput.addEventListener('input', (e) => {
         activeFilters.maxPrice = parseInt(e.target.value);
         applyFilters();
-    });
+    })
 }
 
 

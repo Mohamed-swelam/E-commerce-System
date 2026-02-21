@@ -96,8 +96,8 @@
                 </div>
                 <p class="text-center fs-3 mt-5 fst-italic text-body-tertiary d-none" id="customers-empty-message"></p>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" data-bs-backdrop="static" id="exampleModal" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -106,28 +106,108 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="needs-validation" novalidate>
-                                    <div class="mb-3">
+                                <form id="add-customer-form" autocomplete="off">
+                                    <div class="mb-3 position-relative">
                                         <label for="cust-name" class="col-form-label">User Name:</label>
                                         <input type="text" class="form-control" id="cust-name" required minlength="3">
-                                        <div class="invalid-feedback">
-                                            please fill in the user name!
+                                        <!-- error message -->
+                                        <div id="name-msg"
+                                            class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message  position-absolute top-100 start-0 w-100"
+                                            style="font-size: 0.8rem;">
+                                            <p class="mb-0"><i> name must contain the following:</i></p>
+                                            <p id="name-letters" class="invalid mb-0">start with a <b>letters</b> and
+                                                Only <b>_</b> is allowed</p>
+                                            <p id="name-length" class="invalid mb-0">Minimum <b>3 characters</b></p>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="cust-email" class="col-form-label">Email:</label>
-                                        <input type="email" class="form-control" id="cust-email" required
-                                            minlength="15"></input>
-                                        <div class="invalid-feedback">
-                                            please fill in email!
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3 position-relative">
+                                                <label for="cust-email" class="col-form-label">Email:</label>
+                                                <input type="email" class="form-control" id="cust-email" required
+                                                    minlength="10"
+                                                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"></input>
+                                                <!-- error message -->
+                                                <div id="email-msg"
+                                                    class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                                    style="font-size: 0.8rem;">
+                                                    <p class="mb-0"><i> </i></p>
+                                                    <p id="email-pattern" class="invalid mb-0">email must follow the
+                                                        pattern:<b>example@gmail.com</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3 position-relative">
+                                                <label for="cust-phone" class="col-form-label">Phone:</label>
+                                                <input type="tel" class="form-control" id="cust-phone" required
+                                                    min="11"></input>
+                                                <!-- error message -->
+                                                <div id="phone-msg"
+                                                    class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                                    style="font-size: 0.8rem;">
+                                                    <p class="mb-0"><i> Phone must contain the following:</i></p>
+                                                    <p id="phone-numbers" class="invalid mb-0"><b>numbers only</b></p>
+                                                    <p id="phone-length" class="invalid mb-0">Minimum <b>11
+                                                            characters</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3 position-relative">
+                                                <label for="cust-city" class="col-form-label">City:</label>
+                                                <input type="text" class="form-control" id="cust-city" required
+                                                    min="3"></input>
+                                                <!-- <select name="city" id="cust-city" class="form-select" required>
+                                                    <option value="" selected hidden disabled class="text-secondary">
+                                                        Select your city
+                                                    </option>
+                                                    <option value="tanta">Tanta</option>
+                                                    <option value="cairo">Cairo</option>
+                                                    <option value="alexandria">Alexandria</option>
+                                                    <option value="aswan">Aswan</option>
+                                                    <option value="mansoura">Mansoura</option>
+                                                </select> -->
+                                                <!-- error message -->
+                                                <div id="city-msg"
+                                                    class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                                    style="font-size: 0.8rem;">
+                                                    <p class="mb-0"><i> </i></p>
+                                                    <p id="city-empty" class="invalid mb-0">City cannot be empty
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3 position-relative">
+                                                <label for="cust-street" class="col-form-label">Street:</label>
+                                                <input type="text" class="form-control" id="cust-street" required
+                                                    minlength="3"></input>
+                                                <!-- error message -->
+                                                <div id="street-msg"
+                                                    class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                                    style="font-size: 0.8rem;">
+                                                    <p id="street-length" class="invalid mb-0">Street must be minimum
+                                                        <b>3
+                                                            characters</b>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-3 position-relative">
                                         <label for="cust-password" class="col-form-label">Password:</label>
                                         <input type="password" class="form-control" id="cust-password" required
-                                            minlength="6"></input>
-                                        <div class="invalid-feedback">
-                                            please fill in password 6 characters at least!
+                                            minlength="8"></input>
+                                        <!-- error message -->
+                                        <div id="pass-msg"
+                                            class="p-3 pt-0 rounded-bottom-3 mt-1 text-secondary message position-absolute top-100 start-0 w-100"
+                                            style="font-size: 0.8rem;">
+                                            <p class="mb-0"><i> Password must contain the following:</i></p>
+                                            <p id="letter" class="invalid mb-0">A <b>lowercase</b> letter</p>
+                                            <p id="capital" class="invalid mb-0">A <b>capital (uppercase)</b> letter</p>
+                                            <p id="number" class="invalid mb-0">A <b>number</b></p>
+                                            <p id="length" class="invalid mb-0">Minimum <b>8 characters</b></p>
                                         </div>
                                     </div>
                             </div>
@@ -170,19 +250,46 @@
                     </div>
                 </div>
                 <div class="row w-100 m-auto">
-                    <div class="col-12 col-md-2 bg-light p-2 rounded-3 align-self-start mb-3 mb-md-0">
-                        <div class="row w-100 m-auto" id="filters">
+                    <div
+                        class="col-12 col-md-3 col-lg-2 bg-light p-2 rounded-3 align-self-start mb-3 mb-md-0 d-none d-md-block">
+                        <div class="row w-100 m-auto " id="filters">
                             <div class="col-12">
                                 <p class="fs-5">Filter By</p>
                                 <label for="range4" class="form-label mt-4">Price</label>
-                                <input type="range" class="form-range" min="0" max="1000" value="0" step="100"
-                                    id="range4">
+                                <input type="range" class="form-range" id="range4" min="0" max="1000" value="0"
+                                    step="100">
                                 <output for="range4" id="rangeValue" aria-hidden="true"></output>
                             </div>
                         </div>
                     </div>
+                    <!-- <div class="col-12 d-block mb-3 d-md-none">
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne">
+                                        Filter By
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <div class="row w-100 m-auto filters" id="">
+                                            <div class="col-12">
+                                                <p class="fs-5">Filter By</p>
+                                                <label for="range4" class="form-label mt-4">Price</label>
+                                                <input type="range" class="form-range range4" min="0" max="1000"
+                                                    value="0" step="100">
+                                                <output for="range4" class="rangeValue" aria-hidden="true"></output>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                     <!-- displaying products -->
-                    <div class="col-12 col-md-10">
+                    <div class="col-12 col-md-9 col-lg-10">
                         <div class="row w-100 m-auto" id="products-container">
                             <!-- <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap mb-3">
                                 <img src="./iti.jpg" width="100px" alt="">
@@ -213,7 +320,10 @@
         </div>
     </div>
     <!-- End of dashboard -->
+    <!-- <script src="./admin.js" type="module"></script>
+    <script src="./validation.js" type="module"></script> -->
     <script src="./admin.js"></script>
+    <script src="./validation.js"></script>
 </body>
 
 </html>
