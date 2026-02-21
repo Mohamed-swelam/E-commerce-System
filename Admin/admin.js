@@ -452,9 +452,6 @@ fetch('../Dummy Data/products.json')
 //getting the products from the local storage
 const products = JSON.parse(localStorage.getItem('products'));
 
-
-
-
 // Extract unique categories
 let categories = []
 products.map(p => categories.push(p.category))
@@ -469,8 +466,6 @@ brands = [...new Set(brands)]
 displayFilters(brands, 'Brands');
 displayFilters(categories, 'Categories')
 
-// filtering(products, 'brand')
-// filtering(products, 'category')
 filtering(products);
 FilterByPrice(products)
 
