@@ -13,6 +13,15 @@ async function displaycart() {
         // console.log(localStorage.getItem("carts"));
     }
 
+    if (!localStorage.getItem("users")) {
+        const response_3 = await fetch('../../Dummy Data/users.json');
+        let usersFromJson = await response_3.json();
+
+
+        localStorage.setItem("users", JSON.stringify(usersFromJson));
+        // console.log(localStorage.getItem("carts"));
+    }
+
 
     // //checkLogin
     // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
@@ -93,7 +102,7 @@ async function displaycart() {
                                             <p class="small mb-1">
                                                 ${product.description || "No description available for this product."}
                                             </p>
-                                            <span class="fw-semibold">£${numericPrice.toFixed(2)}</span>
+                                            <span class="fw-semibold">${numericPrice.toFixed(2)}$</span>
                                         </div>
                                     </div>
 
@@ -139,7 +148,7 @@ async function displaycart() {
                                     <div class="col-12 col-md-3 d-none d-md-flex justify-content-between justify-content-md-end align-items-center gap-3 mt-3 mt-md-0">
                                         
                                         <span class="fw-semibold">
-                                            £${total.toFixed(2)}
+                                            ${total.toFixed(2)}$
                                         </span>
 
                                         <button class="btn btn-sm btn-outline-danger delete-btn d-none d-md-inline-flex"
@@ -154,7 +163,7 @@ async function displaycart() {
         totalSum += total;
     }
 
-    document.getElementById("total-price").innerText = `£${totalSum.toFixed(2)}`
+    document.getElementById("total-price").innerText = `${totalSum.toFixed(2)}$`
 
 
 
