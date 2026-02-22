@@ -329,7 +329,7 @@
 
         const loadProducts = async () => {
             try {
-                const response = await fetch("products.json");
+                const response = await fetch("./Dummy Data/products.json");
                 const products = await response.json();
                 const container = document.getElementById('products');
 
