@@ -12,25 +12,52 @@ async function displaycart() {
         localStorage.setItem("carts", JSON.stringify(cartsFromJson));
         // console.log(localStorage.getItem("carts"));
     }
-    const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
 
-    if (!currentUserId) {
+
+    // //checkLogin
+    // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
+
+    // if (!currentUserId) {
+    //     alert("Please login first to add items to cart.");
+    //     window.location.href = "login.html";
+    //     return;
+    // }
+
+
+    //checkLogin
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
         alert("Please login first to add items to cart.");
-        window.location.href = "login.html";
+        window.location.href = "../../login/login.html";
         return;
     }
 
 
 
     let carts = JSON.parse(localStorage.getItem("carts")) || [];
-    let userCart = carts.find(c => c.userId === currentUserId);
+    let userCart = carts.find(c => c.userId === currentUser.id);
     console.log(userCart);
+    let btn = document.getElementById("go_Checkout");
     if (!userCart || userCart.items.length === 0) {
-        document.getElementById("cart-items").innerHTML = '<p class="text-center">Empty Cart</p>';
+
+        document.getElementById("cart-items").innerHTML = `
+            <div class="empty-cart">
+                <i class="fa-solid fa-cart-shopping empty-cart-icon"></i>
+                <h5>Your Cart is Empty</h5>
+                <p>Add items to your cart to see them here</p>
+            </div>
+        `;
+
         document.getElementById("total-price").innerText = "0";
+
+        btn.disabled = true;
+        // btn.style.cursor = "not-allowed";
         return;
     }
 
+    btn.disabled = false;
+    // btn.style.cursor = "pointer";
 
     // console.log(userCart.items);
     const products = JSON.parse(localStorage.getItem("products"));
@@ -130,6 +157,10 @@ async function displaycart() {
     document.getElementById("total-price").innerText = `£${totalSum.toFixed(2)}`
 
 
+
+    document.getElementById("go_Checkout")
+
+
 }
 
 document.addEventListener("click", function (e) {
@@ -139,13 +170,19 @@ document.addEventListener("click", function (e) {
 
     if (!isPlus && !isMinus && !isDelete) return;
 
-    const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
-    if (!currentUserId) return;
+    //checkLogin
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+        alert("Please login first to add items to cart.");
+        window.location.href = "../../login/login.html";
+        return;
+    }
 
     let carts = JSON.parse(localStorage.getItem("carts")) || [];
     let products = JSON.parse(localStorage.getItem("products")) || [];
 
-    let userCart = carts.find(c => c.userId === currentUserId);
+    let userCart = carts.find(c => c.userId === currentUser.id);
     if (!userCart) return;
 
 
