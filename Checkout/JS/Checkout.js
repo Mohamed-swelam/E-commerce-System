@@ -46,9 +46,9 @@ async function DisplayProducts() {
 
 
     //fill default values
-    document.getElementById("city").value = currentUser.city;
-    document.getElementById("user_name").value = currentUser.name;
-    document.getElementById("Address").value = currentUser.city;
+    document.getElementById("city").value = currentUser.address ? currentUser.address : currentUser.city;
+    document.getElementById("user_name").value = currentUser.firstName ? currentUser.firstName : currentUser.name;
+    document.getElementById("Address").value = currentUser.address ? currentUser.address : currentUser.city;
     document.getElementById("Phone").value = currentUser.phone;
 
 
@@ -102,14 +102,14 @@ async function DisplayProducts() {
 
                                 </div>
 
-                                <div class="price fw-medium">£${total.toFixed(2)}</div>
+                                <div class="price fw-medium">${total.toFixed(2)}$</div>
                             </div>`);
 
     }
     document.getElementById("totlaItems").innerText = totalItems;
-    document.getElementById("subtotal").innerText = `£${subtotal}`;
+    document.getElementById("subtotal").innerText = `${subtotal}$`;
 
-    document.getElementById("totalAll").innerText = `£${(subtotal + 90.00)}`;
+    document.getElementById("totalAll").innerText = `${(subtotal + 90.00)}$`;
 
     let totalAll = subtotal + 90.00;
 
@@ -119,11 +119,12 @@ async function DisplayProducts() {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
+        form.classList.add("was-validated");
         if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
+            return;
         }
-        form.classList.add("was-validated");
 
 
 

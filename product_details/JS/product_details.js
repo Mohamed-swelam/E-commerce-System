@@ -50,7 +50,7 @@ async function getProducts() {
     product_title.innerText = product.name;
 
     let product_price = document.getElementById("product_price");
-    product_price.innerText = `£${product.price}`;
+    product_price.innerText = `${product.price}$`;
 
     let product_description = document.getElementById("product_description");
     product_description.innerText = product.description || "No description available for this product.";
@@ -98,7 +98,7 @@ function displayRelatedProducts(productsArray) {
                 
             <div class="card-body px-0 pt-2">
             <h6 class="mb-1">${item.name}</h6>
-            <small class="text-muted">£${item.price}</small>
+            <small class="text-muted">${item.price}$</small>
             </div>
         </div>
         </div>
