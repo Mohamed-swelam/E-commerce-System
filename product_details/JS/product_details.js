@@ -121,11 +121,21 @@ async function getCarts(product) {
     if (!addBtn) return;
 
     addBtn.addEventListener("click", function () {
-        const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
+        // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
 
-        if (!currentUserId) {
+        // if (!currentUserId) {
+        //     alert("Please login first to add items to cart.");
+        //     window.location.href = "login.html";
+        //     return;
+        // }
+
+
+        //checkLogin
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (!currentUser) {
             alert("Please login first to add items to cart.");
-            window.location.href = "login.html";
+            window.location.href = "../../login/login.html";
             return;
         }
 
@@ -135,10 +145,10 @@ async function getCarts(product) {
 
         const maxStock = product.quantity || 0;
 
-        let userCart = carts.find(c => c.userId === currentUserId);
+        let userCart = carts.find(c => c.userId === currentUser.id);
         if (!userCart) {
             userCart = {
-                userId: currentUserId,
+                userId: currentUser.id,
                 items: []
             };
             carts.push(userCart);

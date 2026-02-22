@@ -36,7 +36,7 @@ async function DisplayProducts() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
-        alert("Please login first to add items to cart.");
+        alert("Please login first to enter checkout page.");
         window.location.href = "../../login/login.html";
         return;
     }
@@ -176,8 +176,8 @@ async function DisplayProducts() {
         localStorage.setItem("orders", JSON.stringify(orders));
 
         alert("Order placed successfully!");
-        window.location.href = "../../Cart/cart.html";
-        // window.location.href = "../../HomePage&Products/home.html";
+        // window.location.href = "../../Cart/cart.html";
+        window.location.href = "../../HomePage&Products/home.html";
     });
 
 }
