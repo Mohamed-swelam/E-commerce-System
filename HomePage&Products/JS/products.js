@@ -19,7 +19,7 @@ function displayAllPrds(prds) {
         product +=
             `
             <div class="col-6 col-lg-4" >
-                    <div class="card" style="cursor:pointer;"  onclick="showDetails(${i})" >
+                    <div class="card" style="cursor:pointer;"  onclick="showDetails(${prds[i].id})" >
                         <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
                         <div class="card-body">
                             <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>

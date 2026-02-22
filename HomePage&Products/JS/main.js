@@ -3110,7 +3110,7 @@ function displayProducts(x, container) {
         productBox +=
           `
                                 <div class="col-lg-3">
-                                    <div class="card w-100 p-0 m-0" style="cursor:pointer;"  onclick="showDetails(${i})">
+                                    <div class="card w-100 p-0 m-0" style="cursor:pointer;"  onclick="showDetails(${productArray[i].id})">
                                         <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
                                         <div class="card-body">
                                             <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
@@ -3126,7 +3126,7 @@ function displayProducts(x, container) {
     }
     else {
       productBox = `
-                        <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${20})">
+                        <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[20].id})">
                              <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
                                         <div class="card-body">
                                             <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
@@ -3137,7 +3137,7 @@ function displayProducts(x, container) {
                              </div>
                         </div>
 
-                        <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  onclick="showDetails(${21})">
+                        <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  onclick="showDetails(${productArray[21].id})">
                              <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
                                         <div class="card-body">
                                             <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
@@ -3149,7 +3149,7 @@ function displayProducts(x, container) {
                         </div>
 
 
-                    <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  onclick="showDetails(${9})">
+                    <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  onclick="showDetails(${productArray[9].id})">
                              <img src="${productArray[9].image}" class="card-img-top" alt="${productArray[9].name}" height=200>
                                         <div class="card-body">
                                             <h5 class="card-title">${productArray[9].name.slice(0, 15)}</h5>
