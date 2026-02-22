@@ -34,10 +34,13 @@ function displayCategroyData(page) {
     for (let i = 0; i < categoryArray.length; i++) {
       prdBox +=`   
        <div class="col-lg-4 col-6">
-                    <div class="card"style="min-height:500px;" onclick="showDetails(${categoryArray[i].id})">
+                    <div class="card"style="min-height:500px;" >
                     <div style="cursor:pointer">
+                         <div class="position-relative">
                         <img class="card-img-top"  height="300" src="${categoryArray[i].image}" alt="${categoryArray[i].name}" />
-                        <div class="card-body">
+                        <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
+                        </div>
+                        <div class="card-body" onclick="showDetails(${categoryArray[i].id})">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div >
                                     <h4 class="card-title m-0 p-0">${categoryArray[i].name}</h4>

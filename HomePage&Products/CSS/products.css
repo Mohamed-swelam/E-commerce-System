@@ -103,6 +103,14 @@ body {
     -o-border-radius: 0px !important;
 }
 
+
+.card span > i {
+    color:var(--primary);
+    font-size: 25px;;
+
+}
+
+
 /* End Products */
 
 

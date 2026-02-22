@@ -139,6 +139,14 @@ color:red !important;
     -ms-border-radius: 0px !important;
     -o-border-radius: 0px !important;
 }
+
+
+.card span > i {
+    color:var(--primary);
+    font-size: 25px;;
+
+}
+
 /* End of Diff  */
 /* Start of Listing */
 #listing,

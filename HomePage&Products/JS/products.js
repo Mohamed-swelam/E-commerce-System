@@ -19,9 +19,14 @@ function displayAllPrds(prds) {
         product +=
             `
             <div class="col-6 col-lg-4" >
-                    <div class="card" style="cursor:pointer;"  onclick="showDetails(${prds[i].id})" >
-                        <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
-                        <div class="card-body">
+                    <div class="card" style="cursor:pointer;"   >
+                       <div class="position-relative">
+                    <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
+                                            <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
+ 
+                    </div>
+                    
+                    <div class="card-body" onclick="showDetails(${prds[i].id})">
                             <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
                             <p class="card-text">${prds[i].price}$</p>
                         </div>
