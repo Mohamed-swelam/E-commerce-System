@@ -34,7 +34,7 @@ function displayCategroyData(page) {
     for (let i = 0; i < categoryArray.length; i++) {
       prdBox +=`   
        <div class="col-lg-4 col-6">
-                    <div class="card"style="min-height:500px;">
+                    <div class="card"style="min-height:500px;" onclick="showDetails(${i})">
                     <div style="cursor:pointer">
                         <img class="card-img-top"  height="300" src="${categoryArray[i].image}" alt="${categoryArray[i].name}" />
                         <div class="card-body">
@@ -47,7 +47,7 @@ function displayCategroyData(page) {
                                     <small>${categoryArray[i].price}$</small>
                                 </div>
                             </div>
-                            <p class="card-text lead">${categoryArray[i].description}</p>
+                            <p class="card-text lead">${categoryArray[i].description  }</p>
                         </div>
                             <div class="text-center w-100">
                             <button class="btn">Add To Cart </button> 
@@ -96,3 +96,11 @@ function navigateNumbrsWithPrevAndNext() {
         nextPrds()
     })
 }
+
+
+
+
+function showDetails (id)
+ {
+    location.href =`./details.html?id=${id}`
+ }

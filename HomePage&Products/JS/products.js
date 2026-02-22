@@ -18,8 +18,8 @@ function displayAllPrds(prds) {
     for (let i = 0; i < prds.length; i++) {
         product +=
             `
-            <div class="col-6 col-lg-4">
-                    <div class="card" style="cursor:pointer;">
+            <div class="col-6 col-lg-4" >
+                    <div class="card" style="cursor:pointer;"  onclick="showDetails(${i})" >
                         <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
                         <div class="card-body">
                             <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
@@ -33,10 +33,15 @@ function displayAllPrds(prds) {
                 </div>
                 `
     }
-    document.getElementById("prds-data").innerHTML = product
-
+    document.getElementById("prds-data").innerHTML = product;
 }
 
+
+
+function showDetails (id)
+ {
+    location.href =`./details.html?id=${id}`
+ }
 
 
 function displayPaginationItems(prds, page) {

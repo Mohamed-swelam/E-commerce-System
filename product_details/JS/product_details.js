@@ -134,8 +134,15 @@ async function getCarts(product) {
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
         if (!currentUser) {
-            alert("Please login first to add items to cart.");
-            window.location.href = "../../login/login.html";
+            // alert("Please login first to add items to cart.");
+            // window.location.href = "../../login/login.html";
+
+            showToast("Please login first to add items to cart.", "error");
+
+            setTimeout(() => {
+                window.location.href = "../../login/login.html";
+            }, 2500);
+
             return;
         }
 
@@ -165,14 +172,16 @@ async function getCarts(product) {
             const newTotalQuantity = existingItem.quantity + quantity;
 
             if (newTotalQuantity > maxStock) {
-                alert(`You can only add ${maxStock - existingItem.quantity} more item(s). Stock limit reached.`);
+                // alert(`You can only add ${maxStock - existingItem.quantity} more item(s). Stock limit reached.`);
+                showToast(`You can only add ${maxStock - existingItem.quantity} more item(s). Stock limit reached.`, "error");
                 return;
             }
 
             existingItem.quantity = newTotalQuantity;
         } else {
             if (quantity > maxStock) {
-                alert("Selected quantity exceeds available stock.");
+                // alert("Selected quantity exceeds available stock.");
+                showToast("Selected quantity exceeds available stock.", "error");
                 return;
             }
 
@@ -185,8 +194,8 @@ async function getCarts(product) {
 
         localStorage.setItem("carts", JSON.stringify(carts));
         console.log(carts);
-        alert("Product added to cart successfully 🛒");
-
+        // alert("Product added to cart successfully 🛒");
+        showToast("Product added to cart successfully...", "success");
 
     });
 
@@ -196,3 +205,24 @@ getProducts();
 
 
 
+function showToast(message, type = "success") {
+    const toastEl = document.getElementById("mainToast");
+    const toastMsg = document.getElementById("toastMessage");
+
+
+    if (type === "success") {
+        toastEl.className = "toast align-items-center text-white bg-success border-0";
+    } else if (type === "error") {
+        toastEl.className = "toast align-items-center text-white bg-danger border-0";
+    } else if (type === "warning") {
+        toastEl.className = "toast align-items-center text-dark bg-warning border-0";
+    }
+
+    toastMsg.textContent = message;
+
+    const toast = new bootstrap.Toast(toastEl, {
+        delay: 3000,
+    });
+
+    toast.show();
+}
