@@ -20,6 +20,7 @@ async function getProducts() {
     }
 
     const params = new URLSearchParams(window.location.search);
+
     let id = parseInt(params.get("id"));
     console.log(id);
 
