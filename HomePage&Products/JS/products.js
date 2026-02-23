@@ -27,7 +27,9 @@ function displayAllPrds(prds) {
                         </div>
 
                          <div class="text-center w-100">
-                            <button class="btn">Add To Cart </button> 
+                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${prds[i].product_id})">
+                              Add To Cart
+                            </button> 
                              </div>
                     </div>
                 </div>
@@ -194,3 +196,63 @@ document.querySelectorAll("#brands").forEach(divBrand => {
 });
 
 
+
+function addToCart(productId) {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+        showToast("Please login first to add items to cart.", "error");
+        setTimeout(() => {
+            window.location.href = "../../login/login.html";
+        }, 2500);
+        return;
+    }
+
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const product = products.find(p => p.product_id === productId);
+
+    if (!product) return;
+
+    let carts = JSON.parse(localStorage.getItem("carts")) || [];
+    const maxStock = product.quantity || 0;
+
+    let userCart = carts.find(c => c.userId === currentUser.id);
+
+    if (!userCart) {
+        userCart = {
+            userId: currentUser.id,
+            items: []
+        };
+        carts.push(userCart);
+    }
+
+    let existingItem = userCart.items.find(
+        item => item.productId === product.product_id
+    );
+
+    const quantity = 1;
+
+    if (existingItem) {
+        const newTotalQuantity = existingItem.quantity + quantity;
+
+        if (newTotalQuantity > maxStock) {
+            showToast(`Stock limit reached.`, "error");
+            return;
+        }
+
+        existingItem.quantity = newTotalQuantity;
+    } else {
+        if (quantity > maxStock) {
+            showToast("Selected quantity exceeds available stock.", "error");
+            return;
+        }
+
+        userCart.items.push({
+            productId: product.product_id,
+            quantity: quantity
+        });
+    }
+
+    localStorage.setItem("carts", JSON.stringify(carts));
+    showToast("Product added to cart successfully..", "success");
+}

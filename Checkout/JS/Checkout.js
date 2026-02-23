@@ -47,7 +47,7 @@ async function DisplayProducts() {
 
     //fill default values
     document.getElementById("city").value = currentUser.address ? currentUser.address : currentUser.city;
-    document.getElementById("user_name").value = currentUser.firstName ? currentUser.firstName : currentUser.name;
+    document.getElementById("user_name").value = currentUser.fullName ? currentUser.fullName : currentUser.name;
     document.getElementById("Address").value = currentUser.address ? currentUser.address : currentUser.city;
     document.getElementById("Phone").value = currentUser.phone;
 
