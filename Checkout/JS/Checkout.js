@@ -47,7 +47,7 @@ async function DisplayProducts() {
 
     //fill default values
     document.getElementById("city").value = currentUser.address ? currentUser.address : currentUser.city;
-    document.getElementById("user_name").value = currentUser.firstName ? currentUser.firstName : currentUser.name;
+    document.getElementById("user_name").value = currentUser.fullName ? currentUser.fullName : currentUser.name;
     document.getElementById("Address").value = currentUser.address ? currentUser.address : currentUser.city;
     document.getElementById("Phone").value = currentUser.phone;
 
@@ -176,21 +176,45 @@ async function DisplayProducts() {
         orders.push(order);
         localStorage.setItem("orders", JSON.stringify(orders));
 
-        alert("Order placed successfully!");
-        // window.location.href = "../../Cart/cart.html";
-        window.location.href = "../../HomePage&Products/home.html";
+        // alert("Order placed successfully!");
+        // // window.location.href = "../../Cart/cart.html";
+        // window.location.href = "../../HomePage&Products/home.html";
+
+        showToast("Order placed successfully!", "success");
+
+        setTimeout(() => {
+            window.location.href = "../../HomePage&Products/home.html";
+        }, 1500);
     });
 
 }
 
-
-
-
-
-
-
-
-
-
-
 DisplayProducts();
+
+
+
+
+
+
+
+function showToast(message, type = "success") {
+    const toastEl = document.getElementById("mainToast");
+    const toastMsg = document.getElementById("toastMessage");
+
+
+    if (type === "success") {
+        toastEl.className = "toast align-items-center text-white bg-success border-0";
+    } else if (type === "error") {
+        toastEl.className = "toast align-items-center text-white bg-danger border-0";
+    } else if (type === "warning") {
+        toastEl.className = "toast align-items-center text-dark bg-warning border-0";
+    }
+
+    toastMsg.textContent = message;
+
+    const toast = new bootstrap.Toast(toastEl, {
+        delay: 3000,
+    });
+
+    toast.show();
+}

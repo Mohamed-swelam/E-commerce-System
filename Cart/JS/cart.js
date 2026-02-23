@@ -37,8 +37,14 @@ async function displaycart() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
-        alert("Please login first to add items to cart.");
-        window.location.href = "../../login/login.html";
+        // alert("Please login first to add items to cart.");
+        // window.location.href = "../../login/login.html";
+
+        showToast("Please login first to add items to cart.", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../login/login.html";
+        }, 2500)
         return;
     }
 
@@ -183,8 +189,13 @@ document.addEventListener("click", function (e) {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
-        alert("Please login first to add items to cart.");
-        window.location.href = "../../login/login.html";
+        // alert("Please login first to add items to cart.");
+        // window.location.href = "../../login/login.html";
+        showToast("Please login first to add items to cart.", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../login/login.html";
+        }, 2500)
         return;
     }
 
@@ -223,7 +234,8 @@ document.addEventListener("click", function (e) {
         if (cartItem.quantity < maxStock) {
             cartItem.quantity += 1;
         } else {
-            alert("Maximum available quantity reached");
+            // alert("Maximum available quantity reached");
+            showToast("Maximum available quantity reached", "error");
             return;
         }
     }
@@ -258,3 +270,24 @@ displaycart();
 
 
 
+function showToast(message, type = "success") {
+    const toastEl = document.getElementById("mainToast");
+    const toastMsg = document.getElementById("toastMessage");
+
+
+    if (type === "success") {
+        toastEl.className = "toast align-items-center text-white bg-success border-0";
+    } else if (type === "error") {
+        toastEl.className = "toast align-items-center text-white bg-danger border-0";
+    } else if (type === "warning") {
+        toastEl.className = "toast align-items-center text-dark bg-warning border-0";
+    }
+
+    toastMsg.textContent = message;
+
+    const toast = new bootstrap.Toast(toastEl, {
+        delay: 3000,
+    });
+
+    toast.show();
+}
