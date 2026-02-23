@@ -36,7 +36,7 @@ function displayCategroyData(page) {
        <div class="col-lg-4 col-6">
                     <div class="card"style="min-height:500px;" >
                     <div style="cursor:pointer">
-                         <div class="position-relative">
+                         <div class="position-relative bg-white"  style="height:250px; ">
                         <img class="card-img-top"  height="300" src="${categoryArray[i].image}" alt="${categoryArray[i].name}" />
                         <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
                         </div>

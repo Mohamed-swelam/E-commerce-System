@@ -20,7 +20,7 @@ function displayAllPrds(prds) {
             `
             <div class="col-6 col-lg-4" >
                     <div class="card" style="cursor:pointer;"   >
-                       <div class="position-relative">
+                       <div class="position-relative bg-white"  style="height:250px; ">
                     <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
                                             <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
  

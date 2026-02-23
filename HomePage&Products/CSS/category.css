@@ -87,24 +87,24 @@ body {
 
 
 .card img {
-    transform: scale(0.6);
+    transform: scale(0.5);
     transition: transform 1s;
     -webkit-transition: transform 1s;
     -moz-transition: transform 1s;
     -ms-transition: transform 1s;
     -o-transition: transform 1s;
-    -webkit-transform: scale(0.6);
-    -moz-transform: scale(0.6);
-    -ms-transform: scale(0.6);
-    -o-transform: scale(0.6);
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
 }
 
 .card img:hover {
-    transform: scale(1.0755);
-    -webkit-transform: scale(1.0755);
-    -moz-transform: scale(1.0755);
-    -ms-transform: scale(1.0755);
-    -o-transform: scale(1.0755);
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    -o-transform: scale(0.7);
 }
 
 

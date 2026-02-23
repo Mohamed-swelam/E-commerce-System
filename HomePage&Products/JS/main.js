@@ -3112,10 +3112,12 @@ function displayProducts(x, container) {
                                 <div class="col-lg-3">
                                     <div class="card w-100 p-0 m-0" style="cursor:pointer;"  >
                                         
-                                    <div class="position-relative">
+                                    <div class="position-relative bg-white"  style="height:250px; ">
                                     <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
-                        <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
+                                   <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
                                        </div>
+
+
                                        
                                         <div class="card-body" onclick="showDetails(${productArray[i].id})">
                                             <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
@@ -3133,7 +3135,7 @@ function displayProducts(x, container) {
       productBox = `
                         <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" >
                             
-                        <div class="position-relative">
+                        <div class="position-relative bg-white"  style="height:250px; ">
                         <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
                                                              <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
 
@@ -3153,7 +3155,7 @@ function displayProducts(x, container) {
 
                         <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
                              
-                        <div class="position-relative">
+                        <div class="position-relative bg-white"  style="height:250px; ">
                         <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
                                                  <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
 
@@ -3173,16 +3175,20 @@ function displayProducts(x, container) {
 
 
                     <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
-                     <div class="posiiton-relative">      
-                    <img src="${productArray[9].image}" class="card-img-top" alt="${productArray[9].name}" height=200>
-                                            <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
-</div>                  
-                    
-                    <div class="card-body" onclick="showDetails(${productArray[9].id})">
-                                            <h5 class="card-title">${productArray[9].name.slice(0, 15)}</h5>
-                                            <p class="card-text">${productArray[9].price}$</p>
-                    </div>
-                    <div class="text-center w-100">
+                             
+                        <div class="position-relative bg-white"  style="height:250px; ">
+                        <img src="${productArray[6].image}" class="card-img-top" alt="${productArray[6].name}" height=200>
+                                                 <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
+
+                        </div>          
+                             
+                             
+                             
+                             <div class="card-body" onclick="showDetails(${productArray[6].id})">
+                                            <h5 class="card-title">${productArray[6].name.slice(0, 15)}</h5>
+                                            <p class="card-text">${productArray[6].price}$</p>
+                        </div>
+                         <div class="text-center w-100">
                             <button class="btn">Add To Cart </button> 
                              </div>
                         </div>
