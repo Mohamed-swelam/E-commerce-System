@@ -3247,3 +3247,12 @@ function addToCart(productId) {
 }
 
 
+let userProfile = document.getElementById('profile');
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+// localStorage.removeItem("currentUser");
+if (currentUser) {
+  userProfile.style.display = "block";
+} else {
+  userProfile.style.display = "none";
+}

@@ -47,9 +47,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Blog</a>
                         </li>
-                        <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../login/login.html">Login</a>
+                        </li>
                     </ul>
 
 
@@ -60,8 +60,8 @@
                             </a>
                         </li>
 
-                        <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <a href="../login/login.html">
+                        <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
+                            <a href="../HomePage&Products/CustomerI_nfo/customer-info.html">
                                 <i class="fa-regular fa-circle-user"></i>
                             </a>
                         </li>
@@ -273,21 +273,20 @@
         </div>
     </footer>
     <!-- End Footer -->
-    
-    <!-- Toast (Top Right) -->
-            <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
-                
-                <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
-                    <div class="d-flex">
-                        <div class="toast-body" id="toastMessage">
-                            Message here
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                            data-bs-dismiss="toast"></button>
-                    </div>
-                </div>
 
+    <!-- Toast (Top Right) -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+
+        <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Message here
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
+        </div>
+
+    </div>
 
     <!-- Bootstrap Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"
