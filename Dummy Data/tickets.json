@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1001,
+        "userId": 3,
+        "userName": "Kariem Tamer",
+        "email": "Kariem@gmail.com",
+        "subject": "Late Delivery",
+        "message": "My order has been delayed for 4 days and there is no shipping update.",
+        "status": "Pending",
+        "reply": "",
+        "createdAt": "2026-02-20T10:15:00.000Z"
+    },
+    {
+        "id": 1002,
+        "userId": 4,
+        "userName": "Ahmed Mohamed",
+        "email": "ahmed@gmail.com",
+        "subject": "Wrong Product",
+        "message": "I received a different product than the one I ordered.",
+        "status": "Replied",
+        "reply": "We apologize for the mistake. The correct product will be shipped within 48 hours.",
+        "createdAt": "2026-02-19T14:30:00.000Z"
+    },
+    {
+        "id": 1003,
+        "userId": 5,
+        "userName": "Sara Ali",
+        "email": "sara@gmail.com",
+        "subject": "Payment Issue",
+        "message": "The payment was deducted but my order was not confirmed.",
+        "status": "Pending",
+        "reply": "",
+        "createdAt": "2026-02-21T09:45:00.000Z"
+    },
+    {
+        "id": 1004,
+        "userId": 6,
+        "userName": "Omar Hassan",
+        "email": "omar@gmail.com",
+        "subject": "Cancel Order",
+        "message": "I would like to cancel my order before it is shipped.",
+        "status": "Resolved",
+        "reply": "Your order has been successfully canceled and the refund has been processed.",
+        "createdAt": "2026-02-18T16:20:00.000Z"
+    },
+    {
+        "id": 1005,
+        "userId": 3,
+        "userName": "Kariem Tamer",
+        "email": "Kariem@gmail.com",
+        "subject": "Order Issue",
+        "message": "I recently placed an order but I cannot see its status in my account dashboard. Could you please check if my order was processed successfully?",
+        "status": "Replied",
+        "reply": "Your order has been confirmed and is currently being processed. You can track it from the Orders page.",
+        "createdAt": "2026-02-22T11:05:00.000Z"
+    }
+]

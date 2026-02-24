@@ -2,6 +2,13 @@
     {
         "orderId": 1001,
         "userId": 4,
+        "customerName": "Ahmed Mohamed",
+        "city": "6th of October",
+        "address": "Al Hosary Square",
+        "phone": "01169570136",
+        "total": 655,
+        "status": "delivered",
+        "createdAt": "2026-02-10T00:00:00.000Z",
         "items": [
             {
                 "productId": 1,
@@ -11,27 +18,35 @@
                 "productId": 5,
                 "quantity": 2
             }
-        ],
-        "total": 655,
-        "status": "delivered",
-        "createdAt": "2026-02-10"
+        ]
     },
     {
         "orderId": 1002,
         "userId": 6,
+        "customerName": "Omar Hassan",
+        "city": "Maadi",
+        "address": "Road 9",
+        "phone": "01185057916",
+        "total": 399,
+        "status": "shipped",
+        "createdAt": "2026-02-11T00:00:00.000Z",
         "items": [
             {
                 "productId": 2,
                 "quantity": 1
             }
-        ],
-        "total": 399,
-        "status": "shipped",
-        "createdAt": "2026-02-11"
+        ]
     },
     {
         "orderId": 1003,
         "userId": 3,
+        "customerName": "Kariem Tamer",
+        "city": "Mansoura",
+        "address": "El Geish Street",
+        "phone": "01040393484",
+        "total": 780,
+        "status": "processing",
+        "createdAt": "2026-02-12T00:00:00.000Z",
         "items": [
             {
                 "productId": 9,
@@ -41,27 +56,35 @@
                 "productId": 3,
                 "quantity": 1
             }
-        ],
-        "total": 780,
-        "status": "processing",
-        "createdAt": "2026-02-12"
+        ]
     },
     {
         "orderId": 1004,
         "userId": 5,
+        "customerName": "Sara Ali",
+        "city": "Port Said",
+        "address": "Al Gomhoria Street",
+        "phone": "01551258391",
+        "total": 1250,
+        "status": "delivered",
+        "createdAt": "2026-02-13T00:00:00.000Z",
         "items": [
             {
                 "productId": 13,
                 "quantity": 2
             }
-        ],
-        "total": 1250,
-        "status": "delivered",
-        "createdAt": "2026-02-13"
+        ]
     },
     {
         "orderId": 1005,
         "userId": 4,
+        "customerName": "Ahmed Mohamed",
+        "city": "6th of October",
+        "address": "Al Hosary Square",
+        "phone": "01169570136",
+        "total": 920,
+        "status": "shipped",
+        "createdAt": "2026-02-14T00:00:00.000Z",
         "items": [
             {
                 "productId": 6,
@@ -71,14 +94,18 @@
                 "productId": 8,
                 "quantity": 2
             }
-        ],
-        "total": 920,
-        "status": "shipped",
-        "createdAt": "2026-02-14"
+        ]
     },
     {
         "orderId": 1006,
         "userId": 5,
+        "customerName": "Sara Ali",
+        "city": "Port Said",
+        "address": "Al Gomhoria Street",
+        "phone": "01551258391",
+        "total": 540,
+        "status": "processing",
+        "createdAt": "2026-02-15T00:00:00.000Z",
         "items": [
             {
                 "productId": 4,
@@ -88,9 +115,6 @@
                 "productId": 7,
                 "quantity": 1
             }
-        ],
-        "total": 540,
-        "status": "processing",
-        "createdAt": "2026-02-15"
+        ]
     }
 ]
