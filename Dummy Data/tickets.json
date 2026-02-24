@@ -48,10 +48,10 @@
         "userId": 3,
         "userName": "Kariem Tamer",
         "email": "Kariem@gmail.com",
-        "subject": "Account Problem",
-        "message": "I am unable to log in to my account.",
+        "subject": "Order Issue",
+        "message": "I recently placed an order but I cannot see its status in my account dashboard. Could you please check if my order was processed successfully?",
         "status": "Replied",
-        "reply": "Your password has been reset. Please try logging in again.",
+        "reply": "Your order has been confirmed and is currently being processed. You can track it from the Orders page.",
         "createdAt": "2026-02-22T11:05:00.000Z"
     }
 ]
