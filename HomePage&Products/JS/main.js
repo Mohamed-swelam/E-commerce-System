@@ -3093,7 +3093,9 @@ products = [
 console.log(products);
 
 (function () {
-  localStorage.setItem("products", JSON.stringify(products));
+  if (!localStorage.getItem("products")) {
+    localStorage.setItem("products", JSON.stringify(products));
+  }
   displayProducts(0, document.getElementById("row-data"));
   displayProducts(4, document.getElementById("row-data-two"));
 })();
