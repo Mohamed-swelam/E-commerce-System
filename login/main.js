@@ -54,6 +54,10 @@ function isValidPassword(password) {
     return pattern.test(password);
 }
 
+function isValidPhone(phone) {
+    const pattern = /^\d{11}$/;
+    return pattern.test(phone);
+}
 
 // control in (register Page ) based on role  ;
 document.getElementById('registerForm').addEventListener('submit', function (e) {
@@ -61,6 +65,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     const role = document.getElementById('roleSelect').value;
     const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById("lastName").value  ;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const address = document.getElementById("city").value;
@@ -68,13 +73,24 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
 
     // Validation
-    if (!firstName || !email || !password || !role) {
+    if (!lastName || !firstName || !email || !password || !role) {
         showMessage("Please fill all fields", "danger", "registerMessage");
         return;
     }
 
     if (!isValidEmail(email)) {
         showMessage("Please enter a valid email address", "danger", "registerMessage");
+        return;
+    }
+
+    // validation on Password .
+    if (!isValidPassword(password)) {
+        showMessage("Password must be at least 6 characters and contain letters and numbers", "danger", "registerMessage");
+        return;
+    }
+    //  validation on phone number 
+    if (!isValidPhone(phone)) {
+        showMessage("Phone number must be exactly 11 digits", "danger", "registerMessage");
         return;
     }
 
@@ -99,6 +115,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
     const newUser = {
         id: Date.now(),
         firstName,
+        lastName ,
         email,
         password,
         address,
@@ -118,9 +135,9 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Redirect based on role
     if (role === 'seller') {
-        window.location.href = '/HomePage&Products/home.html';
-    } else if (role === 'customer') {
-        window.location.href = '/HomePage&Products/home.html';
+        window.location.href = "../seller-dashboard.html";
+    } else {
+        window.location.href = "../HomePage&Products/home.html";
     }
 });
 
@@ -145,7 +162,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
         if (adminUser && adminUser.email === email && adminUser.password === password) {
             showMessage("Admin Login Successful", "success", "loginMessage");
             setTimeout(() => {
-                window.location.href = '/Admin/admin-dashboard.html';
+                window.location.href = '../Admin/admin-dashboard.html';
             }, 1000);
             return;
         }
@@ -171,7 +188,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
         return;
     }
 
-    //    email Validation
+    //   Validation on Email 
     if (!isValidEmail(email)) {
         showMessage("Please enter a valid email address", "danger", "loginMessage");
         return;
@@ -187,9 +204,9 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
 
     // redirect user based on role
     if (validUser.role === 'seller') {
-        window.location.href = '../product-details.html';
+        window.location.href = "../seller-dashboard.html";
     } else {
-        window.location.href = '/HomePage&Products/home.html';
+        window.location.href = "../HomePage&Products/home.html";
     }
 });
 
