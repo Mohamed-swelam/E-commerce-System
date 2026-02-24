@@ -77,7 +77,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
         showMessage("Please fill all fields", "danger", "registerMessage");
         return;
     }
-
+//  validation on Email 
     if (!isValidEmail(email)) {
         showMessage("Please enter a valid email address", "danger", "registerMessage");
         return;
