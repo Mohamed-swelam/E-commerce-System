@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <!-- Start NavBar -->
     <section id="nav">
         <nav class="navbar navbar-expand-lg  bg-white px-3">
             <div class="container-fluid">
@@ -35,26 +36,43 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Blog</a>
                         </li>
-                        <li class="nav-item d-none" id="admin-dashboard">
-                            <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
-                        </li>
-                        <li class="nav-item d-none" id="seller-dashboard">
-                            <a class="nav-link" href="../seller-dashboard.html">Dashboard</a>
-                        </li>
-                        <li class="nav-item" id="login-link">
-                            <a class="nav-link" href="../login/login.html">Login</a>
+                        <li class="nav-item ">
+                            <a class="nav-link active-nav" href="#">Dashboard</a>
                         </li>
                     </ul>
                     <ul class="list-unstyled d-flex gap-3 mt-3 ">
                         <li class="icon-il">
-                            <a href="../Cart/cart.html">
+                            <a href="">
                                 <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+                        <li class="icon-il">
+                            <a href="">
+                                <i class="fa-regular fa-circle-user"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <!-- <nav class="bottom-bar   p-2">
+            <div class="container-fluid">
+                <div class="flex justify-content-center align-items-center">
+                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                        id="bottom-navbar">
+                        <li>
+                            <a class="nav-link " href="#"></a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> -->
     </section>
     <!-- End NavBar -->
     <!-- Start of dashboard -->
@@ -233,19 +251,105 @@
                     </div>
                 </div>
                 <div class="row w-100 m-auto">
-                    <div
-                        class="col-12 col-md-3 col-lg-2 bg-light p-2 rounded-3 align-self-start mb-3 mb-md-0 d-none d-md-block">
-                        <div class="row w-100 m-auto " id="filters">
-                            <div class="col-12">
-                                <p class="fs-5">Filter By</p>
-                                <label for="range4" class="form-label mt-4">Price</label>
-                                <input type="range" class="form-range" id="range4" min="0" max="1000" value="0"
-                                    step="100">
-                                <output for="range4" id="rangeValue" aria-hidden="true"></output>
+                    <div class="col-12 col-md-6 my-3">
+                        <canvas id="categories"></canvas>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center my-3">
+                        <canvas id="brands"></canvas>
+                    </div>
+                </div>
+                <div class="text-end mb-3">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-product-modal">ADD
+                        Products</button>
+                </div>
+
+
+
+                <!-- Start of Add product modal -->
+                <div class="modal fade" data-bs-backdrop="static" id="add-product-modal" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">ADD Product</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="row" id="add-product-form">
+                                    <div class="mb-3 col-12 col-md-6">
+                                        <label for="product-name" class="col-form-label">Product Name:</label>
+                                        <input type="text" class="form-control" id="product-name" required
+                                            minlength="3">
+                                    </div>
+                                    <div class="mb-3 col-12 col-md-6">
+                                        <label for="product-price" class="col-form-label">price:</label>
+                                        <input type="text" class="form-control" id="product-price" required
+                                            pattern="^\d+(\.\d{1,2})?$"
+                                            title="Price must be a valid number with up to 2 decimal places">
+                                    </div>
+                                    <div class="mb-3 col-12 col-md-6">
+                                        <label for="product-quantity" class="col-form-label">Quantity:</label>
+                                        <input type="text" class="form-control" id="product-quantity" required
+                                            pattern="^\d+$" title="Quantity must be a valid integer">
+                                    </div>
+                                    <!-- <div class="mb-3 col-12 col-md-6">
+                                        <label for="product-img" class="col-form-label">Product Image:</label>
+                                        <input type="file" class="form-control" id="product-img">
+                                    </div> -->
+                                    <div class="mb-3 col-12 col-md-6">
+                                        <label for="product-category" class="col-form-label">Category:</label>
+                                        <select class="form-select" id="product-category" required>
+                                            <option selected disabled hidden value="">Choose...</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-12 col-md-6">
+                                        <label for="product-brand" class="col-form-label">Brand:</label>
+                                        <select class="form-select" id="product-brand" required>
+                                            <option selected disabled hidden value="">Choose...</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-12">
+                                        <label for="product-description" class="col-form-label">Description:</label>
+                                        <textarea class="form-control" id="product-description" required
+                                            minlength="10"></textarea>
+                                    </div>
+                                    <div class="mb-3 col-12 col-md-6">
+                                        <input type="checkbox" class="form-check-input" id="product-discount">
+                                        <label class="form-check-label" for="product-discount">Apply
+                                            Discount</label>
+                                    </div>
+                                    <div class="mb-3 col-12 col-md-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" disabled id="product-discount-value"
+                                                placeholder="Discount Value">
+                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Add Product</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-12 d-block mb-3 d-md-none">
+                </div>
+                <!-- End of Add product modal -->
+                <div class="row w-100 m-auto">
+                    <div
+                        class="col-12 col-md-3 col-lg-2 bg-light p-2 rounded-3 align-self-start mb-3 mb-md-0 d-none d-md-block">
+                        <div class="row w-100 m-auto filters">
+                            <div class="col-12">
+                                <p class="fs-5">Filter By</p>
+                                <label for="range4" class="form-label mt-4">Price</label>
+                                <input type="range" class="form-range range4" min="0" max="1000" value="0" step="100">
+                                <output for="range4" class="rangeValue" aria-hidden="true"></output>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-block mb-3 d-md-none">
                         <div class="accordion" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
@@ -270,7 +374,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <!-- displaying products -->
                     <div class="col-12 col-md-9 col-lg-10">
                         <div class="row w-100 m-auto" id="products-container">
@@ -305,8 +409,10 @@
     <!-- End of dashboard -->
     <!-- <script src="./admin.js" type="module"></script>
     <script src="./validation.js" type="module"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
     <script src="./admin.js"></script>
-    <script src="./validation.js"></script>
+    <script src="./customerFormValidation.js"></script>
+    <script src="./productFormValidation.js"></script>
 </body>
 
 </html>
