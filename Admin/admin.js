@@ -402,54 +402,54 @@ else {
 
 
 // Fetch products data from JSON file
-fetch('../Dummy Data/products.json')
-    .then(res => {
-        if (!res.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return res.json();
-    })
-    .then(products => {
-        allProducts = products;
-        localStorage.setItem('products', JSON.stringify(products))
-        // Render all products
-        // for (let i = 0; i < products.length; i++) {
-        //     displayProduct(products[i]);
-        // }
+// fetch('../Dummy Data/products.json')
+//     .then(res => {
+//         if (!res.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return res.json();
+//     })
+//     .then(products => {
+//         allProducts = products;
+//         localStorage.setItem('products', JSON.stringify(products))
+//         // Render all products
+//         // for (let i = 0; i < products.length; i++) {
+//         //     displayProduct(products[i]);
+//         // }
 
-        // // Extract unique categories
-        // let categories = []
-        // products.map(p => categories.push(p.category))
-        // categories = [...new Set(categories)]
+//         // // Extract unique categories
+//         // let categories = []
+//         // products.map(p => categories.push(p.category))
+//         // categories = [...new Set(categories)]
 
-        // // Extract unique brands
-        // let brands = []
-        // products.map(p => brands.push(p.brand))
-        // brands = [...new Set(brands)]
+//         // // Extract unique brands
+//         // let brands = []
+//         // products.map(p => brands.push(p.brand))
+//         // brands = [...new Set(brands)]
 
-        // // Render filter checkboxes
-        // displayFilters(brands, 'Brands');
-        // displayFilters(categories, 'Categories')
+//         // // Render filter checkboxes
+//         // displayFilters(brands, 'Brands');
+//         // displayFilters(categories, 'Categories')
 
-        // // filtering(products, 'brand')
-        // // filtering(products, 'category')
-        // filtering(products);
-        // FilterByPrice(products)
+//         // // filtering(products, 'brand')
+//         // // filtering(products, 'category')
+//         // filtering(products);
+//         // FilterByPrice(products)
 
-        // // Update dashboard summary cards
-        // totalProducts.innerText = products.length;
-        // totalCategories.innerHTML = categories.length
-        // totalBrands.innerText = brands.length
-    })
-    .catch(error => {
-        console.error('There was a problem with fetching products:', error);
-    });
+//         // // Update dashboard summary cards
+//         // totalProducts.innerText = products.length;
+//         // totalCategories.innerHTML = categories.length
+//         // totalBrands.innerText = brands.length
+//     })
+//     .catch(error => {
+//         console.error('There was a problem with fetching products:', error);
+//     });
 
 
 
 
 //getting the products from the local storage
-const products = JSON.parse(localStorage.getItem('products'));
+let products = JSON.parse(localStorage.getItem('products'));
 
 // // Extract unique categories
 // let categories = []
@@ -522,6 +522,7 @@ const products = JSON.parse(localStorage.getItem('products'));
 
 const productsContainer = document.getElementById('products-container');
 
+// let allProducts = JSON.parse(localStorage.getItem('products')) || [];
 let allProducts = [];
 
 let activeFilters = {
@@ -557,7 +558,7 @@ function displayProduct(product) {
 
     let productSeller = document.createElement('p');
 
-    const seller = sellers.find(s => s.id == product.seller_id);
+    const seller = users.find(s => s.id == product.seller_id);
     productSeller.innerText = 'Seller: ' + (seller ? seller.name : 'Unknown');
 
     // ----------------- Brand / Category / Quantity -----------------
@@ -575,23 +576,54 @@ function displayProduct(product) {
     productQuantity.classList.add('text-secondary');
     productQuantity.innerText = 'Quantity:  ' + product.quantity;
 
+    let productDiscount = document.createElement('p');
+    productDiscount.classList.add('text-secondary');
+    if (product.discount && product.discount > 0) {
+        productDiscount.innerText = 'Discount:  ' + product.discount + '%';
+    }
+    else {
+        productDiscount.innerText = 'Discount:  No discount';
+    }
+
     // ----------------- Price + Delete -----------------
     let div3 = document.createElement('div');
     div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2');
+    div3.id = product.product_id;
 
     let productPrice = document.createElement('p');
     productPrice.classList.add('fs-3');
     productPrice.innerText = product.price + '$';
 
+    let productFinalPrice = document.createElement('p');
+    productFinalPrice.classList.add('fs-5', 'text-secondary');
+    if (product.discount && product.discount > 0) {
+        const discountedPrice = product.price * (1 - product.discount / 100);
+        productFinalPrice.innerText = 'After Discount: ' + discountedPrice.toFixed(2) + '$';
+    } else {
+        productFinalPrice.innerText = 'No discount applied';
+    }
+
     let deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btn', 'btn-danger');
     deleteBtn.innerText = 'Delete';
 
-    deleteBtn.addEventListener('click', function () {
-        allProducts = allProducts.filter(p => p.id !== product.id);
-        localStorage.setItem('products', JSON.stringify(allProducts));
-        applyFilters();
-        updateStatistics();
+    deleteBtn.addEventListener('click', function (e) {
+        console.log(e);
+        const deletedProduct = allProducts.findIndex(p => p.product_id == e.target.parentElement.attributes.id.textContent);
+        console.log(deletedProduct);
+        allProducts.splice(deletedProduct, 1);
+        console.log(allProducts);
+        localStorage.removeItem('products');
+        localStorage.setItem('products', JSON.stringify(allProducts))
+        allProducts = JSON.parse(localStorage.getItem('products'));
+        // // location.reload();
+
+
+        // // applyFilters();
+        // // updateStatistics();
+
+        renderEverything();
+
     });
 
     // Append structure
@@ -607,8 +639,10 @@ function displayProduct(product) {
     div2.appendChild(productBrand);
     div2.appendChild(productCategory);
     div2.appendChild(productQuantity);
+    div2.appendChild(productDiscount);
 
     div3.appendChild(productPrice);
+    div3.appendChild(productFinalPrice);
     div3.appendChild(deleteBtn);
 }
 
@@ -773,15 +807,16 @@ function initializeProducts() {
 
     const storedProducts = localStorage.getItem('products');
 
-    if (storedProducts) {
+    if (storedProducts && JSON.parse(storedProducts).length > 0) {
         allProducts = JSON.parse(storedProducts);
         renderEverything();
-    } else {
+    }
+    else {
         fetch('../Dummy Data/products.json')
             .then(res => res.json())
             .then(products => {
                 allProducts = products;
-                localStorage.setItem('products', JSON.stringify(products));
+                localStorage.setItem('products', JSON.stringify(allProducts));
                 renderEverything();
             })
             .catch(error => {
@@ -917,3 +952,49 @@ else {
 }
 
 sellers.forEach(s => console.log(s))
+
+
+
+
+
+//////////////////////////////////////////////////
+/////  CHARTS
+//////////////////////////////////////////////////
+const cat = document.getElementById('categories');
+new Chart(cat, {
+    type: 'doughnut',
+    data: {
+        labels: [...new Set(products.map(p => p.category))],
+        datasets: [{
+            label: ' products in this category',
+            data: [...new Set(products.map(p => p.category))].map(c => products.filter(p => p.category == c).length),
+            borderWidth: 1
+        }]
+    },
+    // options: {
+    //     scales: {
+    //         y: {
+    //             beginAtZero: true
+    //         }
+    //     }
+    // }
+});
+const brand = document.getElementById('brands');
+new Chart(brand, {
+    type: 'bar',
+    data: {
+        labels: [...new Set(products.map(p => p.brand))],
+        datasets: [{
+            label: ' products in this brand',
+            data: [...new Set(products.map(p => p.brand))].map(b => products.filter(p => p.brand == b).length),
+            borderWidth: 1
+        }]
+    },
+    // options: {
+    //     scales: {
+    //         y: {
+    //             beginAtZero: true
+    //         }
+    //     }
+    // }
+});
