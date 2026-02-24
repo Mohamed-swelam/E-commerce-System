@@ -602,3 +602,19 @@ else {
 }
 
 sellers.forEach(s => console.log(s))
+
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if (currentUser) {
+    document.getElementById('login-link').style.display = "none";
+    if (currentUser.role === "admin") {
+        document.getElementById("admin-dashboard").classList.remove("d-none");
+        document.getElementById("seller-dashboard").classList.add("d-none");
+    }
+    else if (currentUser.role === "seller") {
+        document.getElementById("seller-dashboard").classList.remove("d-none");
+        document.getElementById("admin-dashboard").classList.add("d-none");
+    }
+
+} else {
+    document.getElementById('login-link').style.display = "block";
+}

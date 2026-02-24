@@ -117,11 +117,11 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
 
     // Redirect based on role
-    if (role === 'seller') {
-        window.location.href = '/HomePage&Products/home.html';
-    } else if (role === 'customer') {
-        window.location.href = '/HomePage&Products/home.html';
-    }
+    // if (role === 'seller') {
+    //     window.location.href = '/HomePage&Products/home.html';
+    // } else if (role === 'customer') {
+    //     window.location.href = '/HomePage&Products/home.html';
+    // }
 });
 
 
@@ -147,6 +147,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
             setTimeout(() => {
                 window.location.href = '/Admin/admin-dashboard.html';
             }, 1000);
+            localStorage.setItem("currentUser", JSON.stringify(adminUser));
             return;
         }
 
@@ -187,7 +188,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
 
     // redirect user based on role
     if (validUser.role === 'seller') {
-        window.location.href = '../product-details.html';
+        window.location.href = '../seller-dashboard.html';
     } else {
         window.location.href = '/HomePage&Products/home.html';
     }
