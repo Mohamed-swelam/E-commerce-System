@@ -18,7 +18,7 @@
 
 .tabs-container{
     background-color: var(--primary-bg-color);
-    color: #fff;
+    color: #a3b1cc;
 }
 .main-tab{
     cursor: pointer;
@@ -31,9 +31,10 @@
 
 /* to highlight active tab in dashboard */
 .active-tab{
-    background-color: #ffffff44;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
     /* color: black; */
-    box-shadow: 1px 1px 10px black;
+    /* box-shadow: 1px 1px 10px black; */
 }
 /* to open active sub-tab in dashboard */
 .active-sub-tab{
