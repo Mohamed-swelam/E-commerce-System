@@ -1,0 +1,42 @@
+h2 {
+    color: #2a254b;
+}
+
+.btn-dark {
+    background-color: #2a254b;
+    border: none;
+    color: #2A254B;
+}
+
+.btn-dark:hover {
+    background-color: #1e1a38;
+    color: #2A254B;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 50px 20px;
+    color: #6c757d;
+}
+
+.empty-cart-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+    color: #dee2e6;
+}
+
+.empty-cart h5 {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2A254B;
+}
+
+.empty-cart p {
+    font-size: 14px;
+    margin: 0;
+    color: #2A254B;
+}
+
+#go_Checkout {
+    color: white;
+}

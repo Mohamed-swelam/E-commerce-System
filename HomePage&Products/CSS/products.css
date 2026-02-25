@@ -6,17 +6,13 @@
     --container-text: #5B5676;
     --light: #fff;
     --btn-feature-bgcolor: #39385e;
+    --input-border: #DCDCDC;
 }
 
 body {
     font-family: "Rubik", sans-serif;
 }
 
-h1,
-h2,
-h3 {
-    color: var(--dark-primary);
-}
 
 /* Start NavBr */
 .navbar-brand {
@@ -45,12 +41,6 @@ h3 {
     color: var(--primary);
 }
 
-.bottom-bar ul>li>a:active { 
-    border:1px solid black ;
-color:red !important;
-}
-
-
 .bottom-bar .nav-link {
     padding-inline: 0.6875rem !important;
 }
@@ -62,53 +52,32 @@ color:red !important;
 .navbar-toggler:focus {
     box-shadow: none !important;
 }
+
 /* End NavBra */
-/* Start Header  */
-  #home-header  #container {
-    background-color: #fff;
-    padding: 1.875rem;
-    margin-top: 150px;;
+/* Start Header */
+#headerPrds {
+    background-image: url('../imgs/allPrdsHeader4.jpg');
+    height: 209px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
 
-  #home-header  #container h2 {
-    color: var(--deep-dark-primary);
-    font-weight: 500;
-}
-
-  #home-header  #container p {
-    color: var(--container-text);
-    margin-top: 1.5625rem;
-    text-shadow: 0.125rem 0.125rem 0.1875rem black;
-}
-
-  #home-header  #container button,
-#feature button {
-    background-color: var(--light-gray);
-    padding-inline: 2rem;
-    padding-block: 1rem;
-    color: var(--dark-primary);
-    width: 100%;
-    border-radius: 0 !important;
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    -ms-border-radius: 0 !important;
-    -o-border-radius: 0 !important;
+#headerPrds h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 }
 
 /* End Header */
-/* Start of Diff  */
-#diff-sec {
-    padding-block: 2.5rem;
-}
 
-#diff-sec h3 {
-    color: var(--dark-primary) !important;
-    font-weight: 300 !important;
-    width: fit-content;
-}
-
+/* Start Products */
 .card {
-    background-color: var(--light-gray) !important;
     padding-inline: 1.5rem;
     padding-block: 2.25rem;
     border-color: transparent !important;
@@ -119,12 +88,6 @@ color:red !important;
     -ms-border-radius: 0 !important;
     -o-border-radius: 0 !important;
 }
-
-.card>i {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
 
 
 .card button 
@@ -139,31 +102,73 @@ color:red !important;
     -ms-border-radius: 0px !important;
     -o-border-radius: 0px !important;
 }
-/* End of Diff  */
-/* Start of Listing */
-#listing,
-#listing-two,
-#feature {
-    padding-block: 2.5rem;
+
+/* End Products */
+
+
+/*Controls */
+#controls {
+    background-color: var(--light-gray);
 }
 
-/* End of Listing */
-/* Start of Feature  */
-#feature .text-block {
+#controls i {
+    font-size: 1.875rem;
+    cursor: pointer;
+}
+
+h5 {
+    color: var(--dark-primary);
+
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+input[type="checkbox"]:checked {
     background-color: var(--dark-primary);
-    color: var(--light);
 }
 
-#feature p {
-    width: 90%;
-    padding-block: 0.9375rem;
+
+
+
+/* Drop Down  */
+.dropdown button {
+    background-color: var(--light-gray);
 }
 
-#feature button {
-    background-color: var(--btn-feature-bgcolor);
+.btn {
+    padding: 16px 24px 16px 32px;
+    width: 163px;
+    height: 56px;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -ms-border-radius: 0 !important;
+    -o-border-radius: 0 !important;
 }
 
-/* End of Feature  */
+.dropdown-menu {
+    --bs-dropdown-border-radius: 0px;
+}
+
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+    border: none !important;
+}
+
 /* Start Footer */
 footer {
     background-color: var(--dark-primary);
