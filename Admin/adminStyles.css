@@ -1,12 +1,14 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Segoe UI', sans-serif;
     box-sizing: border-box;
 }
 
 :root{
-    --primary-color: #2A254B;
-    --primary-bg-color: #2A254B;
+    --primary-color: #1b254b;
+    --secondary-color: #f4f7fe;
+    --white : #fff
 }
 
 
@@ -17,7 +19,7 @@
 }
 
 .tabs-container{
-    background-color: var(--primary-bg-color);
+    background-color: var(--primary-color) ;
     color: #a3b1cc;
 }
 .main-tab{
@@ -59,4 +61,9 @@
 /* make the color red when the input is invalid*/
 .invalid {
     color: red;
+}
+
+
+.customers-table {
+    padding: 3rem !important;
 }

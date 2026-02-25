@@ -35,7 +35,8 @@ mainTabs.forEach(p => {
 // Users Logic
 // ======================================================
 
-// Fetch users from JSON file and store them in localStorage
+// localStorage.removeItem('users');
+// // Fetch users from JSON file and store them in localStorage
 // fetch('../Dummy Data/users.json')
 //     .then(res => {
 //         if (!res.ok) {
@@ -146,6 +147,8 @@ let sellers = users.filter(user => user.role == 'seller')
 
 let customers = users.filter(user => user.role == 'customer');
 // localStorage.setItem('customers', JSON.stringify(customers))
+
+let orders = JSON.parse(localStorage.getItem('orders'));
 
 function deleteUser(id) {
     let deletedUser = users.filter(u => u.id == id);

@@ -68,7 +68,7 @@
     </section>
     <!-- End NavBar -->
     <!-- Start of dashboard -->
-    <div class="row w-100 m-auto justify-content-between" style="background-color: rgba(215, 215, 215, 0.482); ">
+    <div class="row w-100 m-auto justify-content-between" style="background-color: var(--secondary-color);">
         <div class="col-12 col-md-2 tabs-container">
             <h4 class="text-center my-2 mt-4 border-bottom pb-3 ">Admin Dashboard</h4>
             <div
@@ -83,8 +83,11 @@
         <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
             <!-- Start of customers section -->
             <div id="customers" class="sub-tab active-sub-tab">
-                <div class="bg-light w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center">
-                    <p><span id="total-customers"></span> <br> Customers</p>
+                <div class="w-25 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center text-light"
+                    style="background-color: #3599db;">
+                    <p class="fw-bold pb-0" style="font-size: 1.2rem;">TOTAL CUSTOMERS <br> <span id="total-customers"
+                            style="font-size: 1.9rem;"></span>
+                    </p>
                 </div>
                 <div class="text-end mb-3">
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
@@ -216,7 +219,22 @@
                     </div>
                 </div>
                 <!-- End of Modal -->
-                <div class="row w-100 m-auto" id="customers-container"></div>
+                <!-- <div class="row w-100 m-auto" id="customers-container"></div> -->
+                <div class="table-responsive-md p-3 card shadow-lg rounded-4 border-0">
+                    <table class="table caption-top customers-table ">
+                        <caption>List of customers</caption>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Contact Data</th>
+                                <th>No. Orders</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customers-table-body"></tbody>
+                    </table>
+                </div>
             </div>
             <!-- End of customers section -->
             <!-- Start of sellers section -->
