@@ -1,64 +1,4 @@
-:root {
-    --dark-primary: #2A254B;
-    --primary: #726E8D;
-    --deep-dark-primary: #22202E;
-    --light-gray: #F9F9F9;
-    --container-text: #5B5676;
-    --light: #fff;
-    --btn-feature-bgcolor: #39385e;
-}
-
-/* Start NavBr */
-.navbar-brand {
-    color: var(--deep-dark-primary) !important;
-    font-size: 2.1875rem !important;
-}
-
-.nav-link {
-    padding-inline: 1.875rem !important;
-}
-
-.navbar-nav {
-    --bs-nav-link-color: var(--primary);
-}
-
-.icon-il>a {
-    color: var(--dark-primary);
-}
-
-.bottom-bar {
-    background-color: var(--light-gray);
-    margin-block: 1.25rem;
-}
-
-.bottom-bar ul>li>a {
-    color: var(--primary);
-}
-
-.bottom-bar ul>li>a:active {
-    border: 1px solid black;
-    color: red !important;
-}
-
-
-.bottom-bar .nav-link {
-    padding-inline: 0.6875rem !important;
-}
-
-.navbar-toggler {
-    border: 0;
-}
-
-.navbar-toggler:focus {
-    box-shadow: none !important;
-}
-
-/* End NavBra */
-
-
-
 body {
-    font-family: 'Poppins', sans-serif;
     background: #ffffff;
     min-height: 100vh;
     overflow-x: hidden;
@@ -72,6 +12,7 @@ body {
     padding: 40px 15px;
     position: relative;
     z-index: 2;
+    font-family: 'Poppins', sans-serif;
 }
 
 .contact-card {
@@ -93,7 +34,7 @@ body {
 
 
 .contact-header {
-    background: linear-gradient(135deg, #0d6efd, #4f8cff);
+    background: linear-gradient(135deg, #1B254B, #283772);
     color: #ffffff;
     border-radius: 25px 25px 0 0;
     padding: 35px;
@@ -162,7 +103,7 @@ body {
     padding: 12px 42px;
     font-weight: 600;
     font-size: 15px;
-    background: linear-gradient(135deg, #0d6efd, #3d7bfd);
+    background: linear-gradient(135deg, #1B254B, #283772);
     border: none;
     color: #fff;
     transition: all 0.3s ease;
@@ -173,7 +114,7 @@ body {
 .btn-send:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 15px 35px rgba(13, 110, 253, 0.35);
-    background: linear-gradient(135deg, #0b5ed7, #2f6df6);
+    color: white;
 }
 
 .btn-send:active {
@@ -197,7 +138,7 @@ body {
 }
 
 
-
+/* ============================================================= */
 
 #ticketsContainer {
     min-height: 60vh;
@@ -270,71 +211,3 @@ body {
     padding: 12px;
     border-radius: 8px;
 }
-
-
-
-
-
-
-/* Start Footer */
-footer {
-    background-color: var(--dark-primary);
-    color: var(--light);
-    padding: 2.5rem 0.625rem;
-}
-
-footer input {
-    background-color: var(--btn-feature-bgcolor);
-    padding: 1.25rem;
-    border-color: transparent;
-}
-
-footer input::placeholder {
-    color: var(--light);
-}
-
-footer button {
-    color: var(--dark-primary);
-    border-color: transparent;
-}
-
-.after-brdr {
-    position: relative;
-    padding-bottom: 1.25rem;
-    width: 95%;
-    text-align: center;
-}
-
-.after-brdr::after {
-    content: '';
-    background-color: var(--primary);
-    width: 100%;
-    height: 0.125rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-hr {
-    background-color: var(--primary);
-    ;
-}
-
-footer ul>li {
-    cursor: pointer;
-}
-
-footer ul>li i {
-    font-size: 1.5625rem;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-}
-
-footer ul>li i:hover {
-    color: var(--primary)
-}
-
-/* End Footer */

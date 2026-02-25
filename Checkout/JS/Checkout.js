@@ -8,28 +8,6 @@ async function DisplayProducts() {
         localStorage.setItem("carts", JSON.stringify(cartsFromJson));
         // console.log(localStorage.getItem("carts"));
     }
-    //check login
-    // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
-
-    // if (!currentUserId) {
-    //     alert("Please login first to add items to cart.");
-    //     window.location.href = "../../login/login.html";
-    //     return;
-    // }
-
-    //test
-    // let user = {
-    //     "id": 3,
-    //     "name": "Kariem Tamer",
-    //     "email": "Kariem@gmail.com",
-    //     "password": "123456",
-    //     "role": "customer",
-    //     "city": "Mansoura",
-    //     "street": "El Geish Street",
-    //     "phone": "01040393484"
-    // };
-
-    // localStorage.setItem("currentUser", JSON.stringify(user));
 
 
     //check user login
@@ -176,10 +154,6 @@ async function DisplayProducts() {
         orders.push(order);
         localStorage.setItem("orders", JSON.stringify(orders));
 
-        // alert("Order placed successfully!");
-        // // window.location.href = "../../Cart/cart.html";
-        // window.location.href = "../../HomePage&Products/home.html";
-
         showToast("Order placed successfully!", "success");
 
         setTimeout(() => {
@@ -190,31 +164,3 @@ async function DisplayProducts() {
 }
 
 DisplayProducts();
-
-
-
-
-
-
-
-function showToast(message, type = "success") {
-    const toastEl = document.getElementById("mainToast");
-    const toastMsg = document.getElementById("toastMessage");
-
-
-    if (type === "success") {
-        toastEl.className = "toast align-items-center text-white bg-success border-0";
-    } else if (type === "error") {
-        toastEl.className = "toast align-items-center text-white bg-danger border-0";
-    } else if (type === "warning") {
-        toastEl.className = "toast align-items-center text-dark bg-warning border-0";
-    }
-
-    toastMsg.textContent = message;
-
-    const toast = new bootstrap.Toast(toastEl, {
-        delay: 3000,
-    });
-
-    toast.show();
-}
