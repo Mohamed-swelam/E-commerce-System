@@ -74,7 +74,8 @@
             <p class="p-2 pe-md-0 rounded-3 main-tab active-tab">customers</p>
             <p class="p-2 pe-md-0 rounded-3 main-tab">sellers</p>
             <p class="p-2 pe-md-0 rounded-3 main-tab">products</p>
-            <p class="p-2 pe-md-0 rounded-3 main-tab">account</p>
+            <p class="p-2 pe-md-0 rounded-3 main-tab">orders</p>
+            <p class="p-2 pe-md-0 rounded-3 main-tab">tickets</p>
         </div>
         <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
             <!-- Start of customers section -->
@@ -269,7 +270,7 @@
                             </div>
                             <div class="modal-body">
                                 <form class="row" id="add-product-form">
-                                    <div class="mb-3 col-12 col-md-6">
+                                    <div class="mb-3 col-12">
                                         <label for="product-name" class="col-form-label">Product Name:</label>
                                         <input type="text" class="form-control" id="product-name" required
                                             minlength="3">
@@ -391,18 +392,23 @@
                 </div>
             </div>
             <!-- End of products section -->
-            <!-- Start of account section -->
-            <div id="account" class="sub-tab">
-                this is from account
+            <!-- Start of orders section -->
+            <div id="orders" class="sub-tab">
+                this is from orders
             </div>
-            <!-- End of account section -->
+            <!-- End of orders section -->
+            <!-- Start of tickets section -->
+            <div id="tickets" class="sub-tab">
+                this is from tickets
+            </div>
+            <!-- End of tickets section -->
         </div>
     </div>
     <!-- End of dashboard -->
-    <!-- <script src="./admin.js" type="module"></script>
-    <script src="./validation.js" type="module"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
     <script src="./admin.js"></script>
+    <script src="customers.js"></script>
+    <script src="./sellers.js"></script>
     <script src="./customerFormValidation.js"></script>
     <script src="./productFormValidation.js"></script>
 </body>

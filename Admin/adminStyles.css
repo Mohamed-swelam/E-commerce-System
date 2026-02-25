@@ -31,8 +31,8 @@
 
 /* to highlight active tab in dashboard */
 .active-tab{
-    background-color: #fff;
-    color: black;
+    background-color: #ffffff44;
+    /* color: black; */
     box-shadow: 1px 1px 10px black;
 }
 /* to open active sub-tab in dashboard */
