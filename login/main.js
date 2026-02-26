@@ -211,7 +211,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
 });
 
 
-// ==============================================================
+// ============================== error Msg  ================================
 // display Msg in error valid using (Bootstrap Alerts)
 // ready-made component in Bootstrap . 
 // ===================================================================
