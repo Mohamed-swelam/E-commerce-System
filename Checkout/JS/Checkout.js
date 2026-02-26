@@ -85,9 +85,9 @@ async function DisplayProducts() {
 
     }
     document.getElementById("totlaItems").innerText = totalItems;
-    document.getElementById("subtotal").innerText = `${subtotal}$`;
+    document.getElementById("subtotal").innerText = `${subtotal.toFixed(2)}$`;
 
-    document.getElementById("totalAll").innerText = `${(subtotal + 90.00)}$`;
+    document.getElementById("totalAll").innerText = `${(subtotal.toFixed(2) + 90.00)}$`;
 
     let totalAll = subtotal + 90.00;
 

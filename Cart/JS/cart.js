@@ -23,28 +23,16 @@ async function displaycart() {
     }
 
 
-    // //checkLogin
-    // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
-
-    // if (!currentUserId) {
-    //     alert("Please login first to add items to cart.");
-    //     window.location.href = "login.html";
-    //     return;
-    // }
-
-
     //checkLogin
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
-        // alert("Please login first to add items to cart.");
-        // window.location.href = "../../login/login.html";
 
         showToast("Please login first to add items to cart.", "error");
 
         setTimeout(() => {
             window.location.href = "../../login/login.html";
-        }, 2500)
+        }, 1000)
         return;
     }
 
