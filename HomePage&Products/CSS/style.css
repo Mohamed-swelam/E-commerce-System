@@ -10,6 +10,7 @@
 
 body {
     font-family: "Rubik", sans-serif;
+
 }
 
 h1,
@@ -18,7 +19,6 @@ h3 {
     color: var(--dark-primary);
 }
 
-/* Start NavBr */
 .navbar-brand {
     color: var(--deep-dark-primary) !important;
     font-size: 2.1875rem !important;
@@ -35,6 +35,7 @@ h3 {
 .icon-il>a {
     color: var(--dark-primary);
 }
+
 
 .bottom-bar {
     background-color: var(--light-gray);
