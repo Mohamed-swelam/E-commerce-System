@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --dark-primary: #2A254B;
     --primary: #726E8D;
     --deep-dark-primary: #22202E;
@@ -6,11 +6,20 @@
     --container-text: #5B5676;
     --light: #fff;
     --btn-feature-bgcolor: #39385e;
+} */
+:root {
+    --dark-primary: #1b254b;
+    --primary: rgb(51, 45, 87);
+    --deep-dark-primary: #a3b1cc;
+    --light-gray: #F9F9F9;
+    --container-text: #3599db;
+    --light: #fff;
+    --btn-feature-bgcolor: #323e69;
 }
-
 body {
     font-family: "Rubik", sans-serif;
 }
+
 
 
 /* Start NavBr */
@@ -52,6 +61,15 @@ body {
     box-shadow: none !important;
 }
 
+ul span i {
+    color: #3599db;
+}
+
+
+.form-control:focus {
+     box-shadow: none;
+    }
+
 /* End NavBra */
 
 
@@ -59,6 +77,21 @@ body {
 
 #category {
     height: 100%;
+}
+
+.btn.show, .btn:first-child:active {
+    border-color:transparent;
+}
+
+.dropdown-menu.show 
+{
+box-shadow: 1px 1px 5px gainsboro;
+border:none;
+}
+.dropdown-menu > li > a 
+{
+    cursor: pointer;
+    color: rgba(26, 24, 24, 0.562);
 }
 
 .card {
@@ -125,6 +158,24 @@ body {
     color:var(--primary);
     font-size: 25px;;
 
+}
+
+#cart{
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+#cart:hover{
+    background-color: var(--deep-dark-primary);
+}
+.discount {
+    transform: rotate(-35deg);
+    -webkit-transform: rotate(-35deg);
+    -moz-transform: rotate(-35deg);
+    -ms-transform: rotate(-35deg);
+    -o-transform: rotate(-35deg);
 }
 
 /* End Header */

@@ -1,9 +1,3 @@
-window.addEventListener("scroll", () => {
-  if (scrollY > 134.44) {
-    document.getElementById("nav").classList.add("fixed-top");
-    document.getElementById("nav").style.transition = "all 0.5s"
-  }
-})
 
 
 products = [
@@ -3111,19 +3105,16 @@ function displayProducts(x, container) {
           `
                                 <div class="col-lg-3">
                                     <div class="card w-100 p-0 m-0" style="cursor:pointer;"  >
-                                        
-                                    <div class="position-relative bg-white"  style="height:250px; ">
+                                     <div class=" bg-white text-end py-3"  >
+                                      <span ><i class="fa-regular fa-heart"></i></span>
+                                     </div>
                                     <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
-                                   <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
-                                       </div>
 
-
-                                       
                                         <div class="card-body" onclick="showDetails(${productArray[i].id})">
                                             <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[i].price}$</p>
                                         </div>
-                                          <div class="text-center w-100">
+                                          <div class="text-center w-100" id="cart">
                                              <button class="btn">Add To Cart </button> 
                                           </div>
                                     </div>
@@ -3134,19 +3125,17 @@ function displayProducts(x, container) {
     else {
       productBox = `
                         <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" >
-                            
-                        <div class="position-relative bg-white"  style="height:250px; ">
+                             <div class=" bg-white text-end py-3"  >
+                              <span ><i class="fa-regular fa-heart"></i></span>
+                            </div>
                         <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
-                                                             <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
-
-                             </div>
                              
                              
                              <div class="card-body" onclick="showDetails(${productArray[20].id})">
                                             <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[20].price}$</p>
                                         </div>
-                                          <div class="text-center w-100">
+                                          <div class="text-center w-100" id="cart">
                             <button class="btn">Add To Cart </button> 
                              </div>
                         </div>
@@ -3154,12 +3143,10 @@ function displayProducts(x, container) {
 
 
                         <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
-                             
-                        <div class="position-relative bg-white"  style="height:250px; ">
+                              <div class=" bg-white text-end py-3"  >
+                    <span ><i class="fa-regular fa-heart"></i></span>
+                    </div>
                         <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
-                                                 <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
-
-                        </div>          
                              
                              
                              
@@ -3167,20 +3154,16 @@ function displayProducts(x, container) {
                                             <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[21].price}$</p>
                         </div>
-                         <div class="text-center w-100">
+                         <div class="text-center w-100" id="cart">
                             <button class="btn">Add To Cart </button> 
                              </div>
                         </div>
-
-
-
                     <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
-                             
-                        <div class="position-relative bg-white"  style="height:250px; ">
+                              <div class=" bg-white text-end py-3"  >
+                    <span ><i class="fa-regular fa-heart"></i></span>
+                    </div>
                         <img src="${productArray[6].image}" class="card-img-top" alt="${productArray[6].name}" height=200>
-                                                 <span class="position-absolute start-0 bottom-0 "><i class="fa-solid fa-heart"></i></span>
 
-                        </div>          
                              
                              
                              
@@ -3188,7 +3171,7 @@ function displayProducts(x, container) {
                                             <h5 class="card-title">${productArray[6].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[6].price}$</p>
                         </div>
-                         <div class="text-center w-100">
+                         <div class="text-center w-100" id="cart">
                             <button class="btn">Add To Cart </button> 
                              </div>
                         </div>
@@ -3200,19 +3183,24 @@ function displayProducts(x, container) {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function showDetails(id) {
   location.href = `./details.html?id=${id}`
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

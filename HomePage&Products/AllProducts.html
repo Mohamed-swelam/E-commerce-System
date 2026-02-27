@@ -24,7 +24,7 @@
 
 <body>
     <!-- Start NavBar -->
-    <section id="nav">
+    <section id="nav" class="sticky-top">
         <nav class="navbar navbar-expand-lg  bg-white px-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./home.html">Avion</a>
@@ -34,6 +34,15 @@
                 </button>
 
                 <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                    <ul>
+                        <div class="d-flex align-items-center  rounded-2 px-3 " style="border:1px solid gainsboro;">
+                            <span> <i class="fa-solid fa-search"></i> </span>
+                            <input id="input-search" type="search" class="form-control border-0">
+                        </div>
+                    </ul>
+
+
+
                     <ul class="navbar-nav  ms-auto">
                         <li class="nav-item">
                             <a class="nav-link " href="#">About Us</a>
@@ -42,12 +51,10 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link border rounded-pill  bg-dark text-white" href="#">Login</a>
                         </li>
                     </ul>
+
 
 
 
@@ -63,7 +70,12 @@
                                 <i class="fa-regular fa-circle-user"></i>
                             </a>
                         </li>
+
                     </ul>
+
+
+
+
 
 
 
@@ -75,30 +87,30 @@
         <nav class="bottom-bar   p-2">
             <div class="container-fluid">
                 <div class="flex justify-content-center align-items-center">
-                       <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
-                    id="bottom-navbar">
-                    <li>
-                        <a class="nav-link " href="./AllProducts.html">All products</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./categroy.html?categroy=TV">Tvs</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./categroy.html?categroy=Gaming">Gaming</a>
-                    </li>
-                     <li>
-                        <a class="nav-link" href="./categroy.html?categroy=Computers">Computers</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./categroy.html?categroy=Bluetooth">Bluetooth</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./categroy.html?categroy=Accessories">Accessories</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./categroy.html?categroy=Phones">Phones</a>
-                    </li>
-                </ul>
+                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                        id="bottom-navbar">
+                        <li>
+                            <a class="nav-link " href="./AllProducts.html">All products</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=TV">Tvs</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Gaming">Gaming</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Computers">Computers</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Bluetooth">Bluetooth</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Accessories">Accessories</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./categroy.html?categroy=Phones">Phones</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -278,7 +290,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-9">
+                <div class="col-lg-9  ">
                     <div class="row" id="prds-data"></div>
                     <div id="controls" class="d-flex justify-content-around align-items-center my-3 py-3 w-100">
                         <span><i class="fa-solid fa-circle-arrow-left" id="prev"></i></span>
@@ -290,10 +302,19 @@
             </div>
             </div>
         </section>
+
+
+
+
+
+
+
+
+
     </main>
     <!-- End Main -->
 
-     <!-- Start Footer -->
+    <!-- Start Footer -->
     <footer>
         <div class="container">
             <div class="row">
