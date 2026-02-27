@@ -81,7 +81,7 @@ function getStatusClass(status) {
             return "bg-warning text-dark px-3 py-2";
         case "Replied":
             return "bg-success px-3 py-2";
-        case "Closed":
+        case "Resolved":
             return "bg-secondary px-3 py-2";
         default:
             return "bg-primary px-3 py-2";
