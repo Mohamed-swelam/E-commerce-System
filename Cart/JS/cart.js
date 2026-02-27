@@ -37,8 +37,14 @@ async function displaycart() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
-        alert("Please login first to add items to cart.");
-        window.location.href = "../../login/login.html";
+        // alert("Please login first to add items to cart.");
+        // window.location.href = "../../login/login.html";
+
+        showToast("Please login first to add items to cart.", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../login/login.html";
+        }, 2500)
         return;
     }
 
@@ -183,8 +189,13 @@ document.addEventListener("click", function (e) {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
-        alert("Please login first to add items to cart.");
-        window.location.href = "../../login/login.html";
+        // alert("Please login first to add items to cart.");
+        // window.location.href = "../../login/login.html";
+        showToast("Please login first to add items to cart.", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../login/login.html";
+        }, 2500)
         return;
     }
 
@@ -223,7 +234,8 @@ document.addEventListener("click", function (e) {
         if (cartItem.quantity < maxStock) {
             cartItem.quantity += 1;
         } else {
-            alert("Maximum available quantity reached");
+            // alert("Maximum available quantity reached");
+            showToast("Maximum available quantity reached", "error");
             return;
         }
     }
@@ -253,8 +265,4 @@ document.getElementById("go_Checkout").addEventListener("click", function () {
     window.location.href = "../../Checkout/Checkout.html";
 })
 
-displaycart();
-
-
-
-
+displaycart()

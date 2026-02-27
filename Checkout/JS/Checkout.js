@@ -8,28 +8,6 @@ async function DisplayProducts() {
         localStorage.setItem("carts", JSON.stringify(cartsFromJson));
         // console.log(localStorage.getItem("carts"));
     }
-    //check login
-    // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
-
-    // if (!currentUserId) {
-    //     alert("Please login first to add items to cart.");
-    //     window.location.href = "../../login/login.html";
-    //     return;
-    // }
-
-    //test
-    // let user = {
-    //     "id": 3,
-    //     "name": "Kariem Tamer",
-    //     "email": "Kariem@gmail.com",
-    //     "password": "123456",
-    //     "role": "customer",
-    //     "city": "Mansoura",
-    //     "street": "El Geish Street",
-    //     "phone": "01040393484"
-    // };
-
-    // localStorage.setItem("currentUser", JSON.stringify(user));
 
 
     //check user login
@@ -47,7 +25,7 @@ async function DisplayProducts() {
 
     //fill default values
     document.getElementById("city").value = currentUser.address ? currentUser.address : currentUser.city;
-    document.getElementById("user_name").value = currentUser.firstName ? currentUser.firstName : currentUser.name;
+    document.getElementById("user_name").value = currentUser.fullName ? currentUser.fullName : currentUser.name;
     document.getElementById("Address").value = currentUser.address ? currentUser.address : currentUser.city;
     document.getElementById("Phone").value = currentUser.phone;
 
@@ -176,21 +154,13 @@ async function DisplayProducts() {
         orders.push(order);
         localStorage.setItem("orders", JSON.stringify(orders));
 
-        alert("Order placed successfully!");
-        // window.location.href = "../../Cart/cart.html";
-        window.location.href = "../../HomePage&Products/home.html";
+        showToast("Order placed successfully!", "success");
+
+        setTimeout(() => {
+            window.location.href = "../../HomePage&Products/home.html";
+        }, 1500);
     });
 
 }
-
-
-
-
-
-
-
-
-
-
 
 DisplayProducts();

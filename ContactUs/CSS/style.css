@@ -1,0 +1,213 @@
+body {
+    background: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.contact-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
+    position: relative;
+    z-index: 2;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-card {
+    border: none;
+    border-radius: 25px;
+    background: #ffffff;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08);
+    animation: fadeUp 1s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.contact-header {
+    background: linear-gradient(135deg, #1B254B, #283772);
+    color: #ffffff;
+    border-radius: 25px 25px 0 0;
+    padding: 35px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-header::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.15);
+    top: -50%;
+    left: -50%;
+    transform: rotate(25deg);
+    animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: rotate(25deg) translateX(-100%);
+    }
+
+    100% {
+        transform: rotate(25deg) translateX(100%);
+    }
+}
+
+
+.form-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 6px;
+}
+
+.form-control {
+    border-radius: 12px;
+    border: 1.5px solid #e9ecef;
+    background: #f8f9fa;
+    color: #212529;
+    padding: 12px 14px;
+    transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: #adb5bd;
+}
+
+.form-control:hover {
+    border-color: #cfd4da;
+    background: #ffffff;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+    background: #ffffff;
+    color: #212529;
+}
+
+
+.btn-send {
+    border-radius: 50px;
+    padding: 12px 42px;
+    font-weight: 600;
+    font-size: 15px;
+    background: linear-gradient(135deg, #1B254B, #283772);
+    border: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.25);
+}
+
+.btn-send:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(13, 110, 253, 0.35);
+    color: white;
+}
+
+.btn-send:active {
+    transform: scale(0.97);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.2);
+}
+
+.card-body {
+    padding: 40px;
+}
+
+
+.contact-title {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.contact-subtitle {
+    opacity: 0.95;
+    font-weight: 400;
+}
+
+
+/* ============================================================= */
+
+#ticketsContainer {
+    min-height: 60vh;
+}
+
+.empty-messages {
+    background: #fff;
+    border-radius: 12px;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.empty-icon {
+    font-size: 70px;
+    color: #adb5bd;
+}
+
+.empty-messages h4 {
+    color: #212529;
+}
+
+.empty-messages p {
+    font-size: 15px;
+}
+
+.ticket-card {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e9ecef;
+    transition: all 0.25s ease;
+}
+
+.ticket-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-subject {
+    font-weight: 600;
+    color: #212529;
+}
+
+.ticket-date {
+    color: #6c757d;
+    font-size: 13px;
+}
+
+.ticket-message {
+    color: #343a40;
+    line-height: 1.6;
+    background: #f8f9fa;
+    padding: 12px 14px;
+    border-radius: 8px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.waiting-reply {
+    font-size: 14px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.admin-reply {
+    background: #eef6ff;
+    border-left: 4px solid #0d6efd;
+    padding: 12px;
+    border-radius: 8px;
+}

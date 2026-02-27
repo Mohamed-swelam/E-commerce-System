@@ -65,7 +65,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     const role = document.getElementById('roleSelect').value;
     const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById("lastName").value  ;
+    const lastName = document.getElementById("lastName").value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const address = document.getElementById("city").value;
@@ -77,7 +77,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
         showMessage("Please fill all fields", "danger", "registerMessage");
         return;
     }
-//  validation on Email 
+    //  validation on Email 
     if (!isValidEmail(email)) {
         showMessage("Please enter a valid email address", "danger", "registerMessage");
         return;
@@ -115,7 +115,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
     const newUser = {
         id: Date.now(),
         firstName,
-        lastName ,
+        lastName,
         email,
         password,
         address,
@@ -164,6 +164,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
             setTimeout(() => {
                 window.location.href = '../Admin/admin-dashboard.html';
             }, 1000);
+            localStorage.setItem("currentUser", JSON.stringify(adminUser));
             return;
         }
 

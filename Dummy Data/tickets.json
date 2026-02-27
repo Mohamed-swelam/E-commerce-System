@@ -1,0 +1,79 @@
+[
+    {
+        "id": 1001,
+        "userId": 3,
+        "userName": "Kariem Tamer",
+        "email": "Kariem@gmail.com",
+        "subject": "Complaint",
+        "message": "My order has been delayed for 4 days and there is still no shipping update.",
+        "status": "Pending",
+        "reply": "",
+        "createdAt": "2026-02-20T10:15:00.000Z"
+    },
+    {
+        "id": 1002,
+        "userId": 4,
+        "userName": "Ahmed Mohamed",
+        "email": "ahmed@gmail.com",
+        "subject": "Complaint",
+        "message": "I received a different product than the one I ordered.",
+        "status": "Replied",
+        "reply": "We apologize for the mistake. The correct product will be shipped within 48 hours.",
+        "createdAt": "2026-02-19T14:30:00.000Z"
+    },
+    {
+        "id": 1003,
+        "userId": 5,
+        "userName": "Sara Ali",
+        "email": "sara@gmail.com",
+        "subject": "Inquiry",
+        "message": "The payment was deducted, but my order has not been confirmed yet. Please check the status.",
+        "status": "Pending",
+        "reply": "",
+        "createdAt": "2026-02-21T09:45:00.000Z"
+    },
+    {
+        "id": 1004,
+        "userId": 6,
+        "userName": "Omar Hassan",
+        "email": "omar@gmail.com",
+        "subject": "Cancellation",
+        "message": "I would like to cancel my order before it is shipped.",
+        "status": "Resolved",
+        "reply": "Your order has been successfully canceled and the refund has been processed.",
+        "createdAt": "2026-02-18T16:20:00.000Z"
+    },
+    {
+        "id": 1005,
+        "userId": 3,
+        "userName": "Kariem Tamer",
+        "email": "Kariem@gmail.com",
+        "subject": "Inquiry",
+        "message": "I placed an order recently, but I cannot see its status in my account dashboard. Could you confirm if it was processed?",
+        "status": "Replied",
+        "reply": "Your order has been confirmed and is currently being processed. You can track it from the Orders page.",
+        "createdAt": "2026-02-22T11:05:00.000Z"
+    },
+    {
+        "id": 1010,
+        "userId": 6,
+        "userName": "Omar Hassan",
+        "email": "omar@gmail.com",
+        "subject": "Inquiry",
+        "message": "Is it possible to change the shipping address after placing an order?",
+        "status": "Pending",
+        "reply": "",
+        "createdAt": "2026-02-25T11:20:00.000Z"
+    },
+    {
+        "id": 1012,
+        "userId": 4,
+        "userName": "Ahmed Mohamed",
+        "email": "ahmed@gmail.com",
+        "subject": "Complaint",
+        "message": "The product I received is damaged and does not match the description on the website.",
+        "status": "Pending",
+        "reply": "",
+        "createdAt": "2026-02-23T12:10:00.000Z"
+    }
+]

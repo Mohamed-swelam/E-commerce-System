@@ -1,7 +1,6 @@
 'use strict'
-// import { addCustomer } from "./validation.js";
 
-
+// ==============================
 // Navigation Tabs Logic
 // ==============================
 
@@ -15,15 +14,12 @@ mainTabs.forEach(p => {
 
         // Remove active style from all main tabs
         mainTabs.forEach(p => p.classList.remove('active-tab'))
-
         // Add active style to the clicked tab
         p.classList.add('active-tab')
-
         // Hide all sub tabs first
         subTabs.forEach(div => {
             div.classList.remove('active-sub-tab')
         })
-
         // Show the sub tab that matches the clicked tab text
         subTabs.forEach(div => {
             if (div.id == e.target.innerHTML) {
@@ -35,7 +31,7 @@ mainTabs.forEach(p => {
 
 
 
-
+// ======================================================
 // Users Logic
 // ======================================================
 
@@ -49,6 +45,23 @@ mainTabs.forEach(p => {
 //     })
 //     .then(users => {
 //         localStorage.setItem('users', JSON.stringify(users));
+//         // location.reload();
+//     })
+//     .catch(error => {
+//         console.error('There was a problem with the fetch operation:', error);
+//     });
+
+// localStorage.removeItem('products');
+// // Fetch users from JSON file and store them in localStorage
+// fetch('../Dummy Data/products.json')
+//     .then(res => {
+//         if (!res.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return res.json();
+//     })
+//     .then(products => {
+//         localStorage.setItem('products', JSON.stringify(products));
 //         // location.reload();
 //     })
 //     .catch(error => {
@@ -118,7 +131,7 @@ const usersData = [
 // localStorage.setItem('users', JSON.stringify(usersData));
 let users;
 // Only set default users if localStorage is empty
-if (!localStorage.getItem('users')) {
+if (!localStorage.getItem('users') || JSON.parse(localStorage.getItem('users')).length === 0) {
     localStorage.setItem('users', JSON.stringify(usersData));
     users = JSON.parse(localStorage.getItem('users'));
 }
@@ -143,16 +156,37 @@ function deleteUser(id) {
 }
 
 
-// Customers Logic
+
+
+
+//getting the products from the local storage
+let products = JSON.parse(localStorage.getItem('products'));
+
+
+
+
+
+// ======================================================
+// Products Logic
 // ======================================================
 
-const customersContainer = document.getElementById('customers-container');
-let totalCustomers = document.getElementById('total-customers');
+const productsContainer = document.getElementById('products-container');
 
+// let allProducts = JSON.parse(localStorage.getItem('products')) || [];
+let allProducts = [];
 
-// Function to render one customer card
-function displayCustomer(customer) {
-    // Main row container
+let activeFilters = {
+    brands: [],
+    categories: [],
+    maxPrice: 0
+};
+
+// ======================================================
+// Product Rendering
+// ======================================================
+
+function displayProduct(product) {
+
     let col = document.createElement('div');
     col.classList.add(
         'col-12', 'p-3', 'd-flex',
@@ -160,100 +194,10 @@ function displayCustomer(customer) {
         'gap-5', 'flex-wrap', 'mb-3'
     );
 
-    // ---------------- Name + Email ----------------
-    let div1 = document.createElement('div');
-
-    let customerName = document.createElement('p');
-    customerName.classList.add('fs-4', 'mb-0');
-    customerName.innerText = customer.name;
-
-    let customerEmail = document.createElement('a');
-    customerEmail.classList.add('text-secondary');
-    customerEmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${customer.email}`;
-    customerEmail.target = "_blank";
-    customerEmail.innerText = customer.email;
-    customerEmail.style.textDecoration = "none";
-
-    // ---------------- ID Section ----------------
-    let div3 = document.createElement('div');
-    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center');
-
-    let customerId = document.createElement('p');
-    customerId.classList.add('fs-5');
-    customerId.innerText = "ID: " + customer.id;
-
-    let deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('btn', 'btn-danger');
-    deleteBtn.innerText = 'Delete'
-    deleteBtn.id = customer.id;
-    // delete logic
-    deleteBtn.addEventListener('click', (e) => {
-        deleteUser(e.target.id);
-        customersContainer.innerHTML = '';
-        customers.forEach(c => displayCustomer(c))
-        location.reload()
-    })
-
-    totalCustomers.innerText = customers.length;
-
-    // ---------------- Append ----------------
-    customersContainer.appendChild(col);
-
-    col.appendChild(div1);
-    // col.appendChild(div2);
-    col.appendChild(div3);
-
-    div1.appendChild(customerName);
-    div1.appendChild(customerEmail);
-
-    // div2.appendChild(customerRole);
-
-    div3.appendChild(customerId);
-    div3.appendChild(deleteBtn)
-}
-
-if (customers.length == 0) {
-    console.log('empty');
-    totalCustomers.innerText = '0'
-    const customersEmptyMessage = document.getElementById('customers-empty-message');
-    customersEmptyMessage.classList.remove('d-none')
-    customersEmptyMessage.innerText = 'No customers found. Try adding some!'
-}
-else {
-    customers.forEach(customer => {
-        displayCustomer(customer)
-    })
-}
-
-
-
-// Products Logic
-// ======================================================
-const productsContainer = document.getElementById('products-container');
-let allProducts = [];
-let activeFilters = {
-    brands: [],
-    categories: [],
-    maxPrice: 0
-};
-
-
-// Function responsible for rendering a single product card in the UI
-function displayProduct(product) {
-
-
-    // Create main container for product row
-    let col = document.createElement('div');
-    col.classList.add(
-        'col-12', 'p-3', 'd-flex',
-        'bg-light', 'rounded-3',
-        'gap-5', 'flex-wrap', 'mb-3'
-    )
-
-    // ----------------- Product Image -----------------
-    let productImg = document.createElement('img')
-    productImg.classList.add('product-img')
-    productImg.src = product.image
+    // ----------------- Image -----------------
+    let productImg = document.createElement('img');
+    productImg.classList.add('product-img');
+    productImg.src = product.image;
 
     // ----------------- Name + Seller -----------------
     let div1 = document.createElement('div');
@@ -264,8 +208,8 @@ function displayProduct(product) {
 
     let productSeller = document.createElement('p');
 
-    // Find seller name using seller_id
-    productSeller.innerText = 'Seller: ' + sellers.filter(s => s.id == product.seller_id)[0].name
+    const seller = users.find(s => s.id == product.seller_id);
+    productSeller.innerText = 'Seller: ' + (seller ? seller.name : 'Unknown');
 
     // ----------------- Brand / Category / Quantity -----------------
     let div2 = document.createElement('div');
@@ -276,111 +220,126 @@ function displayProduct(product) {
 
     let productCategory = document.createElement('p');
     productCategory.classList.add('text-secondary');
-    productCategory.innerText = 'Category:  ' + product.category
+    productCategory.innerText = 'Category:  ' + product.category;
 
     let productQuantity = document.createElement('p');
     productQuantity.classList.add('text-secondary');
-    productQuantity.innerText = 'Quantity:  ' + product.quantity
+    productQuantity.innerText = 'Quantity:  ' + product.quantity;
 
-    // ----------------- Price Section -----------------
+    let productDiscount = document.createElement('p');
+    productDiscount.classList.add('text-secondary');
+    if (product.discount && product.discount > 0) {
+        productDiscount.innerText = 'Discount:  ' + product.discount + '%';
+    }
+    else {
+        productDiscount.innerText = 'Discount:  No discount';
+    }
+
+    // ----------------- Price + Delete -----------------
     let div3 = document.createElement('div');
-    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2')
+    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2');
+    div3.id = product.product_id;
 
     let productPrice = document.createElement('p');
-    productPrice.classList.add('fs-3')
-    productPrice.innerText = product.price + '$'
+    productPrice.classList.add('fs-3');
+    productPrice.innerText = product.price + '$';
+
+    let productFinalPrice = document.createElement('p');
+    productFinalPrice.classList.add('fs-5', 'text-secondary');
+    if (product.discount && product.discount > 0) {
+        const discountedPrice = product.price * (1 - product.discount / 100);
+        productFinalPrice.innerText = 'After Discount: ' + discountedPrice.toFixed(2) + '$';
+    } else {
+        productFinalPrice.innerText = 'No discount applied';
+    }
 
     let deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btn', 'btn-danger');
-    deleteBtn.innerText = 'Delete'
+    deleteBtn.innerText = 'Delete';
 
-    // Append elements to DOM in structured hierarchy
+    deleteBtn.addEventListener('click', function (e) {
+        console.log(e);
+        const deletedProduct = allProducts.findIndex(p => p.product_id == e.target.parentElement.attributes.id.textContent);
+        console.log(deletedProduct);
+        allProducts.splice(deletedProduct, 1);
+        console.log(allProducts);
+        localStorage.removeItem('products');
+        localStorage.setItem('products', JSON.stringify(allProducts))
+        allProducts = JSON.parse(localStorage.getItem('products'));
+        renderEverything();
+    });
+
+    // Append structure
     productsContainer.appendChild(col);
     col.appendChild(productImg);
     col.appendChild(div1);
     col.appendChild(div2);
     col.appendChild(div3);
 
-    div1.appendChild(productName)
-    div1.appendChild(productSeller)
+    div1.appendChild(productName);
+    div1.appendChild(productSeller);
 
-    div2.appendChild(productBrand)
-    div2.appendChild(productCategory)
-    div2.appendChild(productQuantity)
+    div2.appendChild(productBrand);
+    div2.appendChild(productCategory);
+    div2.appendChild(productQuantity);
+    div2.appendChild(productDiscount);
 
-    div3.appendChild(productPrice)
-    div3.appendChild(deleteBtn)
+    div3.appendChild(productPrice);
+    div3.appendChild(productFinalPrice);
+    div3.appendChild(deleteBtn);
 }
 
-// range
-const rangeInput = document.getElementById('range4');
-const rangeOutput = document.getElementById('rangeValue');
-// Set initial value
-rangeOutput.textContent = rangeInput.value;
-rangeInput.addEventListener('input', function () {
-    rangeOutput.textContent = this.value;
-});
-
-
-
+// ======================================================
 // Dynamic Filters Rendering
 // ======================================================
 
-// This function creates a group of checkboxes
-// t is for title and arr is for brands and categories arrays
-function displayFilters(arr, t) {
+function displayFilters(arr, titleText) {
 
-    const filters = document.getElementById('filters');
-    let mainDiv = document.createElement('div');
-    mainDiv.classList.add('col-6', 'col-md-12')
+    const filterContainers = document.querySelectorAll('.filters');
 
-    // Filter group title
-    let title = document.createElement('p');
-    title.classList.add('mt-4', 'fs-5')
-    title.innerText = t;
+    filterContainers.forEach(container => {
 
-    mainDiv.appendChild(title)
+        let mainDiv = document.createElement('div');
+        mainDiv.classList.add('col-6', 'col-md-12');
 
-    // Create checkbox for each element in array
-    arr.forEach(element => {
+        let title = document.createElement('p');
+        title.classList.add('mt-4', 'fs-5');
+        title.innerText = titleText;
 
-        let div = document.createElement('div');
-        div.classList.add('form-check');
+        mainDiv.appendChild(title);
 
-        let input = document.createElement('input');
-        input.classList.add('form-check-input');
-        input.type = 'checkbox';
-        input.value = element;
-        input.classList.add(element);
+        arr.forEach(value => {
 
-        let label = document.createElement('label');
-        label.classList.add('form-check-label');
-        label.for = element;
-        label.innerText = element;
+            let div = document.createElement('div');
+            div.classList.add('form-check');
 
-        mainDiv.appendChild(div);
-        div.appendChild(input);
-        div.appendChild(label);
-    })
+            let input = document.createElement('input');
+            input.classList.add('form-check-input');
+            input.type = 'checkbox';
+            input.value = value;
 
-    filters.appendChild(mainDiv);
+            let label = document.createElement('label');
+            label.classList.add('form-check-label');
+            label.innerText = value;
+
+            div.appendChild(input);
+            div.appendChild(label);
+            mainDiv.appendChild(div);
+        });
+
+        container.appendChild(mainDiv);
+    });
 }
 
-
-
-
-// Top Statistics Cards
 // ======================================================
-
-// Select elements that display summary statistics
-const totalProducts = document.getElementById('total-products');
-const totalCategories = document.getElementById('total-categories');
-const totalBrands = document.getElementById('total-brands');
+// Filtering Logic
+// ======================================================
 
 function applyFilters() {
 
-    let filtered = allProducts;
-    // Brand & Category filtering
+    let filtered = [...allProducts];
+
+    // Brand & Category
     if (activeFilters.brands.length > 0 || activeFilters.categories.length > 0) {
         filtered = filtered.filter(product =>
             activeFilters.brands.includes(product.brand) ||
@@ -388,217 +347,218 @@ function applyFilters() {
         );
     }
 
-    // Price filtering
+    // Price
     if (activeFilters.maxPrice > 0) {
         filtered = filtered.filter(product =>
-            product.price >= activeFilters.maxPrice &&
-            product.price <= activeFilters.maxPrice + 100
+            product.price <= activeFilters.maxPrice
         );
     }
 
-    // Render
     productsContainer.innerHTML = '';
-    filtered.forEach(p => displayProduct(p));
+
+    if (filtered.length === 0) {
+        productsContainer.innerHTML =
+            `<div class="col-12 text-center p-5 bg-light rounded-3">
+                <p class="fs-4 text-muted">No products found!</p>
+            </div>`;
+        return;
+    }
+
+    filtered.forEach(product => displayProduct(product));
 }
 
-
-// Fetch products data from JSON file
-fetch('../Dummy Data/products.json')
-    .then(res => {
-        if (!res.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return res.json();
-    })
-    .then(products => {
-        allProducts = products;
-        localStorage.setItem('products', JSON.stringify(products))
-        // Render all products
-        // for (let i = 0; i < products.length; i++) {
-        //     displayProduct(products[i]);
-        // }
-
-        // // Extract unique categories
-        // let categories = []
-        // products.map(p => categories.push(p.category))
-        // categories = [...new Set(categories)]
-
-        // // Extract unique brands
-        // let brands = []
-        // products.map(p => brands.push(p.brand))
-        // brands = [...new Set(brands)]
-
-        // // Render filter checkboxes
-        // displayFilters(brands, 'Brands');
-        // displayFilters(categories, 'Categories')
-
-        // // filtering(products, 'brand')
-        // // filtering(products, 'category')
-        // filtering(products);
-        // FilterByPrice(products)
-
-        // // Update dashboard summary cards
-        // totalProducts.innerText = products.length;
-        // totalCategories.innerHTML = categories.length
-        // totalBrands.innerText = brands.length
-    })
-    .catch(error => {
-        console.error('There was a problem with fetching products:', error);
-    });
-
-
-
-
-//getting the products from the local storage
-const products = JSON.parse(localStorage.getItem('products'));
-
-// Extract unique categories
-let categories = []
-products.map(p => categories.push(p.category))
-categories = [...new Set(categories)]
-
-// Extract unique brands
-let brands = []
-products.map(p => brands.push(p.brand))
-brands = [...new Set(brands)]
-
-// Render filter checkboxes
-displayFilters(brands, 'Brands');
-displayFilters(categories, 'Categories')
-
-filtering(products);
-FilterByPrice(products)
-
-
-
-// setting top 3 products cards
-totalProducts.innerText = products.length;
-totalCategories.innerHTML = categories.length
-totalBrands.innerText = brands.length
-console.log(products);
-
-
-function filtering() {
-    const filtersContainer = document.getElementById('filters');
-    filtersContainer.addEventListener('change', function () {
-        const checkedBoxes = [...document.querySelectorAll("input[type='checkbox']:checked")];
-        activeFilters.brands = [];
-        activeFilters.categories = [];
-        checkedBoxes.forEach(cb => {
-            if (allProducts.some(p => p.brand === cb.value)) {
-                activeFilters.brands.push(cb.value);
-            }
-            if (allProducts.some(p => p.category === cb.value)) {
-                activeFilters.categories.push(cb.value);
-            }
-        });
-        applyFilters();
-    })
-}
-
-
-function FilterByPrice() {
-    rangeInput.addEventListener('input', (e) => {
-        activeFilters.maxPrice = parseInt(e.target.value);
-        applyFilters();
-    })
-}
-
-
-for (let i = 0; i < products.length; i++) {
-    displayProduct(products[i]);
-}
-
-
-filtering();
-FilterByPrice();
-
-
-
-
-
-// Sellers Logic
 // ======================================================
-const sellersContainer = document.getElementById('sellers-container');
-let totalSellers = document.getElementById('total-sellers');
+// Checkbox Filtering
+// ======================================================
 
+function initializeCheckboxFiltering() {
 
-// Function to render one seller card
-function displaySeller(seller) {
-    // Main row container
-    let col = document.createElement('div');
-    col.classList.add(
-        'col-12', 'p-3', 'd-flex',
-        'bg-light', 'rounded-3',
-        'gap-5', 'flex-wrap', 'mb-3'
-    );
+    const filterContainers = document.querySelectorAll('.filters');
 
-    // ---------------- Name + Email ----------------
-    let div1 = document.createElement('div');
+    filterContainers.forEach(container => {
 
-    let sellerName = document.createElement('p');
-    sellerName.classList.add('fs-4', 'mb-0');
-    sellerName.innerText = seller.name;
+        container.addEventListener('change', function () {
 
-    let sellerrEmail = document.createElement('a');
-    sellerrEmail.classList.add('text-secondary');
-    sellerrEmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${seller.email}`;
-    sellerrEmail.target = "_blank";
-    sellerrEmail.innerText = seller.email;
-    sellerrEmail.style.textDecoration = "none";
+            const checkedBoxes = [
+                ...document.querySelectorAll(".filters input[type='checkbox']:checked")
+            ];
 
-    // ---------------- Products -------------------
-    let div2 = document.createElement('div')
-    let sellerProducts = document.createElement('p')
-    sellerProducts.innerText = `Seller Products : ${(products.filter(p => p.seller_id == seller.id)).length}`
+            activeFilters.brands = [];
+            activeFilters.categories = [];
 
-    // ---------------- ID Section ----------------
-    let div3 = document.createElement('div');
-    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center');
+            checkedBoxes.forEach(cb => {
 
-    let sellerId = document.createElement('p');
-    sellerId.classList.add('fs-5');
-    sellerId.innerText = "ID: " + seller.id;
+                if (allProducts.some(p => p.brand === cb.value)) {
+                    activeFilters.brands.push(cb.value);
+                }
 
-    let deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('btn', 'btn-danger');
-    deleteBtn.innerText = 'Delete'
-    deleteBtn.id = seller.id;
-    // delete logic
-    deleteBtn.addEventListener('click', (e) => {
-        deleteUser(e.target.id);
-        sellersContainer.innerHTML = '';
-        sellers.forEach(c => displaySeller(c))
-        location.reload()
-    })
+                if (allProducts.some(p => p.category === cb.value)) {
+                    activeFilters.categories.push(cb.value);
+                }
+            });
 
-    totalSellers.innerText = sellers.length;
-
-    // ---------------- Append ----------------
-    sellersContainer.appendChild(col);
-
-    col.appendChild(div1);
-    col.appendChild(div2);
-    col.appendChild(div3);
-
-    div1.appendChild(sellerName);
-    div1.appendChild(sellerrEmail);
-
-    div2.appendChild(sellerProducts);
-
-    div3.appendChild(sellerId);
-    div3.appendChild(deleteBtn)
+            applyFilters();
+        });
+    });
 }
 
-if (sellers.length == 0) {
-    console.log('empty');
-    totalSellers.innerText = '0'
-    const sellersEmptyMessage = document.getElementById('sellers-empty-message');
-    sellersEmptyMessage.classList.remove('d-none')
-    sellersEmptyMessage.innerText = 'No Sellers found. Try adding some!'
-}
-else {
-    sellers.forEach(s => displaySeller(s))
+// ======================================================
+// Price Range Filtering
+// ======================================================
+
+function initializePriceFiltering() {
+
+    const ranges = document.querySelectorAll('.price-range');
+    const outputs = document.querySelectorAll('.range-value');
+
+    ranges.forEach((range, index) => {
+
+        outputs[index].textContent = range.value;
+
+        range.addEventListener('input', function () {
+
+            outputs[index].textContent = this.value;
+            activeFilters.maxPrice = parseInt(this.value);
+            applyFilters();
+        });
+    });
 }
 
-sellers.forEach(s => console.log(s))
+// ======================================================
+// Statistics
+// ======================================================
+
+const totalProducts = document.getElementById('total-products');
+const totalCategories = document.getElementById('total-categories');
+const totalBrands = document.getElementById('total-brands');
+
+function updateStatistics() {
+
+    const categories = [...new Set(allProducts.map(p => p.category))];
+    const brands = [...new Set(allProducts.map(p => p.brand))];
+
+    totalProducts.innerText = allProducts.length;
+    totalCategories.innerText = categories.length;
+    totalBrands.innerText = brands.length;
+}
+
+// ======================================================
+// Initialization
+// ======================================================
+
+function initializeProducts() {
+
+    const storedProducts = localStorage.getItem('products');
+
+    if (storedProducts && JSON.parse(storedProducts).length > 0) {
+        allProducts = JSON.parse(storedProducts);
+        renderEverything();
+    }
+    else {
+        fetch('../Dummy Data/products.json')
+            .then(res => res.json())
+            .then(products => {
+                allProducts = products;
+                localStorage.setItem('products', JSON.stringify(allProducts));
+                renderEverything();
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
+    }
+}
+
+function renderEverything() {
+
+    productsContainer.innerHTML = '';
+
+    const categories = [...new Set(allProducts.map(p => p.category))];
+    const brands = [...new Set(allProducts.map(p => p.brand))];
+
+    displayFilters(brands, 'Brands');
+    displayFilters(categories, 'Categories');
+
+    initializeCheckboxFiltering();
+    initializePriceFiltering();
+
+    updateStatistics();
+
+    allProducts.forEach(product => displayProduct(product));
+}
+
+initializeProducts();
+
+
+
+
+
+
+//////////////////////////////////////////////////
+/////  CHARTS
+//////////////////////////////////////////////////
+const cat = document.getElementById('categories');
+new Chart(cat, {
+    type: 'doughnut',
+    data: {
+        labels: [...new Set(products.map(p => p.category))],
+        datasets: [{
+            label: ' products in this category',
+            data: [...new Set(products.map(p => p.category))].map(c => products.filter(p => p.category == c).length),
+            borderWidth: 1
+        }]
+    },
+    // options: {
+    //     scales: {
+    //         y: {
+    //             beginAtZero: true
+    //         }
+    //     }
+    // }
+});
+const brand = document.getElementById('brands');
+new Chart(brand, {
+    type: 'bar',
+    data: {
+        labels: [...new Set(products.map(p => p.brand))],
+        datasets: [{
+            label: ' products in this brand',
+            data: [...new Set(products.map(p => p.brand))].map(b => products.filter(p => p.brand == b).length),
+            borderWidth: 1
+        }]
+    },
+    // options: {
+    //     scales: {
+    //         y: {
+    //             beginAtZero: true
+    //         }
+    //     }
+    // }
+});
+
+
+
+
+
+
+
+
+let userProfile = document.getElementById('profile');
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+// localStorage.removeItem("currentUser");
+if (currentUser) {
+    userProfile.style.display = "block";
+    document.getElementById('login-link').style.display = "none";
+    if (currentUser.role === "admin") {
+        document.getElementById("admin-dashboard").classList.remove("d-none");
+        document.getElementById("seller-dashboard").classList.add("d-none");
+    }
+    else if (currentUser.role === "seller") {
+        document.getElementById("seller-dashboard").classList.remove("d-none");
+        document.getElementById("admin-dashboard").classList.add("d-none");
+    }
+
+} else {
+    userProfile.style.display = "none";
+    document.getElementById('login-link').style.display = "block";
+}

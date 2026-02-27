@@ -31,8 +31,8 @@
 
 /* to highlight active tab in dashboard */
 .active-tab{
-    background-color: #fff;
-    color: black;
+    background-color: #ffffff44;
+    /* color: black; */
     box-shadow: 1px 1px 10px black;
 }
 /* to open active sub-tab in dashboard */
@@ -44,19 +44,18 @@
     width: 100px;
 }
 
-
-/* styles for the error msg for the password */
+/* this for customer form */
+/* styles for the error msg for the inputs */
 .message {
     display:none;
     background: #f1f1f1;
     z-index: 10;
 }
-/* make the color green when the password is valid*/
+/* make the color green when the input is valid*/
 .valid {
     color: green;
 }
-/* make the color red when the password is invalid*/
+/* make the color red when the input is invalid*/
 .invalid {
     color: red;
 }
-

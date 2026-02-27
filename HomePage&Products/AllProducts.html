@@ -39,7 +39,7 @@
                             <a class="nav-link " href="#">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="../ContactUs/Contact.html">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Blog</a>
@@ -359,12 +359,29 @@
     </footer>
     <!-- End Footer -->
 
+    <!-- Toast (Top Right) -->
+            <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+                
+                <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
+                    <div class="d-flex">
+                        <div class="toast-body" id="toastMessage">
+                            Message here
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                            data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+
+            </div>
+
+
     <!-- Bootstrap Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"
         integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- My Script -->
     <script src="./JS/products.js"></script>
+    <script src="../GeneralFunctions/showToast.js"></script>
 </body>
 
 </html>
