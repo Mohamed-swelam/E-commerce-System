@@ -3106,9 +3106,8 @@ function displayProducts(x, container) {
         productBox +=
           `
                                 <div class="col-lg-3">
-                                    
-                                    <div class="card w-100 p-0 m-0" style="cursor:pointer;"  >
-                                      <div class=" bg-white text-end py-3"  >
+                                    <div class="card position-relative w-100 p-0 m-0" style="cursor:pointer;"  >
+                                     <div class=" bg-white text-end py-3"  >
                                       <span ><i class="fa-regular fa-heart"></i></span>
                                      </div>    
                                     <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
@@ -3122,6 +3121,12 @@ function displayProducts(x, container) {
                                               Add To Cart
                                             </button> 
                                           </div>
+
+                                           <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                                              <p class="m-auto text-white">${productArray[i].discount}%</p>
+                                          </div>
+                                          
+                                          
                                     </div>
                                 </div>
                     `
@@ -3129,10 +3134,10 @@ function displayProducts(x, container) {
     }
     else {
       productBox = `
-                        <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;">
-                          <div class=" bg-white text-end py-3"  >
-                              <span ><i class="fa-regular fa-heart" ></i></span>
-                            </div>     
+                        <div class="card position-relative  col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" >
+                             <div class=" bg-white text-end py-3"  >
+                              <span ><i class="fa-regular fa-heart"></i></span>
+                            </div>
                         <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
                                         <div class="card-body" onclick="showDetails(${productArray[20].product_id})">
                                             <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
@@ -3142,13 +3147,16 @@ function displayProducts(x, container) {
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[20].product_id})">
                               Add To Cart
                             </button>
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[20].discount}%</p>
+                    </div>
                              </div>
                         </div>
 
-                        <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
-                          <div class=" bg-white text-end py-3"  >
-                            <span ><i class="fa-regular fa-heart"></i></span>
-                          </div>     
+                        <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+                              <div class=" bg-white text-end py-3"  >
+                    <span ><i class="fa-regular fa-heart"></i></span>
+                    </div>
                         <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
                                         <div class="card-body" onclick="showDetails(${productArray[21].product_id})">
                                             <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
@@ -3158,11 +3166,16 @@ function displayProducts(x, container) {
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[21].product_id})">
                               Add To Cart
                             </button> 
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[21].discount}%</p>
+                    </div>
                              </div>
+
+
                         </div>
 
 
-                    <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+                    <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
                         <div class=" bg-white text-end py-3"  >
                     <span ><i class="fa-regular fa-heart"></i></span>
                     </div>       
@@ -3175,6 +3188,9 @@ function displayProducts(x, container) {
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[6].product_id})">
                               Add To Cart
                             </button>
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[6].discount}%</p>
+                    </div>
                              </div>
                         </div>
 `

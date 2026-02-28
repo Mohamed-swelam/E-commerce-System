@@ -178,47 +178,27 @@ document.querySelector(".dropdown-menu").addEventListener("click", (e) => {
 
 
 function sortByValue(sortPrds) {
-    console.log(sortValue);
-    console.log(searchInput.value);
-
-
     if (sortValue === "Top rated") {
         sorCategory = [...sortPrds].sort((a, b) => b.rating - a.rating);
-        if (searchInput.value) {
-            baseCategory = [...sorCategory];
-        }
+        baseCategory = [...sorCategory];
     }
 
     else if (sortValue === "A to Z") {
-        sorCategory = [...sortPrds].sort();
-        if (searchInput.value) {
-            baseCategory = [...sorCategory];
-        }
+        sorCategory = [...sortPrds].sort((a, b) => a.name.localeCompare(b.name));
+        baseCategory = [...sorCategory];
     }
     else if (sortValue === "Z to A") {
-        sorCategory = [...sortPrds].sort().reverse();
-        if (searchInput.value) {
-            baseCategory = [...sorCategory];
-            console.log(baseCategory);
-        }
+        sorCategory = [...sortPrds].sort((a, b) => b.name.localeCompare(a.name));
+        baseCategory = [...sorCategory];
     }
     else if (sortValue === "Low Price") {
         sorCategory = [...sortPrds].sort((a, b) => a.price - b.price);
-        if (searchInput.value) {
-            baseCategory = [...sorCategory];
-        }
+        baseCategory = [...sorCategory];
     }
 
     else if (sortValue === "High Price") {
-        sorCategory = [];
         sorCategory = [...sortPrds].sort((a, b) => b.price - a.price);
-
-        if (searchInput.value) {
-            console.log("hamada");
-
-            baseCategory = [...sorCategory];
-            console.log(baseCategory);
-        }
+        baseCategory = [...sorCategory];
     }
 }
 
@@ -237,8 +217,12 @@ function searchByName() {
             console.log("no product");
         }
     }
-    console.log(baseCategory);
-    if (sortValue) { sortByValue(baseCategory); }
+    if (sortValue) {
+        sortByValue(baseCategory);
+        console.log(baseCategory);
+        displayCategroyData(1);
+
+    }
 }
 
 
