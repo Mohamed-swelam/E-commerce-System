@@ -56,6 +56,8 @@ if (!currentUser) {
 function loadUserData() {
     document.getElementById("userName").textContent = currentUser.fullName;
     document.getElementById("tableName").textContent = currentUser.fullName;
+    document.getElementById("userName2").textContent=currentUser.fullName ; 
+
     document.getElementById("tableEmail").textContent = currentUser.email;
     document.getElementById("tablePhone").textContent = currentUser.phone;
 }
