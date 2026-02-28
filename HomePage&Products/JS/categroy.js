@@ -12,7 +12,7 @@ let sorCategory = []
 let searchPrds = [];
 let sortValue;
 let baseCategory = [];
-
+let spans = [];
 let currentPath = location.search.split("?").pop();
 console.log(currentPath);
 
@@ -121,7 +121,7 @@ function navigateNumbrsWithPrevAndNext() {
     }
     document.getElementById("navigators").innerHTML = numberBox;
 
-    let spans = document.querySelectorAll(".number-span");
+    spans = document.querySelectorAll(".number-span");
     spans[0].style.boxShadow = "rgb(53, 153, 219) 2px 2px 5px 0px inset";
 
     spans.forEach((span, index) => {
@@ -160,29 +160,33 @@ function showDetails(id) {
 
 //  filter by sort 
 document.querySelector(".dropdown-menu").addEventListener("click", (e) => {
-    document.querySelectorAll(".dropdown-menu li a").forEach(a => {
-        a.style.color = "";
-        if (a.children.length) {
-            a.children[0].style.display = "none"
-        }
-    })
-    e.target.style.color = "black";
-    e.target.innerHTML += "<i class='fa-solid fa-check '></i>"
-    sorCategory = [];
-    sortValue = e.target.innerText;
-    sortByValue(baseCategory);
+
+    if (getComputedStyle(e.target).color === "rgb(0, 0, 0)") {
+        e.target.style.color = "rgba(26, 24, 24, 0.562)";
+        e.target.innerHTML = e.target.innerText;
+        baseCategory = categoryPrds;
+    }
+    else {
+        document.querySelectorAll(".dropdown-menu li a").forEach(a => {
+            a.style.color = "";
+            if (a.children.length) {
+                a.children[0].style.display = "none"
+            }
+        })
+        e.target.style.color = "black";
+        e.target.innerHTML += "<i class='fa-solid fa-check '></i>"
+        sorCategory = [];
+        sortValue = e.target.innerText;
+        sortByValue(baseCategory);
+    }
     displayCategroyData(1);
 })
 
 
 
 function sortByValue(sortPrds) {
-    if (sortValue === "Top rated") {
-        sorCategory = [...sortPrds].sort((a, b) => b.rating - a.rating);
-        baseCategory = [...sorCategory];
-    }
 
-    else if (sortValue === "A to Z") {
+    if (sortValue === "A to Z") {
         sorCategory = [...sortPrds].sort();
         baseCategory = [...sorCategory];
     }
@@ -199,6 +203,13 @@ function sortByValue(sortPrds) {
         sorCategory = [...sortPrds].sort((a, b) => b.price - a.price);
         baseCategory = [...sorCategory];
     }
+    spans.forEach(span => {
+        if (getComputedStyle(span).boxShadow === "rgb(53, 153, 219) 2px 2px 5px 0px inset") {
+            span.style.boxShadow = "none";
+        }
+    })
+    spans[0].style.boxShadow = "rgb(53, 153, 219) 2px 2px 5px 0px inset";
+
 }
 
 
@@ -216,12 +227,12 @@ function searchByName() {
             console.log("no product");
         }
     }
-    if (sortValue) { 
+    if (sortValue) {
         sortByValue(baseCategory);
         console.log(baseCategory);
         displayCategroyData(1);
 
-     }
+    }
 }
 
 
