@@ -3104,7 +3104,7 @@ function displayProducts(x, container) {
         productBox +=
           `
                                 <div class="col-lg-3">
-                                    <div class="card w-100 p-0 m-0" style="cursor:pointer;"  >
+                                    <div class="card position-relative w-100 p-0 m-0" style="cursor:pointer;"  >
                                      <div class=" bg-white text-end py-3"  >
                                       <span ><i class="fa-regular fa-heart"></i></span>
                                      </div>
@@ -3117,6 +3117,9 @@ function displayProducts(x, container) {
                                           <div class="text-center w-100" id="cart">
                                              <button class="btn">Add To Cart </button> 
                                           </div>
+                                           <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[i].discount}%</p>
+                    </div>
                                     </div>
                                 </div>
                     `
@@ -3124,7 +3127,7 @@ function displayProducts(x, container) {
     }
     else {
       productBox = `
-                        <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" >
+                        <div class="card position-relative  col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" >
                              <div class=" bg-white text-end py-3"  >
                               <span ><i class="fa-regular fa-heart"></i></span>
                             </div>
@@ -3137,12 +3140,15 @@ function displayProducts(x, container) {
                                         </div>
                                           <div class="text-center w-100" id="cart">
                             <button class="btn">Add To Cart </button> 
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[20].discount}%</p>
+                    </div>
                              </div>
                         </div>
 
 
 
-                        <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+                        <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
                               <div class=" bg-white text-end py-3"  >
                     <span ><i class="fa-regular fa-heart"></i></span>
                     </div>
@@ -3156,9 +3162,14 @@ function displayProducts(x, container) {
                         </div>
                          <div class="text-center w-100" id="cart">
                             <button class="btn">Add To Cart </button> 
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[21].discount}%</p>
+                    </div>
                              </div>
                         </div>
-                    <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+
+
+                    <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
                               <div class=" bg-white text-end py-3"  >
                     <span ><i class="fa-regular fa-heart"></i></span>
                     </div>
@@ -3173,6 +3184,9 @@ function displayProducts(x, container) {
                         </div>
                          <div class="text-center w-100" id="cart">
                             <button class="btn">Add To Cart </button> 
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[6].discount}%</p>
+                    </div>
                              </div>
                         </div>
 `
