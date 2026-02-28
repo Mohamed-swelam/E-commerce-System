@@ -95,6 +95,11 @@ async function getProducts() {
 
     getCarts(product);
 
+    document.getElementById("view_Collection").addEventListener("click", function () {
+        window.location.href = `../../HomePage&Products/categroy.html?categroy=${product.category}`;
+
+    });
+
 
 }
 
@@ -107,30 +112,52 @@ function displayRelatedProducts(productsArray) {
         let priceHTML = "";
 
         if (item.oldPrice && item.oldPrice > item.price) {
-
             priceHTML = `
-                <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <span class="fw-semibold">${item.price}$</span>
-                    <small class="text-muted text-decoration-line-through">${item.oldPrice}$</small>
-                    <span class="badge discount-mini">-${item.discount}%</span>
+                <div>
+                    <span class="card-text text-decoration-line-through text-danger">
+                        ${item.oldPrice}$
+                    </span>
+                    <span class="card-text text-success" style="font-size:25px;">
+                        ${item.price}$
+                    </span>
                 </div>
             `;
         } else {
-            priceHTML = `<small class="text-muted">${item.price}$</small>`;
+            priceHTML = `
+                <span class="card-text" style="font-size:25px;">
+                    ${item.price}$
+                </span>
+            `;
         }
 
         return `
         <div class="col-6 col-md-3">
-            <div class="card border-0 related-card h-100">
+            <div class="card border-0 related-card h-100 position-relative">
+                <div class=" bg-white text-end py-3">
+                    <span><i class="fa-regular fa-heart" style="font-size: 35px; cursor: pointer;"></i></span>
+                </div>
                 <img src="${item.image}" 
-                    class="card-img-top"
-                    data-id="${item.product_id}" 
-                    alt="${item.name}">
-                    
+                     class="card-img-top"
+                     data-id="${item.product_id}" 
+                     alt="${item.name}">
+
                 <div class="card-body px-0 pt-2">
-                    <h6 class="mb-1">${item.name}</h6>
+                    <h6 class="mb-1 product-title">${item.name}</h6>
                     ${priceHTML}
                 </div>
+
+                ${item.discount && item.discount > 0
+                ? `
+                    <div class="discount position-absolute top-0 start-0 bg-danger rounded-circle d-flex"
+                         style="width:65px; height:65px;">
+                        <p class="m-auto text-white fw-bold">
+                            ${item.discount}%
+                        </p>
+                    </div>
+                    `
+                : ``
+            }
+
             </div>
         </div>
         `;
@@ -153,21 +180,12 @@ async function getCarts(product) {
     if (!addBtn) return;
 
     addBtn.addEventListener("click", function () {
-        // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
-
-        // if (!currentUserId) {
-        //     alert("Please login first to add items to cart.");
-        //     window.location.href = "login.html";
-        //     return;
-        // }
 
 
         //checkLogin
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
         if (!currentUser) {
-            // alert("Please login first to add items to cart.");
-            // window.location.href = "../../login/login.html";
 
             showToast("Please login first to add items to cart.", "error");
 

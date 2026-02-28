@@ -57,7 +57,7 @@ function displayAllPrds(prds) {
                             <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
                             
                             <div>
-                                <span class=" card-text text-decoration-line-through text-danger">${prds[i].oldprice ?? "0"}$</span>
+                                <span class=" card-text text-decoration-line-through text-danger">${prds[i].oldPrice ?? "0"}$</span>
                                 <span class=" card-text  text-success " style="font-size:25px;">${prds[i].price}$</span>
                             </div>
 

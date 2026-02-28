@@ -74,7 +74,7 @@ function displayCategroyData(page) {
                                     <small  >${categoryArray[i].brand}</small>
                                 </div>
                             <div>
-                                <span class=" card-text text-decoration-line-through text-danger">${categoryArray[i].oldprice ?? "0"}$</span>
+                                <span class=" card-text text-decoration-line-through text-danger">${categoryArray[i].oldPrice ?? "0"}$</span>
                                 <span class=" card-text  text-success " style="font-size:25px;">${categoryArray[i].price}$</span>
                             </div>
                             </div>
