@@ -126,9 +126,22 @@ async function getProducts() {
 
 function displayRelatedProducts(productsArray) {
     const container = document.getElementById("related-products");
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
     container.innerHTML = productsArray.map(item => {
 
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+            //check if the product in the wishlist
+
+            isWishlisted = wishlist.some(product =>
+                product.product_id === item.product_id &&
+                product.user_id === currentUser.id
+            );
+        }
 
         let priceHTML = "";
 
@@ -155,7 +168,12 @@ function displayRelatedProducts(productsArray) {
         <div class="col-6 col-md-3">
             <div class="card border-0 related-card h-100 position-relative">
                 <div class=" bg-white text-end py-3">
-                    <span><i class="fa-regular fa-heart" style="font-size: 35px; cursor: pointer;"></i></span>
+                        <span>
+                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(item)}, this)'
+                            style="font-size: 35px; cursor: pointer;">
+                            </i>
+                        </span>
                 </div>
                 <img src="${item.image}" 
                      class="card-img-top"

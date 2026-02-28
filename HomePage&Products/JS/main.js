@@ -3123,7 +3123,7 @@ function displayProducts(x, container) {
         productBox +=
           `
                                 <div class="col-lg-3">
-                                    <div class="card position-relative w-100 p-0 m-0" style="cursor:pointer;"  >
+                                    <div class="card position-relative w-100 p-0 m-0" style="cursor:pointer; onclick="showDetails(${productArray[i].product_id})""  >
                                      <div class=" bg-white text-end py-3"  >
                                       <span>
                                           <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
@@ -3132,7 +3132,7 @@ function displayProducts(x, container) {
                                       </span>
                                      </div>    
                                     <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
-                                        <div class="card-body" onclick="showDetails(${productArray[i].product_id})">
+                                        <div class="card-body" >
                                             <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[i].price}$</p>
                                         </div>
@@ -3156,12 +3156,14 @@ function displayProducts(x, container) {
     else {
 
       productBox = `
-                        <div class="card position-relative  col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" >
+                        <div class="card position-relative  col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[20].product_id})">
                              <div class=" bg-white text-end py-3"  >
-                              <span ><i class="fa-regular fa-heart"></i></span>
+                              <span>
+                                ${getHeartIcon(productArray[20])}
+                              </span>
                             </div>
                         <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
-                                        <div class="card-body" onclick="showDetails(${productArray[20].product_id})">
+                                        <div class="card-body" >
                                             <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[20].price}$</p>
                                         </div>
@@ -3175,12 +3177,14 @@ function displayProducts(x, container) {
                              </div>
                         </div>
 
-                        <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+                        <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[21].product_id})"  >
                               <div class=" bg-white text-end py-3"  >
-                    <span ><i class="fa-regular fa-heart"></i></span>
+                            <span>
+                              ${getHeartIcon(productArray[21])}
+                            </span>
                     </div>
                         <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
-                                        <div class="card-body" onclick="showDetails(${productArray[21].product_id})">
+                                        <div class="card-body" >
                                             <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[21].price}$</p>
                         </div>
@@ -3197,12 +3201,14 @@ function displayProducts(x, container) {
                         </div>
 
 
-                    <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+                    <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[6].product_id})" >
                         <div class=" bg-white text-end py-3"  >
-                    <span ><i class="fa-regular fa-heart"></i></span>
+                            <span>
+                              ${getHeartIcon(productArray[6])}
+                            </span>
                     </div>       
                       <img src="${productArray[6].image}" class="card-img-top" alt="${productArray[6].name}" height=200>
-                                        <div class="card-body" onclick="showDetails(${productArray[6].product_id})">
+                                        <div class="card-body" >
                                             <h5 class="card-title">${productArray[6].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[6].price}$</p>
                     </div>
@@ -3225,7 +3231,22 @@ function displayProducts(x, container) {
 
 
 
+function getHeartIcon(product) {
+  let isWishlisted = false;
 
+  if (currentUser) {
+    isWishlisted = wishlist.some(item =>
+      item.product_id === product.product_id &&
+      item.user_id === currentUser.id
+    );
+  }
+
+  return `
+    <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+       onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(product)}, this)'>
+    </i>
+  `;
+}
 
 
 
