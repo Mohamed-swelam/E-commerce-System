@@ -3086,6 +3086,9 @@ products = [
 
 console.log(products);
 
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
 (function () {
   if (!localStorage.getItem("products")) {
     localStorage.setItem("products", JSON.stringify(products));
@@ -3103,16 +3106,33 @@ function displayProducts(x, container) {
     let productBox = " ";
     if (x === 0) {
       for (let i = 0; i < 4; i++) {
+
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+          //check if the product in the wishlist
+
+          isWishlisted = wishlist.some(item =>
+            item.product_id === productArray[i].product_id &&
+            item.user_id === currentUser.id
+          );
+        }
+
+
         productBox +=
           `
                                 <div class="col-lg-3">
-                                    
-                                    <div class="card w-100 p-0 m-0" style="cursor:pointer;"  >
-                                      <div class=" bg-white text-end py-3"  >
-                                      <span ><i class="fa-regular fa-heart"></i></span>
+                                    <div class="card position-relative w-100 p-0 m-0" style="cursor:pointer; onclick="showDetails(${productArray[i].product_id})""  >
+                                     <div class=" bg-white text-end py-3"  >
+                                      <span>
+                                          <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                                          onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(productArray[i])}, this)'>
+                                          </i>
+                                      </span>
                                      </div>    
                                     <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
-                                        <div class="card-body" onclick="showDetails(${productArray[i].product_id})">
+                                        <div class="card-body" >
                                             <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[i].price}$</p>
                                         </div>
@@ -3122,19 +3142,28 @@ function displayProducts(x, container) {
                                               Add To Cart
                                             </button> 
                                           </div>
+
+                                           <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                                              <p class="m-auto text-white">${productArray[i].discount}%</p>
+                                          </div>
+                                          
+                                          
                                     </div>
                                 </div>
                     `
       }
     }
     else {
+
       productBox = `
-                        <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;">
-                          <div class=" bg-white text-end py-3"  >
-                              <span ><i class="fa-regular fa-heart" ></i></span>
-                            </div>     
+                        <div class="card position-relative  col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[20].product_id})">
+                             <div class=" bg-white text-end py-3"  >
+                              <span>
+                                ${getHeartIcon(productArray[20])}
+                              </span>
+                            </div>
                         <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
-                                        <div class="card-body" onclick="showDetails(${productArray[20].product_id})">
+                                        <div class="card-body" >
                                             <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[20].price}$</p>
                                         </div>
@@ -3142,15 +3171,20 @@ function displayProducts(x, container) {
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[20].product_id})">
                               Add To Cart
                             </button>
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[20].discount}%</p>
+                    </div>
                              </div>
                         </div>
 
-                        <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
-                          <div class=" bg-white text-end py-3"  >
-                            <span ><i class="fa-regular fa-heart"></i></span>
-                          </div>     
+                        <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[21].product_id})"  >
+                              <div class=" bg-white text-end py-3"  >
+                            <span>
+                              ${getHeartIcon(productArray[21])}
+                            </span>
+                    </div>
                         <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
-                                        <div class="card-body" onclick="showDetails(${productArray[21].product_id})">
+                                        <div class="card-body" >
                                             <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[21].price}$</p>
                         </div>
@@ -3158,16 +3192,23 @@ function displayProducts(x, container) {
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[21].product_id})">
                               Add To Cart
                             </button> 
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[21].discount}%</p>
+                    </div>
                              </div>
+
+
                         </div>
 
 
-                    <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+                    <div class="card position-relative col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[6].product_id})" >
                         <div class=" bg-white text-end py-3"  >
-                    <span ><i class="fa-regular fa-heart"></i></span>
+                            <span>
+                              ${getHeartIcon(productArray[6])}
+                            </span>
                     </div>       
                       <img src="${productArray[6].image}" class="card-img-top" alt="${productArray[6].name}" height=200>
-                                        <div class="card-body" onclick="showDetails(${productArray[6].product_id})">
+                                        <div class="card-body" >
                                             <h5 class="card-title">${productArray[6].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[6].price}$</p>
                     </div>
@@ -3175,6 +3216,9 @@ function displayProducts(x, container) {
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[6].product_id})">
                               Add To Cart
                             </button>
+                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                        <p class="m-auto text-white">${productArray[6].discount}%</p>
+                    </div>
                              </div>
                         </div>
 `
@@ -3187,7 +3231,22 @@ function displayProducts(x, container) {
 
 
 
+function getHeartIcon(product) {
+  let isWishlisted = false;
 
+  if (currentUser) {
+    isWishlisted = wishlist.some(item =>
+      item.product_id === product.product_id &&
+      item.user_id === currentUser.id
+    );
+  }
+
+  return `
+    <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+       onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(product)}, this)'>
+    </i>
+  `;
+}
 
 
 
@@ -3200,7 +3259,6 @@ function showDetails(id) {
 }
 
 function addToCart(productId) {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser) {
     showToast("Please login first to add items to cart.", "error");
@@ -3261,7 +3319,6 @@ function addToCart(productId) {
 
 
 let userProfile = document.getElementById('profile');
-let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 // localStorage.removeItem("currentUser");
 if (currentUser) {

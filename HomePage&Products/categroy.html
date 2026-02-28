@@ -62,6 +62,13 @@
 
 
                     <ul class="list-unstyled d-flex gap-3 mt-3 ">
+
+                        <li class="icon-il">
+                            <a href="../customerinfo/customerinfo.html?tab=wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                        </li>
+
                         <li class="icon-il">
                             <a href="../Cart/cart.html">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -85,7 +92,8 @@
         <nav class="bottom-bar   p-2">
             <div class="container-fluid">
                 <div class="flex justify-content-center align-items-center">
-                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+
+                    <ul class=" d-flex  flex-lg-nowrap gap-2  flex-wrap justify-content-center list-unstyled align-items-center"
                         id="bottom-navbar">
                         <li>
                             <a class="nav-link " href="./AllProducts.html">All products</a>
@@ -122,10 +130,9 @@
 
         <div class="container">
              <section class="dropdown text-center my-4 " >
-            <a class="btn dropdown-toggle fw-bolder border  rounded-5 py-3 px-5 w-25" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.25rem; background-color: rgba(220, 220, 220, 0.425);border-color:transparent;">
-                Sort By
-            </a>
-
+                    <a class="btn dropdown-toggle fw-bolder  w-25" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.25rem; color: #1b254b ;border-color:transparent;">
+                        Sort By
+                    </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" >Top rated</a></li>
                 <li><a class="dropdown-item" >A to Z</a></li>
@@ -252,6 +259,7 @@
     <!-- My Script -->
     <script src="./JS/categroy.js"></script>
     <script src="../GeneralFunctions/showToast.js"></script>
+    <script src="../GeneralFunctions/addToWishList.js"></script>
 </body>
 
 </html>

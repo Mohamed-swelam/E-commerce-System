@@ -1,4 +1,3 @@
-
 [
   {
     "product_id": 1,
@@ -27,7 +26,8 @@
         "comment": "Good performance, but the battery life could be better."
       }
     ],
-    "quantity": 11
+    "quantity": 11,
+    "oldPrice": 666.66
   },
   {
     "product_id": 2,
@@ -56,7 +56,8 @@
         "comment": "Good value for the price."
       }
     ],
-    "quantity": 8
+    "quantity": 8,
+    "oldPrice": 1052.62
   },
   {
     "product_id": 3,
@@ -143,7 +144,8 @@
         "comment": "A bit heavy, but the results are worth it."
       }
     ],
-    "quantity": 12
+    "quantity": 12,
+    "oldPrice": 588.22
   },
   {
     "product_id": 6,
@@ -172,7 +174,8 @@
         "comment": "A great addition to our home entertainment setup."
       }
     ],
-    "quantity": 6
+    "quantity": 6,
+    "oldPrice": 869.55
   },
   {
     "product_id": 7,
@@ -230,7 +233,8 @@
         "comment": "Good value for the price."
       }
     ],
-    "quantity": 12
+    "quantity": 12,
+    "oldPrice": 1052.62
   },
   {
     "product_id": 9,
@@ -259,7 +263,8 @@
         "comment": "A must-have for gaming enthusiasts."
       }
     ],
-    "quantity": 6
+    "quantity": 6,
+    "oldPrice": 444.43
   },
   {
     "product_id": 10,
@@ -346,7 +351,8 @@
         "comment": "A must-have for gaming enthusiasts."
       }
     ],
-    "quantity": 20
+    "quantity": 20,
+    "oldPrice": 631.57
   },
   {
     "product_id": 13,
@@ -404,7 +410,8 @@
         "comment": "Not suitable for outdoors"
       }
     ],
-    "quantity": 6
+    "quantity": 6,
+    "oldPrice": 631.57
   },
   {
     "product_id": 15,
@@ -433,7 +440,8 @@
         "comment": "Not suitable for outdoors"
       }
     ],
-    "quantity": 10
+    "quantity": 10,
+    "oldPrice": 631.57
   },
   {
     "product_id": 16,
@@ -462,7 +470,8 @@
         "comment": "Not suitable for outdoors"
       }
     ],
-    "quantity": 16
+    "quantity": 16,
+    "oldPrice": 631.57
   },
   {
     "product_id": 17,
@@ -520,7 +529,8 @@
         "comment": "Not suitable for outdoors"
       }
     ],
-    "quantity": 20
+    "quantity": 20,
+    "oldPrice": 631.57
   },
   {
     "product_id": 19,
@@ -549,7 +559,8 @@
         "comment": "Everything was great with this controller out of the box, but after a few weeks the right trigger button sticks down. It feels like there is some sort of adhesive inside the button that keeps it from coming back up. Anyway, the controller is pretty much useless now."
       }
     ],
-    "quantity": 5
+    "quantity": 5,
+    "oldPrice": 631.57
   },
   {
     "product_id": 20,
@@ -578,7 +589,8 @@
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
     ],
-    "quantity": 9
+    "quantity": 9,
+    "oldPrice": 631.57
   },
   {
     "product_id": 21,
@@ -607,7 +619,8 @@
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
     ],
-    "quantity": 9
+    "quantity": 9,
+    "oldPrice": 784.21
   },
   {
     "product_id": 22,
@@ -636,7 +649,8 @@
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
     ],
-    "quantity": 12
+    "quantity": 12,
+    "oldPrice": 214.24
   },
   {
     "product_id": 23,
@@ -665,7 +679,8 @@
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
     ],
-    "quantity": 7
+    "quantity": 7,
+    "oldPrice": 718.89
   },
   {
     "product_id": 24,
@@ -694,7 +709,8 @@
         "comment": "Excellent, it does what it is meant to do."
       }
     ],
-    "quantity": 15
+    "quantity": 15,
+    "oldPrice": 729.41
   },
   {
     "product_id": 25,
@@ -1448,7 +1464,8 @@
       }
     ],
     "seller_id": 8,
-    "quantity": 18
+    "quantity": 18,
+    "oldPrice": 588.22
   },
   {
     "product_id": 46,
@@ -2128,7 +2145,8 @@
       }
     ],
     "seller_id": 7,
-    "quantity": 18
+    "quantity": 18,
+    "oldPrice": 444.43
   },
   {
     "product_id": 66,
@@ -2162,7 +2180,8 @@
       }
     ],
     "seller_id": 8,
-    "quantity": 13
+    "quantity": 13,
+    "oldPrice": 631.57
   },
   {
     "product_id": 67,
@@ -2196,7 +2215,8 @@
       }
     ],
     "seller_id": 2,
-    "quantity": 16
+    "quantity": 16,
+    "oldPrice": 214.24
   },
   {
     "product_id": 68,
@@ -2230,7 +2250,8 @@
       }
     ],
     "seller_id": 7,
-    "quantity": 18
+    "quantity": 18,
+    "oldPrice": 718.89
   },
   {
     "product_id": 69,
@@ -2264,7 +2285,8 @@
       }
     ],
     "seller_id": 8,
-    "quantity": 18
+    "quantity": 18,
+    "oldPrice": 444.43
   },
   {
     "product_id": 70,
@@ -2298,7 +2320,8 @@
       }
     ],
     "seller_id": 2,
-    "quantity": 13
+    "quantity": 13,
+    "oldPrice": 631.57
   },
   {
     "product_id": 71,
@@ -2332,7 +2355,8 @@
       }
     ],
     "seller_id": 7,
-    "quantity": 16
+    "quantity": 16,
+    "oldPrice": 666.66
   },
   {
     "product_id": 72,
@@ -2366,7 +2390,8 @@
       }
     ],
     "seller_id": 8,
-    "quantity": 19
+    "quantity": 19,
+    "oldPrice": 1052.62
   },
   {
     "product_id": 73,
@@ -2434,7 +2459,8 @@
       }
     ],
     "seller_id": 7,
-    "quantity": 7
+    "quantity": 7,
+    "oldPrice": 869.55
   },
   {
     "product_id": 75,
@@ -2502,7 +2528,8 @@
       }
     ],
     "seller_id": 2,
-    "quantity": 5
+    "quantity": 5,
+    "oldPrice": 1052.62
   },
   {
     "product_id": 77,
@@ -2570,7 +2597,8 @@
       }
     ],
     "seller_id": 8,
-    "quantity": 6
+    "quantity": 6,
+    "oldPrice": 631.57
   },
   {
     "product_id": 79,
@@ -2604,7 +2632,8 @@
       }
     ],
     "seller_id": 2,
-    "quantity": 19
+    "quantity": 19,
+    "oldPrice": 631.57
   },
   {
     "product_id": 80,
@@ -2638,7 +2667,8 @@
       }
     ],
     "seller_id": 7,
-    "quantity": 15
+    "quantity": 15,
+    "oldPrice": 784.21
   },
   {
     "product_id": 81,
@@ -2672,7 +2702,8 @@
       }
     ],
     "seller_id": 8,
-    "quantity": 9
+    "quantity": 9,
+    "oldPrice": 631.57
   },
   {
     "product_id": 82,

@@ -59,6 +59,13 @@
 
 
                     <ul class="list-unstyled d-flex gap-3 mt-3 ">
+
+                        <li class="icon-il">
+                            <a href="../customerinfo/customerinfo.html?tab=wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                        </li>
+
                         <li class="icon-il">
                             <a href="../Cart/cart.html">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -66,7 +73,7 @@
                         </li>
 
                         <li class="icon-il">
-                            <a href="../login/login.html">
+                            <a href="../customerinfo/customerinfo.html">
                                 <i class="fa-regular fa-circle-user"></i>
                             </a>
                         </li>
@@ -87,7 +94,7 @@
         <nav class="bottom-bar   p-2">
             <div class="container-fluid">
                 <div class="flex justify-content-center align-items-center">
-                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                    <ul class=" d-flex  flex-lg-wrap gap-2 flex-wrap justify-content-center list-unstyled align-items-center"
                         id="bottom-navbar">
                         <li>
                             <a class="nav-link " href="./AllProducts.html">All products</a>
@@ -295,7 +302,7 @@
                     <div id="controls" class="d-flex justify-content-around align-items-center my-3 py-3 w-100">
                         <span><i class="fa-solid fa-circle-arrow-left" id="prev"></i></span>
                         <span id="navigators"
-                            class="d-flex flex-wrap flex-lg-nowrap  justify-content-center   align-items-center gap-2"></span>
+                            class="d-flex flex-wrap flex-lg-nowrap  justify-content-center align-items-center gap-2"></span>
                         <span><i class="fa-solid fa-circle-arrow-right" id="next"></i></span>
                     </div>
                 </div>
@@ -401,8 +408,10 @@
         integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- My Script -->
+
     <script src="./JS/products.js"></script>
     <script src="../GeneralFunctions/showToast.js"></script>
+    <script src="../GeneralFunctions/addToWishList.js"></script>
 </body>
 
 </html>

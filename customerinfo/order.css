@@ -19,16 +19,3 @@
 }
 
 
-/* ==================================== wishlist ============================= */
-
-#wishlist{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height:180px ;
-
-}
-#wishlist p{
-    font-size: 19px;
-    letter-spacing: 1px ;
-}

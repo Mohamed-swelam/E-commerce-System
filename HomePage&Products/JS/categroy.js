@@ -13,6 +13,10 @@ let searchPrds = [];
 let sortValue;
 let baseCategory = [];
 
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
 let currentPath = location.search.split("?").pop();
 console.log(currentPath);
 
@@ -49,6 +53,7 @@ function CategroyData() {
 }
 
 
+
 function displayCategroyData(page) {
     console.log(baseCategory);
 
@@ -59,12 +64,28 @@ function displayCategroyData(page) {
 
     for (let i = 0; i < categoryArray.length; i++) {
 
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+            //check if the product in the wishlist
+
+            isWishlisted = wishlist.some(item =>
+                item.product_id === categoryArray[i].product_id &&
+                item.user_id === currentUser.id
+            );
+        }
+
         prdBox += `   
        <div class="col-lg-4 col-6">
                      <div class="card position-relative"style="min-height:500px;" onclick="showDetails(${categoryArray[i].product_id})">
                     <div style="cursor:pointer">
                     <div class=" bg-white text-end py-3"  >
-                    <span ><i class="fa-regular fa-heart "></i></span>
+                        <span>
+                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(categoryArray[i])}, this)'>
+                            </i>
+                        </span>
                     </div>
                         <img class="card-img-top"  height="300" src="${categoryArray[i].image}" alt="${categoryArray[i].name}" />
                         <div class="card-body" onclick="showDetails(${categoryArray[i].id})">
@@ -74,7 +95,7 @@ function displayCategroyData(page) {
                                     <small  >${categoryArray[i].brand}</small>
                                 </div>
                             <div>
-                                <span class=" card-text text-decoration-line-through text-danger">${categoryArray[i].oldprice ?? "0"}$</span>
+                                <span class=" card-text text-decoration-line-through text-danger">${categoryArray[i].oldPrice ?? "0"}$</span>
                                 <span class=" card-text  text-success " style="font-size:25px;">${categoryArray[i].price}$</span>
                             </div>
                             </div>
@@ -178,47 +199,27 @@ document.querySelector(".dropdown-menu").addEventListener("click", (e) => {
 
 
 function sortByValue(sortPrds) {
-    console.log(sortValue);
-    console.log(searchInput.value);
-
-
     if (sortValue === "Top rated") {
         sorCategory = [...sortPrds].sort((a, b) => b.rating - a.rating);
-        if (searchInput.value) {
-            baseCategory = [...sorCategory];
-        }
+        baseCategory = [...sorCategory];
     }
 
     else if (sortValue === "A to Z") {
-        sorCategory = [...sortPrds].sort();
-        if (searchInput.value) {
-            baseCategory = [...sorCategory];
-        }
+        sorCategory = [...sortPrds].sort((a, b) => a.name.localeCompare(b.name));
+        baseCategory = [...sorCategory];
     }
     else if (sortValue === "Z to A") {
-        sorCategory = [...sortPrds].sort().reverse();
-        if (searchInput.value) {
-            baseCategory = [...sorCategory];
-            console.log(baseCategory);
-        }
+        sorCategory = [...sortPrds].sort((a, b) => b.name.localeCompare(a.name));
+        baseCategory = [...sorCategory];
     }
     else if (sortValue === "Low Price") {
         sorCategory = [...sortPrds].sort((a, b) => a.price - b.price);
-        if (searchInput.value) {
-            baseCategory = [...sorCategory];
-        }
+        baseCategory = [...sorCategory];
     }
 
     else if (sortValue === "High Price") {
-        sorCategory = [];
         sorCategory = [...sortPrds].sort((a, b) => b.price - a.price);
-
-        if (searchInput.value) {
-            console.log("hamada");
-
-            baseCategory = [...sorCategory];
-            console.log(baseCategory);
-        }
+        baseCategory = [...sorCategory];
     }
 }
 
@@ -237,8 +238,12 @@ function searchByName() {
             console.log("no product");
         }
     }
-    console.log(baseCategory);
-    if (sortValue) { sortByValue(baseCategory); }
+    if (sortValue) {
+        sortByValue(baseCategory);
+        console.log(baseCategory);
+        displayCategroyData(1);
+
+    }
 }
 
 

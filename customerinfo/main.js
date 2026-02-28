@@ -56,6 +56,8 @@ if (!currentUser) {
 function loadUserData() {
     document.getElementById("userName").textContent = currentUser.fullName;
     document.getElementById("tableName").textContent = currentUser.fullName;
+    document.getElementById("userName2").textContent = currentUser.fullName;
+
     document.getElementById("tableEmail").textContent = currentUser.email;
     document.getElementById("tablePhone").textContent = currentUser.phone;
 }
@@ -119,7 +121,7 @@ const addAddressBtn = document.getElementById("addAddressBtn");
 const saveAddrBtn = document.getElementById("saveAddrBtn");
 const cancelAddrBtn = document.getElementById("cancelAddrBtn");
 
-let editIndex = null; 
+let editIndex = null;
 
 // ================== Display Defalut Adresses ==================
 function renderAddresses() {
@@ -172,7 +174,7 @@ function showAddressForm(addr = null) {
     addressForm.classList.remove("d-none");
 
     if (addr) {
-        
+
         document.getElementById("formTitle").textContent = "Edit Address";
         document.getElementById("fullAddress").value = addr.fullAddress;
         document.getElementById("addrName").value = addr.name;
@@ -227,5 +229,32 @@ saveAddrBtn.addEventListener("click", () => {
     renderAddresses();
     addressForm.classList.add("d-none");
     editIndex = null;
-}); 
+});
 renderAddresses();
+
+
+
+
+
+
+
+
+
+const params = new URLSearchParams(window.location.search);
+const tab = params.get("tab");
+
+if (tab === "wishlist") {
+
+    document.querySelectorAll(".content-section").forEach(section => {
+        section.classList.add("d-none");
+    });
+
+    document.getElementById("wishlist").classList.remove("d-none");
+
+    document.querySelectorAll("#sidebarMenu .list-group-item").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    const wishlistBtn = document.querySelector('[data-target="wishlist"]');
+    if (wishlistBtn) wishlistBtn.classList.add("active");
+}

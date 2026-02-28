@@ -6,7 +6,8 @@ let start, end, brand;
 let searchInput = document.getElementById("input-search");
 let searchedPrds = [];
 
-
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
 let curretPath = location.pathname.split("/").pop();
 console.log(curretPath);
@@ -42,22 +43,42 @@ console.log(baseProducts);
 
 
 
+
 function displayAllPrds(prds) {
     product = " ";
     for (let i = 0; i < prds.length; i++) {
+
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+            //check if the product in the wishlist
+
+            isWishlisted = wishlist.some(item =>
+                item.product_id === prds[i].product_id &&
+                item.user_id === currentUser.id
+            );
+        }
+
+
+
         product +=
             `
             <div class="col-6 col-lg-4" >
-                    <div class="card position-relative" style="cursor:pointer;"  onclick="showDetails(${prds[i].product_id})" >
+                    <div class="card position-relative" style="cursor:pointer;"   >
                     <div class=" bg-white text-end py-3">
-                    <span><i class="fa-regular fa-heart"></i></span>
-                </div>
-                        <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
+                        <span>
+                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(prds[i])}, this)'>
+                            </i>
+                        </span>
+                    </div>
+                        <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200" onclick="showDetails(${prds[i].product_id})">
                         <div class="card-body">
                             <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
                             
                             <div>
-                                <span class=" card-text text-decoration-line-through text-danger">${prds[i].oldprice ?? "0"}$</span>
+                                <span class=" card-text text-decoration-line-through text-danger">${prds[i].oldPrice ?? "0"}$</span>
                                 <span class=" card-text  text-success " style="font-size:25px;">${prds[i].price}$</span>
                             </div>
 
@@ -82,11 +103,56 @@ function displayAllPrds(prds) {
     }
     document.getElementById("prds-data").innerHTML = product;
 }
+// ===================== Add to wishlist =====================
+
+
+
+
+window.addToWishlist = function (product, heartIcon) {
+
+    if (!currentUser) {
+
+        showToast("Please login first to add to wish list", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../login/login.html";
+        }, 1000)
+        return;
+    }
+
+
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    const existsIndex = wishlist.findIndex(item =>
+        item.product_id === product.product_id &&
+        item.user_id === currentUser.id
+    );
+
+    if (existsIndex === -1) {
+        wishlist.push({
+            user_id: currentUser.id,
+            product_id: product.product_id
+        });
+        heartIcon.classList.remove('fa-regular');
+        heartIcon.classList.add('fa-solid', 'text-danger');
+    } else {
+        wishlist.splice(existsIndex, 1);
+        heartIcon.classList.remove('fa-solid', 'text-danger');
+        heartIcon.classList.add('fa-regular');
+    }
+
+    showToast("Product added to wishlist successfully...", "success");
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+};
+
+
+
+
 
 
 
 function showDetails(id) {
-    location.href = `../../product_details/product-details.html?id=${id}`
+    location.href = `../product_details/product-details.html?id=${id}`
 }
 
 function displayPaginationItems(prds, page) {

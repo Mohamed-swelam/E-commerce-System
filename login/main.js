@@ -50,7 +50,7 @@ function isValidEmail(email) {
 
 
 function isValidPassword(password) {
-    const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
     return pattern.test(password);
 }
 
