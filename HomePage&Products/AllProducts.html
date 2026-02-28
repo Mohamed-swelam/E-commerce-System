@@ -24,7 +24,7 @@
 
 <body>
     <!-- Start NavBar -->
-    <section id="nav">
+    <section id="nav" class="sticky-top">
         <nav class="navbar navbar-expand-lg  bg-white px-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./home.html">Avion</a>
@@ -34,6 +34,15 @@
                 </button>
 
                 <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                    <ul>
+                        <div class="d-flex align-items-center  rounded-2 px-3 " style="border:1px solid gainsboro;">
+                            <span> <i class="fa-solid fa-search"></i> </span>
+                            <input id="input-search" type="search" class="form-control border-0">
+                        </div>
+                    </ul>
+
+
+
                     <ul class="navbar-nav  ms-auto">
                         <li class="nav-item">
                             <a class="nav-link " href="#">About Us</a>
@@ -42,12 +51,10 @@
                             <a class="nav-link" href="../ContactUs/Contact.html">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
+                            <a class="nav-link border rounded-pill  bg-dark text-white" href="#">Login</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
-                        </li> -->
                     </ul>
+
 
 
 
@@ -63,7 +70,12 @@
                                 <i class="fa-regular fa-circle-user"></i>
                             </a>
                         </li>
+
                     </ul>
+
+
+
+
 
 
 
@@ -278,7 +290,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-9">
+                <div class="col-lg-9  ">
                     <div class="row" id="prds-data"></div>
                     <div id="controls" class="d-flex justify-content-around align-items-center my-3 py-3 w-100">
                         <span><i class="fa-solid fa-circle-arrow-left" id="prev"></i></span>
@@ -290,6 +302,15 @@
             </div>
             </div>
         </section>
+
+
+
+
+
+
+
+
+
     </main>
     <!-- End Main -->
 

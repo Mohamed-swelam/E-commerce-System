@@ -211,3 +211,16 @@ body {
     padding: 12px;
     border-radius: 8px;
 }
+
+
+
+#contact_Support {
+    color: white;
+    background-color: #25336A;
+    transition: 0.3s;
+    width: 200px;
+}
+
+#contact_Support:hover {
+    transform: translateY(-3px);
+}

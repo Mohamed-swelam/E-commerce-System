@@ -51,7 +51,19 @@ async function getProducts() {
     product_title.innerText = product.name;
 
     let product_price = document.getElementById("product_price");
+    let product_oldprice = document.getElementById("product_oldprice");
+    let product_discount = document.getElementById("product_discount");
+
     product_price.innerText = `${product.price}$`;
+
+    if (product.oldPrice && product.oldPrice > product.price) {
+
+        product_oldprice.innerText = `${product.oldPrice}$`;
+        product_discount.innerText = `Save ${product.discount}%`;
+    } else {
+        product_oldprice.style.display = "none";
+        product_discount.style.display = "none";
+    }
 
     let product_description = document.getElementById("product_description");
     product_description.innerText = product.description || "No description available for this product.";
@@ -89,21 +101,40 @@ async function getProducts() {
 function displayRelatedProducts(productsArray) {
     const container = document.getElementById("related-products");
 
-    container.innerHTML = productsArray.map(item => `
+    container.innerHTML = productsArray.map(item => {
+
+
+        let priceHTML = "";
+
+        if (item.oldPrice && item.oldPrice > item.price) {
+
+            priceHTML = `
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <span class="fw-semibold">${item.price}$</span>
+                    <small class="text-muted text-decoration-line-through">${item.oldPrice}$</small>
+                    <span class="badge discount-mini">-${item.discount}%</span>
+                </div>
+            `;
+        } else {
+            priceHTML = `<small class="text-muted">${item.price}$</small>`;
+        }
+
+        return `
         <div class="col-6 col-md-3">
-        <div class="card border-0 related-card">
-            <img src="${item.image}" 
-                class="card-img-top"
-                data-id="${item.product_id}" 
-                alt="${item.name}">
-                
-            <div class="card-body px-0 pt-2">
-            <h6 class="mb-1">${item.name}</h6>
-            <small class="text-muted">${item.price}$</small>
+            <div class="card border-0 related-card h-100">
+                <img src="${item.image}" 
+                    class="card-img-top"
+                    data-id="${item.product_id}" 
+                    alt="${item.name}">
+                    
+                <div class="card-body px-0 pt-2">
+                    <h6 class="mb-1">${item.name}</h6>
+                    ${priceHTML}
+                </div>
             </div>
         </div>
-        </div>
-    `).join("");
+        `;
+    }).join("");
 }
 
 

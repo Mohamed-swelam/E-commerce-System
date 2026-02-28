@@ -27,7 +27,7 @@
         "userName": "Sara Ali",
         "email": "sara@gmail.com",
         "subject": "Inquiry",
-        "message": "The payment was deducted, but my order has not been confirmed yet. Please check the status.",
+        "message": "The payment was deducted, but my order has not been confirmed yet. Please check my order status.",
         "status": "Pending",
         "reply": "",
         "createdAt": "2026-02-21T09:45:00.000Z"
@@ -37,8 +37,8 @@
         "userId": 6,
         "userName": "Omar Hassan",
         "email": "omar@gmail.com",
-        "subject": "Cancellation",
-        "message": "I would like to cancel my order before it is shipped.",
+        "subject": "Inquiry",
+        "message": "I would like to know if I can cancel my order before it is shipped.",
         "status": "Resolved",
         "reply": "Your order has been successfully canceled and the refund has been processed.",
         "createdAt": "2026-02-18T16:20:00.000Z"
@@ -49,7 +49,7 @@
         "userName": "Kariem Tamer",
         "email": "Kariem@gmail.com",
         "subject": "Inquiry",
-        "message": "I placed an order recently, but I cannot see its status in my account dashboard. Could you confirm if it was processed?",
+        "message": "I recently placed an order, but I cannot see its status in my account dashboard. Could you confirm if it has been processed?",
         "status": "Replied",
         "reply": "Your order has been confirmed and is currently being processed. You can track it from the Orders page.",
         "createdAt": "2026-02-22T11:05:00.000Z"
