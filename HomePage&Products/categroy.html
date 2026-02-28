@@ -26,7 +26,7 @@
 <body>
 
     <!-- Start NavBar -->
-    <section id="nav">
+    <section id="nav" class="sticky-top">
         <nav class="navbar navbar-expand-lg  bg-white px-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./home.html">Avion</a>
@@ -36,6 +36,15 @@
                 </button>
 
                 <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+
+
+                    <ul>
+                        <div class="d-flex align-items-center  rounded-2 px-3 " style="border:1px solid gainsboro;">
+                            <span> <i class="fa-solid fa-search"></i> </span>
+                            <input id="input-search" type="search" class="form-control border-0">
+                        </div>
+                    </ul>
+
                     <ul class="navbar-nav  ms-auto">
                         <li class="nav-item">
                             <a class="nav-link " href="#">About Us</a>
@@ -46,9 +55,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Blog</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
-                        </li> -->
+                      <li class="nav-item">
+                            <a class="nav-link border rounded-pill  bg-dark text-white" href="#">Login</a>
+                        </li>
                     </ul>
 
 
@@ -110,8 +119,24 @@
 
     <!-- Start Categroy -->
     <header id="category" style="padding-top: 100px;  padding-bottom: 40px; ">
+
         <div class="container">
-            <div class="row g-3" id="data">
+             <section class="dropdown text-center my-4 " >
+            <a class="btn dropdown-toggle fw-bolder border  rounded-5 py-3 px-5 w-25" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.25rem; background-color: rgba(220, 220, 220, 0.425);border-color:transparent;">
+                Sort By
+            </a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" >Top rated</a></li>
+                <li><a class="dropdown-item" >A to Z</a></li>
+                <li><a class="dropdown-item">Z to A</a></li>
+                <li><a class="dropdown-item">High Price</a></li>
+                <li><a class="dropdown-item">Low Price</a></li>
+            </ul>
+        </section>
+
+
+            <div class="row g-5" id="data">
             </div>
 
 

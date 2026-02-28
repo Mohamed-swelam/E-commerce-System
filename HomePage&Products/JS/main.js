@@ -1,9 +1,3 @@
-window.addEventListener("scroll", () => {
-  if (scrollY > 134.44) {
-    document.getElementById("nav").classList.add("fixed-top");
-    document.getElementById("nav").style.transition = "all 0.5s"
-  }
-})
 
 
 products = [
@@ -3112,13 +3106,18 @@ function displayProducts(x, container) {
         productBox +=
           `
                                 <div class="col-lg-3">
-                                    <div class="card w-100 p-0 m-0" style="cursor:pointer;"  onclick="showDetails(${productArray[i].product_id})">
-                                        <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
-                                        <div class="card-body">
+                                    
+                                    <div class="card w-100 p-0 m-0" style="cursor:pointer;"  >
+                                      <div class=" bg-white text-end py-3"  >
+                                      <span ><i class="fa-regular fa-heart"></i></span>
+                                     </div>    
+                                    <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
+                                        <div class="card-body" onclick="showDetails(${productArray[i].product_id})">
                                             <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[i].price}$</p>
                                         </div>
-                                          <div class="text-center w-100">
+                                          
+                                          <div class="text-center w-100 id="cart">
                                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[i].product_id})">
                                               Add To Cart
                                             </button> 
@@ -3130,26 +3129,32 @@ function displayProducts(x, container) {
     }
     else {
       productBox = `
-                        <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[20].product_id})">
-                             <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
-                                        <div class="card-body">
+                        <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;">
+                          <div class=" bg-white text-end py-3"  >
+                              <span ><i class="fa-regular fa-heart" ></i></span>
+                            </div>     
+                        <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
+                                        <div class="card-body" onclick="showDetails(${productArray[20].product_id})">
                                             <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[20].price}$</p>
                                         </div>
-                                          <div class="text-center w-100">
+                                          <div class="text-center w-100" id="cart">
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[20].product_id})">
                               Add To Cart
                             </button>
                              </div>
                         </div>
 
-                        <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  onclick="showDetails(${productArray[21].product_id})">
-                             <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
-                                        <div class="card-body">
+                        <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+                          <div class=" bg-white text-end py-3"  >
+                            <span ><i class="fa-regular fa-heart"></i></span>
+                          </div>     
+                        <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
+                                        <div class="card-body" onclick="showDetails(${productArray[21].product_id})">
                                             <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
                                             <p class="card-text">${productArray[21].price}$</p>
                         </div>
-                         <div class="text-center w-100">
+                         <div class="text-center w-100" id="cart">
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[21].product_id})">
                               Add To Cart
                             </button> 
@@ -3157,14 +3162,17 @@ function displayProducts(x, container) {
                         </div>
 
 
-                    <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  onclick="showDetails(${productArray[9].product_id})">
-                             <img src="${productArray[9].image}" class="card-img-top" alt="${productArray[9].name}" height=200>
-                                        <div class="card-body">
-                                            <h5 class="card-title">${productArray[9].name.slice(0, 15)}</h5>
-                                            <p class="card-text">${productArray[9].price}$</p>
+                    <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  >
+                        <div class=" bg-white text-end py-3"  >
+                    <span ><i class="fa-regular fa-heart"></i></span>
+                    </div>       
+                      <img src="${productArray[6].image}" class="card-img-top" alt="${productArray[6].name}" height=200>
+                                        <div class="card-body" onclick="showDetails(${productArray[6].product_id})">
+                                            <h5 class="card-title">${productArray[6].name.slice(0, 15)}</h5>
+                                            <p class="card-text">${productArray[6].price}$</p>
                     </div>
-                    <div class="text-center w-100">
-                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[9].product_id})">
+                    <div class="text-center w-100" id="cart">
+                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[6].product_id})">
                               Add To Cart
                             </button>
                              </div>
@@ -3176,6 +3184,11 @@ function displayProducts(x, container) {
     container.innerHTML += productBox;
   }
 }
+
+
+
+
+
 
 
 
@@ -3267,4 +3280,6 @@ if (currentUser) {
   userProfile.style.display = "none";
   document.getElementById('login-link').style.display = "block";
 }
+
+
 
