@@ -3086,6 +3086,9 @@ products = [
 
 console.log(products);
 
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
 (function () {
   if (!localStorage.getItem("products")) {
     localStorage.setItem("products", JSON.stringify(products));
@@ -3103,12 +3106,30 @@ function displayProducts(x, container) {
     let productBox = " ";
     if (x === 0) {
       for (let i = 0; i < 4; i++) {
+
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+          //check if the product in the wishlist
+
+          isWishlisted = wishlist.some(item =>
+            item.product_id === productArray[i].product_id &&
+            item.user_id === currentUser.id
+          );
+        }
+
+
         productBox +=
           `
                                 <div class="col-lg-3">
                                     <div class="card position-relative w-100 p-0 m-0" style="cursor:pointer;"  >
                                      <div class=" bg-white text-end py-3"  >
-                                      <span ><i class="fa-regular fa-heart"></i></span>
+                                      <span>
+                                          <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                                          onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(productArray[i])}, this)'>
+                                          </i>
+                                      </span>
                                      </div>    
                                     <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
                                         <div class="card-body" onclick="showDetails(${productArray[i].product_id})">
@@ -3133,6 +3154,7 @@ function displayProducts(x, container) {
       }
     }
     else {
+
       productBox = `
                         <div class="card position-relative  col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" >
                              <div class=" bg-white text-end py-3"  >
@@ -3216,7 +3238,6 @@ function showDetails(id) {
 }
 
 function addToCart(productId) {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser) {
     showToast("Please login first to add items to cart.", "error");
@@ -3277,7 +3298,6 @@ function addToCart(productId) {
 
 
 let userProfile = document.getElementById('profile');
-let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 // localStorage.removeItem("currentUser");
 if (currentUser) {

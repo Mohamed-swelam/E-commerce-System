@@ -13,6 +13,10 @@ let searchPrds = [];
 let sortValue;
 let baseCategory = [];
 
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
 let currentPath = location.search.split("?").pop();
 console.log(currentPath);
 
@@ -49,6 +53,7 @@ function CategroyData() {
 }
 
 
+
 function displayCategroyData(page) {
     console.log(baseCategory);
 
@@ -59,12 +64,28 @@ function displayCategroyData(page) {
 
     for (let i = 0; i < categoryArray.length; i++) {
 
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+            //check if the product in the wishlist
+
+            isWishlisted = wishlist.some(item =>
+                item.product_id === categoryArray[i].product_id &&
+                item.user_id === currentUser.id
+            );
+        }
+
         prdBox += `   
        <div class="col-lg-4 col-6">
                      <div class="card position-relative"style="min-height:500px;" onclick="showDetails(${categoryArray[i].product_id})">
                     <div style="cursor:pointer">
                     <div class=" bg-white text-end py-3"  >
-                    <span ><i class="fa-regular fa-heart "></i></span>
+                        <span>
+                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(categoryArray[i])}, this)'>
+                            </i>
+                        </span>
                     </div>
                         <img class="card-img-top"  height="300" src="${categoryArray[i].image}" alt="${categoryArray[i].name}" />
                         <div class="card-body" onclick="showDetails(${categoryArray[i].id})">

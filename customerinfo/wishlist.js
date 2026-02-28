@@ -1,9 +1,28 @@
+let products = JSON.parse(localStorage.getItem("products"));
 
 const container = document.getElementById('wishlist-container');
 const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
+const loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+
+if (!loggedUser) {
+
+    showToast("Please login first", "error");
+
+    setTimeout(() => {
+        window.location.href = "../../login/login.html";
+        return;
+    }, 1000)
+
+}
+
+let userWishList = wishlist.filter(e => e.user_id == loggedUser.id);
+console.log(userWishList);
+
+
+
 // handel if no item in local storage 
-if (wishlist.length === 0) {
+if (userWishList.length === 0) {
     container.innerHTML = `
         <div style="
             text-align:center;
@@ -17,17 +36,20 @@ if (wishlist.length === 0) {
                 </a>
         </div>
     `;
-} else { 
-    wishlist.forEach(product => {
+} else {
+    userWishList.forEach(item => {
+
+        let product = getProduct(item.product_id);
+
         const card = document.createElement('div');
         card.classList.add('wishlist-card');
         card.style.position = 'relative';
 
         card.innerHTML = `
-            <img src="${product.image}" style="width:100%; height:200px; object-fit:cover;">
+            <img src="${product.image}" style="width:100%; height:200px; object-fit:contain;">
             <div style="padding:10px; display:flex; flex-direction:column; gap:5px;">
                 <h4 style="margin:0; font-size:16px;">${product.name}</h4>
-                <p style="margin:0; font-size:13px; color:#555;">${product.description || ''}</p>
+                <p style="margin:0; font-size:13px; color:#555;" class = "prod_desc">${product.description || ''}</p>
                 <p style="margin:5px 0; font-weight:bold;">${product.price}$</p>
             </div>
             <button class="remove-btn" style="
@@ -51,13 +73,22 @@ if (wishlist.length === 0) {
         removeBtn.addEventListener('click', () => {
             card.remove();
 
-        
+
             let updatedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            updatedWishlist = updatedWishlist.filter(item => item.product_id !== product.product_id);
+            updatedWishlist = updatedWishlist.filter(item =>
+                !(item.product_id === product.product_id && item.user_id === loggedUser.id)
+            );
+
             localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
 
-                // after delete all item 
-            if (updatedWishlist.length === 0) {
+            const userWishlistAfterDelete = updatedWishlist.filter(
+                item => item.user_id === loggedUser.id
+            );
+
+            showToast("Product deleted successfully...", "success");
+
+            // after delete all item 
+            if (userWishlistAfterDelete.length === 0) {
                 container.innerHTML = `
                     <div style="
                         text-align:center;
@@ -76,6 +107,9 @@ if (wishlist.length === 0) {
     });
 }
 
+
+
+
 // handel heart icon 
 const hearts = document.querySelectorAll('.heartIcon i');
 hearts.forEach(heart => {
@@ -88,8 +122,18 @@ hearts.forEach(heart => {
     }
 
     heart.addEventListener('click', (event) => {
-        event.stopPropagation();  
+        event.stopPropagation();
         const product = prds.find(p => p.product_id === productId);
         addToWishlist(product, heart);
     });
 });
+
+
+
+
+
+//get product details
+
+function getProduct(product_id) {
+    return products.find(e => e.product_id == product_id);
+}

@@ -100,6 +100,27 @@ async function getProducts() {
 
     });
 
+    const wishlistIcon = document.getElementById("wishlist_icon");
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    if (currentUser) {
+        const isWishlisted = wishlist.some(item =>
+            item.product_id === product.product_id &&
+            item.user_id === currentUser.id
+        );
+
+        if (isWishlisted) {
+            wishlistIcon.classList.remove("fa-regular");
+            wishlistIcon.classList.add("fa-solid", "text-danger");
+        }
+    }
+
+    wishlistIcon
+        .addEventListener("click", function () {
+            addToWishlist(product, this);
+        });
+
 
 }
 
