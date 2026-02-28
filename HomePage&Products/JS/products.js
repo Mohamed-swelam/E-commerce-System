@@ -21,27 +21,53 @@ function displayAllPrds(prds) {
             <div class="col-6 col-lg-4" >
                     <div class="card" style="cursor:pointer;"  onclick="showDetails(${prds[i].product_id})" >
                         <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
-                        <div class="card-body">
-                            <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
-                            <p class="card-text">${prds[i].price}$</p>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div class="card-body">
+                                <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
+                                <p class="card-text">${prds[i].price}$</p>
+                            </div>
+
+                            <div class="heartIcon">
+                            <i class="fa-regular fa-heart"
+                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(prds[i])}, this)'></i>
+                        </div>
                         </div>
 
-                         <div class="text-center w-100">
+                        <div class="text-center w-100">
                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${prds[i].product_id})">
-                              Add To Cart
+                            Add To Cart
                             </button> 
-                             </div>
+                        
+                        </div>
                     </div>
                 </div>
                 `
     }
     document.getElementById("prds-data").innerHTML = product;
 }
+ // ===================== Add to wishlist =====================
 
+window.addToWishlist = function(product, heartIcon) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    const existsIndex = wishlist.findIndex(item => item.product_id === product.product_id);
+
+    if (existsIndex === -1) {
+        wishlist.push(product);
+        heartIcon.classList.remove('fa-regular');
+        heartIcon.classList.add('fa-solid', 'text-danger');
+    } else {
+        wishlist.splice(existsIndex, 1);
+        heartIcon.classList.remove('fa-solid', 'text-danger');
+        heartIcon.classList.add('fa-regular');
+    }
+
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+};
 
 
 function showDetails(id) {
-    location.href = `../../product_details/product-details.html?id=${id}`
+    location.href = `../product_details/product-details.html?id=${id}`
 }
 
 
@@ -78,7 +104,7 @@ function navigateNumbrsWithPrevAndNext(prds) {
     for (let i = 1; i <= navigatNumbers; i++) {
         console.log(i);
         numberBox += `
-                  <span class="p-3 border number-span" style="cursor: pointer;">${i}</span>
+                <span class="p-3 border number-span" style="cursor: pointer;">${i}</span>
                 `
     }
     document.getElementById("navigators").innerHTML = numberBox;
@@ -256,3 +282,8 @@ function addToCart(productId) {
     localStorage.setItem("carts", JSON.stringify(carts));
     showToast("Product added to cart successfully..", "success");
 }
+
+
+
+
+
