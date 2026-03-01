@@ -127,7 +127,7 @@ async function DisplayProducts() {
             address: address,
             phone: phone,
             total: totalAll,
-            status: "processing",
+            status: "pending",
             createdAt: new Date().toISOString(),
             items: userCart.items,
         };

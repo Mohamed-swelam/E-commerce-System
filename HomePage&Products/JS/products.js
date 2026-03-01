@@ -62,44 +62,62 @@ function displayAllPrds(prds) {
 
 
 
+        const hasDiscount = prds[i].discount && prds[i].discount > 0 && prds[i].oldPrice;
+
         product +=
             `
-            <div class="col-6 col-lg-4" >
-                    <div class="card position-relative" style="cursor:pointer;"   >
-                    <div class=" bg-white text-end py-3">
-                        <span>
-                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
-                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(prds[i])}, this)'>
-                            </i>
-                        </span>
-                    </div>
-                        <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200" onclick="showDetails(${prds[i].product_id})">
-                        <div class="card-body">
-                            <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
-                            
-                            <div>
-                                <span class=" card-text text-decoration-line-through text-danger">${prds[i].oldPrice ?? "0"}$</span>
-                                <span class=" card-text  text-success " style="font-size:25px;">${prds[i].price}$</span>
-                            </div>
-
+                <div class="col-6 col-lg-4">
+                    <div class="card position-relative" style="cursor:pointer;">
+                        
+                        <div class="bg-white text-end py-3">
+                            <span>
+                                <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                                onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(prds[i])}, this)'>
+                                </i>
+                            </span>
                         </div>
 
-                         
-                        <div class="text-center w-100 id="cart">
-                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${prds[i].product_id})">
-                              Add To Cart
-                            </button>
-                             </div>
+                        <img src="${prds[i].image}" class="card-img-top" 
+                            alt="${prds[i].name}" height="200" 
+                            onclick="showDetails(${prds[i].product_id})">
 
+                        <div class="card-body">
+                            <p class="card-title fw-normal" id="product_name">
+                                ${prds[i].name}
+                            </p>
+                            
+                            <div>
+                                ${hasDiscount
+                ? `<span class="card-text text-decoration-line-through text-danger">
+                                        ${prds[i].oldPrice}$
+                                    </span>`
+                : ``
+            }
 
-                             <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
-                                <p class="m-auto text-white">${prds[i].discount}%</p>
+                                <span class="card-text ${hasDiscount ? 'text-success' : 'text-dark'}" 
+                                    style="font-size:25px;">
+                                    ${prds[i].price}$
+                                </span>
                             </div>
+                        </div>
+
+                        <div class="text-center w-100" id="cart">
+                            <button class="btn add-to-cart-btn"
+                                onclick="event.stopPropagation();addToCart(${prds[i].product_id})">
+                                Add To Cart
+                            </button>
+                        </div>
+
+                        ${hasDiscount
+                ? `<div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex fw-bold"
+                                style="width:65px; height:65px;">
+                                <p class="m-auto text-white">${prds[i].discount}%</p>
+                            </div>`
+                : ``
+            }
+
                     </div>
-
-
-            </div>
-        </div>`
+                </div>`
     }
     document.getElementById("prds-data").innerHTML = product;
 }
@@ -325,22 +343,24 @@ document.querySelectorAll("#brands").forEach(divBrand => {
 
 
 // search product
-document.getElementById("input-search").addEventListener('search', () => {
-    searchedPrds = [];
-    console.log(baseProducts);
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("input-search");
 
-    for (let i = 0; i < allPrds.length; i++) {
-        if (allPrds[i].name.toLowerCase().trim().includes(searchInput.value.toLowerCase().trim())) {
-            searchedPrds.push(allPrds[i]);
-        }
-        else {
-            console.log("on product");
-        }
+    if (searchInput) {
+        searchInput.addEventListener('search', () => {
+            searchedPrds = [];
+            for (let i = 0; i < allPrds.length; i++) {
+                if (allPrds[i].name.toLowerCase().trim()
+                    .includes(searchInput.value.toLowerCase().trim())) {
+                    searchedPrds.push(allPrds[i]);
+                }
+            }
+            baseProducts = [...searchedPrds];
+            displayPaginationItems(searchedPrds, 1);
+            navigateNumbrsWithPrevAndNext(searchedPrds);
+        });
     }
-    baseProducts = [...searchedPrds];
-    displayPaginationItems(searchedPrds, 1);
-    navigateNumbrsWithPrevAndNext(searchedPrds)
-})
+});
 
 function colorNavigatorBasedOnArrow() {
     let spans = document.querySelectorAll(".number-span");
@@ -415,3 +435,31 @@ function addToCart(productId) {
     localStorage.setItem("carts", JSON.stringify(carts));
     showToast("Product added to cart successfully..", "success");
 }
+
+function handleNavbarAuth() {
+    const userProfile = document.getElementById("profile");
+    const loginLink = document.getElementById("login-link");
+    const adminDashboard = document.getElementById("admin-dashboard");
+    const sellerDashboard = document.getElementById("seller-dashboard");
+
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!userProfile || !loginLink) return;
+
+    if (currentUser) {
+        userProfile.style.display = "block";
+        loginLink.style.display = "none";
+
+        if (currentUser.role === "admin") {
+            adminDashboard?.classList.remove("d-none");
+            sellerDashboard?.classList.add("d-none");
+        } else if (currentUser.role === "seller") {
+            sellerDashboard?.classList.remove("d-none");
+            adminDashboard?.classList.add("d-none");
+        }
+    } else {
+        userProfile.style.display = "none";
+        loginLink.style.display = "block";
+    }
+}
+handleNavbarAuth();
