@@ -144,19 +144,64 @@ else {
 let sellers = users.filter(user => user.role == 'seller')
 // localStorage.setItem('sellers', JSON.stringify(sellers))
 
-
 let customers = users.filter(user => user.role == 'customer');
 // localStorage.setItem('customers', JSON.stringify(customers))
 
+// localStorage.removeItem('orders');
+// fetch('../Dummy Data/orders.json')
+//     .then(res => {
+//         if (!res.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return res.json();
+//     }
+//     ).then(orders => {
+//         localStorage.setItem('orders', JSON.stringify(orders));
+//         // location.reload();
+//     })
+//     .catch(error => {
+//         console.error('There was a problem with the fetch operation:', error);
+//     });
 let orders = JSON.parse(localStorage.getItem('orders'));
 
-function deleteUser(id) {
-    let deletedUser = users.filter(u => u.id == id);
-    users.splice(users.indexOf(deletedUser[0]), 1);
-    localStorage.removeItem('users');
-    localStorage.setItem('users', JSON.stringify(users))
-    location.reload()
-    console.log(users);
+// function deleteUser(id) {
+//     let deletedUser = users.filter(u => u.id == id);
+//     users.splice(users.indexOf(deletedUser[0]), 1);
+//     localStorage.removeItem('users');
+//     localStorage.setItem('users', JSON.stringify(users))
+//     location.reload()
+//     showToast('User deleted successfully', 'success');
+//     console.log(users);
+// }
+
+// function deleteProduct(id) {
+//     let deletedProduct = products.filter(p => p.product_id == id);
+//     products.splice(products.indexOf(deletedProduct[0]), 1);
+//     localStorage.removeItem('products');
+//     localStorage.setItem('products', JSON.stringify(products))
+//     location.reload()
+//     showToast('Product deleted successfully', 'success');
+//     console.log(products);
+// }
+
+function deleteItem(id, type) {
+    if (type === 'user') {
+        let deletedItem = users.filter(u => u.id == id);
+        users.splice(users.indexOf(deletedItem[0]), 1);
+        localStorage.removeItem('users');
+        localStorage.setItem('users', JSON.stringify(users))
+        location.reload()
+        showToast('User deleted successfully', 'success');
+        console.log(users);
+    } else if (type === 'product') {
+        let deletedProduct = products.filter(p => p.product_id == id);
+        products.splice(products.indexOf(deletedProduct[0]), 1);
+        localStorage.removeItem('products');
+        localStorage.setItem('products', JSON.stringify(products))
+        showToast('Product deleted successfully', 'success');
+        location.reload()
+        console.log(products);
+    }
 }
 
 
@@ -296,18 +341,19 @@ let activeFilters = {
 
 const tbody = document.getElementById('product-table-body');
 tbody.innerHTML = "";
-allProducts.forEach(p => {
-    tbody.innerHTML += `<tr>
-            <td><div class="d-flex align-items-center gap-2"><img src="${p.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${p.name}</b></div></td>
-            <td>${p.category}</td>
-            <td>${p.brand}</td>
-            <td class="text-primary fw-bold">$${p.price}</td>
-            <td>${p.quantity}</td>
-            <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${p.product_id})">Edit</button>
-                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.product_id})">Delete</button>
-            </td>
-        </tr>`;
-});
+allProducts.forEach(p => displayProduct(p));
+// allProducts.forEach(p => {
+//     tbody.innerHTML += `<tr>
+//             <td><div class="d-flex align-items-center gap-2"><img src="${p.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${p.name}</b></div></td>
+//             <td>${p.category}</td>
+//             <td>${p.brand}</td>
+//             <td class="text-primary fw-bold">$${p.price}</td>
+//             <td>${p.quantity}</td>
+//             <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${p.product_id})">Edit</button>
+//                 <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.product_id})">Delete</button>
+//             </td>
+//         </tr>`;
+// });
 
 
 // ======================================================
@@ -387,20 +433,22 @@ function applyFilters() {
         return;
     }
 
-    filtered.forEach(product => {
-        tbody.innerHTML += `<tr>
-            <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
-            <td>${product.category}</td>
-            <td>${product.brand}</td>
-            <td class="text-primary fw-bold">$${product.price}</td>
-            <td>${product.seller_id}</td>
-            <td>${product.quantity}</td>
-            <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
-                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
-            </td>
-        </tr>`;
-    });
+    filtered.forEach(product => displayProduct(product));
 }
+//     filtered.forEach(product => {
+//         tbody.innerHTML += `<tr>
+//             <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
+//             <td>${product.category}</td>
+//             <td>${product.brand}</td>
+//             <td class="text-primary fw-bold">$${product.price}</td>
+//             <td>${product.seller_id}</td>
+//             <td>${product.quantity}</td>
+//             <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
+//                 <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
+//             </td>
+//         </tr>`;
+//     });
+// }
 
 // ======================================================
 // Checkbox Filtering
@@ -443,8 +491,8 @@ function initializeCheckboxFiltering() {
 
 function initializePriceFiltering() {
 
-    const ranges = document.querySelectorAll('.price-range');
-    const outputs = document.querySelectorAll('.range-value');
+    const ranges = document.querySelectorAll('.range4');
+    const outputs = document.querySelectorAll('.rangeValue');
 
     ranges.forEach((range, index) => {
 
@@ -519,8 +567,28 @@ function renderEverything() {
 
     updateStatistics();
 
-    allProducts.forEach(product => {
-        tbody.innerHTML += `<tr>
+    allProducts.forEach(product => displayProduct(product));
+    // allProducts.forEach(product => {
+    //     tbody.innerHTML += `<tr>
+    //         <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
+    //         <td>${product.category}</td>
+    //         <td>${product.brand}</td>
+    //         <td class="text-primary fw-bold">$${product.price}</td>
+    //         <td>${product.quantity}</td>
+    //         <td>${product.seller_id}</td>
+    //         <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
+    //             <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
+    //         </td>
+    //     </tr>`});
+}
+
+initializeProducts();
+
+
+
+function displayProduct(product) {
+    allProducts.push(product);
+    tbody.innerHTML += `<tr>
             <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
             <td>${product.category}</td>
             <td>${product.brand}</td>
@@ -528,16 +596,10 @@ function renderEverything() {
             <td>${product.quantity}</td>
             <td>${product.seller_id}</td>
             <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
-                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteItem(${product.product_id}, 'product')">Delete</button>
             </td>
-        </tr>`});
+        </tr>`
 }
-
-initializeProducts();
-
-
-
-
 
 
 //////////////////////////////////////////////////
