@@ -51,7 +51,19 @@ async function getProducts() {
     product_title.innerText = product.name;
 
     let product_price = document.getElementById("product_price");
+    let product_oldprice = document.getElementById("product_oldprice");
+    let product_discount = document.getElementById("product_discount");
+
     product_price.innerText = `${product.price}$`;
+
+    if (product.oldPrice && product.oldPrice > product.price) {
+
+        product_oldprice.innerText = `${product.oldPrice}$`;
+        product_discount.innerText = `Save ${product.discount}%`;
+    } else {
+        product_oldprice.style.display = "none";
+        product_discount.style.display = "none";
+    }
 
     let product_description = document.getElementById("product_description");
     product_description.innerText = product.description || "No description available for this product.";
@@ -83,27 +95,112 @@ async function getProducts() {
 
     getCarts(product);
 
+    document.getElementById("view_Collection").addEventListener("click", function () {
+        window.location.href = `../../HomePage&Products/categroy.html?categroy=${product.category}`;
+
+    });
+
+    const wishlistIcon = document.getElementById("wishlist_icon");
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    if (currentUser) {
+        const isWishlisted = wishlist.some(item =>
+            item.product_id === product.product_id &&
+            item.user_id === currentUser.id
+        );
+
+        if (isWishlisted) {
+            wishlistIcon.classList.remove("fa-regular");
+            wishlistIcon.classList.add("fa-solid", "text-danger");
+        }
+    }
+
+    wishlistIcon
+        .addEventListener("click", function () {
+            addToWishlist(product, this);
+        });
+
 
 }
 
 function displayRelatedProducts(productsArray) {
     const container = document.getElementById("related-products");
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-    container.innerHTML = productsArray.map(item => `
+    container.innerHTML = productsArray.map(item => {
+
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+            //check if the product in the wishlist
+
+            isWishlisted = wishlist.some(product =>
+                product.product_id === item.product_id &&
+                product.user_id === currentUser.id
+            );
+        }
+
+        let priceHTML = "";
+
+        if (item.oldPrice && item.oldPrice > item.price) {
+            priceHTML = `
+                <div>
+                    <span class="card-text text-decoration-line-through text-danger">
+                        ${item.oldPrice}$
+                    </span>
+                    <span class="card-text text-success" style="font-size:25px;">
+                        ${item.price}$
+                    </span>
+                </div>
+            `;
+        } else {
+            priceHTML = `
+                <span class="card-text" style="font-size:25px;">
+                    ${item.price}$
+                </span>
+            `;
+        }
+
+        return `
         <div class="col-6 col-md-3">
-        <div class="card border-0 related-card">
-            <img src="${item.image}" 
-                class="card-img-top"
-                data-id="${item.product_id}" 
-                alt="${item.name}">
-                
-            <div class="card-body px-0 pt-2">
-            <h6 class="mb-1">${item.name}</h6>
-            <small class="text-muted">${item.price}$</small>
+            <div class="card border-0 related-card h-100 position-relative">
+                <div class=" bg-white text-end py-3">
+                        <span>
+                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(item)}, this)'
+                            style="font-size: 35px; cursor: pointer;">
+                            </i>
+                        </span>
+                </div>
+                <img src="${item.image}" 
+                     class="card-img-top"
+                     data-id="${item.product_id}" 
+                     alt="${item.name}">
+
+                <div class="card-body px-0 pt-2">
+                    <h6 class="mb-1 product-title">${item.name}</h6>
+                    ${priceHTML}
+                </div>
+
+                ${item.discount && item.discount > 0
+                ? `
+                    <div class="discount position-absolute top-0 start-0 bg-danger rounded-circle d-flex"
+                         style="width:65px; height:65px;">
+                        <p class="m-auto text-white fw-bold">
+                            ${item.discount}%
+                        </p>
+                    </div>
+                    `
+                : ``
+            }
+
             </div>
         </div>
-        </div>
-    `).join("");
+        `;
+    }).join("");
 }
 
 
@@ -122,21 +219,12 @@ async function getCarts(product) {
     if (!addBtn) return;
 
     addBtn.addEventListener("click", function () {
-        // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
-
-        // if (!currentUserId) {
-        //     alert("Please login first to add items to cart.");
-        //     window.location.href = "login.html";
-        //     return;
-        // }
 
 
         //checkLogin
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
         if (!currentUser) {
-            // alert("Please login first to add items to cart.");
-            // window.location.href = "../../login/login.html";
 
             showToast("Please login first to add items to cart.", "error");
 
@@ -203,27 +291,3 @@ async function getCarts(product) {
 }
 
 getProducts();
-
-
-
-function showToast(message, type = "success") {
-    const toastEl = document.getElementById("mainToast");
-    const toastMsg = document.getElementById("toastMessage");
-
-
-    if (type === "success") {
-        toastEl.className = "toast align-items-center text-white bg-success border-0";
-    } else if (type === "error") {
-        toastEl.className = "toast align-items-center text-white bg-danger border-0";
-    } else if (type === "warning") {
-        toastEl.className = "toast align-items-center text-dark bg-warning border-0";
-    }
-
-    toastMsg.textContent = message;
-
-    const toast = new bootstrap.Toast(toastEl, {
-        delay: 3000,
-    });
-
-    toast.show();
-}

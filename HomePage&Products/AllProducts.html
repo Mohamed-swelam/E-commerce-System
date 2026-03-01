@@ -24,7 +24,7 @@
 
 <body>
     <!-- Start NavBar -->
-    <section id="nav">
+    <section id="nav" class="sticky-top">
         <nav class="navbar navbar-expand-lg  bg-white px-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./home.html">Avion</a>
@@ -34,6 +34,15 @@
                 </button>
 
                 <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                    <ul>
+                        <div class="d-flex align-items-center  rounded-2 px-3 " style="border:1px solid gainsboro;">
+                            <span> <i class="fa-solid fa-search"></i> </span>
+                            <input id="input-search" type="search" class="form-control border-0">
+                        </div>
+                    </ul>
+
+
+
                     <ul class="navbar-nav  ms-auto">
                         <li class="nav-item">
                             <a class="nav-link " href="#">About Us</a>
@@ -41,29 +50,45 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../ContactUs/Contact.html">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
+                        <li class="nav-item d-none" id="admin-dashboard">
+                            <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
-                        </li> -->
+                        <li class="nav-item d-none" id="seller-dashboard">
+                            <a class="nav-link" href="../seller-dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item" id="login-link">
+                            <a class="nav-link border rounded-pill  bg-dark text-white" href="#">Login</a>
+                        </li>
                     </ul>
 
 
 
+
                     <ul class="list-unstyled d-flex gap-3 mt-3 ">
+
+                        <li class="icon-il">
+                            <a href="../customerinfo/customerinfo.html?tab=wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                        </li>
+
                         <li class="icon-il">
                             <a href="../Cart/cart.html">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </li>
 
-                        <li class="icon-il">
-                            <a href="../login/login.html">
+                        <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
+                            <a href="../customerinfo/customerinfo.html">
                                 <i class="fa-regular fa-circle-user"></i>
                             </a>
                         </li>
+
                     </ul>
+
+
+
+
 
 
 
@@ -75,7 +100,7 @@
         <nav class="bottom-bar   p-2">
             <div class="container-fluid">
                 <div class="flex justify-content-center align-items-center">
-                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                    <ul class=" d-flex  flex-lg-wrap gap-2 flex-wrap justify-content-center list-unstyled align-items-center"
                         id="bottom-navbar">
                         <li>
                             <a class="nav-link " href="./AllProducts.html">All products</a>
@@ -163,42 +188,42 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-item">
                                 <div class="d-flex align-items-center gap-2">
-                                    <input id="brandeone" type="checkbox" name="brand" value="Samsung">
-                                    <label for="priceone" class="fw-light">SamSung</label>
+                                    <input id="brandeone" type="checkbox" name="brand" value="samsung">
+                                    <label for="priceone" class="fw-light">Samsung</label>
                                 </div>
                             </li>
 
                             <li class="dropdown-item">
                                 <div class="d-flex align-items-center gap-2">
-                                    <input id="pricetwo" type="checkbox" name="brand" value="Microsoft">
+                                    <input id="pricetwo" type="checkbox" name="brand" value="microsoft">
                                     <label for="brandtwo" class="fw-light">Microsoft</label>
                                 </div>
                             </li>
 
                             <li class="dropdown-item">
                                 <div class="d-flex align-items-center gap-2">
-                                    <input id="brandthree" type="checkbox" name="brand" value="Apple">
+                                    <input id="brandthree" type="checkbox" name="brand" value="apple">
                                     <label for="brandthree" class="fw-light">Apple</label>
                                 </div>
                             </li>
 
                             <li class="dropdown-item">
                                 <div class="d-flex align-items-center gap-2">
-                                    <input id="brandthree" type="checkbox" name="brand" value="Sony">
+                                    <input id="brandthree" type="checkbox" name="brand" value="sony">
                                     <label for="brandthree" class="fw-light">Sony</label>
                                 </div>
                             </li>
 
                             <li class="dropdown-item">
                                 <div class="d-flex align-items-center gap-2">
-                                    <input id="brandthree" type="checkbox" name="brand" value="L'Avvento">
+                                    <input id="brandthree" type="checkbox" name="brand" value="l'Avvento">
                                     <label for="brandthree" class="fw-light">L'Avvento</label>
                                 </div>
                             </li>
 
                             <li class="dropdown-item">
                                 <div class="d-flex align-items-center gap-2">
-                                    <input id="brandthree" type="checkbox" name="brand" value="Marvo">
+                                    <input id="brandthree" type="checkbox" name="brand" value="marvo">
                                     <label for="brandthree" class="fw-light">Marvo</label>
                                 </div>
                             </li>
@@ -239,33 +264,33 @@
                         <h5>Brand</h5>
                         <div class="d-flex flex-column" id="brands">
                             <div class="d-flex align-items-center gap-2">
-                                <input id="brandeone" type="checkbox" name="brand" value="Samsung">
-                                <label for="priceone" class="fw-light">SamSung</label>
+                                <input id="brandeone" type="checkbox" name="brand" value="samsung">
+                                <label for="priceone" class="fw-light">Samsung</label>
                             </div>
 
                             <div class="d-flex align-items-center gap-2">
-                                <input id="pricetwo" type="checkbox" name="brand" value="Microsoft">
+                                <input id="pricetwo" type="checkbox" name="brand" value="microsoft">
                                 <label for="brandtwo" class="fw-light">Microsoft</label>
                             </div>
 
                             <div class="d-flex align-items-center gap-2">
-                                <input id="brandthree" type="checkbox" name="brand" value="Apple">
+                                <input id="brandthree" type="checkbox" name="brand" value="apple">
                                 <label for="brandthree" class="fw-light">Apple</label>
                             </div>
 
 
                             <div class="d-flex align-items-center gap-2">
-                                <input id="brandthree" type="checkbox" name="brand" value="Sony">
+                                <input id="brandthree" type="checkbox" name="brand" value="sony">
                                 <label for="brandthree" class="fw-light">Sony</label>
                             </div>
 
                             <div class="d-flex align-items-center gap-2">
-                                <input id="brandthree" type="checkbox" name="brand" value="L'Avvento">
+                                <input id="brandthree" type="checkbox" name="brand" value="l'Avvento">
                                 <label for="brandthree" class="fw-light">L'Avvento</label>
                             </div>
 
                             <div class="d-flex align-items-center gap-2">
-                                <input id="brandthree" type="checkbox" name="brand" value="Marvo">
+                                <input id="brandthree" type="checkbox" name="brand" value="marvo">
                                 <label for="brandthree" class="fw-light">Marvo</label>
                             </div>
 
@@ -278,18 +303,27 @@
                     </div>
                 </div>
 
-                <div class="col-lg-9">
+                <div class="col-lg-9  ">
                     <div class="row" id="prds-data"></div>
                     <div id="controls" class="d-flex justify-content-around align-items-center my-3 py-3 w-100">
                         <span><i class="fa-solid fa-circle-arrow-left" id="prev"></i></span>
                         <span id="navigators"
-                            class="d-flex flex-wrap flex-lg-nowrap  justify-content-center   align-items-center gap-2"></span>
+                            class="d-flex flex-wrap flex-lg-nowrap  justify-content-center align-items-center gap-2"></span>
                         <span><i class="fa-solid fa-circle-arrow-right" id="next"></i></span>
                     </div>
                 </div>
             </div>
             </div>
         </section>
+
+
+
+
+
+
+
+
+
     </main>
     <!-- End Main -->
 
@@ -380,8 +414,10 @@
         integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- My Script -->
+
     <script src="./JS/products.js"></script>
     <script src="../GeneralFunctions/showToast.js"></script>
+    <script src="../GeneralFunctions/addToWishList.js"></script>
 </body>
 
 </html>
