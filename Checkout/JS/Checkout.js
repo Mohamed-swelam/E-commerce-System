@@ -85,9 +85,9 @@ async function DisplayProducts() {
 
     }
     document.getElementById("totlaItems").innerText = totalItems;
-    document.getElementById("subtotal").innerText = `${subtotal}$`;
+    document.getElementById("subtotal").innerText = `${subtotal.toFixed(2)}$`;
 
-    document.getElementById("totalAll").innerText = `${(subtotal + 90.00)}$`;
+    document.getElementById("totalAll").innerText = `${(subtotal + 90.00).toFixed(2)}$`;
 
     let totalAll = subtotal + 90.00;
 
@@ -127,7 +127,7 @@ async function DisplayProducts() {
             address: address,
             phone: phone,
             total: totalAll,
-            status: "processing",
+            status: "pending",
             createdAt: new Date().toISOString(),
             items: userCart.items,
         };

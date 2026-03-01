@@ -27,14 +27,14 @@
 
 
     <!-- Start NavBar -->
-    <section id="nav">
-        <nav class="navbar navbar-expand-lg  bg-white px-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Avion</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <section id="nav" class="sticky-top">
+    <nav class="navbar navbar-expand-lg  bg-white px-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Avion</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
                 <div class="collapse navbar-collapse gap-5 " id="navbarNav">
                     <ul class="navbar-nav  ms-auto">
@@ -44,9 +44,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../ContactUs/Contact.html">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
-                        </li>
                         <li class="nav-item d-none" id="admin-dashboard">
                             <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
                         </li>
@@ -54,12 +51,19 @@
                             <a class="nav-link" href="../seller-dashboard.html">Dashboard</a>
                         </li>
                         <li class="nav-item" id="login-link">
-                            <a class="nav-link" href="../login/login.html">Login</a>
+                            <a class="nav-link border rounded-pill  bg-dark text-white" href="../login/login.html">Login</a>    
                         </li>
                     </ul>
 
 
                     <ul class="list-unstyled d-flex gap-3 mt-3 ">
+
+                        <li class="icon-il">
+                            <a href="../customerinfo/customerinfo.html?tab=wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                        </li>
+
                         <li class="icon-il">
                             <a href="../Cart/cart.html">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -82,7 +86,7 @@
         <nav class="bottom-bar   p-2">
             <div class="container-fluid">
                 <div class="flex justify-content-center align-items-center">
-                    <ul class=" d-flex  flex-nowrap justify-content-center list-unstyled align-items-center"
+                    <ul class=" d-flex  flex-lg-wrap gap-2 justify-content-center list-unstyled align-items-center"
                         id="bottom-navbar">
                         <li>
                             <a class="nav-link" href="./AllProducts.html">All products</a>
@@ -118,7 +122,7 @@
             <p>Show the new Spring 2026 Collection today </p>
             <button class="btn ">View Collection</button>
         </section>
-        <img src="./imgs/home7.jpg" alt="HomeImage" class="d-lg-none w-100 object-fit-cover" height="350">
+        <img src="./imgs/home10.jpg" alt="HomeImage" class="d-lg-none w-100 object-fit-cover" height="350">
     </header>
     <!-- End Header -->
     <!-- Start Main -->
@@ -300,6 +304,7 @@
     <!-- My Script -->
     <script src="./JS/main.js"></script>
     <script src="../GeneralFunctions/showToast.js"></script>
+    <script src="../GeneralFunctions/addToWishList.js"></script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
     }
 
     #home-header {
-        background-image: url('../imgs/home7.jpg');
+        background-image: url('../imgs/home11jpg.jpg');
         background-position: center;
         background-size: cover;
         /* height: calc(100vh - 128px); */
@@ -51,6 +51,8 @@
     }
 
 
+    
+
     /* AllProduct */
     #headerPrds h1 {
         bottom: 0;
@@ -62,4 +64,15 @@
         -ms-transform: translate(0 , 0);
         -o-transform: translate(0 , 0);
 }
+
+
+
+
+
+
+
+
+
+
+
 }

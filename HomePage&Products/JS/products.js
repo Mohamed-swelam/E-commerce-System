@@ -1,7 +1,33 @@
+
 let itemsPerPage = 9;
 let currentPage = 1;
 let allPrds = [];
 let start, end, brand;
+let searchInput = document.getElementById("input-search");
+let searchedPrds = [];
+
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+let curretPath = location.pathname.split("/").pop();
+console.log(curretPath);
+
+
+document.querySelectorAll("#bottom-navbar  .nav-link").forEach(a => {
+    if (a.getAttribute("href").slice(2) === curretPath) {
+        a.style.cssText =
+            `color:#3599db;
+                 border-bottom:3px solid #3599db; 
+                `
+    }
+
+});
+
+
+
+
+
+
 
 (function () {
     if (localStorage.getItem("products")) {
@@ -12,48 +38,119 @@ let start, end, brand;
     navigateNumbrsWithPrevAndNext(allPrds);
 })()
 
+let baseProducts = searchedPrds.length ? searchedPrds : allPrds;
+console.log(baseProducts);
+
+
+
 
 function displayAllPrds(prds) {
     product = " ";
     for (let i = 0; i < prds.length; i++) {
+
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+            //check if the product in the wishlist
+
+            isWishlisted = wishlist.some(item =>
+                item.product_id === prds[i].product_id &&
+                item.user_id === currentUser.id
+            );
+        }
+
+
+
+        const hasDiscount = prds[i].discount && prds[i].discount > 0 && prds[i].oldPrice;
+
         product +=
             `
-            <div class="col-6 col-lg-4" >
-                    <div class="card" style="cursor:pointer;"  onclick="showDetails(${prds[i].product_id})" >
-                        <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
-                        <div style="display: flex; align-items: center; justify-content: space-between;">
-                            <div class="card-body">
-                                <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
-                                <p class="card-text">${prds[i].price}$</p>
-                            </div>
-
-                            <div class="heartIcon">
-                            <i class="fa-regular fa-heart"
-                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(prds[i])}, this)'></i>
-                        </div>
-                        </div>
-
-                        <div class="text-center w-100">
-                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${prds[i].product_id})">
-                            Add To Cart
-                            </button> 
+                <div class="col-6 col-lg-4">
+                    <div class="card position-relative" style="cursor:pointer;">
                         
+                        <div class="bg-white text-end py-3">
+                            <span>
+                                <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                                onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(prds[i])}, this)'>
+                                </i>
+                            </span>
                         </div>
+
+                        <img src="${prds[i].image}" class="card-img-top" 
+                            alt="${prds[i].name}" height="200" 
+                            onclick="showDetails(${prds[i].product_id})">
+
+                        <div class="card-body">
+                            <p class="card-title fw-normal" id="product_name">
+                                ${prds[i].name}
+                            </p>
+                            
+                            <div>
+                                ${hasDiscount
+                ? `<span class="card-text text-decoration-line-through text-danger">
+                                        ${prds[i].oldPrice}$
+                                    </span>`
+                : ``
+            }
+
+                                <span class="card-text ${hasDiscount ? 'text-success' : 'text-dark'}" 
+                                    style="font-size:25px;">
+                                    ${prds[i].price}$
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="text-center w-100" id="cart">
+                            <button class="btn add-to-cart-btn"
+                                onclick="event.stopPropagation();addToCart(${prds[i].product_id})">
+                                Add To Cart
+                            </button>
+                        </div>
+
+                        ${hasDiscount
+                ? `<div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex fw-bold"
+                                style="width:65px; height:65px;">
+                                <p class="m-auto text-white">${prds[i].discount}%</p>
+                            </div>`
+                : ``
+            }
+
                     </div>
-                </div>
-                `
+                </div>`
     }
     document.getElementById("prds-data").innerHTML = product;
 }
- // ===================== Add to wishlist =====================
+// ===================== Add to wishlist =====================
 
-window.addToWishlist = function(product, heartIcon) {
+
+
+
+window.addToWishlist = function (product, heartIcon) {
+
+    if (!currentUser) {
+
+        showToast("Please login first to add to wish list", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../login/login.html";
+        }, 1000)
+        return;
+    }
+
+
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-    const existsIndex = wishlist.findIndex(item => item.product_id === product.product_id);
+    const existsIndex = wishlist.findIndex(item =>
+        item.product_id === product.product_id &&
+        item.user_id === currentUser.id
+    );
 
     if (existsIndex === -1) {
-        wishlist.push(product);
+        wishlist.push({
+            user_id: currentUser.id,
+            product_id: product.product_id
+        });
         heartIcon.classList.remove('fa-regular');
         heartIcon.classList.add('fa-solid', 'text-danger');
     } else {
@@ -62,17 +159,21 @@ window.addToWishlist = function(product, heartIcon) {
         heartIcon.classList.add('fa-regular');
     }
 
+    showToast("Product added to wishlist successfully...", "success");
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
 };
+
+
+
+
+
 
 
 function showDetails(id) {
     location.href = `../product_details/product-details.html?id=${id}`
 }
 
-
 function displayPaginationItems(prds, page) {
-
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const paginationPrds = prds.slice(start, end);
@@ -103,33 +204,48 @@ function navigateNumbrsWithPrevAndNext(prds) {
     let numberBox = " "
     for (let i = 1; i <= navigatNumbers; i++) {
         console.log(i);
-        numberBox += `
-                <span class="p-3 border number-span" style="cursor: pointer;">${i}</span>
-                `
+        numberBox += ` <span class="p-3 border number-span" style="cursor: pointer;">${i}</span> `
     }
     document.getElementById("navigators").innerHTML = numberBox;
 
     let spans = document.querySelectorAll(".number-span");
+    spans[0].style.boxShadow = "2px 2px 5px #3599db inset";
 
     spans.forEach((span, index) => {
-        span.addEventListener("click", () => {
+
+        span.addEventListener("click", (e) => {
+
+            currentPage = +span.innerText;
+
+            spans.forEach(span => {
+                if (getComputedStyle(span).boxShadow === "rgb(53, 153, 219) 2px 2px 5px 0px inset") {
+                    span.style["boxShadow"] = "none";
+                }
+            })
+            e.target.style.boxShadow = "2px 2px 5px #3599db inset";
             displayPaginationItems(prds, index + 1);
         })
     })
 
-    document.getElementById("prev").addEventListener("click", () => {
-        prevPrds(prds)
+
+
+    document.getElementById("prev").addEventListener("click", (e) => {
+        prevPrds(prds);
+        colorNavigatorBasedOnArrow()
     })
 
-    document.getElementById("next").addEventListener("click", () => {
+
+    document.getElementById("next").addEventListener("click", (e) => {
         nextPrds(prds)
+
+        colorNavigatorBasedOnArrow()
     })
 }
-
 
 // Filter By Price
 document.querySelectorAll("#price").forEach(divPrice => {
     divPrice.addEventListener('click', (e) => {
+        console.log(baseProducts);
         let pricePrds = [];
         if (e.target.nodeName === "INPUT") {
             document.querySelectorAll("input[name='price']").forEach(input => {
@@ -143,37 +259,40 @@ document.querySelectorAll("#price").forEach(divPrice => {
                 start = +e.target.value.split(' - ')[0];
                 end = +e.target.value.split(' - ')[1];
                 if (brand !== undefined) {
-                    for (let i = 0; i < allPrds.length; i++) {
-                        if (allPrds[i].price > start && allPrds[i].price < end && (allPrds[i].brand === brand)) { pricePrds.push(allPrds[i]); }
+                    for (let i = 0; i < baseProducts.length; i++) {
+                        if (baseProducts[i].price > start && baseProducts[i].price < end && (baseProducts[i].brand === brand)) { pricePrds.push(baseProducts[i]); }
                     }
                 }
                 else {
-                    for (let i = 0; i < allPrds.length; i++) {
-                        if (allPrds[i].price > start && allPrds[i].price < end) { pricePrds.push(allPrds[i]) }
+                    for (let i = 0; i < baseProducts.length; i++) {
+                        if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrds.push(baseProducts[i]) }
                     }
                 }
                 displayPaginationItems(pricePrds, 1);
                 navigateNumbrsWithPrevAndNext(pricePrds)
             }
 
+
             else {
                 start = undefined;
                 if (brand !== undefined) {
                     let brandsPrdsOnly = [];
-                    for (let i = 0; i < allPrds.length; i++) {
-                        if (allPrds[i].brand === brand) { brandsPrdsOnly.push(allPrds[i]); }
+                    for (let i = 0; i < baseProducts.length; i++) {
+                        if (baseProducts[i].brand === brand) { brandsPrdsOnly.push(baseProducts[i]); }
                     }
                     displayPaginationItems(brandsPrdsOnly, 1);
                     navigateNumbrsWithPrevAndNext(brandsPrdsOnly)
                 }
                 else {
-                    displayPaginationItems(allPrds, 1);
-                    navigateNumbrsWithPrevAndNext(allPrds)
+                    displayPaginationItems(baseProducts, 1);
+                    navigateNumbrsWithPrevAndNext(baseProducts)
                 }
             }
         }
     })
 })
+
+
 
 // Filter by Brands
 document.querySelectorAll("#brands").forEach(divBrand => {
@@ -187,16 +306,17 @@ document.querySelectorAll("#brands").forEach(divBrand => {
                 }
             })
 
+
             if (e.target.checked) {
                 brand = e.target.value;
                 if (start !== undefined) {
-                    for (let i = 0; i < allPrds.length; i++) {
-                        if ((allPrds[i].brand === brand) && (allPrds[i].price > start && allPrds[i].price < end)) { brandsPrds.push(allPrds[i]); }
+                    for (let i = 0; i < baseProducts.length; i++) {
+                        if ((baseProducts[i].brand === brand) && (baseProducts[i].price > start && baseProducts[i].price < end)) { brandsPrds.push(baseProducts[i]); }
                     }
                 }
                 else {
-                    for (let i = 0; i < allPrds.length; i++) {
-                        if (allPrds[i].brand === brand) { brandsPrds.push(allPrds[i]); }
+                    for (let i = 0; i < baseProducts.length; i++) {
+                        if (baseProducts[i].brand === brand) { brandsPrds.push(baseProducts[i]); }
                     }
                 }
                 displayPaginationItems(brandsPrds, 1);
@@ -206,21 +326,54 @@ document.querySelectorAll("#brands").forEach(divBrand => {
                 brand = undefined;
                 if (start !== undefined) {
                     let pricePrdsOnly = [];
-                    for (let i = 0; i < allPrds.length; i++) {
-                        if (allPrds[i].price > start && allPrds[i].price < end) { pricePrdsOnly.push(allPrds[i]); }
+                    for (let i = 0; i < baseProducts.length; i++) {
+                        if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrdsOnly.push(baseProducts[i]); }
                     }
                     displayPaginationItems(pricePrdsOnly, 1);
                     navigateNumbrsWithPrevAndNext(pricePrdsOnly)
                 }
                 else {
-                    displayPaginationItems(allPrds, 1);
-                    navigateNumbrsWithPrevAndNext(allPrds)
+                    displayPaginationItems(baseProducts, 1);
+                    navigateNumbrsWithPrevAndNext(baseProducts)
                 }
             }
         }
     })
 });
 
+
+// search product
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("input-search");
+
+    if (searchInput) {
+        searchInput.addEventListener('search', () => {
+            searchedPrds = [];
+            for (let i = 0; i < allPrds.length; i++) {
+                if (allPrds[i].name.toLowerCase().trim()
+                    .includes(searchInput.value.toLowerCase().trim())) {
+                    searchedPrds.push(allPrds[i]);
+                }
+            }
+            baseProducts = [...searchedPrds];
+            displayPaginationItems(searchedPrds, 1);
+            navigateNumbrsWithPrevAndNext(searchedPrds);
+        });
+    }
+});
+
+function colorNavigatorBasedOnArrow() {
+    let spans = document.querySelectorAll(".number-span");
+    spans.forEach(span => {
+        if (+span.innerText === currentPage) {
+            console.log(currentPage);
+
+            span.style.boxShadow = "2px 2px 5px #3599db inset";
+        } else {
+            span.style.boxShadow = "none";
+        }
+    })
+}
 
 
 function addToCart(productId) {
@@ -283,7 +436,30 @@ function addToCart(productId) {
     showToast("Product added to cart successfully..", "success");
 }
 
+function handleNavbarAuth() {
+    const userProfile = document.getElementById("profile");
+    const loginLink = document.getElementById("login-link");
+    const adminDashboard = document.getElementById("admin-dashboard");
+    const sellerDashboard = document.getElementById("seller-dashboard");
 
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+    if (!userProfile || !loginLink) return;
 
+    if (currentUser) {
+        userProfile.style.display = "block";
+        loginLink.style.display = "none";
 
+        if (currentUser.role === "admin") {
+            adminDashboard?.classList.remove("d-none");
+            sellerDashboard?.classList.add("d-none");
+        } else if (currentUser.role === "seller") {
+            sellerDashboard?.classList.remove("d-none");
+            adminDashboard?.classList.add("d-none");
+        }
+    } else {
+        userProfile.style.display = "none";
+        loginLink.style.display = "block";
+    }
+}
+handleNavbarAuth();
