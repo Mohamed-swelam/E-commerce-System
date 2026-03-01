@@ -60,26 +60,28 @@ h3 {
 .navbar-toggler:focus {
     box-shadow: none !important;
 }
+
 /* End NavBra */
 /* Start Header  */
-  #home-header  #container {
+#home-header #container {
     background-color: #fff;
     padding: 1.875rem;
-    margin-top: 150px;;
+    margin-top: 150px;
+    ;
 }
 
-  #home-header  #container h2 {
+#home-header #container h2 {
     color: var(--deep-dark-primary);
     font-weight: 500;
 }
 
-  #home-header  #container p {
+#home-header #container p {
     color: var(--container-text);
     margin-top: 1.5625rem;
     text-shadow: 0.125rem 0.125rem 0.1875rem black;
 }
 
-  #home-header  #container button,
+#home-header #container button,
 #feature button {
     background-color: var(--light-gray);
     padding-inline: 2rem;
@@ -125,12 +127,11 @@ h3 {
 
 
 
-.card button 
-{
+.card button {
     background-color: var(--light-gray);
-    padding:16px ;
+    padding: 16px;
     width: 100%;
-    color:var(--primary);
+    color: var(--primary);
     border-radius: 0px !important;
     -webkit-border-radius: 0px !important;
     -moz-border-radius: 0px !important;
@@ -139,21 +140,25 @@ h3 {
 }
 
 
-.card span > i {
-    color:var(--primary);
-    font-size: 25px;;
+.card span>i {
+    color: var(--primary);
+    font-size: 25px;
+    ;
 
 }
-#cart{
+
+#cart {
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;
 }
-#cart:hover{
+
+#cart:hover {
     background-color: var(--deep-dark-primary);
 }
+
 /* End of Diff  */
 /* Start of Listing */
 #listing,
