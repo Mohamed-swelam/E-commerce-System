@@ -195,7 +195,10 @@
         }
 
 
-
+        .canceled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
 
 
 
@@ -415,6 +418,10 @@
                         <div class="col"><label>Stock</label><input type="number" id="f-qty" class="form-control"
                                 required></div>
                     </div>
+                    <div class="mb-2">
+                        <label>Discount (%)</label>
+                        <input type="number" id="f-discount" class="form-control" min="0" max="100">
+                    </div>
                     <div class="mb-2"><label>Image URL</label><input type="text" id="f-img" class="form-control"></div>
                 </div>
                 <div class="modal-footer"><button style="background-color: #0a1c58;" type="submit"
@@ -475,6 +482,7 @@
                             <option value="processing">Processing</option>
                             <option value="shipped">Shipped</option>
                             <option value="delivered">Delivered</option>
+                            <option value="canceled">Canceled</option>
                         </select>
                         <button class="btn btn-primary mt-2" id="updateStatusBtn">Update Status</button>
                     </div>
@@ -554,7 +562,7 @@
         function setPage(i) { currentPage = i; renderDashboard(); }
 
         function initCharts(myProds, allOrds) {
-            // ===== Monthly Revenue =====
+            // ----- Monthly Revenue -----
             const ctx = document.getElementById('myChart').getContext('2d');
             if (myChart) myChart.destroy();
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
@@ -572,7 +580,7 @@
                 options: { plugins: { legend: { display: false } }, scales: { x: { display: true }, y: { display: true } }, maintainAspectRatio: false }
             });
 
-            // ===== Top Selling Categories =====
+            // ----- Top Selling Categories -----
             const ctx2 = document.getElementById('categoryChart').getContext('2d');
             const cats = {};
             const products = JSON.parse(localStorage.getItem('products')) || [];
@@ -597,21 +605,38 @@
         }
 
         function renderOrders() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
             const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+
+            const myProducts = products.filter(p => p.seller_id == user.id);
+            const myProductIds = myProducts.map(p => p.product_id);
+
+            const myOrders = orders.filter(order =>
+                order.items.some(item => myProductIds.includes(item.productId))
+            );
+
             const tbody = document.getElementById('orders-table-body');
             tbody.innerHTML = "";
-            orders.forEach(o => {
-                tbody.innerHTML += `<tr>
+
+            myOrders.forEach(o => {
+                const sellerTotal = o.items.reduce((sum, item) => {
+                    const product = products.find(p => p.product_id == item.productId && p.seller_id == user.id);
+                    if (!product) return sum;
+                    return sum + product.price * item.quantity;
+                }, 0);
+
+                tbody.innerHTML += `
+        <tr>
             <td>#${o.orderId}</td>
             <td>${o.customerName}</td>
-            <td>$${o.total}</td>
+            <td>$${sellerTotal}</td>
             <td><span class="status-badge ${o.status}">${o.status}</span></td>
-           <td>
-    <button class="btn btn-sm custom-btn"
-        onclick="openOrderDetails(${o.orderId})">
-        &#x1F441;&#xFE0F;
-    </button>
-</td>
+            <td>
+                <button class="btn btn-sm custom-btn" onclick="openOrderDetails(${o.orderId})">
+                    &#x1F441;&#xFE0F;
+                </button>
+            </td>
         </tr>`;
             });
         }
@@ -624,61 +649,93 @@
         }
 
         function openModal(mode, id = null) {
-            document.getElementById('productForm').reset();
+            const form = document.getElementById('productForm');
+            form.reset();
             document.getElementById('f-id').value = id || "";
+
+            const fDiscount = document.getElementById('f-discount');
+
             if (id) {
-                const p = JSON.parse(localStorage.getItem('products')).find(x => x.product_id == id);
-                document.getElementById('f-name').value = p.name;
-                document.getElementById('f-brand').value = p.brand;
-                document.getElementById('f-price').value = p.price;
-                document.getElementById('f-qty').value = p.quantity;
-                document.getElementById('f-cat').value = p.category;
-                document.getElementById('f-img').value = p.image;
+                const product = JSON.parse(localStorage.getItem('products')).find(p => p.product_id == id);
+
+                document.getElementById('f-name').value = product.name;
+                document.getElementById('f-brand').value = product.brand;
+                document.getElementById('f-price').value = product.price;
+                document.getElementById('f-qty').value = product.quantity;
+                document.getElementById('f-cat').value = product.category;
+                document.getElementById('f-img').value = product.image;
+
+                fDiscount.value = product.discount || 0;
+            } else {
+                fDiscount.value = 0;
             }
+
             new bootstrap.Modal(document.getElementById('prodModal')).show();
         }
         function openOrderDetails(orderId) {
             const orders = JSON.parse(localStorage.getItem('orders')) || [];
             const order = orders.find(o => o.orderId == orderId);
-
-            if (!order) {
-                console.error("Order not found!");
-                return;
-            }
+            if (!order) return console.error("Order not found!");
 
             const statusSelect = document.getElementById('statusSelect');
-            statusSelect.value = order.status;
             const products = JSON.parse(localStorage.getItem('products')) || [];
+            const user = JSON.parse(localStorage.getItem('currentUser'));
 
             document.getElementById('od-customer').innerText = order.customerName;
-            document.getElementById('od-date').innerText = new Date(order.createdAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric'
-            });
+            document.getElementById('od-date').innerText =
+                new Date(order.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
             document.getElementById('od-address').innerText = order.address;
-            document.getElementById('od-total').innerText = order.total + " EGP";
 
             const tbody = document.getElementById('od-items');
             tbody.innerHTML = "";
 
+            let sellerTotal = 0;
+
             order.items.forEach(item => {
-                const product = products.find(p => p.product_id == item.productId);
-                const price = product ? product.price : 0;
-                const lineTotal = price * item.quantity;
+                const product = products.find(p => p.product_id == item.productId && p.seller_id == user.id);
+                if (!product) return;
+
+                const lineTotal = product.price * item.quantity;
+                sellerTotal += lineTotal;
 
                 tbody.innerHTML += `
-            <tr>
-                <td>${product ? product.name : 'Deleted Product'}</td>
-                <td>${price} EGP</td>
-                <td>${item.quantity}</td>
-                <td>${lineTotal} EGP</td>
-            </tr>
-        `;
+        <tr>
+            <td>${product.name}</td>
+            <td>${product.price} EGP</td>
+            <td>${item.quantity}</td>
+            <td>${lineTotal} EGP</td>
+        </tr>`;
             });
+
+            document.getElementById('od-total').innerText = sellerTotal + " EGP";
+
+            const allowedTransitions = {
+                pending: ["processing", "canceled"],
+                processing: ["shipped"],
+                shipped: [],
+                delivered: [],
+                canceled: []
+            };
+            const currentStatus = order.status;
+            statusSelect.innerHTML = "";
+
+            if (allowedTransitions[currentStatus].length === 0) {
+                statusSelect.innerHTML = `<option value="${currentStatus}">${currentStatus}</option>`;
+                statusSelect.disabled = true;
+            } else {
+                allowedTransitions[currentStatus].forEach(st => {
+                    statusSelect.innerHTML += `<option value="${st}">${st}</option>`;
+                });
+                statusSelect.disabled = false;
+            }
 
             document.getElementById('updateStatusBtn').onclick = () => {
                 const newStatus = statusSelect.value;
+                if (newStatus === "canceled" && !confirm("Are you sure you want to cancel this order?")) return;
                 updateStatus(orderId, newStatus);
                 bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal')).hide();
             };
@@ -690,25 +747,43 @@
 
         document.getElementById('productForm').onsubmit = (e) => {
             e.preventDefault();
-            let prods = JSON.parse(localStorage.getItem('products'));
+
+            let products = JSON.parse(localStorage.getItem('products')) || [];
             const id = document.getElementById('f-id').value;
             const user = JSON.parse(localStorage.getItem('currentUser'));
-            const data = {
+
+            const inputPrice = parseFloat(document.getElementById('f-price').value);
+            const inputDiscount = parseFloat(document.getElementById('f-discount').value) || 0;
+
+            let productData = {
                 product_id: id ? parseInt(id) : Date.now(),
                 name: document.getElementById('f-name').value,
                 brand: document.getElementById('f-brand').value,
-                price: parseFloat(document.getElementById('f-price').value),
+                price: inputPrice,
                 quantity: parseInt(document.getElementById('f-qty').value),
                 category: document.getElementById('f-cat').value,
                 image: document.getElementById('f-img').value,
-                seller_id: user.id
+                seller_id: user.id,
+                discount: inputDiscount,
+                oldPrice: null
             };
+
             if (id) {
-                prods = prods.map(p => p.product_id == id ? data : p);
+                const existing = products.find(p => p.product_id == id);
+                if (inputDiscount > 0) {
+                    productData.oldPrice = existing.oldPrice || existing.price;
+                } else {
+                    productData.oldPrice = null;
+                }
+                products = products.map(p => p.product_id == id ? productData : p);
             } else {
-                prods.push(data);
+                if (inputDiscount > 0) {
+                    productData.oldPrice = inputPrice;
+                }
+                products.push(productData);
             }
-            localStorage.setItem('products', JSON.stringify(prods));
+
+            localStorage.setItem('products', JSON.stringify(products));
             renderDashboard();
             bootstrap.Modal.getInstance(document.getElementById('prodModal')).hide();
         };
