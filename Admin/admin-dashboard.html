@@ -439,7 +439,47 @@
             <!-- End of products section -->
             <!-- Start of orders section -->
             <div id="orders" class="sub-tab">
-                this is from orders
+                <div class=" w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center text-light fw-bold"
+                    style="background-color: #42d174; font-size: 1.2rem;">
+                    <p class="pb-0"><span id="total-orders"></span> <br> Orders</p>
+                </div>
+                <div class="row w-100 m-auto">
+                    <div class="col-12 col-md-6 m-auto d-flex justify-content-center align-items-center my-3">
+                        <canvas id="orders-statues"></canvas>
+                    </div>
+                </div>
+                <div class="card p-3 rounded-4 border-0 shadow-lg table-responsive-md">
+                    <!-- <h5>Manage Orders</h5> -->
+                    <table class="table  align-middle">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body" class="table-group-divider"></tbody>
+                    </table>
+                </div>
+                <!-- Modal to display order details -->
+                <div class="modal fade" id="order-details-modal" tabindex="-1" data-bs-backdrop="static">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Order Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="order-details-modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- End of orders section -->
             <!-- Start of tickets section -->
@@ -454,6 +494,7 @@
     <script src="./admin.js"></script>
     <script src="customers.js"></script>
     <script src="./sellers.js"></script>
+    <script src="./orders.js"></script>
     <script src="./customerFormValidation.js"></script>
     <script src="./productFormValidation.js"></script>
     <script src="../GeneralFunctions/showToast.js"></script>
