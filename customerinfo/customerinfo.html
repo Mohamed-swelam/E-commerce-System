@@ -30,43 +30,57 @@
 
 <body>
     <!-- NAV  -->
-    <nav class="navbar navbar-expand-lg  bg-light px-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../HomePage&Products/home.html">Avion</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav class="navbar navbar-expand-lg  bg-white px-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./home.html">Avion</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse gap-5 " id="navbarNav">
-                <ul class="navbar-nav  ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link " href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                </ul>
-                <ul class="list-unstyled d-flex gap-3 mt-3 ">
-                    <li class="icon-il">
-                        <a href="../Cart/cart.html">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                    </li>
+                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
 
-                    <li class="icon-il">
-                        <a href="#">
-                            <i class="fa-regular fa-circle-user"></i>
-                        </a>
-                    </li>
-                </ul>
+                    <ul class="navbar-nav  ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-link" href="../ContactUs/Contact.html">Contact</a>
+                        </li>
+                    </ul>
+
+
+
+
+                    <ul class="list-unstyled d-flex gap-3 mt-3 ">
+
+                        <li class="icon-il" id="wishlist-icon">
+                            <a href="../customerinfo/customerinfo.html?tab=wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                        </li>
+
+                        <li class="icon-il">
+                            <a href="../Cart/cart.html" id="cart-icon">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+
+                        <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
+                            <a href="../customerinfo/customerinfo.html">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+
+                </div>
+
+
             </div>
-
-        </div>
-    </nav>
+        </nav>
 
 
 
@@ -282,7 +296,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                
 
                 <!-- Logout && LogOut Model -->
                 <div class="content-section d-none" id="logout">
@@ -315,12 +329,13 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
+    </div>
 
     </div>
-    </div>
+</div>
 
 
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">

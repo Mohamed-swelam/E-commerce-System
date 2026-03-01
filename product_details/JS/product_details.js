@@ -236,6 +236,11 @@ async function getCarts(product) {
         }
 
 
+        if (currentUser.role === "admin" || currentUser.role === "seller") {
+            showToast("Admins and sellers cannot add items to cart.", "error");
+            return;
+        }
+
 
         let carts = JSON.parse(localStorage.getItem("carts")) || [];
 

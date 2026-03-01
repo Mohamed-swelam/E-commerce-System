@@ -17,7 +17,7 @@ async function SendMessage() {
         // alert("Please login first to add items to cart.");
         // window.location.href = "../../login/login.html";
 
-        showToast("Please login first to add items to cart.", "error");
+        showToast("Please login first to Send a Message.", "error");
 
         setTimeout(() => {
             window.location.href = "../../login/login.html";
