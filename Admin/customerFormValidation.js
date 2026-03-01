@@ -1,5 +1,6 @@
 'use strict'
 
+const addCustomerModal = document.getElementById('add-customer-modal');
 // Add Customer Form Validation
 let formIsValid = false;
 const addCustomerForm = document.getElementById('add-customer-form')
@@ -72,7 +73,7 @@ customerName.onkeyup = function () {
     }
 
     // Validate length
-    if (customerName.value.length >= 3) {
+    if (customerName.value.length >= 3 && customerName.value.match(startsWithLetters)) {
         nameLength.classList.remove("invalid");
         nameLength.classList.add("valid");
         customerName.classList.add('valid-input')
@@ -110,7 +111,7 @@ customerPhone.onkeyup = function () {
     }
 
     // Validate length
-    if (customerPhone.value.length >= 8) {
+    if (customerPhone.value.length >= 8 && customerPhone.value.match(phoneNumber)) {
         phoneLength.classList.remove("invalid");
         phoneLength.classList.add("valid");
         customerPhone.classList.add('valid-input')
@@ -140,7 +141,7 @@ customerStreet.onkeyup = function () {
 }
 
 customerCity.onkeyup = function () {
-    if (customerCity.value.length > 3) {
+    if (customerCity.value.length > 3 && customerCity.value.trim() != '') {
         cityEmpty.classList.remove('invalid');
         cityEmpty.classList.add('valid');
         customerCity.classList.add('valid-input');
@@ -223,11 +224,17 @@ function addCustomer(e) {
             street: customerStreet.value,
             password: customerPassword.value
         }
+        addCustomerModal.querySelector('.btn-close').click();
+        addCustomerForm.reset();
         users.push(newCustomer);
         localStorage.removeItem('users');
         localStorage.setItem('users', JSON.stringify(users))
         displayCustomer(newCustomer);
         totalCustomers.innerText = users.length
+        showToast('Customer added successfully', 'success');
+        setTimeout(() => {
+            location.reload()
+        }, 500);
     }
 }
 
