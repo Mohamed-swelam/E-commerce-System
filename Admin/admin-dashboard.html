@@ -68,28 +68,34 @@
     </section>
     <!-- End NavBar -->
     <!-- Start of dashboard -->
-    <div class="row w-100 m-auto justify-content-between" style="background-color: rgba(215, 215, 215, 0.482); ">
-        <div
-            class="col-12 col-md-2 p-2 py-md-5 fs-5 d-flex flex-row flex-md-column justify-content-between justify-content-md-start flex-wrap tabs-container">
-            <p class="p-2 pe-md-0 rounded-3 main-tab active-tab">customers</p>
-            <p class="p-2 pe-md-0 rounded-3 main-tab">sellers</p>
-            <p class="p-2 pe-md-0 rounded-3 main-tab">products</p>
-            <p class="p-2 pe-md-0 rounded-3 main-tab">orders</p>
-            <p class="p-2 pe-md-0 rounded-3 main-tab">tickets</p>
+    <div class="row w-100 m-auto justify-content-between" style="background-color: var(--secondary-color);">
+        <div class="col-12 col-md-2 tabs-container">
+            <h4 class="text-center my-2 mt-4 border-bottom pb-3 ">Admin Dashboard</h4>
+            <div
+                class=" p-2 py-md-5 fs-5 d-flex flex-row flex-md-column justify-content-evenly justify-content-md-start flex-wrap ">
+                <p class="p-2 pe-md-0 rounded-3 main-tab active-tab">customers</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab">sellers</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab">products</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab">orders</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab">tickets</p>
+            </div>
         </div>
         <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
             <!-- Start of customers section -->
             <div id="customers" class="sub-tab active-sub-tab">
-                <div class="bg-light w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center">
-                    <p><span id="total-customers"></span> <br> Customers</p>
+                <div class=" m-auto rounded-4 p-3 py-3 fs-3 mb-3 text-center text-light"
+                    style="background-color: #3599db; width: 250px;">
+                    <p class="fw-bold pb-0" style="font-size: 1.2rem;">TOTAL CUSTOMERS <br> <span id="total-customers"
+                            style="font-size: 1.9rem;"></span>
+                    </p>
                 </div>
                 <div class="text-end mb-3">
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-customer-modal">ADD
                         Customer</button>
                 </div>
                 <p class="text-center fs-3 mt-5 fst-italic text-body-tertiary d-none" id="customers-empty-message"></p>
                 <!-- Modal -->
-                <div class="modal fade" data-bs-backdrop="static" id="exampleModal" tabindex="-1"
+                <div class="modal fade" data-bs-backdrop="static" id="add-customer-modal" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -213,13 +219,29 @@
                     </div>
                 </div>
                 <!-- End of Modal -->
-                <div class="row w-100 m-auto" id="customers-container"></div>
+                <!-- <div class="row w-100 m-auto" id="customers-container"></div> -->
+                <div class="table-responsive-md p-3 card shadow-lg rounded-4 border-0">
+                    <table class="table caption-top customers-table ">
+                        <caption>List of customers</caption>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Contact Data</th>
+                                <th>No. Orders</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customers-table-body"></tbody>
+                    </table>
+                </div>
             </div>
             <!-- End of customers section -->
             <!-- Start of sellers section -->
             <div id="sellers" class="sub-tab">
-                <div class="bg-light w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center">
-                    <p><span id="total-sellers"></span> <br> Sellers</p>
+                <div class=" w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center text-light fw-bold"
+                    style="background-color: #dea968; font-size: 1.2rem;">
+                    <p class="pb-0"><span id="total-sellers"></span> <br> Sellers</p>
                 </div>
                 <div class="text-end mb-3">
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
@@ -233,14 +255,17 @@
             <!-- Start of products section -->
             <div id="products" class="sub-tab">
                 <div class="row mb-3 w-100 m-auto justify-content-between">
-                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
-                        <span class="fs-3" id="total-products">90</span><br>Products
+                    <div class="col-3 text-light rounded-3 text-center fw-bold p-2 py-4"
+                        style="background-color: #3599db; font-size: 1.2rem;">
+                        <span class="fs-3 pb-0" id="total-products">90</span><br>Products
                     </div>
-                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
-                        <span class="fs-3" id="total-categories">90</span><br>Categories
+                    <div class="col-3 text-light rounded-3 text-center fw-bold p-2 py-4"
+                        style="background-color: #42d174; font-size: 1.2rem;">
+                        <span class="fs-3 pb-0" id="total-categories">90</span><br>Categories
                     </div>
-                    <div class="col-3 bg-light rounded-3 text-center p-2 py-4">
-                        <span class="fs-3" id="total-brands">90</span><br>Brands
+                    <div class="col-3 text-light rounded-3 text-center fw-bold p-2 py-4"
+                        style="background-color: #dea968; font-size: 1.2rem;">
+                        <span class="fs-3 pb-0" id="total-brands">90</span><br>Brands
                     </div>
                 </div>
                 <div class="row w-100 m-auto">
@@ -255,9 +280,6 @@
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-product-modal">ADD
                         Products</button>
                 </div>
-
-
-
                 <!-- Start of Add product modal -->
                 <div class="modal fade" data-bs-backdrop="static" id="add-product-modal" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -370,8 +392,8 @@
                     </div>
                     <!-- displaying products -->
                     <div class="col-12 col-md-9 col-lg-10">
-                        <div class="row w-100 m-auto" id="products-container">
-                            <!-- <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap mb-3">
+                        <!-- <div class="row w-100 m-auto" id="products-container">
+                            <div class="col-12 p-2 d-flex bg-light rounded-3 gap-5 flex-wrap mb-3">
                                 <img src="./iti.jpg" width="100px" alt="">
                                 <div>
                                     <p class="fs-4 mb-0">Name</p>
@@ -386,15 +408,78 @@
                                     <p class="fs-3">100$</p>
                                     <button class="btn btn-danger">Delete</button>
                                 </div>
-                            </div> -->
+                            </div>
+                        </div> -->
+                        <!-- <div class="row w-100 m-auto" id="products-container"> -->
+                        <div class="card mt-4 p-3 rounded-4 border-0 shadow-lg">
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Category</th>
+                                            <th>Brand</th>
+                                            <th>Price</th>
+                                            <th>Seller ID</th>
+                                            <th>Stock</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="product-table-body"></tbody>
+                                </table>
+                            </div>
+                            <nav>
+                                <ul class="pagination justify-content-center" id="pagination-btns"></ul>
+                            </nav>
                         </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
             <!-- End of products section -->
             <!-- Start of orders section -->
             <div id="orders" class="sub-tab">
-                this is from orders
+                <div class=" w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center text-light fw-bold"
+                    style="background-color: #42d174; font-size: 1.2rem;">
+                    <p class="pb-0"><span id="total-orders"></span> <br> Orders</p>
+                </div>
+                <div class="row w-100 m-auto">
+                    <div class="col-12 col-md-6 m-auto d-flex justify-content-center align-items-center my-3">
+                        <canvas id="orders-statues"></canvas>
+                    </div>
+                </div>
+                <div class="card p-3 rounded-4 border-0 shadow-lg table-responsive-md">
+                    <!-- <h5>Manage Orders</h5> -->
+                    <table class="table  align-middle">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body" class="table-group-divider"></tbody>
+                    </table>
+                </div>
+                <!-- Modal to display order details -->
+                <div class="modal fade" id="order-details-modal" tabindex="-1" data-bs-backdrop="static">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Order Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="order-details-modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- End of orders section -->
             <!-- Start of tickets section -->
@@ -409,8 +494,10 @@
     <script src="./admin.js"></script>
     <script src="customers.js"></script>
     <script src="./sellers.js"></script>
+    <script src="./orders.js"></script>
     <script src="./customerFormValidation.js"></script>
     <script src="./productFormValidation.js"></script>
+    <script src="../GeneralFunctions/showToast.js"></script>
 </body>
 
 </html>
