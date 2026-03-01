@@ -26,7 +26,8 @@
         "comment": "Good performance, but the battery life could be better."
       }
     ],
-    "quantity": 11
+    "quantity": 11,
+    "oldPrice": 666.66
   },
   {
     "product_id": 2,
@@ -55,7 +56,8 @@
         "comment": "Good value for the price."
       }
     ],
-    "quantity": 8
+    "quantity": 8,
+    "oldPrice": 1052.62
   },
   {
     "product_id": 3,
@@ -142,7 +144,8 @@
         "comment": "A bit heavy, but the results are worth it."
       }
     ],
-    "quantity": 12
+    "quantity": 12,
+    "oldPrice": 588.22
   },
   {
     "product_id": 6,
@@ -171,7 +174,8 @@
         "comment": "A great addition to our home entertainment setup."
       }
     ],
-    "quantity": 6
+    "quantity": 6,
+    "oldPrice": 869.55
   },
   {
     "product_id": 7,
@@ -229,7 +233,8 @@
         "comment": "Good value for the price."
       }
     ],
-    "quantity": 12
+    "quantity": 12,
+    "oldPrice": 1052.62
   },
   {
     "product_id": 9,
@@ -258,7 +263,8 @@
         "comment": "A must-have for gaming enthusiasts."
       }
     ],
-    "quantity": 6
+    "quantity": 6,
+    "oldPrice": 444.43
   },
   {
     "product_id": 10,
@@ -345,7 +351,8 @@
         "comment": "A must-have for gaming enthusiasts."
       }
     ],
-    "quantity": 20
+    "quantity": 20,
+    "oldPrice": 631.57
   },
   {
     "product_id": 13,
@@ -403,7 +410,8 @@
         "comment": "Not suitable for outdoors"
       }
     ],
-    "quantity": 6
+    "quantity": 6,
+    "oldPrice": 631.57
   },
   {
     "product_id": 15,
@@ -432,7 +440,8 @@
         "comment": "Not suitable for outdoors"
       }
     ],
-    "quantity": 10
+    "quantity": 10,
+    "oldPrice": 631.57
   },
   {
     "product_id": 16,
@@ -461,7 +470,8 @@
         "comment": "Not suitable for outdoors"
       }
     ],
-    "quantity": 16
+    "quantity": 16,
+    "oldPrice": 631.57
   },
   {
     "product_id": 17,
@@ -519,7 +529,8 @@
         "comment": "Not suitable for outdoors"
       }
     ],
-    "quantity": 20
+    "quantity": 20,
+    "oldPrice": 631.57
   },
   {
     "product_id": 19,
@@ -548,7 +559,8 @@
         "comment": "Everything was great with this controller out of the box, but after a few weeks the right trigger button sticks down. It feels like there is some sort of adhesive inside the button that keeps it from coming back up. Anyway, the controller is pretty much useless now."
       }
     ],
-    "quantity": 5
+    "quantity": 5,
+    "oldPrice": 631.57
   },
   {
     "product_id": 20,
@@ -577,7 +589,8 @@
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
     ],
-    "quantity": 9
+    "quantity": 9,
+    "oldPrice": 631.57
   },
   {
     "product_id": 21,
@@ -606,7 +619,8 @@
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
     ],
-    "quantity": 9
+    "quantity": 9,
+    "oldPrice": 784.21
   },
   {
     "product_id": 22,
@@ -635,7 +649,8 @@
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
     ],
-    "quantity": 12
+    "quantity": 12,
+    "oldPrice": 214.24
   },
   {
     "product_id": 23,
@@ -664,7 +679,8 @@
         "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
       }
     ],
-    "quantity": 7
+    "quantity": 7,
+    "oldPrice": 718.89
   },
   {
     "product_id": 24,
@@ -693,7 +709,8 @@
         "comment": "Excellent, it does what it is meant to do."
       }
     ],
-    "quantity": 15
+    "quantity": 15,
+    "oldPrice": 729.41
   },
   {
     "product_id": 25,
@@ -1416,74 +1433,6 @@
     "quantity": 17
   },
   {
-    "product_id": 45,
-    "name": "Samsung 43 Inch 4K UHD",
-    "description": "High-definition smart TV with built-in streaming apps.",
-    "price": 499.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/61v86Il5XHL._AC_SX466_.jpg",
-    "discount": 15,
-    "availability": true,
-    "brand": "samsung",
-    "category": "TV",
-    "dailySale": true,
-    "monthSale": false,
-    "rating": 5,
-    "reviews": [
-      {
-        "user_id": 61,
-        "rating": 5,
-        "comment": "Exceptional image quality and versatility."
-      },
-      {
-        "user_id": 62,
-        "rating": 4,
-        "comment": "A bit heavy, but the results are worth it."
-      },
-      {
-        "user_id": 63,
-        "rating": 5,
-        "comment": "Great smart features and picture quality"
-      }
-    ],
-    "seller_id": 8,
-    "quantity": 18
-  },
-  {
-    "product_id": 46,
-    "name": "Apple TV Box 3rd Generation",
-    "description": "Apple TV Box 3rd Generation, Stream/Movies over WiFi/Ethernet, A15 Bionic, 128GB Storage, Up to 4K with Dolby Vision & HDR10+, Works with Thread Mesh Networks, Apple TV+, Netflix, Live, Black",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/61HGvrbamzL._AC_SX466_.jpg",
-    "discount": 0,
-    "availability": true,
-    "brand": "apple",
-    "category": "TV",
-    "dailySale": false,
-    "monthSale": false,
-    "rating": 5,
-    "reviews": [
-      {
-        "user_id": 64,
-        "rating": 5,
-        "comment": "Amazing sound quality but not water proof. Be careful"
-      },
-      {
-        "user_id": 65,
-        "rating": 4,
-        "comment": "Not suitable for outdoors"
-      },
-      {
-        "user_id": 66,
-        "rating": 5,
-        "comment": "Great streaming device for Apple ecosystem"
-      }
-    ],
-    "seller_id": 2,
-    "quantity": 17
-  },
-  {
     "product_id": 47,
     "name": "DOBE Digital Dual Charging Dock Station For PS5 Gamepad",
     "price": 449,
@@ -2096,142 +2045,6 @@
     "quantity": 9
   },
   {
-    "product_id": 65,
-    "name": "Xbox one Microsoft Controller",
-    "description": "Xbox Microsoft WLC M Controller, Black, 70 x 170 x 180 mm",
-    "price": 399.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/712Kf43qj4L._AC_SX679_.jpg",
-    "discount": 10,
-    "availability": true,
-    "brand": "microsoft",
-    "category": "Gaming",
-    "dailySale": true,
-    "monthSale": false,
-    "rating": 5,
-    "reviews": [
-      {
-        "user_id": 124,
-        "rating": 5,
-        "comment": "Incredible gaming performance and graphics."
-      },
-      {
-        "user_id": 125,
-        "rating": 4,
-        "comment": "A must-have for gaming enthusiasts."
-      },
-      {
-        "user_id": 126,
-        "rating": 5,
-        "comment": "Comfortable and responsive controller"
-      }
-    ],
-    "seller_id": 7,
-    "quantity": 18
-  },
-  {
-    "product_id": 66,
-    "name": "Deepzone Wired Controller for Xbox Series X,S",
-    "description": "Deepzone Wired Controller for Xbox Series X|S, Game Controller, Gamepad, Compatible with Xbox One, Xbox Series X/S, Windows 7/8/10/11 Camo Electric Volt",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/71UUX8t4spL._AC_SX679_.jpg",
-    "discount": 5,
-    "availability": true,
-    "brand": "microsoft",
-    "category": "Gaming",
-    "dailySale": true,
-    "monthSale": false,
-    "rating": 3,
-    "reviews": [
-      {
-        "user_id": 127,
-        "rating": 4,
-        "comment": "Amazing!"
-      },
-      {
-        "user_id": 128,
-        "rating": 2,
-        "comment": "Everything was great with this controller out of the box, but after a few weeks the right trigger button sticks down. It feels like there is some sort of adhesive inside the button that keeps it from coming back up. Anyway, the controller is pretty much useless now."
-      },
-      {
-        "user_id": 129,
-        "rating": 3,
-        "comment": "Decent budget controller"
-      }
-    ],
-    "seller_id": 8,
-    "quantity": 13
-  },
-  {
-    "product_id": 67,
-    "name": "Microsoft Xbox 360",
-    "description": "games console xbox 360",
-    "price": 192.82,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/61WqkmreFSL._SL1000_.jpg",
-    "discount": 10,
-    "availability": true,
-    "brand": "microsoft",
-    "category": "Gaming",
-    "dailySale": false,
-    "monthSale": true,
-    "rating": 4.6,
-    "reviews": [
-      {
-        "user_id": 130,
-        "rating": 3,
-        "comment": "not working"
-      },
-      {
-        "user_id": 131,
-        "rating": 5,
-        "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
-      },
-      {
-        "user_id": 132,
-        "rating": 4,
-        "comment": "Classic console with great games"
-      }
-    ],
-    "seller_id": 2,
-    "quantity": 16
-  },
-  {
-    "product_id": 68,
-    "name": "sony PlayStation 5",
-    "description": "Sony PlayStation 5 SLIM Disc [ NEW 2023 Model ] - International Version",
-    "price": 647,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/51KBX8ycq1L._AC_SX679_.jpg",
-    "discount": 10,
-    "availability": true,
-    "brand": "sony",
-    "category": "Gaming",
-    "dailySale": true,
-    "monthSale": false,
-    "rating": 4.6,
-    "reviews": [
-      {
-        "user_id": 133,
-        "rating": 3,
-        "comment": "not working"
-      },
-      {
-        "user_id": 134,
-        "rating": 5,
-        "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
-      },
-      {
-        "user_id": 135,
-        "rating": 5,
-        "comment": "Next-gen gaming at its best"
-      }
-    ],
-    "seller_id": 7,
-    "quantity": 18
-  },
-  {
     "product_id": 69,
     "name": "Xbox one Microsoft Controller",
     "description": "Xbox one Microsoft WLC M Controller, Black, 70 x 170 x 180 mm",
@@ -2263,347 +2076,8 @@
       }
     ],
     "seller_id": 8,
-    "quantity": 18
-  },
-  {
-    "product_id": 70,
-    "name": "Razer DeathAdder Essential Gaming Mouse",
-    "description": "Razer DeathAdder Essential Gaming Mouse: 6400 DPI Optical Sensor -5 Programmable Buttons - Mechanical Switches - Rubber Side Grips - Mercury White",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/51xLy45CSfL._AC_SX679_.jpg",
-    "discount": 5,
-    "availability": true,
-    "brand": "razer",
-    "category": "Gaming",
-    "dailySale": false,
-    "monthSale": true,
-    "rating": 4.6,
-    "reviews": [
-      {
-        "user_id": 139,
-        "rating": 3,
-        "comment": "1. This mouse is not lightweight junk.2. Braided cables are worse.3. Silicone side grips were never that great"
-      },
-      {
-        "user_id": 140,
-        "rating": 4,
-        "comment": "A must-have for gaming enthusiasts."
-      },
-      {
-        "user_id": 141,
-        "rating": 5,
-        "comment": "Excellent precision for FPS games"
-      }
-    ],
-    "seller_id": 2,
-    "quantity": 13
-  },
-  {
-    "product_id": 71,
-    "name": "Samsung Galaxy A56",
-    "description": "High-end smartphone with advanced features.",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://mdsmobile.ae/cdn/shop/files/SM-A566_Galaxy_A56_5G_Awesome_Olive_Front_1000x.jpg?v=1741865976",
-    "discount": 10,
-    "availability": true,
-    "brand": "samsung",
-    "category": "Phones",
-    "dailySale": true,
-    "monthSale": false,
-    "rating": 4.5,
-    "reviews": [
-      {
-        "user_id": 193,
-        "rating": 5,
-        "comment": "Great phone with a superb camera!"
-      },
-      {
-        "user_id": 194,
-        "rating": 4,
-        "comment": "Good performance, but the battery life could be better."
-      },
-      {
-        "user_id": 195,
-        "rating": 5,
-        "comment": "Excellent value flagship phone"
-      }
-    ],
-    "seller_id": 7,
-    "quantity": 16
-  },
-  {
-    "product_id": 72,
-    "name": "Acer Aspire",
-    "description": "Powerful laptop for work and gaming.",
-    "price": 999.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/61GfMDJhhhL._AC_SX679_.jpg",
-    "discount": 5,
-    "availability": true,
-    "brand": "acer",
-    "category": "Computers",
-    "dailySale": false,
-    "monthSale": true,
-    "rating": 3.7,
-    "reviews": [
-      {
-        "user_id": 196,
-        "rating": 5,
-        "comment": "Excellent laptop for gaming and work tasks."
-      },
-      {
-        "user_id": 197,
-        "rating": 4,
-        "comment": "Good value for the price."
-      },
-      {
-        "user_id": 198,
-        "rating": 4,
-        "comment": "Reliable performance"
-      }
-    ],
-    "seller_id": 8,
-    "quantity": 19
-  },
-  {
-    "product_id": 73,
-    "name": "HUAWEI WATCH FIT 3",
-    "description": "Feature-packed smartwatch with fitness tracking.",
-    "price": 199.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/51OwItmBikL._AC_SX466_.jpg",
-    "discount": 0,
-    "availability": true,
-    "brand": "huawei",
-    "category": "Accessories",
-    "dailySale": false,
-    "monthSale": false,
-    "rating": 3.6,
-    "reviews": [
-      {
-        "user_id": 199,
-        "rating": 4,
-        "comment": "Great value for the features it offers."
-      },
-      {
-        "user_id": 200,
-        "rating": 5,
-        "comment": "Sleek design and accurate fitness tracking."
-      },
-      {
-        "user_id": 201,
-        "rating": 3,
-        "comment": "Good but limited app support"
-      }
-    ],
-    "seller_id": 2,
-    "quantity": 18
-  },
-  {
-    "product_id": 74,
-    "name": "Samsung 27-Inch",
-    "description": "G55C Odyssey QHD 2K Curved Gaming Monitor, HRDR 10, VA Panel, 1ms MPRT, 165hz with Game Mode, Supports AMD FreeSync, HDMI and DisplayPort, 3 Years Local Warranty",
-    "price": 799.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/71gaBO+mp6L._AC_SX679_.jpg",
-    "discount": 8,
-    "availability": true,
-    "brand": "samsung",
-    "category": "Computers",
-    "dailySale": false,
-    "monthSale": true,
-    "rating": 3,
-    "reviews": [
-      {
-        "user_id": 202,
-        "rating": 5,
-        "comment": "Stunning picture quality and user-friendly interface."
-      },
-      {
-        "user_id": 203,
-        "rating": 4,
-        "comment": "A great addition to our home entertainment setup."
-      },
-      {
-        "user_id": 204,
-        "rating": 5,
-        "comment": "Excellent gaming monitor"
-      }
-    ],
-    "seller_id": 7,
-    "quantity": 7
-  },
-  {
-    "product_id": 75,
-    "name": "HP EliteDesk",
-    "description": "705 G2 - Sff- A8 Pro-8650B 3.2 GHz - 8 GB - 500 GB",
-    "price": 299.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/718fYRN+qNL._AC_SX679_.jpg",
-    "discount": 0,
-    "availability": true,
-    "brand": "hp",
-    "category": "Computers",
-    "dailySale": false,
-    "monthSale": false,
-    "rating": 4.4,
-    "reviews": [
-      {
-        "user_id": 205,
-        "rating": 4,
-        "comment": "Good value for the price, but the battery life could be better."
-      },
-      {
-        "user_id": 206,
-        "rating": 5,
-        "comment": "Ideal for both work and entertainment on the go."
-      },
-      {
-        "user_id": 207,
-        "rating": 4,
-        "comment": "Reliable workhorse"
-      }
-    ],
-    "seller_id": 8,
-    "quantity": 14
-  },
-  {
-    "product_id": 76,
-    "name": "Lenovo LOQ",
-    "description": "Powerful laptop for work and gaming.",
-    "price": 999.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/51rSsB82hZL._AC_SX679_.jpg",
-    "discount": 5,
-    "availability": true,
-    "brand": "lenovo",
-    "category": "Computers",
-    "dailySale": false,
-    "monthSale": true,
-    "rating": 3,
-    "reviews": [
-      {
-        "user_id": 208,
-        "rating": 5,
-        "comment": "Excellent laptop for gaming and work tasks."
-      },
-      {
-        "user_id": 209,
-        "rating": 4,
-        "comment": "Good value for the price."
-      },
-      {
-        "user_id": 210,
-        "rating": 4,
-        "comment": "Solid performance"
-      }
-    ],
-    "seller_id": 2,
-    "quantity": 5
-  },
-  {
-    "product_id": 77,
-    "name": "Apple Watch SE",
-    "description": "Apple Watch SE (2nd Gen) [GPS 40mm] Smartwatch with Midnight Aluminum Case with Midnight Sport Band S/M. Fitness & Sleep Tracker, Crash Detection, Heart Rate Monitor",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/61ZL5tN-+GL._AC_SX466_.jpg",
-    "discount": 0,
-    "availability": true,
-    "brand": "apple",
-    "category": "Accessories",
-    "dailySale": false,
-    "monthSale": false,
-    "rating": 5,
-    "reviews": [
-      {
-        "user_id": 211,
-        "rating": 5,
-        "comment": "Incredible gaming performance and graphics."
-      },
-      {
-        "user_id": 212,
-        "rating": 4,
-        "comment": "A must-have for gaming enthusiasts."
-      },
-      {
-        "user_id": 213,
-        "rating": 5,
-        "comment": "Great smartwatch for iPhone users"
-      }
-    ],
-    "seller_id": 7,
-    "quantity": 19
-  },
-  {
-    "product_id": 78,
-    "name": "Apple MacBook Air laptop",
-    "description": "Apple MacBook Air laptop with M2 chip: 13.6-inch Liquid Retina display, 8GB RAM, 256GB SSD storage, 1080p FaceTime HD camera. Works with iPhone and iPad; Starlight; English",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/71C6vQtP2iL._AC_SX679_.jpg",
-    "discount": 5,
-    "availability": true,
-    "brand": "apple",
-    "category": "Computers",
-    "dailySale": true,
-    "monthSale": false,
-    "rating": 4.6,
-    "reviews": [
-      {
-        "user_id": 214,
-        "rating": 5,
-        "comment": "Amazing sound quality but not water proof. Be careful"
-      },
-      {
-        "user_id": 215,
-        "rating": 4,
-        "comment": "Not suitable for outdoors"
-      },
-      {
-        "user_id": 216,
-        "rating": 5,
-        "comment": "Incredibly thin and powerful"
-      }
-    ],
-    "seller_id": 8,
-    "quantity": 6
-  },
-  {
-    "product_id": 79,
-    "name": "HP 1HK80EA ProDesk",
-    "description": "HP 1HK80EA ProDesk 600 G3 Microtower PC - Intel Core i5, 3.60 GHz, 500 GB",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/81b6i6Z2T7L._AC_SY879_.jpg",
-    "discount": 5,
-    "availability": true,
-    "brand": "hp",
-    "category": "Computers",
-    "dailySale": false,
-    "monthSale": true,
-    "rating": 3,
-    "reviews": [
-      {
-        "user_id": 217,
-        "rating": 5,
-        "comment": "Amazing sound quality but not water proof. Be careful"
-      },
-      {
-        "user_id": 218,
-        "rating": 4,
-        "comment": "Not suitable for outdoors"
-      },
-      {
-        "user_id": 219,
-        "rating": 4,
-        "comment": "Reliable office computer"
-      }
-    ],
-    "seller_id": 2,
-    "quantity": 19
+    "quantity": 18,
+    "oldPrice": 444.43
   },
   {
     "product_id": 80,
@@ -2637,75 +2111,8 @@
       }
     ],
     "seller_id": 7,
-    "quantity": 15
-  },
-  {
-    "product_id": 81,
-    "name": "Adjustable laptop stand",
-    "description": "Adjustable laptop stand, portable aluminium laptop riser laptop holder for desk, foldable ventilated cooling computer support stand for apple macbook pro/air, hp, sony, dell, more 10-15.6''",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/81T3mcf46RL._AC_SX466_.jpg",
-    "discount": 5,
-    "availability": true,
-    "brand": "other",
-    "category": "Accessories",
-    "dailySale": false,
-    "monthSale": true,
-    "rating": 4.6,
-    "reviews": [
-      {
-        "user_id": 223,
-        "rating": 4,
-        "comment": "Amazing!"
-      },
-      {
-        "user_id": 224,
-        "rating": 5,
-        "comment": "Excellent, it does what it is meant to do. Its grippy so there is no scope of it sliding on smooth surfaces and its highly adjustable."
-      },
-      {
-        "user_id": 225,
-        "rating": 4,
-        "comment": "Great ergonomic accessory"
-      }
-    ],
-    "seller_id": 8,
-    "quantity": 9
-  },
-  {
-    "product_id": 82,
-    "name": "Apple iPhone 16 Pro Max",
-    "description": "Apple iPhone 16 Pro Max (256 GB) - Black Titanium",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "https://m.media-amazon.com/images/I/61veAtnXzWL._AC_SX679_.jpg",
-    "discount": 0,
-    "availability": true,
-    "brand": "apple",
-    "category": "Phones",
-    "dailySale": false,
-    "monthSale": false,
-    "rating": 4.6,
-    "reviews": [
-      {
-        "user_id": 226,
-        "rating": 5,
-        "comment": "Perfect Phone and fast delivery."
-      },
-      {
-        "user_id": 227,
-        "rating": 4,
-        "comment": "You can't be wrong going with this choice if you're coming from iPhone 12 or lesser"
-      },
-      {
-        "user_id": 228,
-        "rating": 5,
-        "comment": "The best iPhone yet"
-      }
-    ],
-    "seller_id": 2,
-    "quantity": 13
+    "quantity": 15,
+    "oldPrice": 784.21
   },
   {
     "product_id": 83,
@@ -2743,7 +2150,8 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp703-1-min.jpg",
     "seller_id": 7,
-    "quantity": 19
+    "quantity": 19,
+    "description": "Sony WH-CH520 Wireless Bluetooth On-Ear with Mic - White - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 84,
@@ -2780,7 +2188,8 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp11r-1.jpg",
     "seller_id": 8,
-    "quantity": 13
+    "quantity": 13,
+    "description": "L'AVVENTO (HP11R) Bluetooth Headphone with Stereo Plug - Red - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 85,
@@ -2817,7 +2226,8 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp11b-1.jpg",
     "seller_id": 2,
-    "quantity": 11
+    "quantity": 11,
+    "description": "L'AVVENTO (HP11B) Bluetooth Headphone with Stereo Plug - Black - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 86,
@@ -2854,7 +2264,8 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp236-4-min.jpg",
     "seller_id": 7,
-    "quantity": 6
+    "quantity": 6,
+    "description": "L'AVVENTO (HP236) Headphone With Mic - Gray*Gold inner - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 87,
@@ -2891,7 +2302,8 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp15b-24-11.jpg",
     "seller_id": 8,
-    "quantity": 13
+    "quantity": 13,
+    "description": "L'AVVENTO (HP15B) Headphone with Touch Control - Black - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 88,
@@ -2928,7 +2340,8 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp235-1-min.jpg",
     "seller_id": 2,
-    "quantity": 8
+    "quantity": 8,
+    "description": "L'AVVENTO (HP235) Headphone With Mic Turbo - Red*Black - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 89,
@@ -2965,7 +2378,8 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/d33f1c152d6eb7e8608a208d80f21a14/h/p/hp11w-111.jpg",
     "seller_id": 7,
-    "quantity": 9
+    "quantity": 9,
+    "description": "L'AVVENTO (HP11W) Headphone with Stereo Plug - White - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 90,
@@ -3002,7 +2416,8 @@
     ],
     "image": "https://albadrlaptop.com/wp-content/uploads/2023/05/hp15r-1-min-1-350x462.jpg",
     "seller_id": 8,
-    "quantity": 11
+    "quantity": 11,
+    "description": "L'AVVENTO (HP15R) Over-Ear Headphone - Red - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 91,
@@ -3039,7 +2454,8 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp25l-1.jpg",
     "seller_id": 2,
-    "quantity": 7
+    "quantity": 7,
+    "description": "L'AVVENTO ANC Headphone Battery 300 MAh - Gray - High quality bluetooth product with reliable performance."
   },
   {
     "product_id": 92,
@@ -3076,6 +2492,7 @@
     ],
     "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/h/p/hp15p-7-min.jpg",
     "seller_id": 7,
-    "quantity": 8
+    "quantity": 8,
+    "description": "L'AVVENTO (HP15P) Headphone with Touch Control - Purple - High quality bluetooth product with reliable performance."
   }
 ]

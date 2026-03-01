@@ -1,9 +1,3 @@
-window.addEventListener("scroll", () => {
-  if (scrollY > 134.44) {
-    document.getElementById("nav").classList.add("fixed-top");
-    document.getElementById("nav").style.transition = "all 0.5s"
-  }
-})
 
 
 products = [
@@ -3092,6 +3086,9 @@ products = [
 
 console.log(products);
 
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
 (function () {
   if (!localStorage.getItem("products")) {
     localStorage.setItem("products", JSON.stringify(products));
@@ -3109,72 +3106,217 @@ function displayProducts(x, container) {
     let productBox = " ";
     if (x === 0) {
       for (let i = 0; i < 4; i++) {
-        productBox +=
-          `
-                                <div class="col-lg-3">
-                                    <div class="card w-100 p-0 m-0" style="cursor:pointer;"  onclick="showDetails(${productArray[i].product_id})">
-                                        <img src="${productArray[i].image}" class="card-img-top" alt="${productArray[i].name}" height=200>
-                                        <div class="card-body">
-                                            <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
-                                            <p class="card-text">${productArray[i].price}$</p>
-                                        </div>
-                                          <div class="text-center w-100">
-                                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[i].product_id})">
-                                              Add To Cart
-                                            </button> 
-                                          </div>
-                                    </div>
-                                </div>
-                    `
+
+        let isWishlisted = false;
+
+        if (currentUser) {
+
+          //check if the product in the wishlist
+
+          isWishlisted = wishlist.some(item =>
+            item.product_id === productArray[i].product_id &&
+            item.user_id === currentUser.id
+          );
+        }
+
+
+        productBox += `
+                      <div class="col-lg-3">
+                        <div class="card position-relative w-100 p-0 m-0" 
+                            style="cursor:pointer;" 
+                            onclick="showDetails(${productArray[i].product_id})">
+
+                          <div class="bg-white text-end py-3">
+                            <span>
+                              <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                              onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(productArray[i])}, this)'>
+                              </i>
+                            </span>
+                          </div>    
+
+                          <img src="${productArray[i].image}" 
+                              class="card-img-top" 
+                              alt="${productArray[i].name}" height="200">
+
+                          <div class="card-body">
+                            <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
+                            <p class="card-text">
+                              ${getPriceUI(productArray[i])}
+                            </p>
+                          </div>
+                            
+                          <div class="text-center w-100" id="cart">
+                            <button class="btn add-to-cart-btn"
+                              onclick="event.stopPropagation();addToCart(${productArray[i].product_id})">
+                              Add To Cart
+                            </button> 
+                          </div>
+
+                          ${getDiscountUI(productArray[i])}
+
+                        </div>
+                      </div>
+                      `;
       }
     }
     else {
+
       productBox = `
-                        <div class="card col-12 col-lg-6" style="background-color:transparent !important;cursor:pointer;" onclick="showDetails(${productArray[20].product_id})">
-                             <img src="${productArray[20].image}" class="card-img-top" alt="${productArray[20].name}" height=200>
-                                        <div class="card-body">
-                                            <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
-                                            <p class="card-text">${productArray[20].price}$</p>
-                                        </div>
-                                          <div class="text-center w-100">
-                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[20].product_id})">
+                        <div class="card position-relative col-12 col-lg-6"
+                            style="background-color:transparent !important;cursor:pointer;"
+                            onclick="showDetails(${productArray[20].product_id})">
+
+                          <div class="bg-white text-end py-3">
+                            <span>
+                              ${getHeartIcon(productArray[20])}
+                            </span>
+                          </div>
+
+                          <img src="${productArray[20].image}" class="card-img-top" height="200">
+
+                          <div class="card-body">
+                            <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
+                            <p class="card-text">
+                              ${getPriceUI(productArray[20])}
+                            </p>
+                          </div>
+
+                          <div class="text-center w-100" id="cart">
+                            <button class="btn add-to-cart-btn"
+                              onclick="event.stopPropagation();addToCart(${productArray[20].product_id})">
                               Add To Cart
                             </button>
-                             </div>
+                          </div>
+
+                          ${getDiscountUI(productArray[20])}
                         </div>
 
-                        <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  onclick="showDetails(${productArray[21].product_id})">
-                             <img src="${productArray[21].image}" class="card-img-top" alt="${productArray[21].name}" height=200>
-                                        <div class="card-body">
-                                            <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
-                                            <p class="card-text">${productArray[21].price}$</p>
-                        </div>
-                         <div class="text-center w-100">
-                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[21].product_id})">
+                        <div class="card position-relative col-12 col-lg-3"
+                            style="background-color:transparent !important;cursor:pointer;"
+                            onclick="showDetails(${productArray[21].product_id})">
+
+                          <div class="bg-white text-end py-3">
+                            <span>
+                              ${getHeartIcon(productArray[21])}
+                            </span>
+                          </div>
+
+                          <img src="${productArray[21].image}" class="card-img-top" height="200">
+
+                          <div class="card-body">
+                            <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
+                            <p class="card-text">
+                              ${getPriceUI(productArray[21])}
+                            </p>
+                          </div>
+
+                          <div class="text-center w-100" id="cart">
+                            <button class="btn add-to-cart-btn"
+                              onclick="event.stopPropagation();addToCart(${productArray[21].product_id})">
                               Add To Cart
-                            </button> 
-                             </div>
+                            </button>
+                          </div>
+
+                          ${getDiscountUI(productArray[21])}
                         </div>
 
 
-                    <div class="card col-12  col-lg-3" style="background-color:transparent !important;cursor:pointer;"  onclick="showDetails(${productArray[9].product_id})">
-                             <img src="${productArray[9].image}" class="card-img-top" alt="${productArray[9].name}" height=200>
-                                        <div class="card-body">
-                                            <h5 class="card-title">${productArray[9].name.slice(0, 15)}</h5>
-                                            <p class="card-text">${productArray[9].price}$</p>
+                    <div class="card position-relative col-12 col-lg-3"
+                        style="background-color:transparent !important;cursor:pointer;"
+                        onclick="showDetails(${productArray[6].product_id})">
+
+                      <div class="bg-white text-end py-3">
+                        <span>
+                          ${getHeartIcon(productArray[6])}
+                        </span>
+                      </div>
+
+                      <img src="${productArray[6].image}" class="card-img-top" height="200">
+
+                      <div class="card-body">
+                        <h5 class="card-title">${productArray[6].name.slice(0, 15)}</h5>
+                        <p class="card-text">
+                          ${getPriceUI(productArray[6])}
+                        </p>
+                      </div>
+
+                      <div class="text-center w-100" id="cart">
+                        <button class="btn add-to-cart-btn"
+                          onclick="event.stopPropagation();addToCart(${productArray[6].product_id})">
+                          Add To Cart
+                        </button>
+                      </div>
+
+                      ${getDiscountUI(productArray[6])}
                     </div>
-                    <div class="text-center w-100">
-                            <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${productArray[9].product_id})">
-                              Add To Cart
-                            </button>
-                             </div>
-                        </div>
 `
 
     }
     console.log(productBox);
     container.innerHTML += productBox;
   }
+}
+
+
+
+function getHeartIcon(product) {
+  let isWishlisted = false;
+
+  if (currentUser) {
+    isWishlisted = wishlist.some(item =>
+      item.product_id === product.product_id &&
+      item.user_id === currentUser.id
+    );
+  }
+
+  return `
+    <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+       onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(product)}, this)'>
+    </i>
+  `;
+}
+
+
+function getDiscountUI(product) {
+  const hasDiscount =
+    product.discount &&
+    product.discount > 0 &&
+    product.oldPrice &&
+    product.oldPrice > product.price;
+
+  if (!hasDiscount) return "";
+
+  return `
+    <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex fw-bold"
+         style="width:65px; height:65px;transform: rotate(-35deg);">
+        <p class="m-auto text-white">${product.discount}%</p>
+    </div>
+  `;
+}
+
+function getPriceUI(product) {
+  const hasDiscount =
+    product.discount &&
+    product.discount > 0 &&
+    product.oldPrice &&
+    product.oldPrice > product.price;
+
+  if (hasDiscount) {
+    return `
+      <span class="text-decoration-line-through text-danger me-2">
+        ${product.oldPrice}$
+      </span>
+      <span class="text-success fw-bold">
+        ${product.price}$
+      </span>
+    `;
+  }
+
+  return `
+    <span class="text-dark fw-bold">
+      ${product.price}$
+    </span>
+  `;
 }
 
 
@@ -3187,7 +3329,6 @@ function showDetails(id) {
 }
 
 function addToCart(productId) {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser) {
     showToast("Please login first to add items to cart.", "error");
@@ -3248,7 +3389,6 @@ function addToCart(productId) {
 
 
 let userProfile = document.getElementById('profile');
-let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 // localStorage.removeItem("currentUser");
 if (currentUser) {
@@ -3267,4 +3407,6 @@ if (currentUser) {
   userProfile.style.display = "none";
   document.getElementById('login-link').style.display = "block";
 }
+
+
 

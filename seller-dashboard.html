@@ -160,6 +160,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
         }
 
         .btn-delete:hover {
@@ -177,6 +178,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
         }
 
         .btn-edit:hover {
@@ -185,7 +187,19 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /*        RESPONSIVE         */
+
+
+        .custom-btn {
+            border: 2px solid #000;
+            border-radius: 6px;
+        }
+
+
+
+
+
+
+
 
         @media (max-width: 1024px) {
 
@@ -264,6 +278,7 @@
         }
 
 
+
         @media (max-width: 480px) {
 
             h5 {
@@ -287,13 +302,19 @@
 <body>
     <section id="mainwrapper">
         <aside id="sidebar">
-            <h4 class="text-center mb-4 border-bottom pb-3">Seller Dashboard</h4>
+            <h4 class="text-center mb-4 border-bottom pb-3">Seller DashBoard</h4>
             <ul>
                 <li class="active-nav" onclick="switchTab('overview')">📊 Overview</li>
                 <li onclick="openModal('add')">➕ Add Product</li>
                 <li onclick="switchTab('orders')">📦 Orders</li>
+
             </ul>
+
             <div id="seller-name-display" class="mt-5 p-2 bg-white bg-opacity-10 text-center rounded small"></div>
+            <button id="logoutBtn" class="w-100 mt-4 py-2 text-white"
+                style="background-color: #1b254b; border:none; border-radius:8px; cursor:pointer; ">
+                🔒 Logout
+            </button>
         </aside>
 
         <main id="main">
@@ -381,6 +402,10 @@
                                 <option value="Phones">Phones</option>
                                 <option value="Laptops">Laptops</option>
                                 <option value="Bluetooth">Bluetooth</option>
+                                <option value="Headphones">Headphones</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Computers">Computers</option>
+                                <option value="Gaming">Gaming</option>
                             </select>
                         </div>
                     </div>
@@ -397,10 +422,71 @@
             </form>
         </div>
     </div>
+    <div class="modal fade" id="orderDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Order Details</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="card p-3">
+                                <h6>Customer</h6>
+                                <p id="od-customer"></p>
+                                <small id="od-date"></small>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card p-3">
+                                <h6>Shipping Address</h6>
+                                <p id="od-address"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6>Items</h6>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="od-items"></tbody>
+                    </table>
+                    <hr>
+
+                    <div class="text-end fw-bold">
+                        Total: $<span id="od-total"></span>
+                    </div>
+                    <hr>
+                    <div class="mt-3">
+                        <label for="statusSelect" class="form-label fw-bold">Update Shipping Status:</label>
+                        <select id="statusSelect" class="form-select w-50">
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                        <button class="btn btn-primary mt-2" id="updateStatusBtn">Update Status</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script>
-        const PATHS = { p: './Dummy Data/products.json', o: './Dummy Data/orders.json', u: './Dummy Data/users.json' };
-        let currentPage = 1, limit = 4, myChart = null, categoryChart = null;
+        const PATHS = { p: './Dummy Data/products.json', o: './Dummy Data/orders.json', u: './Dummy Data/users.json' }; let currentPage = 1, limit = 4, myChart = null, categoryChart = null;
 
         async function initApp() {
             if (!localStorage.getItem('products')) {
@@ -414,7 +500,7 @@
             if (!localStorage.getItem('currentUser')) {
                 const r = await fetch(PATHS.u);
                 const users = await r.json();
-                localStorage.setItem('currentUser', JSON.stringify(users.find(u => u.id === 2)));
+                localStorage.setItem('currentUser', JSON.stringify(users[0]));
             }
             renderDashboard();
         }
@@ -520,14 +606,12 @@
             <td>${o.customerName}</td>
             <td>$${o.total}</td>
             <td><span class="status-badge ${o.status}">${o.status}</span></td>
-            <td>
-                <select class="form-select form-select-sm" onchange="updateStatus(${o.orderId}, this.value)">
-                    <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Pending</option>
-                    <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Processing</option>
-                    <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Shipped</option>
-                    <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Delivered</option>
-                </select>
-            </td>
+           <td>
+    <button class="btn btn-sm custom-btn"
+        onclick="openOrderDetails(${o.orderId})">
+        &#x1F441;&#xFE0F;
+    </button>
+</td>
         </tr>`;
             });
         }
@@ -553,6 +637,56 @@
             }
             new bootstrap.Modal(document.getElementById('prodModal')).show();
         }
+        function openOrderDetails(orderId) {
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const order = orders.find(o => o.orderId == orderId);
+
+            if (!order) {
+                console.error("Order not found!");
+                return;
+            }
+
+            const statusSelect = document.getElementById('statusSelect');
+            statusSelect.value = order.status;
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+
+            document.getElementById('od-customer').innerText = order.customerName;
+            document.getElementById('od-date').innerText = new Date(order.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            document.getElementById('od-address').innerText = order.address;
+            document.getElementById('od-total').innerText = order.total + " EGP";
+
+            const tbody = document.getElementById('od-items');
+            tbody.innerHTML = "";
+
+            order.items.forEach(item => {
+                const product = products.find(p => p.product_id == item.productId);
+                const price = product ? product.price : 0;
+                const lineTotal = price * item.quantity;
+
+                tbody.innerHTML += `
+            <tr>
+                <td>${product ? product.name : 'Deleted Product'}</td>
+                <td>${price} EGP</td>
+                <td>${item.quantity}</td>
+                <td>${lineTotal} EGP</td>
+            </tr>
+        `;
+            });
+
+            document.getElementById('updateStatusBtn').onclick = () => {
+                const newStatus = statusSelect.value;
+                updateStatus(orderId, newStatus);
+                bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal')).hide();
+            };
+
+            new bootstrap.Modal(document.getElementById('orderDetailsModal')).show();
+        }
+
+
 
         document.getElementById('productForm').onsubmit = (e) => {
             e.preventDefault();
@@ -578,7 +712,10 @@
             renderDashboard();
             bootstrap.Modal.getInstance(document.getElementById('prodModal')).hide();
         };
-
+        document.getElementById('logoutBtn').onclick = () => {
+            // localStorage.removeItem('currentUser');
+            window.location.href = './HomePage&Products/home.html';
+        };
         initApp();
     </script>
 </body>

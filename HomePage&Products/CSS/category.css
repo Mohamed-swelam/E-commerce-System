@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --dark-primary: #2A254B;
     --primary: #726E8D;
     --deep-dark-primary: #22202E;
@@ -6,6 +6,15 @@
     --container-text: #5B5676;
     --light: #fff;
     --btn-feature-bgcolor: #39385e;
+} */
+:root {
+    --dark-primary: #1b254b;
+    --primary: rgb(51, 45, 87);
+    --deep-dark-primary: #a3b1cc;
+    --light-gray: #F9F9F9;
+    --container-text: #3599db;
+    --light: #fff;
+    --btn-feature-bgcolor: #323e69;
 }
 
 body {
@@ -52,6 +61,15 @@ body {
     box-shadow: none !important;
 }
 
+ul span i {
+    color: #3599db;
+}
+
+
+.form-control:focus {
+    box-shadow: none;
+}
+
 /* End NavBra */
 
 
@@ -59,6 +77,21 @@ body {
 
 #category {
     height: 100%;
+}
+
+.btn.show,
+.btn:first-child:active {
+    border-color: transparent;
+}
+
+.dropdown-menu.show {
+    box-shadow: 1px 1px 5px gainsboro;
+    border: none;
+}
+
+.dropdown-menu>li>a {
+    cursor: pointer;
+    color: rgba(26, 24, 24, 0.562);
 }
 
 .card {
@@ -87,38 +120,88 @@ body {
 
 
 .card img {
-    transform: scale(0.6);
+    transform: scale(0.5);
     transition: transform 1s;
     -webkit-transition: transform 1s;
     -moz-transition: transform 1s;
     -ms-transition: transform 1s;
     -o-transition: transform 1s;
-    -webkit-transform: scale(0.6);
-    -moz-transform: scale(0.6);
-    -ms-transform: scale(0.6);
-    -o-transform: scale(0.6);
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
 }
 
 .card img:hover {
-    transform: scale(1.0755);
-    -webkit-transform: scale(1.0755);
-    -moz-transform: scale(1.0755);
-    -ms-transform: scale(1.0755);
-    -o-transform: scale(1.0755);
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    -o-transform: scale(0.7);
 }
 
 
-.card button 
-{
+.card button {
     background-color: var(--light-gray);
-    padding:16px ;
+    padding: 16px;
     width: 100%;
-    color:var(--primary);
+    color: var(--primary);
     border-radius: 0px !important;
     -webkit-border-radius: 0px !important;
     -moz-border-radius: 0px !important;
     -ms-border-radius: 0px !important;
     -o-border-radius: 0px !important;
+}
+
+.card span>i {
+    color: var(--primary);
+    font-size: 25px;
+    ;
+
+}
+
+#cart {
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#cart:hover {
+    background-color: var(--deep-dark-primary);
+}
+
+.discount {
+    transform: rotate(-35deg);
+    -webkit-transform: rotate(-35deg);
+    -moz-transform: rotate(-35deg);
+    -ms-transform: rotate(-35deg);
+    -o-transform: rotate(-35deg);
+}
+
+#product_name {
+    display: -webkit-box;
+    line-clamp: 2;
+    -Webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 48px;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+#product_description {
+    display: -webkit-box;
+    line-clamp: 2;
+    -Webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 48px;
+    font-size: 20px;
+    line-height: 1.2;
 }
 
 /* End Header */

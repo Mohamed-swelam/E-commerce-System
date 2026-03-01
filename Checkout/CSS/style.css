@@ -19,3 +19,12 @@
     align-items: center;
     justify-content: center;
 }
+
+.btn-dark {
+    background-color: #2a254b;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #1e1a38;
+}

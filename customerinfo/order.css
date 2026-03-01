@@ -1,0 +1,21 @@
+
+
+.logOut{
+    background-color: rgb(235, 91, 91) !important;
+}
+.logOut:hover{
+    background-color: rgb(233, 108, 108) !important;
+    
+}
+/* ======================================= passWord ============================= */
+#textSuccess{
+    background-color: green;
+    color: white !important;
+    padding: 10px 50px ;
+    border-radius: 12px ;
+}
+.active{
+    display: block;
+}
+
+

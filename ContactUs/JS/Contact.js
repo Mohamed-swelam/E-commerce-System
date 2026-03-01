@@ -1,5 +1,3 @@
-
-
 async function SendMessage() {
 
     if (!localStorage.getItem("tickets")) {
@@ -47,7 +45,7 @@ async function SendMessage() {
 
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
-        const subject = subjectInput.value.trim();
+        const subject = subjectInput.value;
         const message = messageInput.value.trim();
 
         [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
@@ -86,11 +84,7 @@ async function SendMessage() {
 
         if (!subject) {
             subjectInput.classList.add("is-invalid");
-            subjectError.textContent = "Subject is required";
-            isValid = false;
-        } else if (subject.length < 3) {
-            subjectInput.classList.add("is-invalid");
-            subjectError.textContent = "Subject must be at least 3 characters";
+            subjectError.textContent = "Please select a Subject type";
             isValid = false;
         }
 

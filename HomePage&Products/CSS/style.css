@@ -1,16 +1,18 @@
 :root {
-    --dark-primary: #2A254B;
-    --primary: #726E8D;
-    --deep-dark-primary: #22202E;
+    --dark-primary: #1b254b;
+    --primary: rgb(51, 45, 87);
+    --deep-dark-primary: #a3b1cc;
     --light-gray: #F9F9F9;
-    --container-text: #5B5676;
+    --container-text: #3599db;
     --light: #fff;
-    --btn-feature-bgcolor: #39385e;
+    --btn-feature-bgcolor: #323e69;
 }
 
 body {
     font-family: "Rubik", sans-serif;
+
 }
+
 
 h1,
 h2,
@@ -18,7 +20,6 @@ h3 {
     color: var(--dark-primary);
 }
 
-/* Start NavBr */
 .navbar-brand {
     color: var(--deep-dark-primary) !important;
     font-size: 2.1875rem !important;
@@ -36,6 +37,7 @@ h3 {
     color: var(--dark-primary);
 }
 
+
 .bottom-bar {
     background-color: var(--light-gray);
     margin-block: 1.25rem;
@@ -45,10 +47,6 @@ h3 {
     color: var(--primary);
 }
 
-.bottom-bar ul>li>a:active { 
-    border:1px solid black ;
-color:red !important;
-}
 
 
 .bottom-bar .nav-link {
@@ -138,6 +136,23 @@ color:red !important;
     -moz-border-radius: 0px !important;
     -ms-border-radius: 0px !important;
     -o-border-radius: 0px !important;
+}
+
+
+.card span > i {
+    color:var(--primary);
+    font-size: 25px;;
+
+}
+#cart{
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+#cart:hover{
+    background-color: var(--deep-dark-primary);
 }
 /* End of Diff  */
 /* Start of Listing */

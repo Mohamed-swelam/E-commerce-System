@@ -23,28 +23,16 @@ async function displaycart() {
     }
 
 
-    // //checkLogin
-    // const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
-
-    // if (!currentUserId) {
-    //     alert("Please login first to add items to cart.");
-    //     window.location.href = "login.html";
-    //     return;
-    // }
-
-
     //checkLogin
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
-        // alert("Please login first to add items to cart.");
-        // window.location.href = "../../login/login.html";
 
         showToast("Please login first to add items to cart.", "error");
 
         setTimeout(() => {
             window.location.href = "../../login/login.html";
-        }, 2500)
+        }, 1000)
         return;
     }
 
@@ -265,29 +253,4 @@ document.getElementById("go_Checkout").addEventListener("click", function () {
     window.location.href = "../../Checkout/Checkout.html";
 })
 
-displaycart();
-
-
-
-
-function showToast(message, type = "success") {
-    const toastEl = document.getElementById("mainToast");
-    const toastMsg = document.getElementById("toastMessage");
-
-
-    if (type === "success") {
-        toastEl.className = "toast align-items-center text-white bg-success border-0";
-    } else if (type === "error") {
-        toastEl.className = "toast align-items-center text-white bg-danger border-0";
-    } else if (type === "warning") {
-        toastEl.className = "toast align-items-center text-dark bg-warning border-0";
-    }
-
-    toastMsg.textContent = message;
-
-    const toast = new bootstrap.Toast(toastEl, {
-        delay: 3000,
-    });
-
-    toast.show();
-}
+displaycart()
