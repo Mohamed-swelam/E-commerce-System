@@ -1,4 +1,4 @@
-function showToast(message, type = "success") {
+function showToast(message, type) {
     const toastEl = document.getElementById("mainToast");
     const toastMsg = document.getElementById("toastMessage");
 

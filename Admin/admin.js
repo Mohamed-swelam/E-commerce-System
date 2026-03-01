@@ -155,6 +155,7 @@ function deleteUser(id) {
     users.splice(users.indexOf(deletedUser[0]), 1);
     localStorage.removeItem('users');
     localStorage.setItem('users', JSON.stringify(users))
+    location.reload()
     console.log(users);
 }
 
@@ -188,109 +189,126 @@ let activeFilters = {
 // Product Rendering
 // ======================================================
 
-function displayProduct(product) {
+// function displayProduct(product) {
 
-    let col = document.createElement('div');
-    col.classList.add(
-        'col-12', 'p-3', 'd-flex',
-        'bg-light', 'rounded-3',
-        'gap-5', 'flex-wrap', 'mb-3'
-    );
+//     let col = document.createElement('div');
+//     col.classList.add(
+//         'col-12', 'p-3', 'd-flex',
+//         'bg-light', 'rounded-3',
+//         'gap-5', 'flex-wrap', 'mb-3'
+//     );
 
-    // ----------------- Image -----------------
-    let productImg = document.createElement('img');
-    productImg.classList.add('product-img');
-    productImg.src = product.image;
+//     // ----------------- Image -----------------
+//     let productImg = document.createElement('img');
+//     productImg.classList.add('product-img');
+//     productImg.src = product.image;
 
-    // ----------------- Name + Seller -----------------
-    let div1 = document.createElement('div');
+//     // ----------------- Name + Seller -----------------
+//     let div1 = document.createElement('div');
 
-    let productName = document.createElement('p');
-    productName.innerText = product.name;
-    productName.classList.add('fs-4', 'mb-0');
+//     let productName = document.createElement('p');
+//     productName.innerText = product.name;
+//     productName.classList.add('fs-4', 'mb-0');
 
-    let productSeller = document.createElement('p');
+//     let productSeller = document.createElement('p');
 
-    const seller = users.find(s => s.id == product.seller_id);
-    productSeller.innerText = 'Seller: ' + (seller ? seller.name : 'Unknown');
+//     const seller = users.find(s => s.id == product.seller_id);
+//     productSeller.innerText = 'Seller: ' + (seller ? seller.name : 'Unknown');
 
-    // ----------------- Brand / Category / Quantity -----------------
-    let div2 = document.createElement('div');
+//     // ----------------- Brand / Category / Quantity -----------------
+//     let div2 = document.createElement('div');
 
-    let productBrand = document.createElement('p');
-    productBrand.classList.add('text-secondary');
-    productBrand.innerText = 'Brand:  ' + product.brand;
+//     let productBrand = document.createElement('p');
+//     productBrand.classList.add('text-secondary');
+//     productBrand.innerText = 'Brand:  ' + product.brand;
 
-    let productCategory = document.createElement('p');
-    productCategory.classList.add('text-secondary');
-    productCategory.innerText = 'Category:  ' + product.category;
+//     let productCategory = document.createElement('p');
+//     productCategory.classList.add('text-secondary');
+//     productCategory.innerText = 'Category:  ' + product.category;
 
-    let productQuantity = document.createElement('p');
-    productQuantity.classList.add('text-secondary');
-    productQuantity.innerText = 'Quantity:  ' + product.quantity;
+//     let productQuantity = document.createElement('p');
+//     productQuantity.classList.add('text-secondary');
+//     productQuantity.innerText = 'Quantity:  ' + product.quantity;
 
-    let productDiscount = document.createElement('p');
-    productDiscount.classList.add('text-secondary');
-    if (product.discount && product.discount > 0) {
-        productDiscount.innerText = 'Discount:  ' + product.discount + '%';
-    }
-    else {
-        productDiscount.innerText = 'Discount:  No discount';
-    }
+//     let productDiscount = document.createElement('p');
+//     productDiscount.classList.add('text-secondary');
+//     if (product.discount && product.discount > 0) {
+//         productDiscount.innerText = 'Discount:  ' + product.discount + '%';
+//     }
+//     else {
+//         productDiscount.innerText = 'Discount:  No discount';
+//     }
 
-    // ----------------- Price + Delete -----------------
-    let div3 = document.createElement('div');
-    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2');
-    div3.id = product.product_id;
+//     // ----------------- Price + Delete -----------------
+//     let div3 = document.createElement('div');
+//     div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center', 'me-2');
+//     div3.id = product.product_id;
 
-    let productPrice = document.createElement('p');
-    productPrice.classList.add('fs-3');
-    productPrice.innerText = product.price + '$';
+//     let productPrice = document.createElement('p');
+//     productPrice.classList.add('fs-3');
+//     productPrice.innerText = product.price + '$';
 
-    let productFinalPrice = document.createElement('p');
-    productFinalPrice.classList.add('fs-5', 'text-secondary');
-    if (product.discount && product.discount > 0) {
-        const discountedPrice = product.price * (1 - product.discount / 100);
-        productFinalPrice.innerText = 'After Discount: ' + discountedPrice.toFixed(2) + '$';
-    } else {
-        productFinalPrice.innerText = 'No discount applied';
-    }
+//     let productFinalPrice = document.createElement('p');
+//     productFinalPrice.classList.add('fs-5', 'text-secondary');
+//     if (product.discount && product.discount > 0) {
+//         const discountedPrice = product.price * (1 - product.discount / 100);
+//         productFinalPrice.innerText = 'After Discount: ' + discountedPrice.toFixed(2) + '$';
+//     } else {
+//         productFinalPrice.innerText = 'No discount applied';
+//     }
 
-    let deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('btn', 'btn-danger');
-    deleteBtn.innerText = 'Delete';
+//     let deleteBtn = document.createElement('button');
+//     deleteBtn.classList.add('btn', 'btn-danger');
+//     deleteBtn.innerText = 'Delete';
 
-    deleteBtn.addEventListener('click', function (e) {
-        console.log(e);
-        const deletedProduct = allProducts.findIndex(p => p.product_id == e.target.parentElement.attributes.id.textContent);
-        console.log(deletedProduct);
-        allProducts.splice(deletedProduct, 1);
-        console.log(allProducts);
-        localStorage.removeItem('products');
-        localStorage.setItem('products', JSON.stringify(allProducts))
-        allProducts = JSON.parse(localStorage.getItem('products'));
-        renderEverything();
-    });
+//     deleteBtn.addEventListener('click', function (e) {
+//         console.log(e);
+//         const deletedProduct = allProducts.findIndex(p => p.product_id == e.target.parentElement.attributes.id.textContent);
+//         console.log(deletedProduct);
+//         allProducts.splice(deletedProduct, 1);
+//         console.log(allProducts);
+//         localStorage.removeItem('products');
+//         localStorage.setItem('products', JSON.stringify(allProducts))
+//         allProducts = JSON.parse(localStorage.getItem('products'));
+//         renderEverything();
+//     });
 
-    // Append structure
-    productsContainer.appendChild(col);
-    col.appendChild(productImg);
-    col.appendChild(div1);
-    col.appendChild(div2);
-    col.appendChild(div3);
+//     // Append structure
+//     productsContainer.appendChild(col);
+//     col.appendChild(productImg);
+//     col.appendChild(div1);
+//     col.appendChild(div2);
+//     col.appendChild(div3);
 
-    div1.appendChild(productName);
-    div1.appendChild(productSeller);
+//     div1.appendChild(productName);
+//     div1.appendChild(productSeller);
 
-    div2.appendChild(productBrand);
-    div2.appendChild(productCategory);
-    div2.appendChild(productQuantity);
-    div2.appendChild(productDiscount);
+//     div2.appendChild(productBrand);
+//     div2.appendChild(productCategory);
+//     div2.appendChild(productQuantity);
+//     div2.appendChild(productDiscount);
 
-    div3.appendChild(productPrice);
-    div3.appendChild(productFinalPrice);
-    div3.appendChild(deleteBtn);
-}
+//     div3.appendChild(productPrice);
+//     div3.appendChild(productFinalPrice);
+//     div3.appendChild(deleteBtn);
+// }
+
+
+const tbody = document.getElementById('product-table-body');
+tbody.innerHTML = "";
+allProducts.forEach(p => {
+    tbody.innerHTML += `<tr>
+            <td><div class="d-flex align-items-center gap-2"><img src="${p.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${p.name}</b></div></td>
+            <td>${p.category}</td>
+            <td>${p.brand}</td>
+            <td class="text-primary fw-bold">$${p.price}</td>
+            <td>${p.quantity}</td>
+            <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${p.product_id})">Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.product_id})">Delete</button>
+            </td>
+        </tr>`;
+});
+
 
 // ======================================================
 // Dynamic Filters Rendering
@@ -357,17 +375,31 @@ function applyFilters() {
         );
     }
 
-    productsContainer.innerHTML = '';
+    // productsContainer.innerHTML = '';
+    tbody.innerHTML = "";
 
     if (filtered.length === 0) {
-        productsContainer.innerHTML =
-            `<div class="col-12 text-center p-5 bg-light rounded-3">
-                <p class="fs-4 text-muted">No products found!</p>
-            </div>`;
+        // productsContainer.innerHTML =
+        //     `<div class="col-12 text-center p-5 bg-light rounded-3">
+        //         <p class="fs-4 text-muted">No products found!</p>
+        //     </div>`;
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center p-5"><p class="fs-4 text-muted">No products found!</p></td></tr>`;
         return;
     }
 
-    filtered.forEach(product => displayProduct(product));
+    filtered.forEach(product => {
+        tbody.innerHTML += `<tr>
+            <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
+            <td>${product.category}</td>
+            <td>${product.brand}</td>
+            <td class="text-primary fw-bold">$${product.price}</td>
+            <td>${product.seller_id}</td>
+            <td>${product.quantity}</td>
+            <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
+            </td>
+        </tr>`;
+    });
 }
 
 // ======================================================
@@ -473,7 +505,8 @@ function initializeProducts() {
 
 function renderEverything() {
 
-    productsContainer.innerHTML = '';
+    // productsContainer.innerHTML = '';
+    tbody.innerHTML = "";
 
     const categories = [...new Set(allProducts.map(p => p.category))];
     const brands = [...new Set(allProducts.map(p => p.brand))];
@@ -486,7 +519,18 @@ function renderEverything() {
 
     updateStatistics();
 
-    allProducts.forEach(product => displayProduct(product));
+    allProducts.forEach(product => {
+        tbody.innerHTML += `<tr>
+            <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
+            <td>${product.category}</td>
+            <td>${product.brand}</td>
+            <td class="text-primary fw-bold">$${product.price}</td>
+            <td>${product.quantity}</td>
+            <td>${product.seller_id}</td>
+            <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
+            </td>
+        </tr>`});
 }
 
 initializeProducts();
