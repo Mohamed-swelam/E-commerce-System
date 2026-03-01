@@ -47,25 +47,38 @@ if (userWishList.length === 0) {
         card.style.cursor = "pointer";
 
         card.innerHTML = `
-            <img src="${product.image}" style="width:100%; height:200px; object-fit:contain;">
-            <div style="padding:10px; display:flex; flex-direction:column; gap:5px;">
-                <h4 style="margin:0; font-size:16px;">${product.name}</h4>
-                <p style="margin:0; font-size:13px; color:#555;" class = "prod_desc">${product.description || ''}</p>
-                <p style="margin:5px 0; font-weight:bold;">${product.price}$</p>
-            </div>
-            <button class="remove-btn" style="
-                position:absolute;
-                top:10px;
-                right:10px;
-                background:#e6776b;
-                color:white;
-                border:none;
-                width:35px;
-                height:35px;
-                border-radius:50%;
-                cursor:pointer;
-            ">x</button>
-        `;
+                            <img src="${product.image}" 
+                                style="width:100%; height:200px; object-fit:contain;">
+
+                            <div style="padding:10px; display:flex; flex-direction:column; gap:5px;">
+                                <h4 style="margin:0; font-size:16px;" id="product_name">
+                                    ${product.name}
+                                </h4>
+
+                                <p style="margin:0; font-size:13px; color:#555;" class="prod_desc">
+                                    ${product.description || ''}
+                                </p>
+
+                                <p style="margin:5px 0;">
+                                    ${getPriceUI(product)}
+                                </p>
+                            </div>
+
+                            <button class="remove-btn" style="
+                                position:absolute;
+                                top:10px;
+                                right:10px;
+                                background:#e6776b;
+                                color:white;
+                                border:none;
+                                width:35px;
+                                height:35px;
+                                border-radius:50%;
+                                cursor:pointer;
+                            ">x</button>
+
+                            ${getDiscountUI(product)}
+                        `;
 
         card.addEventListener("click", function (e) {
             if (e.target.classList.contains("remove-btn")) return;
@@ -143,4 +156,63 @@ hearts.forEach(heart => {
 
 function getProduct(product_id) {
     return products.find(e => e.product_id == product_id);
+}
+
+
+//check if product has discount or not
+function getDiscountUI(product) {
+    const hasDiscount =
+        product.discount &&
+        product.discount > 0 &&
+        product.oldPrice &&
+        product.oldPrice > product.price;
+
+    if (!hasDiscount) return "";
+
+    return `
+        <div style="
+            position:absolute;
+            top:10px;
+            left:10px;
+            background:#dc3545;
+            color:white;
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            display:flex;
+            transform: rotate(-35deg);
+            align-items:center;
+            justify-content:center;
+            font-size:12px;
+            font-weight:bold;
+        ">
+            ${product.discount}%
+        </div>
+    `;
+}
+
+//check price with discount or not
+function getPriceUI(product) {
+    const hasDiscount =
+        product.discount &&
+        product.discount > 0 &&
+        product.oldPrice &&
+        product.oldPrice > product.price;
+
+    if (hasDiscount) {
+        return `
+            <span style="text-decoration:line-through; color:#dc3545; margin-right:6px;">
+                ${product.oldPrice}$
+            </span>
+            <span style="color:#198754; font-weight:bold;">
+                ${product.price}$
+            </span>
+        `;
+    }
+
+    return `
+        <span style="color:#000; font-weight:bold;">
+            ${product.price}$
+        </span>
+    `;
 }

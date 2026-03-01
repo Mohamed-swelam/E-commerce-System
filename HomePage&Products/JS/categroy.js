@@ -76,43 +76,70 @@ function displayCategroyData(page) {
             );
         }
 
-        prdBox += `   
-       <div class="col-lg-4 col-6">
-                     <div class="card position-relative"style="min-height:500px;" onclick="showDetails(${categoryArray[i].product_id})">
-                    <div style="cursor:pointer">
-                    <div class=" bg-white text-end py-3"  >
-                        <span>
-                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
-                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(categoryArray[i])}, this)'>
-                            </i>
-                        </span>
-                    </div>
-                        <img class="card-img-top"  height="300" src="${categoryArray[i].image}" alt="${categoryArray[i].name}" />
-                        <div class="card-body" onclick="showDetails(${categoryArray[i].id})">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div >
-                                    <h4 class="card-title m-0 p-0">${categoryArray[i].name.slice(0, 10)}</h4>
-                                    <small  >${categoryArray[i].brand}</small>
-                                </div>
-                            <div>
-                                <span class=" card-text text-decoration-line-through text-danger">${categoryArray[i].oldPrice ?? "0"}$</span>
-                                <span class=" card-text  text-success " style="font-size:25px;">${categoryArray[i].price}$</span>
-                            </div>
-                            </div>
-                            <p class="card-text lead">${categoryArray[i].description?.slice(0, 30) ?? "No description available for this product."}</p>
-                        </div>
-                            <div class="text-center w-100" id="cart">
-                             <button class="btn add-to-cart-btn" onclick="event.stopPropagation();addToCart(${categoryArray[i].product_id})">
-                              Add To Cart
-                            </button>
-                             </div>
-                        </div>
-                         <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
-                        <p class="m-auto text-white">${categoryArray[i].discount}%</p>
-                    </div>
-                    </div>
+        const hasDiscount = categoryArray[i].discount && categoryArray[i].discount > 0;
 
-                </div>`
+        prdBox += `   
+                    <div class="col-lg-4 col-6">
+                        <div class="card position-relative" style="min-height:500px;" onclick="showDetails(${categoryArray[i].product_id})">
+                            
+                            <div style="cursor:pointer">
+                                <div class="bg-white text-end py-3">
+                                    <span>
+                                        <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+                                        onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(categoryArray[i])}, this)'>
+                                        </i>
+                                    </span>
+                                </div>
+
+                                <img class="card-img-top" height="300" 
+                                    src="${categoryArray[i].image}" 
+                                    alt="${categoryArray[i].name}" />
+
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <p class="card-title m-0 p-0" id = "product_name">${categoryArray[i].name}</p>
+                                            <small>${categoryArray[i].brand}</small>
+                                        </div>
+
+                                        <div>
+                                            ${hasDiscount
+                ? `<span class="card-text text-decoration-line-through text-danger">
+                                                    ${categoryArray[i].oldPrice ?? "0"}$
+                                                </span>`
+                : ``
+            }
+
+                                            <span class="card-text ${hasDiscount ? 'text-success' : 'text-dark'}" 
+                                                style="font-size:25px;">
+                                                ${categoryArray[i].price}$
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <p class="card-text lead" id = "product_description">
+                                        ${categoryArray[i].description ?? "No description available for this product."}
+                                    </p>
+                                </div>
+
+                                <div class="text-center w-100">
+                                    <button class="btn add-to-cart-btn"
+                                        onclick="event.stopPropagation();addToCart(${categoryArray[i].product_id})">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                            </div>
+
+                            ${hasDiscount
+                ? `<div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex fw-bold"
+                                        style="width:65px; height:65px;">
+                                        <p class="m-auto text-white">${categoryArray[i].discount}%</p>
+                                </div>`
+                : ``
+            }
+
+                        </div>
+                    </div>`;
     }
     document.getElementById("data").innerHTML = prdBox;
 }
@@ -378,3 +405,4 @@ function handleNavbarAuth() {
         loginLink.style.display = "block";
     }
 }
+handleNavbarAuth();
