@@ -387,6 +387,11 @@ function addToCart(productId) {
         return;
     }
 
+    if (currentUser.role === "admin" || currentUser.role === "seller") {
+        showToast("Admins and sellers cannot add items to cart.", "error");
+        return;
+    }
+
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const product = products.find(p => p.product_id === productId);
 
@@ -441,25 +446,67 @@ function handleNavbarAuth() {
     const loginLink = document.getElementById("login-link");
     const adminDashboard = document.getElementById("admin-dashboard");
     const sellerDashboard = document.getElementById("seller-dashboard");
+    const cartIcon = document.getElementById("cart-icon");
+    const wishlistIcon = document.getElementById("wishlist-icon");
+    const logoutBtn = document.getElementById("logout-btn");
+    const contactLink = document.getElementById("contact-link");
 
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!userProfile || !loginLink) return;
 
     if (currentUser) {
-        userProfile.style.display = "block";
+        // userProfile.style.display = "block";
         loginLink.style.display = "none";
+        logoutBtn?.classList.remove("d-none");
 
-        if (currentUser.role === "admin") {
-            adminDashboard?.classList.remove("d-none");
-            sellerDashboard?.classList.add("d-none");
-        } else if (currentUser.role === "seller") {
-            sellerDashboard?.classList.remove("d-none");
-            adminDashboard?.classList.add("d-none");
+        if (currentUser.role === "admin" || currentUser.role === "seller") {
+
+            userProfile && (userProfile.style.display = "none");
+            cartIcon && (cartIcon.style.display = "none");
+            wishlistIcon && (wishlistIcon.style.display = "none");
+
+
+            if (currentUser.role === "admin") {
+                adminDashboard?.classList.remove("d-none");
+                sellerDashboard?.classList.add("d-none");
+                contactLink?.classList.add("d-none");
+            } else if (currentUser.role === "seller") {
+                sellerDashboard?.classList.remove("d-none");
+                adminDashboard?.classList.add("d-none");
+                contactLink?.classList.add("d-block");
+            }
         }
-    } else {
-        userProfile.style.display = "none";
+
+        else {
+            userProfile && (userProfile.style.display = "block");
+            cartIcon && (cartIcon.style.display = "block");
+            wishlistIcon && (wishlistIcon.style.display = "block");
+            contactLink?.classList.add("d-block");
+
+            adminDashboard?.classList.add("d-none");
+            sellerDashboard?.classList.add("d-none");
+            logoutBtn?.classList.add("d-none");
+        }
+
+        logoutBtn?.addEventListener("click", () => {
+            localStorage.removeItem("currentUser");
+            window.location.href = "../login/login.html";
+        });
+
+    }
+
+    else {
         loginLink.style.display = "block";
+        logoutBtn?.classList.add("d-none");
+
+        userProfile && (userProfile.style.display = "none");
+        cartIcon && (cartIcon.style.display = "none");
+        wishlistIcon && (wishlistIcon.style.display = "none");
+        contactLink?.classList.add("d-none");
+
+        adminDashboard?.classList.add("d-none");
+        sellerDashboard?.classList.add("d-none");
     }
 }
 handleNavbarAuth();

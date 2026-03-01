@@ -6,7 +6,7 @@
         "city": "6th of October",
         "address": "Al Hosary Square",
         "phone": "01169570136",
-        "total": 655,
+        "total": 1689.97,
         "status": "delivered",
         "createdAt": "2026-02-10T00:00:00.000Z",
         "items": [
@@ -27,7 +27,7 @@
         "city": "Maadi",
         "address": "Road 9",
         "phone": "01185057916",
-        "total": 399,
+        "total": 1089.99,
         "status": "pending",
         "createdAt": "2026-02-11T00:00:00.000Z",
         "items": [
@@ -44,7 +44,7 @@
         "city": "Mansoura",
         "address": "El Geish Street",
         "phone": "01040393484",
-        "total": 780,
+        "total": 639.98,
         "status": "processing",
         "createdAt": "2026-02-12T00:00:00.000Z",
         "items": [
@@ -65,7 +65,7 @@
         "city": "Port Said",
         "address": "Al Gomhoria Street",
         "phone": "01551258391",
-        "total": 1250,
+        "total": 1289.98,
         "status": "delivered",
         "createdAt": "2026-02-13T00:00:00.000Z",
         "items": [
@@ -82,7 +82,7 @@
         "city": "6th of October",
         "address": "Al Hosary Square",
         "phone": "01169570136",
-        "total": 920,
+        "total": 2889.97,
         "status": "pending",
         "createdAt": "2026-02-14T00:00:00.000Z",
         "items": [
@@ -103,7 +103,7 @@
         "city": "Port Said",
         "address": "Al Gomhoria Street",
         "phone": "01551258391",
-        "total": 540,
+        "total": 589.98,
         "status": "pending",
         "createdAt": "2026-02-15T00:00:00.000Z",
         "items": [

@@ -479,3 +479,15 @@ function cancelOrder(orderId) {
 }
 
 renderOrders();
+
+//====================== Navigate to Logout Section from Header ===================
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutLink = document.getElementById("logoutModal");
+    const sidebarLogoutBtn = document.querySelector('#sidebarMenu [data-target="logout"]');
+
+    if (logoutLink && sidebarLogoutBtn) {
+        logoutLink.addEventListener("click", () => {
+            sidebarLogoutBtn.click();
+        });
+    }
+});
