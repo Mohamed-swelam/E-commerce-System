@@ -100,6 +100,10 @@
                         Your Wishlist
                     </button>
 
+                    <button class="list-group-item" data-target="orders" data-title="Your Orders">
+                        Your Orders
+                    </button>
+
                     <button class="list-group-item" data-target="logout" data-title="Log Out">
                         Log out
                     </button>
@@ -121,12 +125,6 @@
                             <!-- not Handel this logout  -->
 
                         </h5>
-                        <h4 class="section-title">Order history</h4>
-
-                        <div class="alert-custom mb-4">
-                            ✔ <a href="../HomePage&Products/AllProducts.html">Make your first order.</a> You haven’t
-                            placed any orders yet.
-                        </div>
 
                         <h2 class="section-title">Account details</h2>
                         <table class="table">
@@ -271,6 +269,18 @@
                         </div> -->
 
                         <div id="wishlist-container" class="wishlist-wrapper"></div>
+                    </div>
+                    <div class="content-section d-none" id="orders">
+                        <h2 class="section-title">Your Orders</h2>
+
+                        <div id="ordersContainer" class="orders-wrapper"></div>
+
+                        <div id="emptyOrdersMessage" class="alert-custom mt-3 d-none">
+                            You haven't placed any orders yet.
+                            <a href="../HomePage&Products/AllProducts.html">
+                                Start shopping
+                            </a>
+                        </div>
                     </div>
                 </div>
 

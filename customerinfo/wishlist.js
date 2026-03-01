@@ -44,6 +44,7 @@ if (userWishList.length === 0) {
         const card = document.createElement('div');
         card.classList.add('wishlist-card');
         card.style.position = 'relative';
+        card.style.cursor = "pointer";
 
         card.innerHTML = `
             <img src="${product.image}" style="width:100%; height:200px; object-fit:contain;">
@@ -65,6 +66,12 @@ if (userWishList.length === 0) {
                 cursor:pointer;
             ">x</button>
         `;
+
+        card.addEventListener("click", function (e) {
+            if (e.target.classList.contains("remove-btn")) return;
+
+            window.location.href = `../product_details/product-details.html?id=${product.id}`;
+        });
 
         container.appendChild(card);
 

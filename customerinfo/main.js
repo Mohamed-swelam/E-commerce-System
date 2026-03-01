@@ -258,3 +258,224 @@ if (tab === "wishlist") {
     const wishlistBtn = document.querySelector('[data-target="wishlist"]');
     if (wishlistBtn) wishlistBtn.classList.add("active");
 }
+
+
+
+
+// ======================= Orders Section =======================
+
+const ordersContainer = document.getElementById("ordersContainer");
+const emptyOrdersMessage = document.getElementById("emptyOrdersMessage");
+
+function renderOrders() {
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const allProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+    let userOrders = orders.filter(e => e.userId == currentUser.id);
+    console.log(userOrders);
+
+    ordersContainer.innerHTML = "";
+
+    if (userOrders.length === 0) {
+        emptyOrdersMessage.classList.remove("d-none");
+        return;
+    }
+
+    emptyOrdersMessage.classList.add("d-none");
+
+    userOrders.forEach((order, index) => {
+        const orderCard = document.createElement("div");
+        orderCard.classList.add("card", "mb-4", "shadow-sm");
+
+        orderCard.innerHTML = `
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>Order #${order.orderId}</strong>
+                </div>
+                <div>
+                    ${getStatusBadge(order.status)}
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Date:</strong></p>
+                        <span>${formatDate(order.createdAt)}</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Total:</strong></p>
+                        <span>$${order.total}</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Phone:</strong></p>
+                        <span>${order.phone ?? ""}</span>
+                    </div>
+                </div>
+
+                <hr/>
+
+                <h6 class="mb-2">Shipping Address</h6>
+                <p class="mb-1">Name : ${order.customerName}</p>
+                <p class="mb-1">Address : ${order.address}</p>
+                <p class="mb-1">City : ${order.city}</p>
+
+                <hr/>
+
+                <h6 class="mb-3">Items (${order.items.length})</h6>
+                <ul class="list-group">
+                    ${order.items.map(item => {
+            const product = allProducts.find(p => p.product_id === item.productId);
+
+            if (!product) {
+                return `
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Product Not Found (ID: ${item.productId})</span>
+                                    <span>Qty: ${item.quantity}</span>
+                                </li>
+                            `;
+            }
+
+            return `
+                            <li class="list-group-item d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img 
+                                        src="${product.image}" 
+                                        alt="${product.name}" 
+                                        width="60" 
+                                        height="60"
+                                        style="object-fit: contain; border-radius: 8px;"
+                                    />
+                                    <div>
+                                        <div class="fw-semibold">${product.name}</div>
+                                        <small class="text-muted">Price: $${product.price}</small>
+                                    </div>
+                                </div>
+
+                                <div class="text-end">
+                                    <div>Qty: ${item.quantity}</div>
+                                    <div class="fw-bold">
+                                        $${(product.price * item.quantity).toFixed(2)}
+                                    </div>
+                                </div>
+                            `;
+        }).join("")}
+                </ul>
+                <hr/>
+
+            <div class="d-flex justify-content-end mt-3">
+                ${getOrderAction(order)}
+            </div>
+            </div>
+        `;
+
+        ordersContainer.appendChild(orderCard);
+        const cancelBtn = orderCard.querySelector(".cancel-order-btn");
+        if (cancelBtn) {
+            cancelBtn.addEventListener("click", () => {
+                cancelOrder(order.orderId);
+            });
+        }
+    });
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-GB");
+}
+
+
+function getStatusBadge(status) {
+    switch (status.toLowerCase()) {
+        case "delivered":
+            return `<span class="badge bg-success">Delivered</span>`;
+        case "pending":
+            return `<span class="badge bg-warning text-dark">Pending</span>`;
+        case "cancelled":
+            return `<span class="badge bg-danger">Cancelled</span>`;
+        default:
+            return `<span class="badge bg-secondary">${status}</span>`;
+    }
+}
+
+function getOrderAction(order) {
+    const status = order.status.toLowerCase();
+
+    if (status === "cancelled") {
+        return `<span class="badge bg-danger">Order Cancelled</span>`;
+    }
+
+    if (status === "pending" || status === "processing") {
+        return `
+            <button 
+                class="btn btn-outline-danger btn-sm cancel-order-btn" 
+                data-id="${order.orderId}">
+                Cancel Order
+            </button>
+        `;
+    }
+
+    if (status === "shipped" || status === "delivered") {
+        return `
+            <span class="text-muted fw-semibold">
+                Cannot cancel (Already ${order.status})
+            </span>
+        `;
+    }
+
+    return "";
+}
+
+function cancelOrder(orderId) {
+    let allOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+
+    const index = allOrders.findIndex(o => o.orderId === orderId);
+    if (index === -1) return;
+
+    const order = allOrders[index];
+    const status = order.status.toLowerCase();
+
+
+    if (status === "shipped" || status === "delivered") {
+        alert("This order cannot be cancelled because it is already " + order.status);
+        return;
+    }
+
+
+    if (status === "cancelled") {
+        alert("This order is already cancelled.");
+        return;
+    }
+
+    const confirmCancel = confirm("Are you sure you want to cancel this order?");
+    if (!confirmCancel) return;
+
+    // return the quantity to the stock
+    order.items.forEach(item => {
+        const product = products.find(p => p.product_id == item.productId);
+        console.log(product);
+
+        if (product) {
+            product.quantity = Number(product.quantity) + Number(item.quantity);
+
+        }
+        console.log(product);
+    });
+
+    localStorage.setItem("products", JSON.stringify(products));
+
+    allOrders[index].status = "cancelled";
+
+    localStorage.setItem("orders", JSON.stringify(allOrders));
+
+    renderOrders();
+
+    if (typeof showToast === "function") {
+        showToast("Order cancelled and stock restored!", "success");
+    }
+}
+
+renderOrders();

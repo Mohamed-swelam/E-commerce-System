@@ -9,7 +9,7 @@
 .product-image img {
     max-height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: fill;
 }
 
 
@@ -107,7 +107,7 @@
 
 .related-card img {
     height: 220px;
-    object-fit: contain;
+    object-fit: fill;
     cursor: pointer;
 }
 

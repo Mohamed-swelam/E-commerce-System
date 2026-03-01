@@ -3123,7 +3123,7 @@ function displayProducts(x, container) {
         productBox +=
           `
                                 <div class="col-lg-3">
-                                    <div class="card position-relative w-100 p-0 m-0" style="cursor:pointer; onclick="showDetails(${productArray[i].product_id})""  >
+                                    <div class="card position-relative w-100 p-0 m-0" style="cursor:pointer;" onclick="showDetails(${productArray[i].product_id})"  >
                                      <div class=" bg-white text-end py-3"  >
                                       <span>
                                           <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"

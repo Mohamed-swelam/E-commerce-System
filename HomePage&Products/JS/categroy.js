@@ -351,3 +351,30 @@ function addToCart(productId) {
     localStorage.setItem("carts", JSON.stringify(carts));
     showToast("Product added to cart successfully..", "success");
 }
+
+function handleNavbarAuth() {
+    const userProfile = document.getElementById("profile");
+    const loginLink = document.getElementById("login-link");
+    const adminDashboard = document.getElementById("admin-dashboard");
+    const sellerDashboard = document.getElementById("seller-dashboard");
+
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!userProfile || !loginLink) return;
+
+    if (currentUser) {
+        userProfile.style.display = "block";
+        loginLink.style.display = "none";
+
+        if (currentUser.role === "admin") {
+            adminDashboard?.classList.remove("d-none");
+            sellerDashboard?.classList.add("d-none");
+        } else if (currentUser.role === "seller") {
+            sellerDashboard?.classList.remove("d-none");
+            adminDashboard?.classList.add("d-none");
+        }
+    } else {
+        userProfile.style.display = "none";
+        loginLink.style.display = "block";
+    }
+}
