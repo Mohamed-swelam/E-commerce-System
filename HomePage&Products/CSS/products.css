@@ -224,6 +224,14 @@ input[type="checkbox"]:checked {
     -o-border-radius: 0 !important;
 }
 
+
+#logout-btn .btn {
+    width: auto;
+    height: auto;
+    padding: 6px 16px;
+    border-radius: 50px !important;
+}
+
 .dropdown-menu {
     --bs-dropdown-border-radius: 0px;
 }
