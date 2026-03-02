@@ -47,7 +47,7 @@
 
                     <ul class="navbar-nav  ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link " href="#">About Us</a>
+                            <a class="nav-link " href="../About/about.html">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="contact-link" href="../ContactUs/Contact.html">Contact</a>
@@ -62,7 +62,8 @@
                             <a class="nav-link border rounded-pill  bg-dark text-white" href="#">Login</a>
                         </li>
                         <li id="logout-btn" class="nav-item d-none">
-                            <a class="nav-link logout-link rounded-pill border border-danger text-danger" id="logout-link">Logout</a>
+                            <a class="nav-link logout-link rounded-pill border border-danger text-danger"
+                                id="logout-link">Logout</a>
                         </li>
                     </ul>
 
@@ -138,17 +139,18 @@
     <header id="category" style="padding-top: 100px;  padding-bottom: 40px; ">
 
         <div class="container">
-             <section class="dropdown text-center my-4 " >
-                    <a class="btn dropdown-toggle fw-bolder  w-25" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.25rem; color: #1b254b ;border-color:transparent;">
-                        Sort By
-                    </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" >A to Z</a></li>
-                <li><a class="dropdown-item">Z to A</a></li>
-                <li><a class="dropdown-item">High Price</a></li>
-                <li><a class="dropdown-item">Low Price</a></li>
-            </ul>
-        </section>
+            <section class="dropdown text-center my-4 ">
+                <a class="btn dropdown-toggle fw-bolder  w-25" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" style="font-size: 1.25rem; color: #1b254b ;border-color:transparent;">
+                    Sort By
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item">A to Z</a></li>
+                    <li><a class="dropdown-item">Z to A</a></li>
+                    <li><a class="dropdown-item">High Price</a></li>
+                    <li><a class="dropdown-item">Low Price</a></li>
+                </ul>
+            </section>
 
 
             <div class="row g-5" id="data">
@@ -241,19 +243,18 @@
 
 
     <!-- Toast (Top Right) -->
-            <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
-                
-                <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
-                    <div class="d-flex">
-                        <div class="toast-body" id="toastMessage">
-                            Message here
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                            data-bs-dismiss="toast"></button>
-                    </div>
-                </div>
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
 
+        <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Message here
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
+        </div>
+
+    </div>
 
 
 

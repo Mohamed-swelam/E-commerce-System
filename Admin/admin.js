@@ -567,13 +567,13 @@ new Chart(brand, {
 
 
 
-let userProfile = document.getElementById('profile');
+// let userProfile = document.getElementById('profile');
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 // localStorage.removeItem("currentUser");
 if (currentUser) {
-    userProfile.style.display = "block";
     document.getElementById('login-link').style.display = "none";
+    document.getElementById('logout-btn').style.display = "block";
     if (currentUser.role === "admin") {
         document.getElementById("admin-dashboard").classList.remove("d-none");
         document.getElementById("seller-dashboard").classList.add("d-none");
@@ -584,6 +584,23 @@ if (currentUser) {
     }
 
 } else {
-    userProfile.style.display = "none";
     document.getElementById('login-link').style.display = "block";
+    document.getElementById('logout-btn').style.display = "none";
 }
+// if (currentUser) {
+//     userProfile.style.display = "block";
+//     document.getElementById('login-link').style.display = "none";
+//     document.getElementById('logout-btn').style.display = "block";
+//     if (currentUser.role === "admin") {
+//         document.getElementById("admin-dashboard").classList.remove("d-none");
+//         document.getElementById("seller-dashboard").classList.add("d-none");
+//     }
+//     else if (currentUser.role === "seller") {
+//         document.getElementById("seller-dashboard").classList.remove("d-none");
+//         document.getElementById("admin-dashboard").classList.add("d-none");
+//     }
+
+// } else {
+//     userProfile.style.display = "none";
+//     document.getElementById('login-link').style.display = "block";
+// }
