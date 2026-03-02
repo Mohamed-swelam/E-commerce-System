@@ -6,7 +6,7 @@ const replyModalElement = document.getElementById('reply-modal');
 
 
 
-
+// ---------------- Display Tickets ----------------
 function displayTickets() {
     const ticketsContainer = document.getElementById('tickets-container');
     ticketsContainer.innerHTML = '';
@@ -43,6 +43,7 @@ function displayTickets() {
 displayTickets();
 
 
+// ---------------- Ticket Status Badges ----------------
 const ticketBadge = document.querySelectorAll('.ticket-badge');
 ticketBadge.forEach((badge) => {
     const status = badge.innerText.toLowerCase();
@@ -58,6 +59,7 @@ ticketBadge.forEach((badge) => {
 });
 
 
+// Show/hide buttons based on ticket status
 allTickets.forEach(ticket => {
     if (ticket.status.toLowerCase() === 'pending') {
         const replyBtn = document.getElementById(`t${ticket.id}`);
@@ -80,6 +82,7 @@ allTickets.forEach(ticket => {
 })
 
 
+// ---------------- Reply to Ticket ----------------
 let ticket;
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('reply-btn')) {
@@ -116,26 +119,28 @@ document.addEventListener('click', (e) => {
     }
 
     if (e.target.classList.contains('save-ticket-reply-btn')) {
-        console.log('yes');
         const replyMessage = document.getElementById('reply-message').value;
         const ticketStatus = document.getElementById('ticket-status-select').value;
-        console.log(replyMessage, ticketStatus);
-        console.log(ticket);
-        if (ticket) {
-            ticket.reply = replyMessage;
-            ticket.status = ticketStatus;
-            localStorage.removeItem('tickets');
-            localStorage.setItem('tickets', JSON.stringify(allTickets));
-            tickectsModal.hide();
-            showToast('Ticket replied successfully', 'success');
-            setTimeout(() => { location.reload() }, 2000);
-            displayTickets();
+        const errorMessage = validateReplyMessage(replyMessage) || validateTicketStatus(ticketStatus);
+        if (errorMessage) {
+            showToast(errorMessage, 'error');
+            return;
+        } else {
+            if (ticket) {
+                ticket.reply = replyMessage;
+                ticket.status = ticketStatus;
+                localStorage.removeItem('tickets');
+                localStorage.setItem('tickets', JSON.stringify(allTickets));
+                tickectsModal.hide();
+                showToast('Ticket replied successfully', 'success');
+                setTimeout(() => { location.reload() }, 2000);
+                displayTickets();
+            }
         }
     }
 
     if (e.target.classList.contains('view-reply-btn') || e.target.classList.contains('view-reply-icon')) {
         const ticketId = e.target.id.slice(3, e.target.id.length);
-        console.log(ticketId);
         const ticket = allTickets.find(t => t.id == ticketId);
         tickectsModal.show();
         replyModalElement.querySelector('.modal-content').innerHTML = `
@@ -161,6 +166,20 @@ document.addEventListener('click', (e) => {
 });
 
 
+// validation for reply message and status
+function validateReplyMessage(message) {
+    if (message.trim() === '' || (message.length == 0)) {
+        return 'Reply message cannot be empty.';
+    }
+}
+
+function validateTicketStatus(status) {
+    if (status == 'pending') {
+        return 'Please change the ticket status to either "Replied" or "Resolved".';
+    }
+}
+
+
 
 // chart to display the number of tickets in each status
 const tickets = document.getElementById('tickets-status');
@@ -173,12 +192,8 @@ new Chart(tickets, {
             data: [...new Set(allTickets.map(p => p.status))].map(s => allTickets.filter(p => p.status == s).length),
             borderWidth: 1
         }]
-    },
-    // options: {
-    //     scales: {
-    //         y: {
-    //             beginAtZero: true
-    //         }
-    //     }
-    // }
+    }
 });
+
+
+
