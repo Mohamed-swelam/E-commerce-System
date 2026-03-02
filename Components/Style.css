@@ -8,8 +8,9 @@
     --btn-feature-bgcolor: #323e69;
 }
 
+
 body {
-    font-family: "Rubik", sans-serif;
+    font-family: "Rubik", sans-serif !important;
 }
 
 .active {
@@ -69,6 +70,26 @@ ul span i {
     box-shadow: none;
 }
 
+.logout-link {
+    width: fit-content;
+    color: #dc3545 !important;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.logout-link:hover {
+    color: #fff !important;
+    background-color: #dc3545 !important;
+}
+
+
+@media (max-width: 991px) {
+    .logout-link {
+        width: fit-content;
+        margin-left: 1.875rem;
+    }
+}
+
 /* End NavBra */
 
 
@@ -90,8 +111,8 @@ footer input::placeholder {
 }
 
 footer button {
-    color: var(--dark-primary);
-    border-color: transparent;
+    color: var(--dark-primary) !important;
+    border-color: transparent !important;
 }
 
 .after-brdr {
