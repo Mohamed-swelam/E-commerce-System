@@ -436,9 +436,7 @@ function updateStatistics() {
 // ======================================================
 
 function initializeProducts() {
-
     const storedProducts = localStorage.getItem('products');
-
     if (storedProducts && JSON.parse(storedProducts).length > 0) {
         allProducts = JSON.parse(storedProducts);
         renderEverything();
@@ -456,6 +454,27 @@ function initializeProducts() {
             });
     }
 }
+// let allTickets = [];
+// function initializeTickets() {
+//     const storedTickets = localStorage.getItem('tickets');
+//     if (storedTickets && JSON.parse(storedTickets).length > 0) {
+//         allTickets = JSON.parse(storedTickets);
+//         displayTickets();
+//     }
+//     else {
+//         fetch('../Dummy Data/tickets.json')
+//             .then(res => res.json())
+//             .then(tickets => {
+//                 allTickets = tickets;
+//                 localStorage.setItem('tickets', JSON.stringify(allTickets));
+//                 displayTickets();
+//             })
+//             .catch(error => {
+//                 console.error('Error fetching tickets:', error);
+//             });
+//     }
+// }
+
 
 function renderEverything() {
 
@@ -477,7 +496,7 @@ function renderEverything() {
 }
 
 initializeProducts();
-
+// initializeTickets();
 
 
 function displayProduct(product) {
@@ -496,8 +515,10 @@ function displayProduct(product) {
 }
 
 
+
+
 //////////////////////////////////////////////////
-/////  CHARTS
+/////  CHARTS for products
 //////////////////////////////////////////////////
 const cat = document.getElementById('categories');
 new Chart(cat, {
@@ -537,6 +558,7 @@ new Chart(brand, {
     //     }
     // }
 });
+
 
 
 
