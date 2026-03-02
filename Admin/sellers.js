@@ -36,7 +36,7 @@ function displaySeller(seller) {
 
     // ---------------- ID Section ----------------
     let div3 = document.createElement('div');
-    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center');
+    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-end');
 
     let sellerId = document.createElement('p');
     sellerId.classList.add('fs-5');
