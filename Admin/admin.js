@@ -666,23 +666,27 @@ new Chart(brand, {
 
 
 
-// let userProfile = document.getElementById('profile');
+// // let userProfile = document.getElementById('profile');
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const logOutBtn = document.getElementById('log-out-btn');
+logOutBtn.addEventListener('click', () => {
+    localStorage.removeItem('currentUser');
+    location.href = '../../HomePage&Products/home.html';
+})
+// // localStorage.removeItem("currentUser");
+// if (currentUser) {
+//     document.getElementById('login-link').style.display = "none";
+//     document.getElementById('logout-btn').style.display = "block";
+//     if (currentUser.role === "admin") {
+//         document.getElementById("admin-dashboard").classList.remove("d-none");
+//         document.getElementById("seller-dashboard").classList.add("d-none");
+//     }
+//     else if (currentUser.role === "seller") {
+//         document.getElementById("seller-dashboard").classList.remove("d-none");
+//         document.getElementById("admin-dashboard").classList.add("d-none");
+//     }
 
-// localStorage.removeItem("currentUser");
-if (currentUser) {
-    document.getElementById('login-link').style.display = "none";
-    document.getElementById('logout-btn').style.display = "block";
-    if (currentUser.role === "admin") {
-        document.getElementById("admin-dashboard").classList.remove("d-none");
-        document.getElementById("seller-dashboard").classList.add("d-none");
-    }
-    else if (currentUser.role === "seller") {
-        document.getElementById("seller-dashboard").classList.remove("d-none");
-        document.getElementById("admin-dashboard").classList.add("d-none");
-    }
-
-} else {
-    document.getElementById('login-link').style.display = "block";
-    document.getElementById('logout-btn').style.display = "none";
-}
+// } else {
+//     document.getElementById('login-link').style.display = "block";
+//     document.getElementById('logout-btn').style.display = "none";
+// }

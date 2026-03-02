@@ -21,7 +21,7 @@
 
 <body>
     <!-- Start NavBar -->
-    <section id="nav">
+    <!-- <section id="nav">
         <nav class="navbar navbar-expand-lg  bg-white px-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="../HomePage&Products/home.html">Avion</a>
@@ -52,7 +52,7 @@
                                 id="logout-link">Logout</a>
                         </li>
                     </ul>
-                    <!-- <ul class="list-unstyled d-flex gap-3 mt-3 ">
+                    <ul class="list-unstyled d-flex gap-3 mt-3 ">
                         <li class="icon-il">
                             <a href="../Cart/cart.html">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -63,23 +63,29 @@
                                 <i class="fa-regular fa-circle-user"></i>
                             </a>
                         </li>
-                    </ul> -->
+                    </ul>
                 </div>
             </div>
         </nav>
-    </section>
+    </section> -->
     <!-- End NavBar -->
     <!-- Start of dashboard -->
     <div class="row w-100 m-auto justify-content-between" style="background-color: var(--secondary-color);">
         <div class="col-12 col-md-2 tabs-container">
-            <h4 class="text-center my-2 mt-4 border-bottom pb-3 ">Admin Dashboard</h4>
+            <div class="text-center border-bottom pb-3">
+                <a class="navbar-brand fs-3" href="../HomePage&Products/home.html">Avion</a>
+            </div>
+            <h4 class="text-center my-2 mt-4 ">Admin Dashboard</h4>
             <div
-                class=" p-2 py-md-5 fs-5 d-flex flex-row flex-md-column justify-content-evenly justify-content-md-start flex-wrap ">
+                class="p-2 pt-md-5 fs-5 d-flex flex-row flex-md-column justify-content-evenly justify-content-md-start flex-wrap ">
                 <p class="p-2 pe-md-0 rounded-3 main-tab " data-tab="customers">customers</p>
                 <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="sellers">sellers</p>
                 <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="products">products</p>
                 <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="orders">orders</p>
                 <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="tickets">tickets</p>
+            </div>
+            <div class="text-center border-top pt-3">
+                <button class="btn btn-danger" id="log-out-btn">Log Out</button>
             </div>
         </div>
         <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
@@ -252,7 +258,7 @@
                                 <th>Name</th>
                                 <th>Contact Data</th>
                                 <th>No. Orders</th>
-                                <th>Action</th>
+                                <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         <tbody id="customers-table-body"></tbody>
