@@ -463,43 +463,31 @@ function initializeProducts() {
     }
 }
 
-
-
+initializeProducts();
+// ------------------------------ for pagination ----------------------
 function renderPaginatedProducts(productsArray) {
-
     const pagination = document.getElementById('pagination');
     tbody.innerHTML = '';
     pagination.innerHTML = '';
-
     const totalPages = Math.ceil(productsArray.length / rowsPerPage);
-
     if (currentPage > totalPages) currentPage = 1;
-
     const start = (currentPage - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-
     const paginatedItems = productsArray.slice(start, end);
-
     paginatedItems.forEach(product => displayProduct(product));
-
     createPaginationButtons(totalPages, productsArray);
 }
 
 
 function createPaginationButtons(totalPages, productsArray) {
-
     const pagination = document.getElementById('pagination');
     pagination.innerHTML = '';
-
     const maxVisible = 5; // show only 5 pages
-
     let startPage = Math.max(currentPage - 2, 1);
     let endPage = Math.min(startPage + maxVisible - 1, totalPages);
-
     if (endPage - startPage < maxVisible - 1) {
         startPage = Math.max(endPage - maxVisible + 1, 1);
     }
-
     // Previous
     pagination.innerHTML += `
         <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
@@ -526,7 +514,6 @@ function createPaginationButtons(totalPages, productsArray) {
     pagination.onclick = function (e) {
         e.preventDefault();
         if (!e.target.dataset.page) return;
-
         if (e.target.dataset.page === 'prev' && currentPage > 1) {
             currentPage--;
         } else if (e.target.dataset.page === 'next' && currentPage < totalPages) {
@@ -534,9 +521,7 @@ function createPaginationButtons(totalPages, productsArray) {
         } else if (!isNaN(e.target.dataset.page)) {
             currentPage = Number(e.target.dataset.page);
         }
-
         renderPaginatedProducts(productsArray);
-
         window.scrollTo({ top: 0, behavior: "smooth" }); // smooth scroll up
     };
 }
@@ -573,7 +558,7 @@ function renderEverything() {
     renderPaginatedProducts(allProducts);
 }
 
-initializeProducts();
+
 
 
 function displayProduct(product) {
