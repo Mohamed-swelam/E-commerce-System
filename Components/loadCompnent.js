@@ -69,7 +69,7 @@ function handleNavbarAuth() {
         userProfile && (userProfile.style.display = "none");
         cartIcon && (cartIcon.style.display = "none");
         wishlistIcon && (wishlistIcon.style.display = "none");
-
+        contactLink?.classList.add("d-none");
         adminDashboard?.classList.add("d-none");
         sellerDashboard?.classList.add("d-none");
     }

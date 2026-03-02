@@ -21,7 +21,7 @@
 
 <body>
     <!-- Start NavBar -->
-    <section id="nav">
+    <!-- <section id="nav">
         <nav class="navbar navbar-expand-lg  bg-white px-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="../HomePage&Products/home.html">Avion</a>
@@ -32,22 +32,24 @@
                 <div class="collapse navbar-collapse gap-5 " id="navbarNav">
                     <ul class="navbar-nav  ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link " href="#">About Us</a>
+                            <a class="nav-link" href="../About/about.html">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../ContactUs/Contact.html">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
+                            <a class="nav-link" id="contact-link" href="../ContactUs/Contact.html">Contact</a>
                         </li>
                         <li class="nav-item d-none" id="admin-dashboard">
-                            <a class="nav-link active-nav" href="../Admin/admin-dashboard.html">Dashboard</a>
+                            <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
                         </li>
                         <li class="nav-item d-none" id="seller-dashboard">
-                            <a class="nav-link " href="../seller-dashboard.html">Dashboard</a>
+                            <a class="nav-link" href="../seller-dashboard.html">Dashboard</a>
                         </li>
                         <li class="nav-item" id="login-link">
-                            <a class="nav-link" href="../login/login.html">Login</a>
+                            <a class="nav-link border rounded-pill  bg-dark text-white"
+                                href="../login/login.html">Login</a>
+                        </li>
+                        <li id="logout-btn" class="nav-item">
+                            <a class="nav-link logout-link rounded-pill border border-danger text-danger"
+                                id="logout-link">Logout</a>
                         </li>
                     </ul>
                     <ul class="list-unstyled d-flex gap-3 mt-3 ">
@@ -65,28 +67,34 @@
                 </div>
             </div>
         </nav>
-    </section>
+    </section> -->
     <!-- End NavBar -->
     <!-- Start of dashboard -->
     <div class="row w-100 m-auto justify-content-between" style="background-color: var(--secondary-color);">
         <div class="col-12 col-md-2 tabs-container">
-            <h4 class="text-center my-2 mt-4 border-bottom pb-3 ">Admin Dashboard</h4>
+            <div class="text-center border-bottom pb-3">
+                <a class="navbar-brand fs-3" href="../HomePage&Products/home.html">Avion</a>
+            </div>
+            <h4 class="text-center my-2 mt-4 ">Admin Dashboard</h4>
             <div
-                class=" p-2 py-md-5 fs-5 d-flex flex-row flex-md-column justify-content-evenly justify-content-md-start flex-wrap ">
-                <p class="p-2 pe-md-0 rounded-3 main-tab active-tab">customers</p>
-                <p class="p-2 pe-md-0 rounded-3 main-tab">sellers</p>
-                <p class="p-2 pe-md-0 rounded-3 main-tab">products</p>
-                <p class="p-2 pe-md-0 rounded-3 main-tab">orders</p>
-                <p class="p-2 pe-md-0 rounded-3 main-tab">tickets</p>
+                class="p-2 pt-md-5 fs-5 d-flex flex-row flex-md-column justify-content-evenly justify-content-md-start flex-wrap ">
+                <p class="p-2 pe-md-0 rounded-3 main-tab " data-tab="customers">customers</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="sellers">sellers</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="products">products</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="orders">orders</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="tickets">tickets</p>
+            </div>
+            <div class="text-center border-top pt-3">
+                <button class="btn btn-danger" id="log-out-btn">Log Out</button>
             </div>
         </div>
         <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
             <!-- Start of customers section -->
-            <div id="customers" class="sub-tab active-sub-tab">
-                <div class=" m-auto rounded-4 p-3 py-3 fs-3 mb-3 text-center text-light"
+            <div id="customers" class="sub-tab ">
+                <div class="m-auto rounded-4 p-3 py-3 fs-3 mb-3 text-center text-light"
                     style="background-color: #3599db; width: 250px;">
-                    <p class="fw-bold pb-0" style="font-size: 1.2rem;">TOTAL CUSTOMERS <br> <span id="total-customers"
-                            style="font-size: 1.9rem;"></span>
+                    <p class="fw-bold pb-0" style="font-size: 1.2rem;"><span id="total-customers"
+                            style="font-size: 1.9rem;"></span><br>CUSTOMERS
                     </p>
                 </div>
                 <div class="text-end mb-3">
@@ -94,7 +102,7 @@
                         Customer</button>
                 </div>
                 <p class="text-center fs-3 mt-5 fst-italic text-body-tertiary d-none" id="customers-empty-message"></p>
-                <!-- Modal -->
+                <!-- add customer Modal -->
                 <div class="modal fade" data-bs-backdrop="static" id="add-customer-modal" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -218,7 +226,28 @@
                         </div>
                     </div>
                 </div>
-                <!-- End of Modal -->
+                <!-- End of add customer Modal -->
+                <!-- start of confirm customer delete modal  -->
+                <div class="modal customer-delete-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirm Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this customer?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirm-customer-delete-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of confirm customer delete modal  -->
                 <!-- <div class="row w-100 m-auto" id="customers-container"></div> -->
                 <div class="table-responsive-md p-3 card shadow-lg rounded-4 border-0">
                     <table class="table caption-top customers-table ">
@@ -229,7 +258,7 @@
                                 <th>Name</th>
                                 <th>Contact Data</th>
                                 <th>No. Orders</th>
-                                <th>Action</th>
+                                <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         <tbody id="customers-table-body"></tbody>
@@ -239,14 +268,14 @@
             <!-- End of customers section -->
             <!-- Start of sellers section -->
             <div id="sellers" class="sub-tab">
-                <div class=" w-50 m-auto rounded-3 p-2 py-3 fs-3 mb-3 text-center text-light fw-bold"
-                    style="background-color: #dea968; font-size: 1.2rem;">
-                    <p class="pb-0"><span id="total-sellers"></span> <br> Sellers</p>
+                <div class="m-auto rounded-4 p-3 py-3 fs-3 mb-3 text-center text-light fw-bold"
+                    style="background-color: #dea968; font-size: 1.2rem; width: 250px;">
+                    <p class="pb-0"><span id="total-sellers"></span> <br> SELLERS</p>
                 </div>
-                <div class="text-end mb-3">
+                <!-- <div class="text-end mb-3">
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD
                         Seller</button>
-                </div>
+                </div> -->
                 <p class="text-center fs-3 mt-5 fst-italic text-body-tertiary d-none" id="sellers-empty-message"></p>
                 <div class="row w-100 m-auto" id="sellers-container">
                 </div>
@@ -254,18 +283,18 @@
             <!-- End of sellers section -->
             <!-- Start of products section -->
             <div id="products" class="sub-tab">
-                <div class="row mb-3 w-100 m-auto justify-content-between">
-                    <div class="col-3 text-light rounded-3 text-center fw-bold p-2 py-4"
+                <div class="row mb-3 w-100 m-auto justify-content-md-between">
+                    <div class="col-4 col-md-3 text-light rounded-3 text-center fw-bold p-2 py-4"
                         style="background-color: #3599db; font-size: 1.2rem;">
-                        <span class="fs-3 pb-0" id="total-products">90</span><br>Products
+                        <span class="fs-3 pb-0" id="total-products">90</span><br>PRODUCTS
                     </div>
-                    <div class="col-3 text-light rounded-3 text-center fw-bold p-2 py-4"
+                    <div class="col-4 col-md-3 text-light rounded-3 text-center fw-bold p-2 py-4"
                         style="background-color: #42d174; font-size: 1.2rem;">
-                        <span class="fs-3 pb-0" id="total-categories">90</span><br>Categories
+                        <span class="fs-3 pb-0" id="total-categories">90</span><br>CATEGORIES
                     </div>
-                    <div class="col-3 text-light rounded-3 text-center fw-bold p-2 py-4"
+                    <div class="col-4 col-md-3 text-light rounded-3 text-center fw-bold p-2 py-4"
                         style="background-color: #dea968; font-size: 1.2rem;">
-                        <span class="fs-3 pb-0" id="total-brands">90</span><br>Brands
+                        <span class="fs-3 pb-0" id="total-brands">90</span><br>BRANDS
                     </div>
                 </div>
                 <div class="row w-100 m-auto">
@@ -352,6 +381,27 @@
                     </div>
                 </div>
                 <!-- End of Add product modal -->
+                <!-- start of confirm product delete modal  -->
+                <div class="modal pruduct-delete-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirm Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this product?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirm-product-delete-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of confirm product delete modal  -->
                 <div class="row w-100 m-auto">
                     <div
                         class="col-12 col-md-3 col-lg-2 bg-light p-2 rounded-3 align-self-start mb-3 mb-md-0 d-none d-md-block">
@@ -428,8 +478,8 @@
                                     <tbody id="product-table-body"></tbody>
                                 </table>
                             </div>
-                            <nav>
-                                <ul class="pagination justify-content-center" id="pagination-btns"></ul>
+                            <nav class="d-flex justify-content-center mt-4">
+                                <ul class="pagination pagination-sm" id="pagination"></ul>
                             </nav>
                         </div>
                         <!-- </div> -->
@@ -484,33 +534,45 @@
             <!-- End of orders section -->
             <!-- Start of tickets section -->
             <div id="tickets" class="sub-tab">
-                this is from tickets
-            </div>
-            <!-- End of tickets section -->
-        </div>
-    </div>
-    <!-- taoster -->
-    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
-
-        <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
-            <div class="d-flex">
-                <div class="toast-body" id="toastMessage">
-                    Message here
+                <div class="row w-100 m-auto p-3">
+                    <div class="col-12 col-md-6 m-auto d-flex justify-content-center align-items-center my-3">
+                        <canvas id="tickets-status"></canvas>
+                    </div>
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                <div class="row w-100 m-auto p-3" id="tickets-container"></div>
+                <!-- Start of reply modal -->
+                <div class="modal fade" id="reply-modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content"></div>
+                    </div>
+                </div>
+                <!-- End of reply modal -->
+                <!-- End of tickets section -->
             </div>
         </div>
-
-    </div>
-    <!-- End of dashboard -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
-    <script src="./admin.js"></script>
-    <script src="customers.js"></script>
-    <script src="./sellers.js"></script>
-    <script src="./orders.js"></script>
-    <script src="./customerFormValidation.js"></script>
-    <script src="./productFormValidation.js"></script>
-    <script src="../GeneralFunctions/showToast.js"></script>
+        <!-- Start of taoster -->
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+            <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body" id="toastMessage">
+                        Message here
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                        data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        </div>
+        <!-- End of toast  -->
+        <!-- End of dashboard -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+        <script src="./admin.js"></script>
+        <script src="customers.js"></script>
+        <script src="./sellers.js"></script>
+        <script src="./orders.js"></script>
+        <script src="./tickets.js"></script>
+        <script src="./customerFormValidation.js"></script>
+        <script src="./productFormValidation.js"></script>
+        <script src="../GeneralFunctions/showToast.js"></script>
 </body>
 
 </html>

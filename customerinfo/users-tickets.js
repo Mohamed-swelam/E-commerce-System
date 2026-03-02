@@ -39,38 +39,35 @@ function loadUserTickets() {
     container.innerHTML = userTickets
         .sort((a, b) => b.id - a.id)
         .map(ticket => `
-        <div class="col-12 mb-3">
-            <div class="ticket-card p-4">
+        <div class="ticket-card">
 
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <div>
-                        <h5 class="ticket-subject mb-1">${ticket.subject}</h5>
-                        <small class="ticket-date">
-                            ${formatDate(ticket.createdAt)}
-                        </small>
-                    </div>
-
-                    <span class="badge ${getStatusClass(ticket.status)}">
-                        ${ticket.status}
-                    </span>
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                    <h5 class="ticket-subject mb-1">${ticket.subject}</h5>
+                    <small class="ticket-date">
+                        ${formatDate(ticket.createdAt)}
+                    </small>
                 </div>
 
-                <div class="ticket-message mb-3">
-                    ${ticket.message}
-                </div>
-
-                ${ticket.reply ? `
-                    <div class="admin-reply">
-                        <strong>Admin Reply:</strong>
-                        <p class="mb-0">${ticket.reply}</p>
-                    </div>
-                ` : `
-                    <div class="waiting-reply">
-                        <i class="bi bi-clock me-1"></i>
-                        Waiting for admin reply...
-                    </div>
-                `}
+                <span class="badge ${getStatusClass(ticket.status)}">
+                    ${ticket.status}
+                </span>
             </div>
+
+            <div class="ticket-message">
+                ${ticket.message}
+            </div>
+
+            ${ticket.reply ? `
+                <div class="admin-reply">
+                    <strong>Admin Reply:</strong>
+                    <p class="mb-0">${ticket.reply}</p>
+                </div>
+            ` : `
+                <div class="waiting-reply">
+                    Waiting for admin reply...
+                </div>
+            `}
         </div>
     `).join("");
 }
