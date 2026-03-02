@@ -5,6 +5,8 @@ let allPrds = [];
 let start, end, brand;
 let searchInput = document.getElementById("input-search");
 let searchedPrds = [];
+let pricePrds = [];
+
 
 
 
@@ -33,8 +35,8 @@ document.querySelectorAll("#bottom-navbar  .nav-link").forEach(a => {
         console.log(JSON.parse(localStorage.getItem("products")));
         allPrds = JSON.parse(localStorage.getItem("products"))
     }
-    displayPaginationItems(allPrds, 1);
     navigateNumbrsWithPrevAndNext(allPrds);
+    displayPaginationItems(allPrds, 1);
 })()
 
 let baseProducts = searchedPrds.length ? searchedPrds : allPrds;
@@ -44,39 +46,42 @@ console.log(baseProducts);
 
 function displayAllPrds(prds) {
     product = " ";
+
     for (let i = 0; i < prds.length; i++) {
         product +=
-           `   <div class="col-6 col-lg-4">
-            <div class="card position-relative" style="cursor:pointer;">
-                <div class=" bg-white text-end py-3">
-                    <span><i class="fa-regular fa-heart"></i></span>
-                </div>
-
-                <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
-
-                <div class="card-body">
-                    <h4 class="card-title fw-normal">${prds[i].name.slice(0,10)}</h4>
-
-                    <div>
-                        <span class=" card-text text-decoration-line-through text-danger">${prds[i].oldPrice??"0"}$</span>
-                        <span class=" card-text  text-success " style="font-size:25px;">${prds[i].price}$</span>
+            `   <div class="col-6 col-lg-4">
+                    <div class="card position-relative" style="cursor:pointer;">
+                        <div class=" bg-white text-end py-3">
+                            <span><i class="fa-regular fa-heart"></i></span>
+                        </div>
+        
+                        <img src="${prds[i].image}" class="card-img-top" alt="${prds[i].name}" height="200">
+        
+                        <div class="card-body">
+                            <h4 class="card-title fw-normal">${prds[i].name.slice(0, 10)}</h4>
+        
+                            <div>
+                                <span class=" card-text text-decoration-line-through text-danger">${prds[i].oldPrice ?? "0"}$</span>
+                                <span class=" card-text  text-success " style="font-size:25px;">${prds[i].price}$</span>
+                            </div>
+        
+                        </div>
+        
+                        <div class="text-center w-100" id="cart">
+                            <button class="btn">Add To Cart </button>
+                        </div>
+        
+                        <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
+                                <p class="m-auto text-white">${prds[i].discount}%</p>
+                            </div>
+        
+        
                     </div>
-
-                </div>
-
-                <div class="text-center w-100" id="cart">
-                    <button class="btn">Add To Cart </button>
-                </div>
-
-                <div class="discount position-absolute top-0 left-0 bg-danger rounded-circle d-flex" style="width:65px; height:65px;">
-                        <p class="m-auto text-white">${prds[i].discount}%</p>
-                    </div>
-
-
-            </div>
-        </div>`
+                </div>`
     }
+
     document.getElementById("prds-data").innerHTML = product;
+
 }
 
 
@@ -109,54 +114,51 @@ function prevPrds(prds) {
 
 
 function navigateNumbrsWithPrevAndNext(prds) {
-    console.log(prds);
+    if (prds.length > 0) {
+        console.log(Math.ceil(prds.length / 9))
+        const navigatNumbers = Math.ceil(prds.length / 9);
+        let numberBox = " "
+        for (let i = 1; i <= navigatNumbers; i++) {
+            console.log(i);
+            numberBox += ` <span class="p-3 border number-span" style="cursor: pointer;">${i}</span> `
+        }
+        document.getElementById("navigators").innerHTML = numberBox;
 
-    console.log(Math.ceil(prds.length / 9))
-    const navigatNumbers = Math.ceil(prds.length / 9);
-    let numberBox = " "
-    for (let i = 1; i <= navigatNumbers; i++) {
-        console.log(i);
-        numberBox += ` <span class="p-3 border number-span" style="cursor: pointer;">${i}</span> `
-    }
-    document.getElementById("navigators").innerHTML = numberBox;
+        let spans = document.querySelectorAll(".number-span");
 
-    let spans = document.querySelectorAll(".number-span");
-    spans[0].style.boxShadow = "2px 2px 5px #3599db inset";
+        spans[0].style.boxShadow = "2px 2px 5px #3599db inset";
 
-    spans.forEach((span, index) => {
-        span.addEventListener("click", (e) => {
-            
-            currentPage = +span.innerText;
-            
-            spans.forEach(span => {
-                if (getComputedStyle(span).boxShadow === "rgb(53, 153, 219) 2px 2px 5px 0px inset") {
-                    span.style["boxShadow"] = "none";
-                }
+        spans.forEach((span, index) => {
+            span.addEventListener("click", (e) => {
+
+                currentPage = +span.innerText;
+
+                spans.forEach(span => {
+                    if (getComputedStyle(span).boxShadow === "rgb(53, 153, 219) 2px 2px 5px 0px inset") {
+                        span.style["boxShadow"] = "none";
+                    }
+                })
+                e.target.style.boxShadow = "2px 2px 5px #3599db inset";
+                displayPaginationItems(prds, index + 1);
             })
-            e.target.style.boxShadow = "2px 2px 5px #3599db inset";
-            displayPaginationItems(prds, index + 1);
         })
-    })
+        document.getElementById("prev").addEventListener("click", (e) => {
+            prevPrds(prds);
+            colorNavigatorBasedOnArrow()
+        })
 
-
-
-
-    document.getElementById("prev").addEventListener("click", (e) => {
-        prevPrds(prds);
-       colorNavigatorBasedOnArrow()
-    })
-
-    document.getElementById("next").addEventListener("click", (e) => {
-        nextPrds(prds)
-               colorNavigatorBasedOnArrow()
-    })
+        document.getElementById("next").addEventListener("click", (e) => {
+            nextPrds(prds)
+            colorNavigatorBasedOnArrow()
+        })
+    }
+    else { document.getElementById("navigators").innerHTML = " " }
 }
 
 // Filter By Price
 document.querySelectorAll("#price").forEach(divPrice => {
     divPrice.addEventListener('click', (e) => {
         console.log(baseProducts);
-        let pricePrds = [];
         if (e.target.nodeName === "INPUT") {
             document.querySelectorAll("input[name='price']").forEach(input => {
                 if (input.checked) {
@@ -173,13 +175,19 @@ document.querySelectorAll("#price").forEach(divPrice => {
                         if (baseProducts[i].price > start && baseProducts[i].price < end && (baseProducts[i].brand === brand)) { pricePrds.push(baseProducts[i]); }
                     }
                 }
+
                 else {
                     for (let i = 0; i < baseProducts.length; i++) {
                         if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrds.push(baseProducts[i]) }
                     }
                 }
-                displayPaginationItems(pricePrds, 1);
+
+
+                if (!(pricePrds.length > 0)) {
+                    document.getElementById("prds-data").innerHTML = '<p class="alert alert-danger  fw-bolder  text-center fs-3 rounded  ">No Products Match This Filteration</p>';
+                }
                 navigateNumbrsWithPrevAndNext(pricePrds)
+                displayPaginationItems(pricePrds, 1);
             }
 
 
@@ -220,24 +228,30 @@ document.querySelectorAll("#brands").forEach(divBrand => {
                 brand = e.target.value;
                 if (start !== undefined) {
                     for (let i = 0; i < baseProducts.length; i++) {
-                        if ((baseProducts[i].brand === brand) && (baseProducts[i].price > start && baseProducts[i].price < end)) { brandsPrds.push(baseProducts[i]); }
+                        if ((baseProducts[i].brand === brand) && (baseProducts[i].price > start && baseProducts[i].price < end)) {
+                            brandsPrds.push(baseProducts[i]);
+                        }
                     }
                 }
+
+
                 else {
                     for (let i = 0; i < baseProducts.length; i++) {
                         if (baseProducts[i].brand === brand) { brandsPrds.push(baseProducts[i]); }
                     }
                 }
+                if (!(brandsPrds.length > 0)) {
+                    document.getElementById("prds-data").innerHTML = '<p class="alert alert-danger  fw-bolder  text-center fs-3 rounded  ">No Products Match This Filteration</p>';
+                }
                 displayPaginationItems(brandsPrds, 1);
-                navigateNumbrsWithPrevAndNext(brandsPrds)
-            }
+                navigateNumbrsWithPrevAndNext(brandsPrds);}
             else {
                 brand = undefined;
-                if (start !== undefined) {
+                if (start !== undefined) 
+                {
                     let pricePrdsOnly = [];
                     for (let i = 0; i < baseProducts.length; i++) {
-                        if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrdsOnly.push(baseProducts[i]); }
-                    }
+                        if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrdsOnly.push(baseProducts[i]); }}
                     displayPaginationItems(pricePrdsOnly, 1);
                     navigateNumbrsWithPrevAndNext(pricePrdsOnly)
                 }
@@ -272,7 +286,7 @@ document.getElementById("input-search").addEventListener('search', () => {
 
 
 
-  function colorNavigatorBasedOnArrow() {
+function colorNavigatorBasedOnArrow() {
     let spans = document.querySelectorAll(".number-span");
     spans.forEach(span => {
         if (+span.innerText === currentPage) {

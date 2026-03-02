@@ -1,7 +1,3 @@
-
-
-
-
 let allPrds = [];
 let categoryPrds = [];
 const category = new URLSearchParams(location.search).get("categroy");
@@ -26,12 +22,9 @@ document.querySelectorAll("#bottom-navbar .nav-link").forEach(a => {
 });
 
 
-
 if (localStorage.getItem("products")) {
     allPrds = JSON.parse(localStorage.getItem("products"))
-    console.log(allPrds);
 }
-
 
 
 (function () {
@@ -50,8 +43,6 @@ function CategroyData() {
 
 
 function displayCategroyData(page) {
-    console.log(baseCategory);
-
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const categoryArray = baseCategory.slice(start, end);
@@ -183,15 +174,14 @@ document.querySelector(".dropdown-menu").addEventListener("click", (e) => {
 })
 
 
-
 function sortByValue(sortPrds) {
 
     if (sortValue === "A to Z") {
-        sorCategory = [...sortPrds].sort();
+        sorCategory = [...sortPrds].sort( (a , b) => a.name.localeCompare(b.name??" ")  );
         baseCategory = [...sorCategory];
     }
     else if (sortValue === "Z to A") {
-        sorCategory = [...sortPrds].sort().reverse();
+        sorCategory = [...sortPrds].sort( (a ,b) =>  b.name.localeCompare(a.name??" ") );
         baseCategory = [...sorCategory];
     }
     else if (sortValue === "Low Price") {
@@ -234,9 +224,6 @@ function searchByName() {
 
     }
 }
-
-
-
 
 
 
