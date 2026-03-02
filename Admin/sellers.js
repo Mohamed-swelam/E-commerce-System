@@ -11,16 +11,16 @@ function displaySeller(seller) {
     let col = document.createElement('div');
     col.classList.add(
         'col-12', 'p-3', 'd-flex',
-        'bg-light', 'rounded-3',
-        'gap-5', 'flex-wrap', 'mb-3'
+        'rounded-3', 'gap-5', 'flex-wrap', 'mb-3'
     );
+    col.style.backgroundColor = "#fff";
 
     // ---------------- Name + Email ----------------
     let div1 = document.createElement('div');
 
     let sellerName = document.createElement('p');
     sellerName.classList.add('fs-4', 'mb-0');
-    sellerName.innerText = seller.name;
+    sellerName.innerText = seller.name || seller.firstName + " " + seller.lastName;
 
     let sellerrEmail = document.createElement('a');
     sellerrEmail.classList.add('text-secondary');
