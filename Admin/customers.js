@@ -79,7 +79,6 @@ if (customers.length == 0) {
 else {
     totalCustomers.innerText = customers.length;
     const tbody = document.getElementById('customers-table-body');
-    console.log(users[0].phone);
     tbody.innerHTML = "";
     customers.forEach(c => {
         tbody.innerHTML += `<tr class="p-3">
@@ -87,12 +86,13 @@ else {
             <td>${c.name}</td>
             <td class="text-primary fw-bold"><span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${c.email}">${c.email}</a></span> <br>${c.phone}</td>
             <td>${orders.filter(o => o.userId == c.id).length}</td>
-            <td>
-                <button class="btn btn-sm btn-danger" onclick="deleteItem(${c.id}, 'user')">Delete</button>
-            </td>
         </tr>`;
     });
 }
+
+// <td>
+//     <button class="btn btn-sm btn-danger" onclick="deleteItem(${c.id}, 'user')">Delete</button>
+// </td>
 
 function displayCustomer(customer) {
     const tbody = document.getElementById('customers-table-body');

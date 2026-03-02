@@ -155,13 +155,42 @@ document.addEventListener('click', (e) => {
                                 <p class="text-secondary mb-1"><span class="fw-bold">Subject:</span> ${ticket.subject}</p>
                                 <p class="text-secondary mb-1"><span class="fw-bold">Message:</span> ${ticket.message}</p>
                                 <hr>
-                                <p><span class="fw-bold">Reply:</span> ${ticket.reply ? ticket.reply : 'No reply yet.'}</p>
+                                <p><span class="fw-bold">Reply:</span></p>
+                                <textarea class="form-control" rows=4 disabled>${ticket.reply ? ticket.reply : 'No reply yet.'}
+                                </textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary ${ticket.status?.trim().toLowerCase() === 'replied' ? 'd-block' : 'd-none'} edit-reply-btn" >Edit</button>
+                                <button type="button" class="btn btn-info text-light d-none" id="save-reply" >Save Reply</button>
                             </div>
                         </div>
                     `;
+
+        const editeReolyBtn = document.querySelector('.edit-reply-btn')
+        editeReolyBtn.addEventListener('click', () => {
+            const saveReply = document.getElementById('save-reply');
+            saveReply.classList.remove('d-none');
+            editeReolyBtn.classList.remove('d-block')
+            editeReolyBtn.classList.add('d-none')
+            const textArea = replyModalElement.children[0].children[0].children[0].children[1].children[5];
+            textArea.disabled = false;
+            textArea.addEventListener('input', (e) => {
+                ticket.reply = textArea.value = e.srcElement.value;
+                console.log(ticket.reply);
+            })
+            saveReply.onclick = () => {
+                ticket.status = 'resolved'
+                localStorage.removeItem('tickets');
+                localStorage.setItem('tickets', JSON.stringify(allTickets))
+                tickectsModal.hide()
+                showToast("Reply is updated successfuly and ticket status is 'Resolved' now", 'success')
+                setTimeout(() => {
+                    location.reload()
+                }, 3000)
+            }
+            // textArea.innerHTML = ''
+        })
     }
 });
 

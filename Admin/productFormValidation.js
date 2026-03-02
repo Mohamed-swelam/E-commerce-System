@@ -18,7 +18,7 @@ const productDiscountValue = document.getElementById('product-discount-value')
 
 // Get unique categories and brands from the products in localStorage
 // const products = JSON.parse(localStorage.getItem('products'));
-console.log(products);
+// console.log(products);
 const categories = [...new Set(products.map(product => product.category))];
 const brands = [...new Set(products.map(product => product.brand))];
 
@@ -62,7 +62,7 @@ addProductForm.addEventListener('submit', (e) => {
         const newProduct = {
             product_id: products.length + 1,
             name: productNameInput.value.trim(),
-            price: productDiscountValue.value ? parseFloat(productPriceInput.value) * (1 - parseFloat(productDiscountValue.value) / 100) : parseFloat(productPriceInput.value),
+            price: productDiscountValue.value ? Math.floor(parseFloat(productPriceInput.value) * (1 - parseFloat(productDiscountValue.value) / 100)) : parseFloat(productPriceInput.value),
             oldPrice: parseFloat(productPriceInput.value),
             quantity: parseInt(productQuantityInput.value),
             description: productDescriptionInput.value.trim(),
@@ -84,7 +84,9 @@ addProductForm.addEventListener('submit', (e) => {
         modalInstance.hide();
         displayProduct(newProduct);
         showToast('Product added successfully', 'success');
-        // location.reload();
+        setInterval(() => {
+            location.reload();
+        }, 2000);
     } else {
         console.log('Form is invalid, please correct the errors');
     }
