@@ -36,23 +36,23 @@ function displaySeller(seller) {
 
     // ---------------- ID Section ----------------
     let div3 = document.createElement('div');
-    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-center');
+    div3.classList.add('ms-auto', 'd-flex', 'flex-column', 'align-items-end');
 
     let sellerId = document.createElement('p');
     sellerId.classList.add('fs-5');
     sellerId.innerText = "ID: " + seller.id;
 
-    let deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('btn', 'btn-danger');
-    deleteBtn.innerText = 'Delete'
-    deleteBtn.id = seller.id;
-    // delete logic
-    deleteBtn.addEventListener('click', (e) => {
-        deleteUser(e.target.id);
-        sellersContainer.innerHTML = '';
-        sellers.forEach(c => displaySeller(c))
-        location.reload()
-    })
+    // let deleteBtn = document.createElement('button');
+    // deleteBtn.classList.add('btn', 'btn-danger');
+    // deleteBtn.innerText = 'Delete'
+    // deleteBtn.id = seller.id;
+    // // delete logic
+    // deleteBtn.addEventListener('click', (e) => {
+    //     deleteUser(e.target.id);
+    //     sellersContainer.innerHTML = '';
+    //     sellers.forEach(c => displaySeller(c))
+    //     location.reload()
+    // })
 
     totalSellers.innerText = sellers.length;
 
@@ -69,7 +69,7 @@ function displaySeller(seller) {
     div2.appendChild(sellerProducts);
 
     div3.appendChild(sellerId);
-    div3.appendChild(deleteBtn)
+    // div3.appendChild(deleteBtn);
 }
 
 if (sellers.length == 0) {
@@ -82,5 +82,3 @@ if (sellers.length == 0) {
 else {
     sellers.forEach(s => displaySeller(s))
 }
-
-sellers.forEach(s => console.log(s))

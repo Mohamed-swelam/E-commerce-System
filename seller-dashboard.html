@@ -310,7 +310,7 @@
                 <li class="active-nav" onclick="switchTab('overview')">📊 Overview</li>
                 <li onclick="openModal('add')">➕ Add Product</li>
                 <li onclick="switchTab('orders')">📦 Orders</li>
-
+                <li onclick="window.location.href='./HomePage&Products/home.html'">🛖 Home</li>
             </ul>
 
             <div id="seller-name-display" class="mt-5 p-2 bg-white bg-opacity-10 text-center rounded small"></div>
@@ -437,59 +437,31 @@
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <div class="modal-body">
 
-                    <div class="row mb-3">
-                        <div class="col">
-                            <div class="card p-3">
-                                <h6>Customer</h6>
-                                <p id="od-customer"></p>
-                                <small id="od-date"></small>
-                            </div>
-                        </div>
 
-                        <div class="col">
-                            <div class="card p-3">
-                                <h6>Shipping Address</h6>
-                                <p id="od-address"></p>
-                            </div>
-                        </div>
-                    </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
 
-                    <h6>Items</h6>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Qty</th>
-                                <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="od-items"></tbody>
+                </table>
+                <hr>
 
-                            </tr>
-                        </thead>
-                        <tbody id="od-items"></tbody>
-                    </table>
-                    <hr>
-
-                    <div class="text-end fw-bold">
-                        Total: $<span id="od-total"></span>
-                    </div>
-                    <hr>
-                    <div class="mt-3">
-                        <label for="statusSelect" class="form-label fw-bold">Update Shipping Status:</label>
-                        <select id="statusSelect" class="form-select w-50">
-                            <option value="pending">Pending</option>
-                            <option value="processing">Processing</option>
-                            <option value="shipped">Shipped</option>
-                            <option value="delivered">Delivered</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                        <button class="btn btn-primary mt-2" id="updateStatusBtn">Update Status</button>
-                    </div>
-
+                <div class="text-end fw-bold">
+                    Total: $<span id="od-total"></span>
                 </div>
+
+
+
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -517,29 +489,59 @@
             const user = JSON.parse(localStorage.getItem('currentUser'));
             const allProds = JSON.parse(localStorage.getItem('products')) || [];
             const allOrds = JSON.parse(localStorage.getItem('orders')) || [];
+
             const myProds = allProds.filter(p => p.seller_id == user.id);
+
+            const sellerProductIds = myProds.map(p => p.product_id);
+            const sellerOrders = allOrds.filter(o =>
+                o.items.some(item => sellerProductIds.includes(item.productId))
+            );
+
+            const sellerRevenue = sellerOrders.reduce((s, o) => {
+                let total = 0;
+                o.items.forEach(item => {
+                    if (sellerProductIds.includes(item.productId)) {
+                        const prod = myProds.find(p => p.product_id == item.productId);
+                        total += prod.price * item.quantity;
+                    }
+                });
+                return s + total;
+            }, 0);
 
             document.getElementById('seller-name-display').innerText = `Logged in: ${user.name}`;
             document.getElementById('stat-prods').innerText = myProds.length;
-            document.getElementById('stat-orders').innerText = allOrds.filter(o => o.status === 'pending').length;
-            document.getElementById('stat-rev').innerText = `$${allOrds.reduce((s, o) => s + o.total, 0)}`;
+            document.getElementById('stat-orders').innerText = sellerOrders.filter(o => o.status === 'pending').length;
+            document.getElementById('stat-rev').innerText = `${sellerRevenue} EGP`;
 
             const start = (currentPage - 1) * limit;
             const paged = myProds.slice(start, start + limit);
             const tbody = document.getElementById('product-table-body');
             tbody.innerHTML = "";
+
             paged.forEach(p => {
                 tbody.innerHTML += `<tr>
-            <td><div class="d-flex align-items-center gap-2"><img src="${p.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${p.name}</b></div></td>
+            <td>
+                <div class="d-flex align-items-center gap-2">
+                    <img src="${p.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'">
+                    <b>${p.name}</b>
+                </div>
+            </td>
             <td>${p.category}</td>
-            <td class="text-primary fw-bold">$${p.price}</td>
+            <td>
+                ${p.oldPrice ? `<span style="text-decoration:line-through; color:gray;">$${p.oldPrice}</span><br>` : ''}
+                <span class="text-primary fw-bold">${p.price} EGP</span>
+                ${p.discount > 0 ? `<span class="badge bg-danger ms-1">-${p.discount}%</span>` : ''}
+            </td>
             <td>${p.quantity}</td>
-            <td><button class="btn btn-sm btn-edit me-2" onclick="openModal('edit',${p.product_id})">Edit</button>
+            <td>
+                <button class="btn btn-sm btn-edit me-2" onclick="openModal('edit',${p.product_id})">Edit</button>
                 <button class="btn btn-sm btn-delete" onclick="deleteProduct(${p.product_id})">Delete</button>
             </td>
         </tr>`;
             });
+
             renderPaginationUI(myProds.length);
+
             initCharts(myProds, allOrds);
         }
 
@@ -562,39 +564,87 @@
         function setPage(i) { currentPage = i; renderDashboard(); }
 
         function initCharts(myProds, allOrds) {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+
+            const sellerProductIds = myProds.map(p => p.product_id);
+            const sellerOrders = allOrds.filter(o =>
+                o.items.some(item => sellerProductIds.includes(item.productId))
+            );
+
             // ----- Monthly Revenue -----
             const ctx = document.getElementById('myChart').getContext('2d');
             if (myChart) myChart.destroy();
+
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
             const monthlyRevenue = Array(months.length).fill(0);
-            allOrds.forEach(o => {
+
+            sellerOrders.forEach(o => {
                 const monthIndex = new Date(o.createdAt).getMonth();
-                monthlyRevenue[monthIndex] += o.total;
+                let sellerTotal = 0;
+                o.items.forEach(item => {
+                    if (sellerProductIds.includes(item.productId)) {
+                        const prod = myProds.find(p => p.product_id == item.productId);
+                        sellerTotal += prod.price * item.quantity;
+                    }
+                });
+                monthlyRevenue[monthIndex] += sellerTotal;
             });
+
             const gradient = ctx.createLinearGradient(0, 0, 0, 200);
             gradient.addColorStop(0, 'rgba(99,53,255,0.3)');
             gradient.addColorStop(1, 'rgba(99,53,255,0)');
+
             myChart = new Chart(ctx, {
                 type: 'line',
-                data: { labels: months, datasets: [{ data: monthlyRevenue, borderColor: '#6335ff', borderWidth: 3, fill: true, backgroundColor: gradient, tension: 0.4, pointRadius: 0 }] },
-                options: { plugins: { legend: { display: false } }, scales: { x: { display: true }, y: { display: true } }, maintainAspectRatio: false }
+                data: {
+                    labels: months,
+                    datasets: [{
+                        data: monthlyRevenue,
+                        borderColor: '#6335ff',
+                        borderWidth: 3,
+                        fill: true,
+                        backgroundColor: gradient,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: { x: { display: true }, y: { display: true } },
+                    maintainAspectRatio: false
+                }
             });
 
             // ----- Top Selling Categories -----
             const ctx2 = document.getElementById('categoryChart').getContext('2d');
             const cats = {};
-            const products = JSON.parse(localStorage.getItem('products')) || [];
-            allOrds.forEach(o => {
+
+            sellerOrders.forEach(o => {
                 o.items.forEach(it => {
-                    const prod = products.find(p => p.product_id == it.productId);
-                    if (prod) cats[prod.category] = (cats[prod.category] || 0) + it.quantity;
+                    if (sellerProductIds.includes(it.productId)) {
+                        const prod = myProds.find(p => p.product_id == it.productId);
+                        if (prod) cats[prod.category] = (cats[prod.category] || 0) + it.quantity;
+                    }
                 });
             });
+
             if (categoryChart) categoryChart.destroy();
+
             categoryChart = new Chart(ctx2, {
                 type: 'doughnut',
-                data: { labels: Object.keys(cats), datasets: [{ data: Object.values(cats), backgroundColor: ['#4318ff', '#6ad2ff', '#eff4fb', '#ff6384', '#36a2eb', '#ffcd56'], borderWidth: 0 }] },
-                options: { cutout: '75%', maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } } } }
+                data: {
+                    labels: Object.keys(cats),
+                    datasets: [{
+                        data: Object.values(cats),
+                        backgroundColor: ['#4318ff', '#6ad2ff', '#eff4fb', '#ff6384', '#36a2eb', '#ffcd56'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    cutout: '75%',
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } } }
+                }
             });
         }
 
@@ -630,7 +680,7 @@
         <tr>
             <td>#${o.orderId}</td>
             <td>${o.customerName}</td>
-            <td>$${sellerTotal}</td>
+            <td>${sellerTotal} EGP</td>
             <td><span class="status-badge ${o.status}">${o.status}</span></td>
             <td>
                 <button class="btn btn-sm custom-btn" onclick="openOrderDetails(${o.orderId})">
@@ -660,8 +710,7 @@
 
                 document.getElementById('f-name').value = product.name;
                 document.getElementById('f-brand').value = product.brand;
-                document.getElementById('f-price').value = product.price;
-                document.getElementById('f-qty').value = product.quantity;
+                document.getElementById('f-price').value = product.oldPrice || product.price; document.getElementById('f-qty').value = product.quantity;
                 document.getElementById('f-cat').value = product.category;
                 document.getElementById('f-img').value = product.image;
 
@@ -677,18 +726,11 @@
             const order = orders.find(o => o.orderId == orderId);
             if (!order) return console.error("Order not found!");
 
-            const statusSelect = document.getElementById('statusSelect');
+            // const statusSelect = document.getElementById('statusSelect');
             const products = JSON.parse(localStorage.getItem('products')) || [];
             const user = JSON.parse(localStorage.getItem('currentUser'));
 
-            document.getElementById('od-customer').innerText = order.customerName;
-            document.getElementById('od-date').innerText =
-                new Date(order.createdAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
-                });
-            document.getElementById('od-address').innerText = order.address;
+
 
             const tbody = document.getElementById('od-items');
             tbody.innerHTML = "";
@@ -713,32 +755,8 @@
 
             document.getElementById('od-total').innerText = sellerTotal + " EGP";
 
-            const allowedTransitions = {
-                pending: ["processing", "canceled"],
-                processing: ["shipped"],
-                shipped: [],
-                delivered: [],
-                canceled: []
-            };
-            const currentStatus = order.status;
-            statusSelect.innerHTML = "";
 
-            if (allowedTransitions[currentStatus].length === 0) {
-                statusSelect.innerHTML = `<option value="${currentStatus}">${currentStatus}</option>`;
-                statusSelect.disabled = true;
-            } else {
-                allowedTransitions[currentStatus].forEach(st => {
-                    statusSelect.innerHTML += `<option value="${st}">${st}</option>`;
-                });
-                statusSelect.disabled = false;
-            }
 
-            document.getElementById('updateStatusBtn').onclick = () => {
-                const newStatus = statusSelect.value;
-                if (newStatus === "canceled" && !confirm("Are you sure you want to cancel this order?")) return;
-                updateStatus(orderId, newStatus);
-                bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal')).hide();
-            };
 
             new bootstrap.Modal(document.getElementById('orderDetailsModal')).show();
         }
@@ -755,41 +773,39 @@
             const inputPrice = parseFloat(document.getElementById('f-price').value);
             const inputDiscount = parseFloat(document.getElementById('f-discount').value) || 0;
 
+            let finalPrice = inputPrice;
+            let oldPrice = null;
+
+            if (inputDiscount > 0) {
+                finalPrice = inputPrice - (inputPrice * inputDiscount / 100);
+                oldPrice = inputPrice;
+            }
+
             let productData = {
                 product_id: id ? parseInt(id) : Date.now(),
                 name: document.getElementById('f-name').value,
                 brand: document.getElementById('f-brand').value,
-                price: inputPrice,
+                price: finalPrice,
                 quantity: parseInt(document.getElementById('f-qty').value),
                 category: document.getElementById('f-cat').value,
                 image: document.getElementById('f-img').value,
                 seller_id: user.id,
                 discount: inputDiscount,
-                oldPrice: null
+                oldPrice: oldPrice
             };
 
             if (id) {
-                const existing = products.find(p => p.product_id == id);
-                if (inputDiscount > 0) {
-                    productData.oldPrice = existing.oldPrice || existing.price;
-                } else {
-                    productData.oldPrice = null;
-                }
                 products = products.map(p => p.product_id == id ? productData : p);
             } else {
-                if (inputDiscount > 0) {
-                    productData.oldPrice = inputPrice;
-                }
                 products.push(productData);
             }
-
             localStorage.setItem('products', JSON.stringify(products));
             renderDashboard();
             bootstrap.Modal.getInstance(document.getElementById('prodModal')).hide();
         };
         document.getElementById('logoutBtn').onclick = () => {
-            // localStorage.removeItem('currentUser');
-            window.location.href = './HomePage&Products/home.html';
+            localStorage.removeItem('currentUser');
+            window.location.href = './login/login.html';
         };
         initApp();
     </script>

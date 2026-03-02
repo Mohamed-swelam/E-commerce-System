@@ -1,34 +1,73 @@
 'use strict'
 
-// ==============================
-// Navigation Tabs Logic
-// ==============================
 
+// ------------------- Navigation Tabs Logic -------------------
 // Select all main tabs and their corresponding sub sections
 const mainTabs = document.querySelectorAll('.main-tab')
 const subTabs = document.querySelectorAll('.sub-tab')
 
-// Add click event to each main tab
-mainTabs.forEach(p => {
-    p.addEventListener('click', (e) => {
+// // Add click event to each main tab
+// mainTabs.forEach(p => {
+//     p.addEventListener('click', (e) => {
+//         console.log(e.target);
+//         localStorage.removeItem('activeTab');
+//         localStorage.setItem('activeTab', e.target.innerHTML);
+//         let activeTab = localStorage.getItem('activeTab');
+//         // Remove active style from all main tabs
+//         mainTabs.forEach(p => p.classList.remove('active-tab'))
+//         // Add active style to the clicked tab
+//         if (e.target.innerHTML == activeTab) {
+//             console.log('yes');
+//             e.target.classList.add('active-tab')
+//         }
+//         // Hide all sub tabs first
+//         subTabs.forEach(div => {
+//             div.classList.remove('active-sub-tab')
+//         })
+//         // Show the sub tab that matches the clicked tab text
+//         subTabs.forEach(div => {
+//             if (div.id == e.target.innerHTML) {
+//                 div.classList.add('active-sub-tab')
+//             }
+//         })
+//     })
+// });
 
-        // Remove active style from all main tabs
-        mainTabs.forEach(p => p.classList.remove('active-tab'))
-        // Add active style to the clicked tab
-        p.classList.add('active-tab')
-        // Hide all sub tabs first
-        subTabs.forEach(div => {
-            div.classList.remove('active-sub-tab')
-        })
-        // Show the sub tab that matches the clicked tab text
-        subTabs.forEach(div => {
-            if (div.id == e.target.innerHTML) {
-                div.classList.add('active-sub-tab')
-            }
-        })
-    })
+
+
+mainTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+        // store active tab
+        localStorage.setItem('activeTab', tabName);
+        activateTab(tabName);
+    });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTab = localStorage.getItem('activeTab');
+    if (savedTab && currentUser) {
+        activateTab(savedTab);
+    } else {
+        activateTab('customers'); // default
+    }
+});
+function activateTab(tabName) {
+    // remove active class from all main tabs
+    mainTabs.forEach(tab => tab.classList.remove('active-tab'));
+    // add active class to correct tab
+    const activeMainTab = document.querySelector(`[data-tab="${tabName}"]`);
+    if (activeMainTab) {
+        activeMainTab.classList.add('active-tab');
+    }
+    // hide all sub tabs
+    subTabs.forEach(div => div.classList.remove('active-sub-tab'));
+    // show matching sub tab
+    const activeSubTab = document.getElementById(tabName);
+    if (activeSubTab) {
+        activeSubTab.classList.add('active-sub-tab');
+    }
+}
 
 
 // localStorage.clear()
@@ -250,27 +289,40 @@ mainTabs.forEach(p => {
 // }
 
 
-
-
+// for pagination
+let currentPage = 1;
+const rowsPerPage = 15;
 
 // ------------------------ delete for both users and products ---------------------
 function deleteItem(id, type) {
     if (type === 'user') {
-        let deletedItem = users.filter(u => u.id == id);
-        users.splice(users.indexOf(deletedItem[0]), 1);
-        localStorage.removeItem('users');
-        localStorage.setItem('users', JSON.stringify(users))
-        location.reload()
-        showToast('User deleted successfully', 'success');
-        console.log(users);
+        const confirmDeleteModal = new bootstrap.Modal(document.querySelector('.customer-delete-modal'))
+        const deleteCustomerModalBtn = document.getElementById('onfirm-customer-delete-btn')
+        confirmDeleteModal.show();
+        deleteCustomerModalBtn.addEventListener('click', () => {
+            let deletedItem = users.filter(u => u.id == id);
+            users.splice(users.indexOf(deletedItem[0]), 1);
+            localStorage.removeItem('users');
+            localStorage.setItem('users', JSON.stringify(users))
+            showToast('User deleted successfully', 'success');
+            setTimeout(() => {
+                location.reload()
+            }, 2000)
+        })
     } else if (type === 'product') {
-        let deletedProduct = products.filter(p => p.product_id == id);
-        products.splice(products.indexOf(deletedProduct[0]), 1);
-        localStorage.removeItem('products');
-        localStorage.setItem('products', JSON.stringify(products))
-        showToast('Product deleted successfully', 'success');
-        location.reload()
-        console.log(products);
+        const confirmDeleteModal = new bootstrap.Modal(document.querySelector('.pruduct-delete-modal'))
+        const deleteProductModalBtn = document.getElementById('confirm-product-delete-btn')
+        confirmDeleteModal.show();
+        deleteProductModalBtn.onclick = () => {
+            let deletedProduct = products.filter(p => p.product_id == id);
+            products.splice(products.indexOf(deletedProduct[0]), 1);
+            localStorage.removeItem('products');
+            localStorage.setItem('products', JSON.stringify(products))
+            showToast('Product deleted successfully', 'success');
+            setTimeout(() => {
+                location.reload()
+            }, 2000)
+        }
     }
 }
 
@@ -348,7 +400,7 @@ function displayFilters(arr, titleText) {
 }
 
 
-// ---------------------------------------------- Filtering Logic ---------------------------------
+// ---------------------------------- Filtering Logic ---------------------------------
 
 
 function applyFilters() {
@@ -379,7 +431,8 @@ function applyFilters() {
         return;
     }
 
-    filtered.forEach(product => displayProduct(product));
+    // filtered.forEach(product => displayProduct(product));
+    renderPaginatedProducts(filtered);
 }
 
 
@@ -461,6 +514,69 @@ function initializeProducts() {
     }
 }
 
+initializeProducts();
+// ------------------------------ for pagination ----------------------
+function renderPaginatedProducts(productsArray) {
+    const pagination = document.getElementById('pagination');
+    tbody.innerHTML = '';
+    pagination.innerHTML = '';
+    const totalPages = Math.ceil(productsArray.length / rowsPerPage);
+    if (currentPage > totalPages) currentPage = 1;
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedItems = productsArray.slice(start, end);
+    paginatedItems.forEach(product => displayProduct(product));
+    createPaginationButtons(totalPages, productsArray);
+}
+
+
+function createPaginationButtons(totalPages, productsArray) {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+    const maxVisible = 5; // show only 5 pages
+    let startPage = Math.max(currentPage - 2, 1);
+    let endPage = Math.min(startPage + maxVisible - 1, totalPages);
+    if (endPage - startPage < maxVisible - 1) {
+        startPage = Math.max(endPage - maxVisible + 1, 1);
+    }
+    // Previous
+    pagination.innerHTML += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="prev">Previous</a>
+        </li>
+    `;
+
+    // Page Numbers
+    for (let i = startPage; i <= endPage; i++) {
+        pagination.innerHTML += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>
+        `;
+    }
+
+    // Next
+    pagination.innerHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="next">Next</a>
+        </li>
+    `;
+
+    pagination.onclick = function (e) {
+        e.preventDefault();
+        if (!e.target.dataset.page) return;
+        if (e.target.dataset.page === 'prev' && currentPage > 1) {
+            currentPage--;
+        } else if (e.target.dataset.page === 'next' && currentPage < totalPages) {
+            currentPage++;
+        } else if (!isNaN(e.target.dataset.page)) {
+            currentPage = Number(e.target.dataset.page);
+        }
+        renderPaginatedProducts(productsArray);
+        window.scrollTo({ top: 0, behavior: "smooth" }); // smooth scroll up
+    };
+}
+
 
 
 function renderEverything() {
@@ -489,10 +605,11 @@ function renderEverything() {
 
     updateStatistics();
 
-    allProducts.forEach(product => displayProduct(product));
+    // allProducts.forEach(product => displayProduct(product));
+    renderPaginatedProducts(allProducts);
 }
 
-initializeProducts();
+
 
 
 function displayProduct(product) {
@@ -549,23 +666,27 @@ new Chart(brand, {
 
 
 
-// let userProfile = document.getElementById('profile');
+// // let userProfile = document.getElementById('profile');
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const logOutBtn = document.getElementById('log-out-btn');
+logOutBtn.addEventListener('click', () => {
+    localStorage.removeItem('currentUser');
+    location.href = '../../HomePage&Products/home.html';
+})
+// // localStorage.removeItem("currentUser");
+// if (currentUser) {
+//     document.getElementById('login-link').style.display = "none";
+//     document.getElementById('logout-btn').style.display = "block";
+//     if (currentUser.role === "admin") {
+//         document.getElementById("admin-dashboard").classList.remove("d-none");
+//         document.getElementById("seller-dashboard").classList.add("d-none");
+//     }
+//     else if (currentUser.role === "seller") {
+//         document.getElementById("seller-dashboard").classList.remove("d-none");
+//         document.getElementById("admin-dashboard").classList.add("d-none");
+//     }
 
-// localStorage.removeItem("currentUser");
-if (currentUser) {
-    document.getElementById('login-link').style.display = "none";
-    document.getElementById('logout-btn').style.display = "block";
-    if (currentUser.role === "admin") {
-        document.getElementById("admin-dashboard").classList.remove("d-none");
-        document.getElementById("seller-dashboard").classList.add("d-none");
-    }
-    else if (currentUser.role === "seller") {
-        document.getElementById("seller-dashboard").classList.remove("d-none");
-        document.getElementById("admin-dashboard").classList.add("d-none");
-    }
-
-} else {
-    document.getElementById('login-link').style.display = "block";
-    document.getElementById('logout-btn').style.display = "none";
-}
+// } else {
+//     document.getElementById('login-link').style.display = "block";
+//     document.getElementById('logout-btn').style.display = "none";
+// }
