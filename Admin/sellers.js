@@ -11,9 +11,9 @@ function displaySeller(seller) {
     let col = document.createElement('div');
     col.classList.add(
         'col-12', 'p-3', 'd-flex',
-        'bg-light', 'rounded-3',
-        'gap-5', 'flex-wrap', 'mb-3'
+        'rounded-3', 'gap-5', 'flex-wrap', 'mb-3'
     );
+    col.style.backgroundColor = "#fff";
 
     // ---------------- Name + Email ----------------
     let div1 = document.createElement('div');

@@ -31,9 +31,7 @@ mainTabs.forEach(p => {
 
 
 
-// ======================================================
-// Users Logic
-// ======================================================
+// localStorage.clear()
 
 // localStorage.removeItem('users');
 // // Fetch users from JSON file and store them in localStorage
@@ -69,67 +67,29 @@ mainTabs.forEach(p => {
 //         console.error('There was a problem with the fetch operation:', error);
 //     });
 
-const usersData = [
-    {
-        "id": 1,
-        "name": "Admin User",
-        "email": "admin@store.com",
-        "password": "123456",
-        "role": "admin"
-    },
-    {
-        "id": 2,
-        "name": "Seller One",
-        "email": "seller1@gmail.com",
-        "password": "123456",
-        "role": "seller"
-    },
-    {
-        "id": 3,
-        "name": "Kariem Tamer",
-        "email": "Kariem@gmail.com",
-        "password": "123456",
-        "role": "customer"
-    },
-    {
-        "id": 4,
-        "name": "Ahmed Mohamed",
-        "email": "ahmed@gmail.com",
-        "password": "123456",
-        "role": "customer"
-    },
-    {
-        "id": 5,
-        "name": "Sara Ali",
-        "email": "sara@gmail.com",
-        "password": "123456",
-        "role": "customer"
-    },
-    {
-        "id": 6,
-        "name": "Omar Hassan",
-        "email": "omar@gmail.com",
-        "password": "123456",
-        "role": "customer"
-    },
-    {
-        "id": 7,
-        "name": "Seller Two",
-        "email": "seller2@gmail.com",
-        "password": "123456",
-        "role": "seller"
-    },
-    {
-        "id": 8,
-        "name": "Seller Three",
-        "email": "seller3@gmail.com",
-        "password": "123456",
-        "role": "seller"
-    }
-];
+// localStorage.removeItem('orders');
+// fetch('../Dummy Data/orders.json')
+//     .then(res => {
+//         if (!res.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return res.json();
+//     }
+//     ).then(orders => {
+//         localStorage.setItem('orders', JSON.stringify(orders));
+//         // location.reload();
+//     })
+//     .catch(error => {
+//         console.error('There was a problem with the fetch operation:', error);
+//     });
 
-// localStorage.clear()
-// localStorage.setItem('users', JSON.stringify(usersData));
+
+
+
+
+// ======================================================
+// Users Logic
+// ======================================================
 let users;
 // Only set default users if localStorage is empty
 if (!localStorage.getItem('users') || JSON.parse(localStorage.getItem('users')).length === 0) {
@@ -147,21 +107,6 @@ let sellers = users.filter(user => user.role == 'seller')
 let customers = users.filter(user => user.role == 'customer');
 // localStorage.setItem('customers', JSON.stringify(customers))
 
-// localStorage.removeItem('orders');
-// fetch('../Dummy Data/orders.json')
-//     .then(res => {
-//         if (!res.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-//         return res.json();
-//     }
-//     ).then(orders => {
-//         localStorage.setItem('orders', JSON.stringify(orders));
-//         // location.reload();
-//     })
-//     .catch(error => {
-//         console.error('There was a problem with the fetch operation:', error);
-//     });
 let orders = JSON.parse(localStorage.getItem('orders'));
 
 // function deleteUser(id) {
@@ -227,12 +172,9 @@ let allProducts = [];
 let activeFilters = {
     brands: [],
     categories: [],
+    minPrice: 0,
     maxPrice: 0
 };
-
-// ======================================================
-// Product Rendering
-// ======================================================
 
 // function displayProduct(product) {
 
@@ -342,23 +284,8 @@ let activeFilters = {
 const tbody = document.getElementById('product-table-body');
 tbody.innerHTML = "";
 allProducts.forEach(p => displayProduct(p));
-// allProducts.forEach(p => {
-//     tbody.innerHTML += `<tr>
-//             <td><div class="d-flex align-items-center gap-2"><img src="${p.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${p.name}</b></div></td>
-//             <td>${p.category}</td>
-//             <td>${p.brand}</td>
-//             <td class="text-primary fw-bold">$${p.price}</td>
-//             <td>${p.quantity}</td>
-//             <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${p.product_id})">Edit</button>
-//                 <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.product_id})">Delete</button>
-//             </td>
-//         </tr>`;
-// });
 
-
-// ======================================================
-// Dynamic Filters Rendering
-// ======================================================
+// ------------------------------------- Dynamic Filters Rendering ----------------------------------
 
 function displayFilters(arr, titleText) {
 
@@ -398,9 +325,9 @@ function displayFilters(arr, titleText) {
     });
 }
 
-// ======================================================
-// Filtering Logic
-// ======================================================
+
+// ---------------------------------------------- Filtering Logic ---------------------------------
+
 
 function applyFilters() {
 
@@ -414,9 +341,10 @@ function applyFilters() {
         );
     }
 
-    // Price
+    // Price Range Filtering
     if (activeFilters.maxPrice > 0) {
         filtered = filtered.filter(product =>
+            product.price >= activeFilters.minPrice &&
             product.price <= activeFilters.maxPrice
         );
     }
@@ -425,34 +353,16 @@ function applyFilters() {
     tbody.innerHTML = "";
 
     if (filtered.length === 0) {
-        // productsContainer.innerHTML =
-        //     `<div class="col-12 text-center p-5 bg-light rounded-3">
-        //         <p class="fs-4 text-muted">No products found!</p>
-        //     </div>`;
         tbody.innerHTML = `<tr><td colspan="5" class="text-center p-5"><p class="fs-4 text-muted">No products found!</p></td></tr>`;
         return;
     }
 
     filtered.forEach(product => displayProduct(product));
 }
-//     filtered.forEach(product => {
-//         tbody.innerHTML += `<tr>
-//             <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
-//             <td>${product.category}</td>
-//             <td>${product.brand}</td>
-//             <td class="text-primary fw-bold">$${product.price}</td>
-//             <td>${product.seller_id}</td>
-//             <td>${product.quantity}</td>
-//             <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
-//                 <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
-//             </td>
-//         </tr>`;
-//     });
-// }
 
-// ======================================================
-// Checkbox Filtering
-// ======================================================
+
+
+// -------------------------------------- Checkbox Filtering ------------------------------------ 
 
 function initializeCheckboxFiltering() {
 
@@ -485,23 +395,19 @@ function initializeCheckboxFiltering() {
     });
 }
 
-// ======================================================
-// Price Range Filtering
-// ======================================================
+// ------------------------------------- Price Range Filtering ---------------------------
 
 function initializePriceFiltering() {
 
     const ranges = document.querySelectorAll('.range4');
     const outputs = document.querySelectorAll('.rangeValue');
-
     ranges.forEach((range, index) => {
-
-        outputs[index].textContent = range.value;
-
+        outputs[index].textContent = range.value + " - " + (parseInt(range.value) + 100);
         range.addEventListener('input', function () {
-
-            outputs[index].textContent = this.value;
-            activeFilters.maxPrice = parseInt(this.value);
+            let value = parseInt(this.value);
+            outputs[index].textContent = value + " - " + (value + 100);
+            activeFilters.minPrice = value;
+            activeFilters.maxPrice = value + 100;
             applyFilters();
         });
     });
@@ -530,9 +436,7 @@ function updateStatistics() {
 // ======================================================
 
 function initializeProducts() {
-
     const storedProducts = localStorage.getItem('products');
-
     if (storedProducts && JSON.parse(storedProducts).length > 0) {
         allProducts = JSON.parse(storedProducts);
         renderEverything();
@@ -550,6 +454,27 @@ function initializeProducts() {
             });
     }
 }
+// let allTickets = [];
+// function initializeTickets() {
+//     const storedTickets = localStorage.getItem('tickets');
+//     if (storedTickets && JSON.parse(storedTickets).length > 0) {
+//         allTickets = JSON.parse(storedTickets);
+//         displayTickets();
+//     }
+//     else {
+//         fetch('../Dummy Data/tickets.json')
+//             .then(res => res.json())
+//             .then(tickets => {
+//                 allTickets = tickets;
+//                 localStorage.setItem('tickets', JSON.stringify(allTickets));
+//                 displayTickets();
+//             })
+//             .catch(error => {
+//                 console.error('Error fetching tickets:', error);
+//             });
+//     }
+// }
+
 
 function renderEverything() {
 
@@ -568,22 +493,10 @@ function renderEverything() {
     updateStatistics();
 
     allProducts.forEach(product => displayProduct(product));
-    // allProducts.forEach(product => {
-    //     tbody.innerHTML += `<tr>
-    //         <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
-    //         <td>${product.category}</td>
-    //         <td>${product.brand}</td>
-    //         <td class="text-primary fw-bold">$${product.price}</td>
-    //         <td>${product.quantity}</td>
-    //         <td>${product.seller_id}</td>
-    //         <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
-    //             <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
-    //         </td>
-    //     </tr>`});
 }
 
 initializeProducts();
-
+// initializeTickets();
 
 
 function displayProduct(product) {
@@ -602,8 +515,10 @@ function displayProduct(product) {
 }
 
 
+
+
 //////////////////////////////////////////////////
-/////  CHARTS
+/////  CHARTS for products
 //////////////////////////////////////////////////
 const cat = document.getElementById('categories');
 new Chart(cat, {
@@ -643,6 +558,7 @@ new Chart(brand, {
     //     }
     // }
 });
+
 
 
 
