@@ -423,6 +423,10 @@
                         <input type="number" id="f-discount" class="form-control" min="0" max="100">
                     </div>
                     <div class="mb-2"><label>Image URL</label><input type="text" id="f-img" class="form-control"></div>
+                    <div class="mb-2">
+                        <label>Description</label>
+                        <textarea id="f-desc" class="form-control" rows="3"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer"><button style="background-color: #0a1c58;" type="submit"
                         class="btn btn-primary w-100">Save Changes</button></div>
@@ -713,7 +717,7 @@
                 document.getElementById('f-price').value = product.oldPrice || product.price; document.getElementById('f-qty').value = product.quantity;
                 document.getElementById('f-cat').value = product.category;
                 document.getElementById('f-img').value = product.image;
-
+                document.getElementById('f-desc').value = product.description || "";
                 fDiscount.value = product.discount || 0;
             } else {
                 fDiscount.value = 0;
@@ -791,7 +795,8 @@
                 image: document.getElementById('f-img').value,
                 seller_id: user.id,
                 discount: inputDiscount,
-                oldPrice: oldPrice
+                oldPrice: oldPrice,
+                description: document.getElementById('f-desc').value
             };
 
             if (id) {
