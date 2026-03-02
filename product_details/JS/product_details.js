@@ -120,7 +120,15 @@ async function getProducts() {
         .addEventListener("click", function () {
             addToWishlist(product, this);
         });
-
+    if (currentUser) {
+        if (currentUser.role === "admin" || currentUser.role === "seller") {
+            wishlistIcon.style.display = "none";
+        } else {
+            wishlistIcon.style.display = "block";
+        }
+    } else {
+        wishlistIcon.style.display = "none";
+    }
 
 }
 
@@ -169,8 +177,8 @@ function displayRelatedProducts(productsArray) {
             <div class="card border-0 related-card h-100 position-relative">
                 <div class=" bg-white text-end py-3">
                         <span>
-                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
-                            onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(item)}, this)'
+                            <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart wishlist-btn"
+                            data-id="${item.product_id}"
                             style="font-size: 35px; cursor: pointer;">
                             </i>
                         </span>
@@ -201,6 +209,20 @@ function displayRelatedProducts(productsArray) {
         </div>
         `;
     }).join("");
+
+    container.addEventListener("click", function (e) {
+        if (e.target.classList.contains("wishlist-btn")) {
+            e.stopPropagation();
+            const productId = parseInt(e.target.dataset.id);
+
+            const products = JSON.parse(localStorage.getItem("products")) || [];
+            const product = products.find(p => p.product_id === productId);
+
+            if (product) {
+                addToWishlist(product, e.target);
+            }
+        }
+    });
 }
 
 
@@ -296,3 +318,7 @@ async function getCarts(product) {
 }
 
 getProducts();
+
+
+
+

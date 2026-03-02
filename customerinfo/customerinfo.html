@@ -118,6 +118,9 @@
                     <button class="list-group-item" data-target="orders" data-title="Your Orders">
                         Your Orders
                     </button>
+                    <button class="list-group-item" data-target="tickets" data-title="My Tickets">
+                        Your Tickets
+                    </button>
 
                     <button class="list-group-item" data-target="logout" data-title="Log Out">
                         Log out
@@ -288,22 +291,43 @@
                             </p>
                         </div> -->
 
+                        <!-- wishlist -->
                         <div id="wishlist-container" class="wishlist-wrapper"></div>
-                    </div>
-                    <div class="content-section d-none" id="orders">
-                        <h2 class="section-title">Your Orders</h2>
-
-                        <div id="ordersContainer" class="orders-wrapper"></div>
-
-                        <div id="emptyOrdersMessage" class="alert-custom mt-3 d-none">
-                            You haven't placed any orders yet.
-                            <a href="../HomePage&Products/AllProducts.html">
-                                Start shopping
-                            </a>
                         </div>
-                    </div>
-                
 
+                        <!-- orders -->
+                        <div class="content-section d-none" id="orders">
+                            <h2 class="section-title">Your Orders</h2>
+
+                            <div id="ordersContainer" class="orders-wrapper"></div>
+
+                            <div id="emptyOrdersMessage" class="alert-custom mt-3 d-none">
+                                You haven't placed any orders yet.
+                                <a href="../HomePage&Products/AllProducts.html">
+                                    Start shopping
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- tickets -->
+                        <div class="content-section d-none" id="tickets">
+                            <div class="tickets-header d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <h2 class="section-title mb-1">My Support Tickets</h2>
+                                    <p class="text-muted mb-0">Track your support messages</p>
+                                </div>
+
+                                <a href="../ContactUs/Contact.html" class="btn-ticket">
+                                    <i class="fa-solid fa-plus"></i>
+                                    New Message
+                                </a>
+                            </div>
+
+                            <!-- Scrollable Container -->
+                            <div id="ticketsWrapper">
+                                <div id="ticketsContainer" class="tickets-list"></div>
+                            </div>
+                        </div>
                 <!-- Logout && LogOut Model -->
                 <div class="content-section d-none" id="logout">
                     <h2 class="section-title">Log Out</h2>
@@ -364,7 +388,7 @@
     <script src="./main.js"></script>
     <script src="./logout.js"></script>
     <script src="./order.js"></script>
-    
-</body>
+    <script src="./users-tickets.js"></script>
+</body> 
 
 </html>
