@@ -508,7 +508,7 @@ function displayProduct(product) {
             <td class="text-primary fw-bold">$${product.price}</td>
             <td>${product.quantity}</td>
             <td>${product.seller_id}</td>
-            <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
+            <td><button class="btn btn-sm btn-info me-2 ${product.seller_id == 1 ? 'd-block' : 'd-none'}" onclick="openModal('edit',${product.product_id})">Edit</button>
                 <button class="btn btn-sm btn-danger" onclick="deleteItem(${product.product_id}, 'product')">Delete</button>
             </td>
         </tr>`
@@ -517,9 +517,9 @@ function displayProduct(product) {
 
 
 
-//////////////////////////////////////////////////
-/////  CHARTS for products
-//////////////////////////////////////////////////
+
+// ------------------------------ charts for products --------------------- 
+
 const cat = document.getElementById('categories');
 new Chart(cat, {
     type: 'doughnut',
@@ -530,14 +530,7 @@ new Chart(cat, {
             data: [...new Set(products.map(p => p.category))].map(c => products.filter(p => p.category == c).length),
             borderWidth: 1
         }]
-    },
-    // options: {
-    //     scales: {
-    //         y: {
-    //             beginAtZero: true
-    //         }
-    //     }
-    // }
+    }
 });
 const brand = document.getElementById('brands');
 new Chart(brand, {
@@ -549,14 +542,7 @@ new Chart(brand, {
             data: [...new Set(products.map(p => p.brand))].map(b => products.filter(p => p.brand == b).length),
             borderWidth: 1
         }]
-    },
-    // options: {
-    //     scales: {
-    //         y: {
-    //             beginAtZero: true
-    //         }
-    //     }
-    // }
+    }
 });
 
 
