@@ -122,8 +122,8 @@ function displayCategroyData(page) {
                                     </p>
                                 </div>
 
-                                <div class="text-center w-100">
-                                    <button class="btn add-to-cart-btn"
+                                <div class="text-center w-100" id="cart">
+                                    <button class="btn add-to-cart-btn "
                                         onclick="event.stopPropagation();addToCart(${categoryArray[i].product_id})">
                                         Add To Cart
                                     </button>

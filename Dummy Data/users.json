@@ -7,7 +7,7 @@
         "email": "admin@store.com",
         "password": "123456",
         "role": "admin",
-        "city": "Alexandria",
+        "address": "Alexandria",
         "street": "Corniche Road",
         "phone": "01204520540"
     },
@@ -19,7 +19,7 @@
         "email": "seller1@gmail.com",
         "password": "123456",
         "role": "seller",
-        "city": "Mansoura",
+        "address": "Mansoura",
         "street": "El Geish Street",
         "phone": "01228774138"
     },
@@ -31,7 +31,7 @@
         "email": "Kariem@gmail.com",
         "password": "123456",
         "role": "customer",
-        "city": "Mansoura",
+        "address": "Mansoura",
         "street": "El Geish Street",
         "phone": "01040393484"
     },
@@ -43,7 +43,7 @@
         "email": "ahmed@gmail.com",
         "password": "123456",
         "role": "customer",
-        "city": "6th of October",
+        "address": "6th of October",
         "street": "Al Hosary Square",
         "phone": "01169570136"
     },
@@ -55,7 +55,7 @@
         "email": "sara@gmail.com",
         "password": "123456",
         "role": "customer",
-        "city": "Port Said",
+        "address": "Port Said",
         "street": "Al Gomhoria Street",
         "phone": "01551258391"
     },
@@ -67,7 +67,7 @@
         "email": "omar@gmail.com",
         "password": "123456",
         "role": "customer",
-        "city": "Maadi",
+        "address": "Maadi",
         "street": "Road 9",
         "phone": "01185057916"
     },
@@ -79,7 +79,7 @@
         "email": "seller2@gmail.com",
         "password": "123456",
         "role": "seller",
-        "city": "Maadi",
+        "address": "Maadi",
         "street": "Road 9",
         "phone": "01191723816"
     },
@@ -91,7 +91,7 @@
         "email": "seller3@gmail.com",
         "password": "123456",
         "role": "seller",
-        "city": "Nasr City",
+        "address": "Nasr City",
         "street": "Makram Ebeid Street",
         "phone": "01150374216"
     }

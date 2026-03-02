@@ -82,6 +82,9 @@ ul span i {
     background-color: #dc3545 !important;
 }
 
+.modal-dialog {
+    margin-top: 50px !important;
+}
 
 @media (max-width: 991px) {
     .logout-link {

@@ -87,7 +87,8 @@ h3 {
     background-color: #fff;
     padding: 1.875rem;
     margin-top: 150px;
-    ;
+    max-width: 520px;
+    min-height: 260px;
 }
 
 #home-header #container h2 {
@@ -101,8 +102,7 @@ h3 {
     text-shadow: 0.125rem 0.125rem 0.1875rem black;
 }
 
-#home-header #container button,
-#feature button {
+.collection {
     background-color: var(--light-gray);
     padding-inline: 2rem;
     padding-block: 1rem;
@@ -113,6 +113,11 @@ h3 {
     -moz-border-radius: 0 !important;
     -ms-border-radius: 0 !important;
     -o-border-radius: 0 !important;
+    transition: 0.3s ease;
+}
+
+.collection:hover {
+    transform: translateY(-2px);
 }
 
 /* End Header */

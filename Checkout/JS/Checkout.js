@@ -19,15 +19,90 @@ async function DisplayProducts() {
         return;
     }
 
+
+    if (!currentUser.addresses || currentUser.addresses.length === 0) {
+
+        const defaultAddressObject = {
+            fullAddress: currentUser.street
+                ? `${currentUser.street}, ${currentUser.address || ""}`
+                : (currentUser.address || ""),
+            name: currentUser.fullName || `${currentUser.firstName || ""} ${currentUser.lastName || ""}`.trim(),
+            email: currentUser.email || "",
+            country: currentUser.address || "",
+            postalCode: "",
+            phone: currentUser.phone || "",
+            default: true
+        };
+
+        currentUser.addresses = [defaultAddressObject];
+
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    }
+
+
+
     let carts = JSON.parse(localStorage.getItem("carts")) || [];
     let userCart = carts.find(c => c.userId === currentUser.id);
 
 
-    //fill default values
-    document.getElementById("city").value = currentUser.address ? currentUser.address : currentUser.city;
-    document.getElementById("user_name").value = currentUser.fullName ? currentUser.fullName : currentUser.name;
-    document.getElementById("Address").value = currentUser.address ? currentUser.address : currentUser.city;
-    document.getElementById("Phone").value = currentUser.phone;
+
+
+    // ================= Address Select =================
+    const addressSelect = document.getElementById("addressSelect");
+
+    addressSelect.innerHTML = `
+    <option value="" disabled selected>Choose a saved address</option>
+`;
+
+    currentUser.addresses.forEach((addr, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = `${addr.fullAddress} ${addr.default ? "(Default)" : ""}`;
+        addressSelect.appendChild(option);
+    });
+
+    const defaultIndex = currentUser.addresses.findIndex(a => a.default);
+
+    if (defaultIndex !== -1) {
+        addressSelect.value = defaultIndex;
+
+        const defaultAddress = currentUser.addresses[defaultIndex];
+
+        document.getElementById("user_name").value =
+            defaultAddress.name || currentUser.fullName || "";
+
+        document.getElementById("Address").value =
+            defaultAddress.fullAddress || "";
+
+        document.getElementById("Phone").value =
+            defaultAddress.phone || currentUser.phone || "";
+
+        document.getElementById("city").value =
+            defaultAddress.country || currentUser.address || "";
+    }
+
+    addressSelect.addEventListener("change", function () {
+        const selectedIndex = this.value;
+
+        if (selectedIndex === "") {
+            document.getElementById("Address").value = "";
+            return;
+        }
+
+        const selectedAddress = currentUser.addresses[selectedIndex];
+
+        document.getElementById("user_name").value =
+            selectedAddress.name || currentUser.fullName || "";
+
+        document.getElementById("Address").value =
+            selectedAddress.fullAddress || "";
+
+        document.getElementById("Phone").value =
+            selectedAddress.phone || currentUser.phone || "";
+
+        document.getElementById("city").value =
+            selectedAddress.country || currentUser.address || "";
+    });
 
 
 
