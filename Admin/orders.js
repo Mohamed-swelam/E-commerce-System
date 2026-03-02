@@ -54,41 +54,57 @@ viewButtons.forEach((button, index) => {
                             <h5>Total: $ ${orders[index].total}</h5>
                         </div>
                     </div>
-                
                     <div class="card p-3 rounded-4 border-0 table-responsive-md">
-                    <table class="table align-middle">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        ${orders[index].items
-                .map(item => {
-                    const product = products.find(p => p.product_id == item.productId);
-                    if (!product) return "";
-                    return `<tr class="mb-1 text-secondary">
-                <td>${product.name}</td>
-                <td>${product.price}</td>
-                <td>${item.quantity}</td>
-                <td>${product.price * item.quantity}</td>
-                </tr>`;
-                })
-                .join("")
-            }
-            </div>
-
-                        </tbody>
-                    </table>
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${orders[index].items.map(item => {
+            const product = products.find(p => p.product_id == item.productId);
+            if (!product) return "";
+            return `<tr class="mb-1 text-secondary">
+                                            <td>${product.name}</td>
+                                            <td>${product.price}</td>
+                                            <td>${item.quantity}</td>
+                                            <td>${product.price * item.quantity}</td>
+                                            </tr>`;
+        }).join("")}
+                                    </tbody>
+                                    </table>
+                    </div>
                 </div>
+                <div class="col-12 text-center mt-4 st-col">
+                    <select class="form-select form-select-sm w-auto mx-auto mb-3" aria-label=".form-select-sm example">
+                        <option value="pending" ${orders[index].status == "pending" ? "selected" : ""}>Pending</option>
+                        <option value="shipped" ${orders[index].status == "shipped" ? "selected" : ""}>Shipped</option>
+                        <option value="delivered" ${orders[index].status == "delivered" ? "selected" : ""}>Delivered</option>
+                    </select>
+                    <button class="btn btn-sm btn-outline-primary" onclick="updateOrderStatus(${orders[index].orderId}, this.previousElementSibling.value)">Change Status</button>
                 </div>
             </div>
         `
     })
 });
+
+function updateOrderStatus(orderId, newStatus) {
+    const orderIndex = orders.findIndex(o => o.orderId == orderId);
+    if (orderIndex !== -1) {
+        orderDetailsModal.hide();
+        orders[orderIndex].status = newStatus;
+        localStorage.setItem('orders', JSON.stringify(orders));
+        displayOrders();
+        showToast(`Order status updated to ${newStatus}`, "success");
+        setTimeout(() => {
+            location.reload();
+        }, 2000);
+    }
+}
 
 
 // change badge color based on status
@@ -100,6 +116,10 @@ badgeElements.forEach((badge) => {
     } else if (status === 'delivered') {
         badge.classList.add('bg-success');
     } else if (status === 'cancelled') {
+        const stcol = document.querySelectorAll('.st-col');
+        stcol.forEach(col => {
+            col.style.display = 'none';
+        });
         badge.classList.add('bg-danger');
     } else {
         badge.classList.add('bg-primary');
