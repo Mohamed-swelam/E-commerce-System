@@ -342,26 +342,23 @@ document.querySelectorAll("#brands").forEach(divBrand => {
 });
 
 
-// search product
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("input-search");
-
-    if (searchInput) {
-        searchInput.addEventListener('search', () => {
-            searchedPrds = [];
-            for (let i = 0; i < allPrds.length; i++) {
-                if (allPrds[i].name.toLowerCase().trim()
-                    .includes(searchInput.value.toLowerCase().trim())) {
-                    searchedPrds.push(allPrds[i]);
-                }
-            }
-            baseProducts = [...searchedPrds];
-            displayPaginationItems(searchedPrds, 1);
-            navigateNumbrsWithPrevAndNext(searchedPrds);
-        });
+searchInput.addEventListener('search', () => {
+    searchedPrds = [];
+    for (let i = 0; i < allPrds.length; i++) {
+        if (allPrds[i].name.toLowerCase().trim()
+            .includes(searchInput.value.toLowerCase().trim())) {
+            searchedPrds.push(allPrds[i]);
+        }
     }
-});
 
+    if (searchedPrds.length === 0) {
+        showToast("No products found with the given name.", "error");
+    }
+
+    baseProducts = [...searchedPrds];
+    displayPaginationItems(searchedPrds, 1);
+    navigateNumbrsWithPrevAndNext(searchedPrds);
+});
 function colorNavigatorBasedOnArrow() {
     let spans = document.querySelectorAll(".number-span");
     spans.forEach(span => {

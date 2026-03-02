@@ -116,6 +116,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
         id: Date.now(),
         firstName,
         lastName,
+        fullName: `${firstName} ${lastName}`.trim(),
         email,
         password,
         address,
@@ -130,15 +131,13 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
     localStorage.setItem('users', JSON.stringify(users));
 
     // msg successfully . 
-    showMessage("Account created successfully!", "success", "registerMessage");
+    showToast("Account created successfully! You Will be redirected to login page.", "success");
+
+    setTimeout(() => {
+        window.location.href = "./login.html";
+    }, 2500);
 
 
-    // Redirect based on role
-    if (role === 'seller') {
-        window.location.href = "../seller-dashboard.html";
-    } else {
-        window.location.href = "../HomePage&Products/home.html";
-    }
 });
 
 
@@ -201,6 +200,8 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
 
 
     showMessage("Login successful!", "success", "loginMessage");
+
+
 
 
     // redirect user based on role

@@ -243,20 +243,30 @@ renderAddresses();
 const params = new URLSearchParams(window.location.search);
 const tab = params.get("tab");
 
-if (tab === "wishlist") {
-
+if (tab) {
     document.querySelectorAll(".content-section").forEach(section => {
         section.classList.add("d-none");
     });
 
-    document.getElementById("wishlist").classList.remove("d-none");
+    const targetSection = document.getElementById(tab);
+    if (targetSection) {
+        targetSection.classList.remove("d-none");
+    }
 
     document.querySelectorAll("#sidebarMenu .list-group-item").forEach(btn => {
         btn.classList.remove("active");
     });
 
-    const wishlistBtn = document.querySelector('[data-target="wishlist"]');
-    if (wishlistBtn) wishlistBtn.classList.add("active");
+    const activeBtn = document.querySelector(`[data-target="${tab}"]`);
+    if (activeBtn) {
+        activeBtn.classList.add("active");
+    }
+
+    const btnTitle = activeBtn?.getAttribute("data-title");
+    if (btnTitle) {
+        breadcrumbTitle.textContent = btnTitle;
+        breadcrumbSubTitle.textContent = btnTitle;
+    }
 }
 
 
@@ -271,7 +281,7 @@ function renderOrders() {
     const orders = JSON.parse(localStorage.getItem("orders")) || [];
     const allProducts = JSON.parse(localStorage.getItem("products")) || [];
 
-    let userOrders = orders.filter(e => e.userId == currentUser.id);
+    let userOrders = orders.filter(e => e.userId == currentUser.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));;
     console.log(userOrders);
 
     ordersContainer.innerHTML = "";

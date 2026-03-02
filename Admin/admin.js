@@ -1,39 +1,76 @@
 'use strict'
 
-// ==============================
-// Navigation Tabs Logic
-// ==============================
 
+// ------------------- Navigation Tabs Logic -------------------
 // Select all main tabs and their corresponding sub sections
 const mainTabs = document.querySelectorAll('.main-tab')
 const subTabs = document.querySelectorAll('.sub-tab')
 
-// Add click event to each main tab
-mainTabs.forEach(p => {
-    p.addEventListener('click', (e) => {
+// // Add click event to each main tab
+// mainTabs.forEach(p => {
+//     p.addEventListener('click', (e) => {
+//         console.log(e.target);
+//         localStorage.removeItem('activeTab');
+//         localStorage.setItem('activeTab', e.target.innerHTML);
+//         let activeTab = localStorage.getItem('activeTab');
+//         // Remove active style from all main tabs
+//         mainTabs.forEach(p => p.classList.remove('active-tab'))
+//         // Add active style to the clicked tab
+//         if (e.target.innerHTML == activeTab) {
+//             console.log('yes');
+//             e.target.classList.add('active-tab')
+//         }
+//         // Hide all sub tabs first
+//         subTabs.forEach(div => {
+//             div.classList.remove('active-sub-tab')
+//         })
+//         // Show the sub tab that matches the clicked tab text
+//         subTabs.forEach(div => {
+//             if (div.id == e.target.innerHTML) {
+//                 div.classList.add('active-sub-tab')
+//             }
+//         })
+//     })
+// });
 
-        // Remove active style from all main tabs
-        mainTabs.forEach(p => p.classList.remove('active-tab'))
-        // Add active style to the clicked tab
-        p.classList.add('active-tab')
-        // Hide all sub tabs first
-        subTabs.forEach(div => {
-            div.classList.remove('active-sub-tab')
-        })
-        // Show the sub tab that matches the clicked tab text
-        subTabs.forEach(div => {
-            if (div.id == e.target.innerHTML) {
-                div.classList.add('active-sub-tab')
-            }
-        })
-    })
+
+
+mainTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+        // store active tab
+        localStorage.setItem('activeTab', tabName);
+        activateTab(tabName);
+    });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTab = localStorage.getItem('activeTab');
+    if (savedTab && currentUser) {
+        activateTab(savedTab);
+    } else {
+        activateTab('customers'); // default
+    }
+});
+function activateTab(tabName) {
+    // remove active class from all main tabs
+    mainTabs.forEach(tab => tab.classList.remove('active-tab'));
+    // add active class to correct tab
+    const activeMainTab = document.querySelector(`[data-tab="${tabName}"]`);
+    if (activeMainTab) {
+        activeMainTab.classList.add('active-tab');
+    }
+    // hide all sub tabs
+    subTabs.forEach(div => div.classList.remove('active-sub-tab'));
+    // show matching sub tab
+    const activeSubTab = document.getElementById(tabName);
+    if (activeSubTab) {
+        activeSubTab.classList.add('active-sub-tab');
+    }
+}
 
 
-// ======================================================
-// Users Logic
-// ======================================================
+// localStorage.clear()
 
 // localStorage.removeItem('users');
 // // Fetch users from JSON file and store them in localStorage
@@ -69,84 +106,6 @@ mainTabs.forEach(p => {
 //         console.error('There was a problem with the fetch operation:', error);
 //     });
 
-const usersData = [
-    {
-        "id": 1,
-        "name": "Admin User",
-        "email": "admin@store.com",
-        "password": "123456",
-        "role": "admin"
-    },
-    {
-        "id": 2,
-        "name": "Seller One",
-        "email": "seller1@gmail.com",
-        "password": "123456",
-        "role": "seller"
-    },
-    {
-        "id": 3,
-        "name": "Kariem Tamer",
-        "email": "Kariem@gmail.com",
-        "password": "123456",
-        "role": "customer"
-    },
-    {
-        "id": 4,
-        "name": "Ahmed Mohamed",
-        "email": "ahmed@gmail.com",
-        "password": "123456",
-        "role": "customer"
-    },
-    {
-        "id": 5,
-        "name": "Sara Ali",
-        "email": "sara@gmail.com",
-        "password": "123456",
-        "role": "customer"
-    },
-    {
-        "id": 6,
-        "name": "Omar Hassan",
-        "email": "omar@gmail.com",
-        "password": "123456",
-        "role": "customer"
-    },
-    {
-        "id": 7,
-        "name": "Seller Two",
-        "email": "seller2@gmail.com",
-        "password": "123456",
-        "role": "seller"
-    },
-    {
-        "id": 8,
-        "name": "Seller Three",
-        "email": "seller3@gmail.com",
-        "password": "123456",
-        "role": "seller"
-    }
-];
-
-// localStorage.clear()
-// localStorage.setItem('users', JSON.stringify(usersData));
-let users;
-// Only set default users if localStorage is empty
-if (!localStorage.getItem('users') || JSON.parse(localStorage.getItem('users')).length === 0) {
-    localStorage.setItem('users', JSON.stringify(usersData));
-    users = JSON.parse(localStorage.getItem('users'));
-}
-else {
-    users = JSON.parse(localStorage.getItem('users'));
-}
-
-// Separate users based on role
-let sellers = users.filter(user => user.role == 'seller')
-// localStorage.setItem('sellers', JSON.stringify(sellers))
-
-let customers = users.filter(user => user.role == 'customer');
-// localStorage.setItem('customers', JSON.stringify(customers))
-
 // localStorage.removeItem('orders');
 // fetch('../Dummy Data/orders.json')
 //     .then(res => {
@@ -162,7 +121,7 @@ let customers = users.filter(user => user.role == 'customer');
 //     .catch(error => {
 //         console.error('There was a problem with the fetch operation:', error);
 //     });
-let orders = JSON.parse(localStorage.getItem('orders'));
+
 
 // function deleteUser(id) {
 //     let deletedUser = users.filter(u => u.id == id);
@@ -184,55 +143,6 @@ let orders = JSON.parse(localStorage.getItem('orders'));
 //     console.log(products);
 // }
 
-function deleteItem(id, type) {
-    if (type === 'user') {
-        let deletedItem = users.filter(u => u.id == id);
-        users.splice(users.indexOf(deletedItem[0]), 1);
-        localStorage.removeItem('users');
-        localStorage.setItem('users', JSON.stringify(users))
-        location.reload()
-        showToast('User deleted successfully', 'success');
-        console.log(users);
-    } else if (type === 'product') {
-        let deletedProduct = products.filter(p => p.product_id == id);
-        products.splice(products.indexOf(deletedProduct[0]), 1);
-        localStorage.removeItem('products');
-        localStorage.setItem('products', JSON.stringify(products))
-        showToast('Product deleted successfully', 'success');
-        location.reload()
-        console.log(products);
-    }
-}
-
-
-
-
-
-//getting the products from the local storage
-let products = JSON.parse(localStorage.getItem('products'));
-
-
-
-
-
-// ======================================================
-// Products Logic
-// ======================================================
-
-const productsContainer = document.getElementById('products-container');
-
-// let allProducts = JSON.parse(localStorage.getItem('products')) || [];
-let allProducts = [];
-
-let activeFilters = {
-    brands: [],
-    categories: [],
-    maxPrice: 0
-};
-
-// ======================================================
-// Product Rendering
-// ======================================================
 
 // function displayProduct(product) {
 
@@ -338,69 +248,160 @@ let activeFilters = {
 //     div3.appendChild(deleteBtn);
 // }
 
+// let allTickets = [];
+// function initializeTickets() {
+//     const storedTickets = localStorage.getItem('tickets');
+//     if (storedTickets && JSON.parse(storedTickets).length > 0) {
+//         allTickets = JSON.parse(storedTickets);
+//         displayTickets();
+//     }
+//     else {
+//         fetch('../Dummy Data/tickets.json')
+//             .then(res => res.json())
+//             .then(tickets => {
+//                 allTickets = tickets;
+//                 localStorage.setItem('tickets', JSON.stringify(allTickets));
+//                 displayTickets();
+//             })
+//             .catch(error => {
+//                 console.error('Error fetching tickets:', error);
+//             });
+//     }
+// }
 
+
+// if (currentUser) {
+//     userProfile.style.display = "block";
+//     document.getElementById('login-link').style.display = "none";
+//     document.getElementById('logout-btn').style.display = "block";
+//     if (currentUser.role === "admin") {
+//         document.getElementById("admin-dashboard").classList.remove("d-none");
+//         document.getElementById("seller-dashboard").classList.add("d-none");
+//     }
+//     else if (currentUser.role === "seller") {
+//         document.getElementById("seller-dashboard").classList.remove("d-none");
+//         document.getElementById("admin-dashboard").classList.add("d-none");
+//     }
+
+// } else {
+//     userProfile.style.display = "none";
+//     document.getElementById('login-link').style.display = "block";
+// }
+
+
+// for pagination
+let currentPage = 1;
+const rowsPerPage = 15;
+
+// ------------------------ delete for both users and products ---------------------
+function deleteItem(id, type) {
+    if (type === 'user') {
+        const confirmDeleteModal = new bootstrap.Modal(document.querySelector('.customer-delete-modal'))
+        const deleteCustomerModalBtn = document.getElementById('onfirm-customer-delete-btn')
+        confirmDeleteModal.show();
+        deleteCustomerModalBtn.addEventListener('click', () => {
+            let deletedItem = users.filter(u => u.id == id);
+            users.splice(users.indexOf(deletedItem[0]), 1);
+            localStorage.removeItem('users');
+            localStorage.setItem('users', JSON.stringify(users))
+            showToast('User deleted successfully', 'success');
+            setTimeout(() => {
+                location.reload()
+            }, 2000)
+        })
+    } else if (type === 'product') {
+        const confirmDeleteModal = new bootstrap.Modal(document.querySelector('.pruduct-delete-modal'))
+        const deleteProductModalBtn = document.getElementById('confirm-product-delete-btn')
+        confirmDeleteModal.show();
+        deleteProductModalBtn.onclick = () => {
+            let deletedProduct = products.filter(p => p.product_id == id);
+            products.splice(products.indexOf(deletedProduct[0]), 1);
+            localStorage.removeItem('products');
+            localStorage.setItem('products', JSON.stringify(products))
+            showToast('Product deleted successfully', 'success');
+            setTimeout(() => {
+                location.reload()
+            }, 2000)
+        }
+    }
+}
+
+// ------------------------------- Users Logic -------------------------------
+let users;
+// Only set default users if localStorage is empty
+if (!localStorage.getItem('users') || JSON.parse(localStorage.getItem('users')).length === 0) {
+    localStorage.setItem('users', JSON.stringify(usersData));
+    users = JSON.parse(localStorage.getItem('users'));
+}
+else {
+    users = JSON.parse(localStorage.getItem('users'));
+}
+
+
+//getting the sellers from the local storage
+let sellers = users.filter(user => user.role == 'seller')
+// localStorage.setItem('sellers', JSON.stringify(sellers))
+
+//getting the customers from the local storage
+let customers = users.filter(user => user.role == 'customer');
+// localStorage.setItem('customers', JSON.stringify(customers))
+
+//getting the orders from the local storage
+let orders = JSON.parse(localStorage.getItem('orders'));
+
+
+//getting the products from the local storage
+let products = JSON.parse(localStorage.getItem('products'));
+// ------------------------------- Products Logic -------------------------
+
+const productsContainer = document.getElementById('products-container');
+let allProducts = [];
+
+let activeFilters = {
+    brands: [],
+    categories: [],
+    minPrice: 0,
+    maxPrice: 0
+};
+
+
+// ------- displaying products ------
 const tbody = document.getElementById('product-table-body');
 tbody.innerHTML = "";
 allProducts.forEach(p => displayProduct(p));
-// allProducts.forEach(p => {
-//     tbody.innerHTML += `<tr>
-//             <td><div class="d-flex align-items-center gap-2"><img src="${p.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${p.name}</b></div></td>
-//             <td>${p.category}</td>
-//             <td>${p.brand}</td>
-//             <td class="text-primary fw-bold">$${p.price}</td>
-//             <td>${p.quantity}</td>
-//             <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${p.product_id})">Edit</button>
-//                 <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.product_id})">Delete</button>
-//             </td>
-//         </tr>`;
-// });
 
-
-// ======================================================
-// Dynamic Filters Rendering
-// ======================================================
+// ---------------------------- Dynamic Filters Rendering ---------------------------
 
 function displayFilters(arr, titleText) {
-
     const filterContainers = document.querySelectorAll('.filters');
-
     filterContainers.forEach(container => {
-
         let mainDiv = document.createElement('div');
         mainDiv.classList.add('col-6', 'col-md-12');
-
         let title = document.createElement('p');
         title.classList.add('mt-4', 'fs-5');
         title.innerText = titleText;
-
         mainDiv.appendChild(title);
-
         arr.forEach(value => {
-
             let div = document.createElement('div');
             div.classList.add('form-check');
-
             let input = document.createElement('input');
             input.classList.add('form-check-input');
             input.type = 'checkbox';
             input.value = value;
-
             let label = document.createElement('label');
             label.classList.add('form-check-label');
             label.innerText = value;
-
             div.appendChild(input);
             div.appendChild(label);
             mainDiv.appendChild(div);
         });
-
         container.appendChild(mainDiv);
     });
 }
 
-// ======================================================
-// Filtering Logic
-// ======================================================
+
+// ---------------------------------- Filtering Logic ---------------------------------
+
 
 function applyFilters() {
 
@@ -414,10 +415,11 @@ function applyFilters() {
         );
     }
 
-    // Price
-    if (activeFilters.maxPrice > 0) {
+    // Price Range Filtering
+    if (activeFilters.minPrice !== 0) {
         filtered = filtered.filter(product =>
-            product.price <= activeFilters.maxPrice
+            product.price >= activeFilters.minPrice &&
+            product.price < activeFilters.maxPrice
         );
     }
 
@@ -425,114 +427,75 @@ function applyFilters() {
     tbody.innerHTML = "";
 
     if (filtered.length === 0) {
-        // productsContainer.innerHTML =
-        //     `<div class="col-12 text-center p-5 bg-light rounded-3">
-        //         <p class="fs-4 text-muted">No products found!</p>
-        //     </div>`;
         tbody.innerHTML = `<tr><td colspan="5" class="text-center p-5"><p class="fs-4 text-muted">No products found!</p></td></tr>`;
         return;
     }
 
-    filtered.forEach(product => displayProduct(product));
+    // filtered.forEach(product => displayProduct(product));
+    renderPaginatedProducts(filtered);
 }
-//     filtered.forEach(product => {
-//         tbody.innerHTML += `<tr>
-//             <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
-//             <td>${product.category}</td>
-//             <td>${product.brand}</td>
-//             <td class="text-primary fw-bold">$${product.price}</td>
-//             <td>${product.seller_id}</td>
-//             <td>${product.quantity}</td>
-//             <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
-//                 <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
-//             </td>
-//         </tr>`;
-//     });
-// }
 
-// ======================================================
-// Checkbox Filtering
-// ======================================================
+
+
+// -------------------------------------- Checkbox Filtering ------------------------------------ 
 
 function initializeCheckboxFiltering() {
-
     const filterContainers = document.querySelectorAll('.filters');
-
     filterContainers.forEach(container => {
-
         container.addEventListener('change', function () {
-
             const checkedBoxes = [
                 ...document.querySelectorAll(".filters input[type='checkbox']:checked")
             ];
-
             activeFilters.brands = [];
             activeFilters.categories = [];
-
             checkedBoxes.forEach(cb => {
-
                 if (allProducts.some(p => p.brand === cb.value)) {
                     activeFilters.brands.push(cb.value);
                 }
-
                 if (allProducts.some(p => p.category === cb.value)) {
                     activeFilters.categories.push(cb.value);
                 }
             });
-
             applyFilters();
         });
     });
 }
 
-// ======================================================
-// Price Range Filtering
-// ======================================================
+// ------------------------------------- Price Range Filtering ---------------------------
 
 function initializePriceFiltering() {
-
     const ranges = document.querySelectorAll('.range4');
     const outputs = document.querySelectorAll('.rangeValue');
-
     ranges.forEach((range, index) => {
-
-        outputs[index].textContent = range.value;
-
+        outputs[index].textContent = range.value + " - " + (parseInt(range.value) + 100);
         range.addEventListener('input', function () {
-
-            outputs[index].textContent = this.value;
-            activeFilters.maxPrice = parseInt(this.value);
+            let value = parseInt(this.value);
+            outputs[index].textContent = value + " - " + (value + 100);
+            activeFilters.minPrice = value;
+            activeFilters.maxPrice = value + 100;
             applyFilters();
         });
     });
 }
 
-// ======================================================
-// Statistics
-// ======================================================
 
+// ------------------------------  3 cards on top ---------------------------------
 const totalProducts = document.getElementById('total-products');
 const totalCategories = document.getElementById('total-categories');
 const totalBrands = document.getElementById('total-brands');
 
 function updateStatistics() {
-
     const categories = [...new Set(allProducts.map(p => p.category))];
     const brands = [...new Set(allProducts.map(p => p.brand))];
-
     totalProducts.innerText = allProducts.length;
     totalCategories.innerText = categories.length;
     totalBrands.innerText = brands.length;
 }
 
-// ======================================================
-// Initialization
-// ======================================================
+// -------------------------- Initialization for products ---------------------------
 
 function initializeProducts() {
-
     const storedProducts = localStorage.getItem('products');
-
     if (storedProducts && JSON.parse(storedProducts).length > 0) {
         allProducts = JSON.parse(storedProducts);
         renderEverything();
@@ -551,7 +514,82 @@ function initializeProducts() {
     }
 }
 
+initializeProducts();
+// ------------------------------ for pagination ----------------------
+function renderPaginatedProducts(productsArray) {
+    const pagination = document.getElementById('pagination');
+    tbody.innerHTML = '';
+    pagination.innerHTML = '';
+    const totalPages = Math.ceil(productsArray.length / rowsPerPage);
+    if (currentPage > totalPages) currentPage = 1;
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedItems = productsArray.slice(start, end);
+    paginatedItems.forEach(product => displayProduct(product));
+    createPaginationButtons(totalPages, productsArray);
+}
+
+
+function createPaginationButtons(totalPages, productsArray) {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+    const maxVisible = 5; // show only 5 pages
+    let startPage = Math.max(currentPage - 2, 1);
+    let endPage = Math.min(startPage + maxVisible - 1, totalPages);
+    if (endPage - startPage < maxVisible - 1) {
+        startPage = Math.max(endPage - maxVisible + 1, 1);
+    }
+    // Previous
+    pagination.innerHTML += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="prev">Previous</a>
+        </li>
+    `;
+
+    // Page Numbers
+    for (let i = startPage; i <= endPage; i++) {
+        pagination.innerHTML += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>
+        `;
+    }
+
+    // Next
+    pagination.innerHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="next">Next</a>
+        </li>
+    `;
+
+    pagination.onclick = function (e) {
+        e.preventDefault();
+        if (!e.target.dataset.page) return;
+        if (e.target.dataset.page === 'prev' && currentPage > 1) {
+            currentPage--;
+        } else if (e.target.dataset.page === 'next' && currentPage < totalPages) {
+            currentPage++;
+        } else if (!isNaN(e.target.dataset.page)) {
+            currentPage = Number(e.target.dataset.page);
+        }
+        renderPaginatedProducts(productsArray);
+        window.scrollTo({ top: 0, behavior: "smooth" }); // smooth scroll up
+    };
+}
+
+
+
 function renderEverything() {
+    document.querySelectorAll('.filters').forEach(container => {
+        container.innerHTML = `
+        <div class="col-12">
+            <p class="fs-5">Filter By</p>
+            <label class="form-label mt-4">Price</label>
+            <input type="range" class="form-range range4" min="0" max="1000" value="0" step="100">
+            <output class="rangeValue"></output>
+        </div>
+    `;
+    });
 
     // productsContainer.innerHTML = '';
     tbody.innerHTML = "";
@@ -567,27 +605,15 @@ function renderEverything() {
 
     updateStatistics();
 
-    allProducts.forEach(product => displayProduct(product));
-    // allProducts.forEach(product => {
-    //     tbody.innerHTML += `<tr>
-    //         <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
-    //         <td>${product.category}</td>
-    //         <td>${product.brand}</td>
-    //         <td class="text-primary fw-bold">$${product.price}</td>
-    //         <td>${product.quantity}</td>
-    //         <td>${product.seller_id}</td>
-    //         <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
-    //             <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
-    //         </td>
-    //     </tr>`});
+    // allProducts.forEach(product => displayProduct(product));
+    renderPaginatedProducts(allProducts);
 }
 
-initializeProducts();
 
 
 
 function displayProduct(product) {
-    allProducts.push(product);
+    // allProducts.push(product);
     tbody.innerHTML += `<tr>
             <td><div class="d-flex align-items-center gap-2"><img src="${product.image}" class="product-img" onerror="this.src='https://via.placeholder.com/50'"><b>${product.name}</b></div></td>
             <td>${product.category}</td>
@@ -595,16 +621,18 @@ function displayProduct(product) {
             <td class="text-primary fw-bold">$${product.price}</td>
             <td>${product.quantity}</td>
             <td>${product.seller_id}</td>
-            <td><button class="btn btn-sm btn-info me-2" onclick="openModal('edit',${product.product_id})">Edit</button>
+            <td><button class="btn btn-sm btn-secondary text-light me-2 ${product.seller_id == 1 ? 'd-block' : 'd-none'}" onclick="openModal('edit',${product.product_id})">Edit</button>
                 <button class="btn btn-sm btn-danger" onclick="deleteItem(${product.product_id}, 'product')">Delete</button>
             </td>
         </tr>`
 }
 
 
-//////////////////////////////////////////////////
-/////  CHARTS
-//////////////////////////////////////////////////
+
+
+
+// ------------------------------ charts for products --------------------- 
+
 const cat = document.getElementById('categories');
 new Chart(cat, {
     type: 'doughnut',
@@ -615,14 +643,7 @@ new Chart(cat, {
             data: [...new Set(products.map(p => p.category))].map(c => products.filter(p => p.category == c).length),
             borderWidth: 1
         }]
-    },
-    // options: {
-    //     scales: {
-    //         y: {
-    //             beginAtZero: true
-    //         }
-    //     }
-    // }
+    }
 });
 const brand = document.getElementById('brands');
 new Chart(brand, {
@@ -634,14 +655,7 @@ new Chart(brand, {
             data: [...new Set(products.map(p => p.brand))].map(b => products.filter(p => p.brand == b).length),
             borderWidth: 1
         }]
-    },
-    // options: {
-    //     scales: {
-    //         y: {
-    //             beginAtZero: true
-    //         }
-    //     }
-    // }
+    }
 });
 
 
@@ -651,23 +665,28 @@ new Chart(brand, {
 
 
 
-let userProfile = document.getElementById('profile');
+
+// // let userProfile = document.getElementById('profile');
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const logOutBtn = document.getElementById('log-out-btn');
+logOutBtn.addEventListener('click', () => {
+    localStorage.removeItem('currentUser');
+    location.href = '../../HomePage&Products/home.html';
+})
+// // localStorage.removeItem("currentUser");
+// if (currentUser) {
+//     document.getElementById('login-link').style.display = "none";
+//     document.getElementById('logout-btn').style.display = "block";
+//     if (currentUser.role === "admin") {
+//         document.getElementById("admin-dashboard").classList.remove("d-none");
+//         document.getElementById("seller-dashboard").classList.add("d-none");
+//     }
+//     else if (currentUser.role === "seller") {
+//         document.getElementById("seller-dashboard").classList.remove("d-none");
+//         document.getElementById("admin-dashboard").classList.add("d-none");
+//     }
 
-// localStorage.removeItem("currentUser");
-if (currentUser) {
-    userProfile.style.display = "block";
-    document.getElementById('login-link').style.display = "none";
-    if (currentUser.role === "admin") {
-        document.getElementById("admin-dashboard").classList.remove("d-none");
-        document.getElementById("seller-dashboard").classList.add("d-none");
-    }
-    else if (currentUser.role === "seller") {
-        document.getElementById("seller-dashboard").classList.remove("d-none");
-        document.getElementById("admin-dashboard").classList.add("d-none");
-    }
-
-} else {
-    userProfile.style.display = "none";
-    document.getElementById('login-link').style.display = "block";
-}
+// } else {
+//     document.getElementById('login-link').style.display = "block";
+//     document.getElementById('logout-btn').style.display = "none";
+// }

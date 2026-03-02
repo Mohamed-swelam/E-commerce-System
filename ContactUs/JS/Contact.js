@@ -126,7 +126,7 @@ async function SendMessage() {
             button.innerHTML = 'Send Message';
             button.disabled = false;
 
-            window.location.href = "../../ContactUs/user-tickets.html";
+            window.location.href = "../../customerinfo/customerinfo.html?tab=tickets";
         }, 1500);
     });
 }
