@@ -79,7 +79,6 @@ if (customers.length == 0) {
 else {
     totalCustomers.innerText = customers.length;
     const tbody = document.getElementById('customers-table-body');
-    console.log(users[0].phone);
     tbody.innerHTML = "";
     customers.forEach(c => {
         tbody.innerHTML += `<tr class="p-3">

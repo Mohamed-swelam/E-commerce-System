@@ -1,34 +1,73 @@
 'use strict'
 
-// ==============================
-// Navigation Tabs Logic
-// ==============================
 
+// ------------------- Navigation Tabs Logic -------------------
 // Select all main tabs and their corresponding sub sections
 const mainTabs = document.querySelectorAll('.main-tab')
 const subTabs = document.querySelectorAll('.sub-tab')
 
-// Add click event to each main tab
-mainTabs.forEach(p => {
-    p.addEventListener('click', (e) => {
+// // Add click event to each main tab
+// mainTabs.forEach(p => {
+//     p.addEventListener('click', (e) => {
+//         console.log(e.target);
+//         localStorage.removeItem('activeTab');
+//         localStorage.setItem('activeTab', e.target.innerHTML);
+//         let activeTab = localStorage.getItem('activeTab');
+//         // Remove active style from all main tabs
+//         mainTabs.forEach(p => p.classList.remove('active-tab'))
+//         // Add active style to the clicked tab
+//         if (e.target.innerHTML == activeTab) {
+//             console.log('yes');
+//             e.target.classList.add('active-tab')
+//         }
+//         // Hide all sub tabs first
+//         subTabs.forEach(div => {
+//             div.classList.remove('active-sub-tab')
+//         })
+//         // Show the sub tab that matches the clicked tab text
+//         subTabs.forEach(div => {
+//             if (div.id == e.target.innerHTML) {
+//                 div.classList.add('active-sub-tab')
+//             }
+//         })
+//     })
+// });
 
-        // Remove active style from all main tabs
-        mainTabs.forEach(p => p.classList.remove('active-tab'))
-        // Add active style to the clicked tab
-        p.classList.add('active-tab')
-        // Hide all sub tabs first
-        subTabs.forEach(div => {
-            div.classList.remove('active-sub-tab')
-        })
-        // Show the sub tab that matches the clicked tab text
-        subTabs.forEach(div => {
-            if (div.id == e.target.innerHTML) {
-                div.classList.add('active-sub-tab')
-            }
-        })
-    })
+
+
+mainTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+        // store active tab
+        localStorage.setItem('activeTab', tabName);
+        activateTab(tabName);
+    });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTab = localStorage.getItem('activeTab');
+    if (savedTab && currentUser) {
+        activateTab(savedTab);
+    } else {
+        activateTab('customers'); // default
+    }
+});
+function activateTab(tabName) {
+    // remove active class from all main tabs
+    mainTabs.forEach(tab => tab.classList.remove('active-tab'));
+    // add active class to correct tab
+    const activeMainTab = document.querySelector(`[data-tab="${tabName}"]`);
+    if (activeMainTab) {
+        activeMainTab.classList.add('active-tab');
+    }
+    // hide all sub tabs
+    subTabs.forEach(div => div.classList.remove('active-sub-tab'));
+    // show matching sub tab
+    const activeSubTab = document.getElementById(tabName);
+    if (activeSubTab) {
+        activeSubTab.classList.add('active-sub-tab');
+    }
+}
 
 
 // localStorage.clear()
@@ -250,28 +289,40 @@ mainTabs.forEach(p => {
 // }
 
 
-
+// for pagination
 let currentPage = 1;
-const rowsPerPage = 5;
+const rowsPerPage = 15;
 
 // ------------------------ delete for both users and products ---------------------
 function deleteItem(id, type) {
     if (type === 'user') {
-        let deletedItem = users.filter(u => u.id == id);
-        users.splice(users.indexOf(deletedItem[0]), 1);
-        localStorage.removeItem('users');
-        localStorage.setItem('users', JSON.stringify(users))
-        location.reload()
-        showToast('User deleted successfully', 'success');
-        console.log(users);
+        const confirmDeleteModal = new bootstrap.Modal(document.querySelector('.customer-delete-modal'))
+        const deleteCustomerModalBtn = document.getElementById('onfirm-customer-delete-btn')
+        confirmDeleteModal.show();
+        deleteCustomerModalBtn.addEventListener('click', () => {
+            let deletedItem = users.filter(u => u.id == id);
+            users.splice(users.indexOf(deletedItem[0]), 1);
+            localStorage.removeItem('users');
+            localStorage.setItem('users', JSON.stringify(users))
+            showToast('User deleted successfully', 'success');
+            setTimeout(() => {
+                location.reload()
+            }, 2000)
+        })
     } else if (type === 'product') {
-        let deletedProduct = products.filter(p => p.product_id == id);
-        products.splice(products.indexOf(deletedProduct[0]), 1);
-        localStorage.removeItem('products');
-        localStorage.setItem('products', JSON.stringify(products))
-        showToast('Product deleted successfully', 'success');
-        location.reload()
-        console.log(products);
+        const confirmDeleteModal = new bootstrap.Modal(document.querySelector('.pruduct-delete-modal'))
+        const deleteProductModalBtn = document.getElementById('confirm-product-delete-btn')
+        confirmDeleteModal.show();
+        deleteProductModalBtn.onclick = () => {
+            let deletedProduct = products.filter(p => p.product_id == id);
+            products.splice(products.indexOf(deletedProduct[0]), 1);
+            localStorage.removeItem('products');
+            localStorage.setItem('products', JSON.stringify(products))
+            showToast('Product deleted successfully', 'success');
+            setTimeout(() => {
+                location.reload()
+            }, 2000)
+        }
     }
 }
 
@@ -349,7 +400,7 @@ function displayFilters(arr, titleText) {
 }
 
 
-// ---------------------------------------------- Filtering Logic ---------------------------------
+// ---------------------------------- Filtering Logic ---------------------------------
 
 
 function applyFilters() {

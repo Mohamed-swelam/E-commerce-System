@@ -5,7 +5,6 @@
 const totalOrders = document.getElementById('total-orders');
 totalOrders.innerText = orders.length;
 
-console.log(orders);
 
 const ordersTableBody = document.getElementById('orders-table-body');
 
@@ -84,7 +83,7 @@ viewButtons.forEach((button, index) => {
                         <option value="pending" ${orders[index].status == "pending" ? "selected" : ""}>Pending</option>
                         <option value="shipped" ${orders[index].status == "shipped" ? "selected" : ""}>Shipped</option>
                         <option value="delivered" ${orders[index].status == "delivered" ? "selected" : ""}>Delivered</option>
-                        <option value="cancelled" ${orders[index].status == "cancelled" ? "selected" : ""}>Cancelled</option>
+                        <option hidden value="cancelled" ${orders[index].status == "cancelled" ? "selected" : ""}>Cancelled</option>
                     </select>
                     <button class="btn btn-sm btn-outline-primary" onclick="updateOrderStatus(${orders[index].orderId}, this.previousElementSibling.value)">Change Status</button>
                 </div>
@@ -92,7 +91,6 @@ viewButtons.forEach((button, index) => {
         `
         const statusSelectContainer = document.querySelector('.select-status-container');
         const statusSelect = document.getElementById('order-status-select');
-        console.log(statusSelect.value);
         if (statusSelect.value == "cancelled") {
             statusSelectContainer.classList.add('d-none');
         } else {

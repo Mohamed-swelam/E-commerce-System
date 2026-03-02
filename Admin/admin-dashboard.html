@@ -75,16 +75,16 @@
             <h4 class="text-center my-2 mt-4 border-bottom pb-3 ">Admin Dashboard</h4>
             <div
                 class=" p-2 py-md-5 fs-5 d-flex flex-row flex-md-column justify-content-evenly justify-content-md-start flex-wrap ">
-                <p class="p-2 pe-md-0 rounded-3 main-tab active-tab">customers</p>
-                <p class="p-2 pe-md-0 rounded-3 main-tab">sellers</p>
-                <p class="p-2 pe-md-0 rounded-3 main-tab">products</p>
-                <p class="p-2 pe-md-0 rounded-3 main-tab">orders</p>
-                <p class="p-2 pe-md-0 rounded-3 main-tab">tickets</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab " data-tab="customers">customers</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="sellers">sellers</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="products">products</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="orders">orders</p>
+                <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="tickets">tickets</p>
             </div>
         </div>
         <div class="col-12 col-md-10 p-3" style="min-height: 100vh;">
             <!-- Start of customers section -->
-            <div id="customers" class="sub-tab active-sub-tab">
+            <div id="customers" class="sub-tab ">
                 <div class="m-auto rounded-4 p-3 py-3 fs-3 mb-3 text-center text-light"
                     style="background-color: #3599db; width: 250px;">
                     <p class="fw-bold pb-0" style="font-size: 1.2rem;"><span id="total-customers"
@@ -96,7 +96,7 @@
                         Customer</button>
                 </div>
                 <p class="text-center fs-3 mt-5 fst-italic text-body-tertiary d-none" id="customers-empty-message"></p>
-                <!-- Modal -->
+                <!-- add customer Modal -->
                 <div class="modal fade" data-bs-backdrop="static" id="add-customer-modal" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -220,7 +220,28 @@
                         </div>
                     </div>
                 </div>
-                <!-- End of Modal -->
+                <!-- End of add customer Modal -->
+                <!-- start of confirm customer delete modal  -->
+                <div class="modal customer-delete-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirm Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this customer?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirm-customer-delete-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of confirm customer delete modal  -->
                 <!-- <div class="row w-100 m-auto" id="customers-container"></div> -->
                 <div class="table-responsive-md p-3 card shadow-lg rounded-4 border-0">
                     <table class="table caption-top customers-table ">
@@ -354,6 +375,27 @@
                     </div>
                 </div>
                 <!-- End of Add product modal -->
+                <!-- start of confirm product delete modal  -->
+                <div class="modal pruduct-delete-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirm Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this product?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirm-product-delete-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of confirm product delete modal  -->
                 <div class="row w-100 m-auto">
                     <div
                         class="col-12 col-md-3 col-lg-2 bg-light p-2 rounded-3 align-self-start mb-3 mb-md-0 d-none d-md-block">
