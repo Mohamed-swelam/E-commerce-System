@@ -15,12 +15,18 @@
     --container-text: #3599db;
     --light: #fff;
     --btn-feature-bgcolor: #323e69;
+    --input-border: #DCDCDC;
+
 }
 
 body {
     font-family: "Rubik", sans-serif;
 }
 
+.active {
+    color: #3599db !important;
+    ;
+}
 
 /* Start NavBr */
 .navbar-brand {

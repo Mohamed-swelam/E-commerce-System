@@ -2,7 +2,6 @@ document.getElementById("continue").addEventListener("click", function () {
     window.location.href = "../../HomePage&Products/home.html";
 });
 
-
 async function displaycart() {
     if (!localStorage.getItem("carts")) {
         const response_2 = await fetch('../../Dummy Data/carts.json');
@@ -166,7 +165,7 @@ async function displaycart() {
 
 }
 
-document.addEventListener("click", function (e) {
+document.addEventListener("click", async function (e) {
     const isPlus = e.target.classList.contains("plus-btn");
     const isMinus = e.target.classList.contains("minus-btn");
     const isDelete = e.target.closest(".delete-btn");
@@ -205,13 +204,19 @@ document.addEventListener("click", function (e) {
 
 
     if (isDelete) {
-        const confirmDelete = confirm("Are you sure you want to remove this item from cart?");
-        if (!confirmDelete) return;
+        if (isDelete) {
+            const confirmed = await showConfirmModal(
+                "Are you sure you want to remove this item from cart?",
+                "Remove Item"
+            );
 
-        userCart.items.splice(cartItemIndex, 1);
-        localStorage.setItem("carts", JSON.stringify(carts));
-        displaycart();
-        return;
+            if (!confirmed) return;
+
+            userCart.items.splice(cartItemIndex, 1);
+            localStorage.setItem("carts", JSON.stringify(carts));
+            displaycart();
+            return;
+        }
     }
 
     if (!product) return;
@@ -233,8 +238,12 @@ document.addEventListener("click", function (e) {
             cartItem.quantity -= 1;
         } else {
             if (cartItem.quantity == 1) {
-                const confirmDelete2 = confirm("Are you sure you want to remove this item from cart?");
-                if (!confirmDelete2) return;
+                const confirmed = await showConfirmModal(
+                    "Quantity will be zero. Remove item from cart?",
+                    "Remove Item"
+                );
+
+                if (!confirmed) return;
 
                 userCart.items.splice(cartItemIndex, 1);
                 localStorage.setItem("carts", JSON.stringify(carts));
@@ -252,5 +261,6 @@ document.addEventListener("click", function (e) {
 document.getElementById("go_Checkout").addEventListener("click", function () {
     window.location.href = "../../Checkout/Checkout.html";
 })
+
 
 displaycart()

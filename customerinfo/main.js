@@ -219,6 +219,12 @@ saveAddrBtn.addEventListener("click", () => {
         default: document.getElementById("addrDefault").checked
     };
 
+    if (newAddr.default) {
+        currentUser.addresses.forEach(addr => {
+            addr.default = false;
+        });
+    }
+
     if (editIndex !== null) {
         currentUser.addresses[editIndex] = newAddr;
     } else {

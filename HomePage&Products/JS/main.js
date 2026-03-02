@@ -438,3 +438,13 @@ else {
 
 
 
+
+let collectionButtons = document.getElementsByClassName("collection");
+
+for (let btn of collectionButtons) {
+  btn.addEventListener("click", function () {
+    window.location.href = "/HomePage&Products/AllProducts.html";
+  });
+}
+
+
