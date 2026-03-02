@@ -88,7 +88,7 @@ else {
             <td class="text-primary fw-bold"><span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${c.email}">${c.email}</a></span> <br>${c.phone}</td>
             <td>${orders.filter(o => o.userId == c.id).length}</td>
             <td>
-                <button class="btn btn-sm btn-danger" onclick="deleteUser(${c.id})">Delete</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteItem(${c.id}, 'user')">Delete</button>
             </td>
         </tr>`;
     });
@@ -102,7 +102,7 @@ function displayCustomer(customer) {
         <td class="text-primary fw-bold"><span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${customer.email}">${customer.email}</a></span> <br>${customer.phone}</td>
         <td>${orders.filter(o => o.userId == customer.id).length}</td>
         <td>
-            <button class="btn btn-sm btn-danger" onclick="deleteUser(${customer.id})">Delete</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteItem(${customer.id}, 'user')">Delete</button>
         </td>
     </tr>`;
 }

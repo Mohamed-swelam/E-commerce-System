@@ -79,6 +79,26 @@ ul span i {
     box-shadow: none;
 }
 
+.logout-link {
+    width: fit-content;
+    color: #dc3545 !important;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.logout-link:hover {
+    color: #fff !important;
+    background-color: #dc3545 !important;
+}
+
+
+@media (max-width: 991px) {
+    .logout-link {
+        width: fit-content;
+        margin-left: 1.875rem;
+    }
+}
+
 /* End NavBra */
 /* Start Header */
 #headerPrds {

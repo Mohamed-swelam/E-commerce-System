@@ -83,6 +83,7 @@ addProductForm.addEventListener('submit', (e) => {
         addProductForm.reset();
         modalInstance.hide();
         displayProduct(newProduct);
+        showToast('Product added successfully', 'success');
         // location.reload();
     } else {
         console.log('Form is invalid, please correct the errors');
