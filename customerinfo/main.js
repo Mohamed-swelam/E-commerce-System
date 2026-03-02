@@ -28,7 +28,7 @@ sidebarItems.forEach(item => {
 
 // ======================= Handel Dashboard =======================
 
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+let  currentUser = JSON.parse(localStorage.getItem("currentUser"));
 //  display data current User in account 
 if (currentUser) {
 
@@ -88,16 +88,48 @@ cancelBtn.addEventListener("click", function () {
 // Handel Save Button 
 saveBtn.addEventListener("click", function () {
 
-    currentUser.fullName = document.getElementById("editName").value;
-    currentUser.email = document.getElementById("editEmail").value;
-    currentUser.phone = document.getElementById("editPhone").value;
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    const editedFullName = document.getElementById("editName").value.trim();
+    const editedEmail = document.getElementById("editEmail").value.trim();
+    const editedPhone = document.getElementById("editPhone").value.trim();
 
-    loadUserData();  //update data
+    
+    const nameParts = splitFullName(editedFullName);
 
-    editFormContainer.classList.add("d-none");
+    const userIndex = users.findIndex(user => user.email === currentUser.email);
+
+    if (userIndex !== -1) {
+
+
+        users[userIndex].firstName = nameParts.firstName;
+        users[userIndex].lastName = nameParts.lastName;
+        users[userIndex].email = editedEmail;
+        users[userIndex].phone = editedPhone;
+
+
+        currentUser = users[userIndex];
+
+        currentUser.fullName = `${currentUser.firstName} ${currentUser.lastName}`.trim();
+
+        // kepp this changes in users array and currentUsers array . 
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+        loadUserData(); 
+        editFormContainer.classList.add("d-none");
+    }
 });
+
+
+  // Handel ==> keep full name in local Even after  logout  ; 
+function splitFullName(fullName) {
+    const parts = fullName.trim().split(" ");
+    return {
+        firstName: parts[0] || "",
+        lastName: parts.slice(1).join(" ") || ""
+    };
+}
 
 //======================  Handel add /Edit  Addresses  ===================
 
@@ -231,13 +263,6 @@ saveAddrBtn.addEventListener("click", () => {
     editIndex = null;
 });
 renderAddresses();
-
-
-
-
-
-
-
 
 
 const params = new URLSearchParams(window.location.search);
