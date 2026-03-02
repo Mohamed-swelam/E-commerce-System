@@ -79,17 +79,27 @@ viewButtons.forEach((button, index) => {
                                     </table>
                     </div>
                 </div>
-                <div class="col-12 text-center mt-4 st-col">
-                    <select class="form-select form-select-sm w-auto mx-auto mb-3" aria-label=".form-select-sm example">
+                <div class="col-12 text-center mt-4 st-col select-status-container">
+                    <select class="form-select form-select-sm w-auto mx-auto mb-3" aria-label=".form-select-sm example" id="order-status-select">
                         <option value="pending" ${orders[index].status == "pending" ? "selected" : ""}>Pending</option>
                         <option value="shipped" ${orders[index].status == "shipped" ? "selected" : ""}>Shipped</option>
                         <option value="delivered" ${orders[index].status == "delivered" ? "selected" : ""}>Delivered</option>
+                        <option value="cancelled" ${orders[index].status == "cancelled" ? "selected" : ""}>Cancelled</option>
                     </select>
                     <button class="btn btn-sm btn-outline-primary" onclick="updateOrderStatus(${orders[index].orderId}, this.previousElementSibling.value)">Change Status</button>
                 </div>
             </div>
         `
+        const statusSelectContainer = document.querySelector('.select-status-container');
+        const statusSelect = document.getElementById('order-status-select');
+        console.log(statusSelect.value);
+        if (statusSelect.value == "cancelled") {
+            statusSelectContainer.classList.add('d-none');
+        } else {
+            statusSelectContainer.classList.remove('d-none');
+        }
     })
+
 });
 
 function updateOrderStatus(orderId, newStatus) {
@@ -142,12 +152,5 @@ new Chart(ordersStatues, {
             data: [...new Set(orders.map(o => o.status))].map(s => orders.filter(o => o.status == s).length),
             borderWidth: 1
         }]
-    },
-    // options: {
-    //     scales: {
-    //         y: {
-    //             beginAtZero: true
-    //         }
-    //     }
-    // }
+    }
 });
