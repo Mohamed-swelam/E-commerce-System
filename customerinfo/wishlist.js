@@ -83,7 +83,7 @@ if (userWishList.length === 0) {
         card.addEventListener("click", function (e) {
             if (e.target.classList.contains("remove-btn")) return;
 
-            window.location.href = `../product_details/product-details.html?id=${product.id}`;
+            window.location.href = `../product_details/product-details.html?id=${product.product_id}`;
         });
 
         container.appendChild(card);
