@@ -74,29 +74,29 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Validation
     if (!lastName || !firstName || !email || !password || !role) {
-        showMessage("Please fill all fields", "danger", "registerMessage");
+        showToast("Please fill all fields", "error");
         return;
     }
     //  validation on Email 
     if (!isValidEmail(email)) {
-        showMessage("Please enter a valid email address", "danger", "registerMessage");
+        showToast("Please enter a valid email address", "error");
         return;
     }
 
     // validation on Password .
     if (!isValidPassword(password)) {
-        showMessage("Password must be at least 6 characters and contain letters and numbers", "danger", "registerMessage");
+        showToast("Password must be at least 6 characters and contain letters and numbers", "error");
         return;
     }
     //  validation on phone number 
     if (!isValidPhone(phone)) {
-        showMessage("Phone number must be exactly 11 digits", "danger", "registerMessage");
+        showToast("Phone number must be exactly 11 digits", "error");
         return;
     }
 
     // Validation by Role .
     if (!role) {
-        showMessage("Please select a role", "danger", "registerMessage");
+        showToast("Please select a role", "error");
         return;
     }
 
@@ -108,7 +108,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
     const userExists = users.find(user => user.email === email);
 
     if (userExists) {
-        showMessage("This email is already registered", "danger", "registerMessage");
+        showToast("This email is already registered", "error");
         return;
     }
 
@@ -159,7 +159,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
         const adminUser = jsonUsers.find(user => user.role === 'admin');
 
         if (adminUser && adminUser.email === email && adminUser.password === password) {
-            showMessage("Admin Login Successful", "success", "loginMessage");
+            showToast("Admin Login Successful", "success");
             setTimeout(() => {
                 window.location.href = '../Admin/admin-dashboard.html';
             }, 1000);
@@ -184,13 +184,13 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
     );
 
     if (!validUser) {
-        showMessage("Invalid email or password", "danger", "loginMessage");
+        showToast("Invalid email or password", "error");
         return;
     }
 
     //   Validation on Email 
     if (!isValidEmail(email)) {
-        showMessage("Please enter a valid email address", "danger", "loginMessage");
+        showToast("Please enter a valid email address", "error");
         return;
     }
 
@@ -198,8 +198,7 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
     localStorage.setItem("currentUser", JSON.stringify(validUser));
 
 
-
-    showMessage("Login successful!", "success", "loginMessage");
+    showToast("Login successful!", "success");
 
 
 
@@ -215,15 +214,15 @@ document.querySelector('#loginForm form').addEventListener('submit', async funct
 
 // ============================== error Msg  ================================
 // display Msg in error valid using (Bootstrap Alerts)
-// ready-made component in Bootstrap . 
+// ready-made component in Bootstrap .
 // ===================================================================
-function showMessage(message, type, elementId) {
-    const messageBox = document.getElementById(elementId);
+// function showMessage(message, type, elementId) {
+//     const messageBox = document.getElementById(elementId);
 
-    messageBox.innerHTML = `
-        <div class="alert alert-${type} alert-dismissible fade show mt-3" role="alert">
-            ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    `;
-}
+//     messageBox.innerHTML = `
+//         <div class="alert alert-${type} alert-dismissible fade show mt-3" role="alert">
+//             ${message}
+//             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+//         </div>
+//     `;
+// }

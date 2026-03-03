@@ -28,3 +28,10 @@
 .btn-dark:hover {
     background-color: #1e1a38;
 }
+
+.was-validated .form-control:valid,
+.form-control.is-valid {
+    background-image: none !important;
+    border-color: #ced4da !important;
+    box-shadow: none !important;
+}
