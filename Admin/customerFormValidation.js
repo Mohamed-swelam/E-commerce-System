@@ -88,12 +88,25 @@ customerEmail.onkeyup = function () {
     // Validate with a pattern
     var emailPatternRgx = /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/g;
     if (customerEmail.value.match(emailPatternRgx)) {
-        emailPattern.classList.remove("invalid");
-        emailPattern.classList.add("valid");
-        customerEmail.classList.add('valid-input')
+        let emails = [];
+        customers.forEach(c => emails.push(c.email))
+        console.log(emails);
+        if (emails.includes(customerEmail.value)) {
+            emailPattern.classList.remove("valid");
+            emailPattern.classList.add("invalid");
+            customerEmail.classList.remove('valid-input')
+            customerEmail.classList.add('is-invalid')
+            showToast('Email already exists', 'error')
+        } else {
+            customerEmail.classList.remove('is-invalid')
+            emailPattern.classList.remove("invalid");
+            emailPattern.classList.add("valid");
+            customerEmail.classList.add('valid-input')
+        }
     } else {
         emailPattern.classList.remove("valid");
         emailPattern.classList.add("invalid");
+        customerEmail.classList.remove('valid-input')
     }
 }
 
@@ -242,7 +255,9 @@ function addCustomer(e) {
         showToast('Customer added successfully', 'success');
         setTimeout(() => {
             location.reload()
-        }, 500);
+        }, 2000);
+    } else {
+        showToast('please enter valid data', 'warning')
     }
 }
 

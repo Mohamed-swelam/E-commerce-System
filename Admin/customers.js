@@ -86,13 +86,14 @@ else {
             <td>${c.fullName}</td>
             <td class="text-primary fw-bold"><span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${c.email}">${c.email}</a></span> <br>${c.phone}</td>
             <td>${orders.filter(o => o.userId == c.id).length}</td>
+            <td>
+    <button class="btn btn-sm btn-danger" onclick="deleteItem(${c.id}, 'user')">Delete</button>
+</td>
         </tr>`;
     });
 }
 
-// <td>
-//     <button class="btn btn-sm btn-danger" onclick="deleteItem(${c.id}, 'user')">Delete</button>
-// </td>
+
 
 function displayCustomer(customer) {
     const tbody = document.getElementById('customers-table-body');
