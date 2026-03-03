@@ -512,10 +512,10 @@
                 return s + total;
             }, 0);
 
-            document.getElementById('seller-name-display').innerText = `Logged in: ${user.name}`;
+            document.getElementById('seller-name-display').innerText = `Logged in: ${user.fullName}`;
             document.getElementById('stat-prods').innerText = myProds.length;
             document.getElementById('stat-orders').innerText = sellerOrders.filter(o => o.status === 'pending').length;
-            document.getElementById('stat-rev').innerText = `${sellerRevenue} $`;
+            document.getElementById('stat-rev').innerText = `${sellerRevenue.toFixed(2)} $`;
 
             const start = (currentPage - 1) * limit;
             const paged = myProds.slice(start, start + limit);
@@ -784,6 +784,8 @@
                 finalPrice = inputPrice - (inputPrice * inputDiscount / 100);
                 oldPrice = inputPrice;
             }
+
+            finalPrice = Number(finalPrice.toFixed(2));
 
             let productData = {
                 product_id: id ? parseInt(id) : Date.now(),

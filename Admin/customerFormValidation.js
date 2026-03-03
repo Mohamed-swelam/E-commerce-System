@@ -214,11 +214,19 @@ function addCustomer(e) {
         let maxId;
         users.reduce((p, c) => p.id > c.id ? maxId = p.id : maxId = c.id)
         console.log(maxId + 1);
+
+        const fullNameValue = customerName.value.trim();
+
+        const [firstName, ...rest] = fullNameValue.split(" ");
+        const lastName = rest.join(" ");
+
         const newCustomer = {
             id: maxId + 1,
             role: 'customer',
-            city: customerCity.value,
-            name: customerName.value,
+            address: customerCity.value,
+            fullName: customerName.value,
+            firstName: firstName,
+            lastName: lastName,
             email: customerEmail.value,
             phone: customerPhone.value,
             street: customerStreet.value,

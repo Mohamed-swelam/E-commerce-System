@@ -20,7 +20,7 @@ function displaySeller(seller) {
 
     let sellerName = document.createElement('p');
     sellerName.classList.add('fs-4', 'mb-0');
-    sellerName.innerText = seller.name || seller.firstName + " " + seller.lastName;
+    sellerName.innerText = seller.fullName || seller.firstName + " " + seller.lastName;
 
     let sellerrEmail = document.createElement('a');
     sellerrEmail.classList.add('text-secondary');
