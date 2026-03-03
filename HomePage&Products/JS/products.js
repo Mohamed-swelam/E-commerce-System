@@ -295,50 +295,72 @@ document.querySelectorAll("#price").forEach(divPrice => {
 
 
 // Filter by Brands
-document.querySelectorAll("#brands").forEach(divBrand => {
-    divBrand.addEventListener('click', (e) => {
+document.querySelectorAll("#brands input[name='brand']").forEach(input => {
+
+    input.addEventListener("change", function () {
+
         let brandsPrds = [];
-        if (e.target.nodeName === "INPUT") {
-            document.querySelectorAll("input[name='brand']").forEach(input => {
-                if (input.checked) {
-                    input.checked = false;
-                    e.target.checked = true;
-                }
-            })
 
+        if (!this.checked) {
 
-            if (e.target.checked) {
-                brand = e.target.value;
+            brand = undefined;
+
+            let resetProducts = [];
+
+            for (let i = 0; i < baseProducts.length; i++) {
+
                 if (start !== undefined) {
-                    for (let i = 0; i < baseProducts.length; i++) {
-                        if ((baseProducts[i].brand === brand) && (baseProducts[i].price > start && baseProducts[i].price < end)) { brandsPrds.push(baseProducts[i]); }
+                    if (baseProducts[i].price > start && baseProducts[i].price < end) {
+                        resetProducts.push(baseProducts[i]);
                     }
+                } else {
+                    resetProducts.push(baseProducts[i]);
                 }
-                else {
-                    for (let i = 0; i < baseProducts.length; i++) {
-                        if (baseProducts[i].brand === brand) { brandsPrds.push(baseProducts[i]); }
-                    }
-                }
-                displayPaginationItems(brandsPrds, 1);
-                navigateNumbrsWithPrevAndNext(brandsPrds)
             }
-            else {
-                brand = undefined;
-                if (start !== undefined) {
-                    let pricePrdsOnly = [];
-                    for (let i = 0; i < baseProducts.length; i++) {
-                        if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrdsOnly.push(baseProducts[i]); }
-                    }
-                    displayPaginationItems(pricePrdsOnly, 1);
-                    navigateNumbrsWithPrevAndNext(pricePrdsOnly)
+
+            displayPaginationItems(resetProducts, 1);
+            navigateNumbrsWithPrevAndNext(resetProducts);
+            return;
+        }
+
+        document.querySelectorAll("#brands input[name='brand']").forEach(el => {
+            if (el !== this) el.checked = false;
+        });
+
+        brand = this.value.toLowerCase();
+
+        const htmlBrands = Array.from(
+            document.querySelectorAll("#brands input[name='brand']")
+        )
+            .map(input => input.value.toLowerCase())
+            .filter(value => value !== "other");
+
+        for (let i = 0; i < baseProducts.length; i++) {
+
+            const productBrand = baseProducts[i].brand.toLowerCase();
+
+            const priceCondition = start !== undefined
+                ? baseProducts[i].price > start && baseProducts[i].price < end
+                : true;
+
+            if (brand === "other") {
+
+                if (!htmlBrands.includes(productBrand) && priceCondition) {
+                    brandsPrds.push(baseProducts[i]);
                 }
-                else {
-                    displayPaginationItems(baseProducts, 1);
-                    navigateNumbrsWithPrevAndNext(baseProducts)
+
+            } else {
+
+                if (productBrand === brand && priceCondition) {
+                    brandsPrds.push(baseProducts[i]);
                 }
             }
         }
-    })
+
+        displayPaginationItems(brandsPrds, 1);
+        navigateNumbrsWithPrevAndNext(brandsPrds);
+    });
+
 });
 
 
@@ -507,3 +529,23 @@ function handleNavbarAuth() {
     }
 }
 handleNavbarAuth();
+
+
+
+window.addEventListener("pageshow", function () {
+
+    const checkedBrand =
+        document.querySelector("#brands input[name='brand']:checked");
+
+    if (checkedBrand) {
+        checkedBrand.dispatchEvent(new Event("change"));
+    }
+
+    const checkedPrice =
+        document.querySelector("#price input[name='price']:checked");
+
+    if (checkedPrice) {
+        checkedPrice.click();
+    }
+
+});

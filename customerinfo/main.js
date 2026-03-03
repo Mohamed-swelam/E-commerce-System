@@ -28,7 +28,7 @@ sidebarItems.forEach(item => {
 
 // ======================= Handel Dashboard =======================
 
-let  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 //  display data current User in account 
 if (currentUser) {
 
@@ -94,7 +94,7 @@ saveBtn.addEventListener("click", function () {
     const editedEmail = document.getElementById("editEmail").value.trim();
     const editedPhone = document.getElementById("editPhone").value.trim();
 
-    
+
     const nameParts = splitFullName(editedFullName);
 
     const userIndex = users.findIndex(user => user.email === currentUser.email);
@@ -116,13 +116,13 @@ saveBtn.addEventListener("click", function () {
         localStorage.setItem("users", JSON.stringify(users));
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-        loadUserData(); 
+        loadUserData();
         editFormContainer.classList.add("d-none");
     }
 });
 
 
-  // Handel ==> keep full name in local Even after  logout  ; 
+// Handel ==> keep full name in local Even after  logout  ; 
 function splitFullName(fullName) {
     const parts = fullName.trim().split(" ");
     return {
@@ -515,7 +515,7 @@ function cancelOrder(orderId) {
     renderOrders();
 
     if (typeof showToast === "function") {
-        showToast("Order cancelled and stock restored!", "success");
+        showToast("Order cancelled!", "success");
     }
 }
 

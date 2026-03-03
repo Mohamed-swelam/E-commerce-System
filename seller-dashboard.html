@@ -515,7 +515,7 @@
             document.getElementById('seller-name-display').innerText = `Logged in: ${user.name}`;
             document.getElementById('stat-prods').innerText = myProds.length;
             document.getElementById('stat-orders').innerText = sellerOrders.filter(o => o.status === 'pending').length;
-            document.getElementById('stat-rev').innerText = `${sellerRevenue} EGP`;
+            document.getElementById('stat-rev').innerText = `${sellerRevenue} $`;
 
             const start = (currentPage - 1) * limit;
             const paged = myProds.slice(start, start + limit);
@@ -533,7 +533,7 @@
             <td>${p.category}</td>
             <td>
                 ${p.oldPrice ? `<span style="text-decoration:line-through; color:gray;">$${p.oldPrice}</span><br>` : ''}
-                <span class="text-primary fw-bold">${p.price} EGP</span>
+                <span class="text-primary fw-bold">${p.price} $</span>
                 ${p.discount > 0 ? `<span class="badge bg-danger ms-1">-${p.discount}%</span>` : ''}
             </td>
             <td>${p.quantity}</td>
@@ -684,7 +684,7 @@
         <tr>
             <td>#${o.orderId}</td>
             <td>${o.customerName}</td>
-            <td>${sellerTotal} EGP</td>
+            <td>${sellerTotal} $</td>
             <td><span class="status-badge ${o.status}">${o.status}</span></td>
             <td>
                 <button class="btn btn-sm custom-btn" onclick="openOrderDetails(${o.orderId})">
@@ -751,13 +751,13 @@
                 tbody.innerHTML += `
         <tr>
             <td>${product.name}</td>
-            <td>${product.price} EGP</td>
+            <td>${product.price} $</td>
             <td>${item.quantity}</td>
-            <td>${lineTotal} EGP</td>
+            <td>${lineTotal} $</td>
         </tr>`;
             });
 
-            document.getElementById('od-total').innerText = sellerTotal + " EGP";
+            document.getElementById('od-total').innerText = sellerTotal + " $";
 
 
 

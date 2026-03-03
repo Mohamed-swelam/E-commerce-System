@@ -180,6 +180,25 @@ async function DisplayProducts() {
         }
 
 
+        let expiryValue = document.getElementById("Expiry_Date").value.trim();
+
+        if (expiryValue) {
+
+            const [month, year] = expiryValue.split("/");
+
+            const fullYear = 2000 + parseInt(year);
+            const expiryDate = new Date(fullYear, month - 1);
+
+            const today = new Date();
+            today.setDate(1);
+            today.setHours(0, 0, 0, 0);
+
+            if (expiryDate <= today) {
+                showToast("invalid expiry date", "error");
+                return;
+            }
+        }
+
 
         //getAllValues
         let name = document.getElementById("user_name").value;
