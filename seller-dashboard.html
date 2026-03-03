@@ -327,7 +327,7 @@
                         <div class="CBOX">
                             <div class="TOTAL"><small>TOTAL PRODUCTS</small><span id="stat-prods">0</span></div>
                             <div class="NEW"><small>NEW ORDERS</small><span id="stat-orders">0</span></div>
-                            <div class="PENDING"><small>REVENUE</small><span id="stat-rev">$0</span></div>
+                            <div class="PENDING"><small>REVENUE</small><span id="stat-rev">0 EGP</span></div>
                         </div>
 
                         <div class="card-custom mt-4">
@@ -579,18 +579,28 @@
             const ctx = document.getElementById('myChart').getContext('2d');
             if (myChart) myChart.destroy();
 
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-            const monthlyRevenue = Array(months.length).fill(0);
+            const months = [
+                'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+            ];
 
+            const monthlyRevenue = Array(12).fill(0);
             sellerOrders.forEach(o => {
-                const monthIndex = new Date(o.createdAt).getMonth();
+                const date = new Date(o.createdAt);
+                if (isNaN(date)) return;
+
+                const monthIndex = date.getMonth();
+
                 let sellerTotal = 0;
                 o.items.forEach(item => {
                     if (sellerProductIds.includes(item.productId)) {
                         const prod = myProds.find(p => p.product_id == item.productId);
-                        sellerTotal += prod.price * item.quantity;
+                        if (prod) {
+                            sellerTotal += prod.price * item.quantity;
+                        }
                     }
                 });
+
                 monthlyRevenue[monthIndex] += sellerTotal;
             });
 
