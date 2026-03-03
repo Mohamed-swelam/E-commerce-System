@@ -415,7 +415,7 @@ if (currentUser) {
 
   if (currentUser.role === "admin" || currentUser.role === "seller") {
 
-    userProfile && (userProfile.style.display = "none");
+    userProfile && (userProfile.style.display = "block");
     cartIcon && (cartIcon.style.display = "none");
     wishlistIcon && (wishlistIcon.style.display = "none");
 
