@@ -84,7 +84,7 @@
                 <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="orders">orders</p>
                 <p class="p-2 pe-md-0 rounded-3 main-tab" data-tab="tickets">tickets</p>
             </div>
-            <div class="text-center border-top pt-3">
+            <div class="text-center border-top pt-3 mb-3 mb-md-0">
                 <button class="btn btn-danger" id="log-out-btn">Log Out</button>
             </div>
         </div>
@@ -309,8 +309,12 @@
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-product-modal">ADD
                         Products</button>
                 </div>
-                <input type="search" class="form-control mb-3" placeholder="Search in products by name..."
-                    id="product-search">
+                <div class="input-group flex-nowrap mb-3">
+                    <span class="input-group-text" id="addon-wrapping"><i
+                            class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="search" class="form-control" placeholder="Search in products by name..."
+                        aria-label="Username" aria-describedby="addon-wrapping" id="product-search">
+                </div>
                 <!-- Start of Add product modal -->
                 <div class="modal fade" data-bs-backdrop="static" id="add-product-modal" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
