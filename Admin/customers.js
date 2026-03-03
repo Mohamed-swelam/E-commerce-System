@@ -83,7 +83,7 @@ else {
     customers.forEach(c => {
         tbody.innerHTML += `<tr class="p-3">
             <td><p class="fw-bold">${c.id}</p></td>
-            <td>${c.name}</td>
+            <td>${c.fullName}</td>
             <td class="text-primary fw-bold"><span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${c.email}">${c.email}</a></span> <br>${c.phone}</td>
             <td>${orders.filter(o => o.userId == c.id).length}</td>
         </tr>`;
@@ -98,7 +98,7 @@ function displayCustomer(customer) {
     const tbody = document.getElementById('customers-table-body');
     tbody.innerHTML += `<tr class="p-3">
         <td><p class="fw-bold">${customer.id}</p></td>
-        <td>${customer.name}</td>
+        <td>${customer.fullName}</td>
         <td class="text-primary fw-bold"><span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${customer.email}">${customer.email}</a></span> <br>${customer.phone}</td>
         <td>${orders.filter(o => o.userId == customer.id).length}</td>
         <td>
