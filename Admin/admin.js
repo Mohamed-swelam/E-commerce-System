@@ -297,7 +297,7 @@ const rowsPerPage = 15;
 function deleteItem(id, type) {
     if (type === 'user') {
         const confirmDeleteModal = new bootstrap.Modal(document.querySelector('.customer-delete-modal'))
-        const deleteCustomerModalBtn = document.getElementById('onfirm-customer-delete-btn')
+        const deleteCustomerModalBtn = document.getElementById('confirm-customer-delete-btn')
         confirmDeleteModal.show();
         deleteCustomerModalBtn.addEventListener('click', () => {
             let deletedItem = users.filter(u => u.id == id);
@@ -311,8 +311,8 @@ function deleteItem(id, type) {
         })
     } else if (type === 'product') {
         const confirmDeleteModal = new bootstrap.Modal(document.querySelector('.pruduct-delete-modal'))
-        const deleteProductModalBtn = document.getElementById('confirm-product-delete-btn')
         confirmDeleteModal.show();
+        const deleteProductModalBtn = document.getElementById('confirm-product-delete-btn')
         deleteProductModalBtn.onclick = () => {
             let deletedProduct = products.filter(p => p.product_id == id);
             products.splice(products.indexOf(deletedProduct[0]), 1);
@@ -629,7 +629,18 @@ function displayProduct(product) {
 
 
 
+// ----------------------------- search  in products ----------------------
+const productSearch = document.getElementById('product-search');
+productSearch.addEventListener('input', (e) => {
+    const searchInput = e.target.value.toLowerCase();
 
+    const filteredProducts = allProducts.filter(product =>
+        product.name.toLowerCase().includes(searchInput)
+    );
+
+    currentPage = 1; // reset pagination
+    renderPaginatedProducts(filteredProducts);
+});
 
 // ------------------------------ charts for products --------------------- 
 
