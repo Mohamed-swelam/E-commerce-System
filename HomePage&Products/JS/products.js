@@ -6,6 +6,10 @@ let start, end, brand;
 let searchInput = document.getElementById("input-search");
 let searchedPrds = [];
 
+let pricePrds = [];
+
+
+
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
@@ -34,8 +38,8 @@ document.querySelectorAll("#bottom-navbar  .nav-link").forEach(a => {
         console.log(JSON.parse(localStorage.getItem("products")));
         allPrds = JSON.parse(localStorage.getItem("products"))
     }
-    displayPaginationItems(allPrds, 1);
     navigateNumbrsWithPrevAndNext(allPrds);
+    displayPaginationItems(allPrds, 1);
 })()
 
 let baseProducts = searchedPrds.length ? searchedPrds : allPrds;
@@ -46,6 +50,7 @@ console.log(baseProducts);
 
 function displayAllPrds(prds) {
     product = " ";
+
     for (let i = 0; i < prds.length; i++) {
 
         let isWishlisted = false;
@@ -119,7 +124,9 @@ function displayAllPrds(prds) {
                     </div>
                 </div>`
     }
+
     document.getElementById("prds-data").innerHTML = product;
+
 }
 // ===================== Add to wishlist =====================
 
@@ -197,56 +204,56 @@ function prevPrds(prds) {
 
 
 function navigateNumbrsWithPrevAndNext(prds) {
-    console.log(prds);
+    if (prds.length > 0) {
+        console.log(Math.ceil(prds.length / 9))
+        const navigatNumbers = Math.ceil(prds.length / 9);
+        let numberBox = " "
+        for (let i = 1; i <= navigatNumbers; i++) {
+            console.log(i);
+            numberBox += ` <span class="p-3 border number-span" style="cursor: pointer;">${i}</span> `
+        }
+        document.getElementById("navigators").innerHTML = numberBox;
 
-    console.log(Math.ceil(prds.length / 9))
-    const navigatNumbers = Math.ceil(prds.length / 9);
-    let numberBox = " "
-    for (let i = 1; i <= navigatNumbers; i++) {
-        console.log(i);
-        numberBox += ` <span class="p-3 border number-span" style="cursor: pointer;">${i}</span> `
-    }
-    document.getElementById("navigators").innerHTML = numberBox;
+        let spans = document.querySelectorAll(".number-span");
 
-    let spans = document.querySelectorAll(".number-span");
-    spans[0].style.boxShadow = "2px 2px 5px #3599db inset";
+        spans[0].style.boxShadow = "2px 2px 5px #3599db inset";
 
-    spans.forEach((span, index) => {
+        spans.forEach((span, index) => {
 
-        span.addEventListener("click", (e) => {
+            span.addEventListener("click", (e) => {
 
-            currentPage = +span.innerText;
+                currentPage = +span.innerText;
 
-            spans.forEach(span => {
-                if (getComputedStyle(span).boxShadow === "rgb(53, 153, 219) 2px 2px 5px 0px inset") {
-                    span.style["boxShadow"] = "none";
-                }
+                spans.forEach(span => {
+                    if (getComputedStyle(span).boxShadow === "rgb(53, 153, 219) 2px 2px 5px 0px inset") {
+                        span.style["boxShadow"] = "none";
+                    }
+                })
+                e.target.style.boxShadow = "2px 2px 5px #3599db inset";
+                displayPaginationItems(prds, index + 1);
             })
-            e.target.style.boxShadow = "2px 2px 5px #3599db inset";
-            displayPaginationItems(prds, index + 1);
         })
-    })
 
 
 
-    document.getElementById("prev").addEventListener("click", (e) => {
-        prevPrds(prds);
-        colorNavigatorBasedOnArrow()
-    })
+        document.getElementById("prev").addEventListener("click", (e) => {
+            prevPrds(prds);
+            colorNavigatorBasedOnArrow()
+        })
 
 
-    document.getElementById("next").addEventListener("click", (e) => {
-        nextPrds(prds)
-
-        colorNavigatorBasedOnArrow()
-    })
+        document.getElementById("next").addEventListener("click", (e) => {
+            nextPrds(prds)
+            colorNavigatorBasedOnArrow()
+        })
+    }
+    else { document.getElementById("navigators").innerHTML = " " }
 }
 
 // Filter By Price
 document.querySelectorAll("#price").forEach(divPrice => {
     divPrice.addEventListener('click', (e) => {
         console.log(baseProducts);
-        let pricePrds = [];
         if (e.target.nodeName === "INPUT") {
             document.querySelectorAll("input[name='price']").forEach(input => {
                 if (input.checked) {
@@ -263,13 +270,19 @@ document.querySelectorAll("#price").forEach(divPrice => {
                         if (baseProducts[i].price > start && baseProducts[i].price < end && (baseProducts[i].brand === brand)) { pricePrds.push(baseProducts[i]); }
                     }
                 }
+
                 else {
                     for (let i = 0; i < baseProducts.length; i++) {
                         if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrds.push(baseProducts[i]) }
                     }
                 }
-                displayPaginationItems(pricePrds, 1);
+
+
+                if (!(pricePrds.length > 0)) {
+                    document.getElementById("prds-data").innerHTML = '<p class="alert alert-danger  fw-bolder  text-center fs-3 rounded  ">No Products Match This Filteration</p>';
+                }
                 navigateNumbrsWithPrevAndNext(pricePrds)
+                displayPaginationItems(pricePrds, 1);
             }
 
 
@@ -373,14 +386,22 @@ searchInput.addEventListener('search', () => {
         }
     }
 
+    baseProducts = [...searchedPrds];
     if (searchedPrds.length === 0) {
         showToast("No products found with the given name.", "error");
+        document.getElementById("prds-data").innerHTML = '<p class="alert alert-danger  fw-bolder  text-center fs-3 rounded  ">No Products Match This Search</p>';
+        navigateNumbrsWithPrevAndNext(searchedPrds);
+    } else {
+        displayPaginationItems(searchedPrds, 1);
+
     }
 
-    baseProducts = [...searchedPrds];
-    displayPaginationItems(searchedPrds, 1);
-    navigateNumbrsWithPrevAndNext(searchedPrds);
+    // navigateNumbrsWithPrevAndNext(searchedPrds)
 });
+
+
+
+
 function colorNavigatorBasedOnArrow() {
     let spans = document.querySelectorAll(".number-span");
     spans.forEach(span => {

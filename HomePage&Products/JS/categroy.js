@@ -1,7 +1,3 @@
-
-
-
-
 let allPrds = [];
 let categoryPrds = [];
 const category = new URLSearchParams(location.search).get("categroy");
@@ -30,12 +26,9 @@ document.querySelectorAll("#bottom-navbar .nav-link").forEach(a => {
 });
 
 
-
 if (localStorage.getItem("products")) {
     allPrds = JSON.parse(localStorage.getItem("products"))
-    console.log(allPrds);
 }
-
 
 
 (function () {
@@ -55,8 +48,6 @@ function CategroyData() {
 
 
 function displayCategroyData(page) {
-    console.log(baseCategory);
-
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const categoryArray = baseCategory.slice(start, end);
@@ -235,15 +226,14 @@ document.querySelector(".dropdown-menu").addEventListener("click", (e) => {
 })
 
 
-
 function sortByValue(sortPrds) {
 
     if (sortValue === "A to Z") {
-        sorCategory = [...sortPrds].sort((a, b) => a.name.localeCompare(b.name));
+        sorCategory = [...sortPrds].sort((a, b) => a.name.localeCompare(b.name ?? " "));
         baseCategory = [...sorCategory];
     }
     else if (sortValue === "Z to A") {
-        sorCategory = [...sortPrds].sort((a, b) => b.name.localeCompare(a.name));
+        sorCategory = [...sortPrds].sort((a, b) => b.name.localeCompare(a.name ?? " "));
         baseCategory = [...sorCategory];
     }
     else if (sortValue === "Low Price") {
@@ -269,26 +259,30 @@ function sortByValue(sortPrds) {
 
 function searchByName() {
     for (let i = 0; i < categoryPrds.length; i++) {
-        if (categoryPrds[i].name.toLowerCase().trim().includes(searchInput.value.toLowerCase().trim())) {
+        if (
+            categoryPrds[i].name
+                .toLowerCase()
+                .trim()
+                .includes(searchInput.value.toLowerCase().trim())
+        ) {
             searchPrds.push(categoryPrds[i]);
-            baseCategory = [...searchPrds];
-            displayCategroyData(1);
-            navigateNumbrsWithPrevAndNext()
-        }
-        else {
-            console.log("no product");
         }
     }
+
+    if (searchPrds.length === 0) {
+        showToast("No products found matching your search.", "error");
+        return;
+    }
+
+    baseCategory = [...searchPrds];
+
     if (sortValue) {
         sortByValue(baseCategory);
-        console.log(baseCategory);
-        displayCategroyData(1);
-
     }
+
+    displayCategroyData(1);
+    navigateNumbrsWithPrevAndNext();
 }
-
-
-
 
 
 
