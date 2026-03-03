@@ -58,6 +58,34 @@ async function initializeUsers() {
     console.error("Initialize Users Error:", error);
   }
 }
+
+async function initializeOrders() {
+  try {
+    const storedOrders = localStorage.getItem("orders");
+
+    if (storedOrders && storedOrders !== "undefined") {
+      return;
+    }
+
+    const response = await fetch('../../Dummy Data/orders.json');
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch orders.json");
+    }
+
+    const ordersFromJson = await response.json();
+
+    if (Array.isArray(ordersFromJson)) {
+      localStorage.setItem("orders", JSON.stringify(ordersFromJson));
+    } else {
+      console.error("Invalid orders JSON structure");
+    }
+
+  } catch (error) {
+    console.error("Initialize Orders Error:", error);
+  }
+}
+initializeOrders();
 initializeUsers();
 
 console.log(products);
