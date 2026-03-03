@@ -216,13 +216,19 @@ document.querySelectorAll("#price").forEach(divPrice => {
 document.querySelectorAll("#brands").forEach(divBrand => {
     divBrand.addEventListener('click', (e) => {
         let brandsPrds = [];
-        if (e.target.nodeName === "INPUT") {
+        
+        if (e.target.nodeName === "INPUT" ) 
+            {
+
             document.querySelectorAll("input[name='brand']").forEach(input => {
                 if (input.checked) {
                     input.checked = false;
                     e.target.checked = true;
                 }
             })
+
+
+
 
             if (e.target.checked) {
                 brand = e.target.value;
@@ -244,14 +250,15 @@ document.querySelectorAll("#brands").forEach(divBrand => {
                     document.getElementById("prds-data").innerHTML = '<p class="alert alert-danger  fw-bolder  text-center fs-3 rounded  ">No Products Match This Filteration</p>';
                 }
                 displayPaginationItems(brandsPrds, 1);
-                navigateNumbrsWithPrevAndNext(brandsPrds);}
+                navigateNumbrsWithPrevAndNext(brandsPrds);
+            }
             else {
                 brand = undefined;
-                if (start !== undefined) 
-                {
+                if (start !== undefined) {
                     let pricePrdsOnly = [];
                     for (let i = 0; i < baseProducts.length; i++) {
-                        if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrdsOnly.push(baseProducts[i]); }}
+                        if (baseProducts[i].price > start && baseProducts[i].price < end) { pricePrdsOnly.push(baseProducts[i]); }
+                    }
                     displayPaginationItems(pricePrdsOnly, 1);
                     navigateNumbrsWithPrevAndNext(pricePrdsOnly)
                 }
@@ -279,10 +286,21 @@ document.getElementById("input-search").addEventListener('search', () => {
         }
     }
     baseProducts = [...searchedPrds];
-    displayPaginationItems(searchedPrds, 1);
-    navigateNumbrsWithPrevAndNext(searchedPrds)
-})
 
+    if (!(searchedPrds.length > 0)) {
+        document.getElementById("prds-data").innerHTML ='<p class="alert alert-danger  fw-bolder  text-center fs-3 rounded  ">No Products Match This Search</p>';
+        navigateNumbrsWithPrevAndNext(searchedPrds);
+    }
+
+else {
+ displayPaginationItems(searchedPrds, 1);}
+}
+   
+
+
+    // displayPaginationItems(searchedPrds, 1);
+    // navigateNumbrsWithPrevAndNext(searchedPrds)
+)
 
 
 
