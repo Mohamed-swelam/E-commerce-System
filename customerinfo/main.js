@@ -78,7 +78,6 @@ if (!currentUser) {
     setTimeout(() => {
         window.location.href = "../login/login.html";
     }, 1500)
-    return;
 }
 
 //  Handel Edit Btn 
@@ -87,7 +86,6 @@ if (!currentUser) {
 function loadUserData() {
     document.getElementById("userName").textContent = currentUser.fullName;
     document.getElementById("tableName").textContent = currentUser.fullName;
-    document.getElementById("userName2").textContent = currentUser.fullName;
 
     document.getElementById("tableEmail").textContent = currentUser.email;
     document.getElementById("tablePhone").textContent = currentUser.phone;
