@@ -2,6 +2,12 @@
 <html lang="en">
 
 <head>
+    <script>
+        const user22 = JSON.parse(localStorage.getItem("currentUser"));
+        if (!user22 || user22.role !== "seller") {
+            window.location.replace("../../HomePage&Products/home.html");
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Seller Dashboard</title>
@@ -473,19 +479,37 @@
         const PATHS = { p: './Dummy Data/products.json', o: './Dummy Data/orders.json', u: './Dummy Data/users.json' }; let currentPage = 1, limit = 4, myChart = null, categoryChart = null;
 
         async function initApp() {
+
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (!currentUser) {
+                showToast("Please login first to access seller dashboard.", "error");
+
+                setTimeout(() => {
+                    window.location.href = "./login/login.html";
+                }, 1500);
+                return;
+            }
+
+            if (currentUser.role !== "seller") {
+                showToast("Access denied. Seller account required.", "error");
+
+                setTimeout(() => {
+                    window.location.href = "./HomePage&Products/home.html";
+                }, 1500);
+                return;
+            }
+
             if (!localStorage.getItem('products')) {
                 const r = await fetch(PATHS.p);
                 localStorage.setItem('products', JSON.stringify(await r.json()));
             }
+
             if (!localStorage.getItem('orders')) {
                 const r = await fetch(PATHS.o);
                 localStorage.setItem('orders', JSON.stringify(await r.json()));
             }
-            if (!localStorage.getItem('currentUser')) {
-                const r = await fetch(PATHS.u);
-                const users = await r.json();
-                localStorage.setItem('currentUser', JSON.stringify(users[0]));
-            }
+
             renderDashboard();
         }
 

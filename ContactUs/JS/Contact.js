@@ -25,6 +25,15 @@ async function SendMessage() {
         return;
     }
 
+    if (currentUser.role === "admin") {
+        showToast("Admins cannot send messages from this page.", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../HomePage&Products/home.html";
+        }, 1500);
+        return;
+    }
+
     let tickets = JSON.parse(localStorage.getItem("tickets")) || [];
 
     const form = document.getElementById('contactForm');

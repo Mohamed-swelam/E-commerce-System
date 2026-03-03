@@ -14,8 +14,20 @@ async function DisplayProducts() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
-        alert("Please login first to enter checkout page.");
-        window.location.href = "../../login/login.html";
+        showToast("Please login first to enter checkout page.", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../login/login.html";
+        }, 1500);
+        return;
+    }
+
+    if (currentUser.role === "seller" || currentUser.role === "admin") {
+        showToast("Access denied. Only customers can access checkout.", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../HomePage&Products/home.html";
+        }, 1500);
         return;
     }
 
@@ -110,8 +122,10 @@ async function DisplayProducts() {
     // console.log(userCart);
 
     if (!userCart || userCart.items.length === 0) {
-        alert("There is no items in the cart");
-        window.location.href = "../../Cart/cart.html";
+        showToast("There is no items in the cart", "error");
+        setTimeout(() => {
+            window.location.href = "../../Cart/cart.html";
+        }, 2000);
         return;
     }
 

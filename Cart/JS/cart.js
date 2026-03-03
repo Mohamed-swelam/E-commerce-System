@@ -35,6 +35,15 @@ async function displaycart() {
         return;
     }
 
+    if (currentUser.role === "seller" || currentUser.role === "admin") {
+        showToast("Access denied. Only customers can access the cart.", "error");
+
+        setTimeout(() => {
+            window.location.href = "../../HomePage&Products/home.html";
+        }, 1500);
+        return;
+    }
+
 
 
     let carts = JSON.parse(localStorage.getItem("carts")) || [];
