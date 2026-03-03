@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
@@ -20,13 +19,14 @@
     <link rel="stylesheet" href="../Components/Style.css">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
+
 <body>
 
     <div id="navbar"></div>
 
     <section class="contact-section">
         <div class="container">
-            
+
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8">
                     <div class="card contact-card">
@@ -35,7 +35,7 @@
                             <p class="contact-subtitle mb-0">We'd love to hear from you! Send us a message anytime.</p>
                         </div>
                         <div class="card-body">
-                            
+
                             <!-- Contact Form -->
                             <form id="contactForm">
                                 <div class="mb-3">
@@ -84,30 +84,31 @@
 
 
     <!-- Toast (Top Right) -->
-            <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
-                
-                <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
-                    <div class="d-flex">
-                        <div class="toast-body" id="toastMessage">
-                            Message here
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                            data-bs-dismiss="toast"></button>
-                    </div>
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+
+        <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Message here
                 </div>
-
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
+        </div>
 
-    
+    </div>
+
+
 
 </body>
-    <script src="../GeneralFunctions/showToast.js"></script>
+<script src="../GeneralFunctions/showToast.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Load Components -->
-    <script src="../Components/loadCompnent.js"></script>
-    
-    <script src="JS/Contact.js"></script>   
+<!-- Load Components -->
+<script src="../Components/loadCompnent.js"></script>
+
+<script src="JS/Contact.js"></script>
+<script src="../guard.js"></script>
+
 </html>

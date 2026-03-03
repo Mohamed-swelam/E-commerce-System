@@ -57,10 +57,12 @@
                             <a class="nav-link" href="../seller-dashboard.html">Dashboard</a>
                         </li>
                         <li class="nav-item" id="login-link">
-                            <a class="nav-link border rounded-pill  bg-dark text-white" href="../login/login.html">Login</a>
+                            <a class="nav-link border rounded-pill  bg-dark text-white"
+                                href="../login/login.html">Login</a>
                         </li>
                         <li id="logout-btn" class="nav-item d-none">
-                            <a class="nav-link logout-link rounded-pill border border-danger text-danger" id="logout-link">Logout</a>
+                            <a class="nav-link logout-link rounded-pill border border-danger text-danger"
+                                id="logout-link">Logout</a>
                         </li>
                     </ul>
 
@@ -373,7 +375,7 @@
                         <button style="width:25%;">Sign Up</button>
                     </div>
                 </div>
-                
+
                 <hr class="d-none d-lg-block">
                 <div class="row justify-content-between  align-items-center">
 
@@ -397,19 +399,18 @@
 
 
     <!-- Toast (Top Right) -->
-            <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
-                
-                <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
-                    <div class="d-flex">
-                        <div class="toast-body" id="toastMessage">
-                            Message here
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                            data-bs-dismiss="toast"></button>
-                    </div>
-                </div>
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
 
+        <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Message here
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
+        </div>
+
+    </div>
 
 
     <!-- Bootstrap Script -->
@@ -421,6 +422,7 @@
     <script src="./JS/products.js"></script>
     <script src="../GeneralFunctions/showToast.js"></script>
     <script src="../GeneralFunctions/addToWishList.js"></script>
+    <script src="../guard.js"></script>
 </body>
 
 </html>

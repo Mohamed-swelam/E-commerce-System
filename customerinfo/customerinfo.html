@@ -32,56 +32,56 @@
 <body>
     <!-- NAV  -->
     <nav class="navbar navbar-expand-lg  bg-white px-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="../HomePage&Products/home.html">Avion</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../HomePage&Products/home.html">Avion</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+            <div class="collapse navbar-collapse gap-5 " id="navbarNav">
 
-                    <ul class="navbar-nav  ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link " href="../About/about.html">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="contact-link" href="../ContactUs/Contact.html">Contact</a>
-                        </li>
-                    </ul>
-
-
-
-
-                    <ul class="list-unstyled d-flex gap-3 mt-3 ">
-
-                        <li class="icon-il" id="wishlist-icon">
-                            <a href="../customerinfo/customerinfo.html?tab=wishlist">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </li>
-
-                        <li class="icon-il">
-                            <a href="../Cart/cart.html" id="cart-icon">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </a>
-                        </li>
-
-                        <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
-                            <a href="../customerinfo/customerinfo.html">
-                                <i class="fa-regular fa-circle-user"></i>
-                            </a>
-                        </li>
-
-                    </ul>
+                <ul class="navbar-nav  ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="../About/about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-link" href="../ContactUs/Contact.html">Contact</a>
+                    </li>
+                </ul>
 
 
 
-                </div>
+
+                <ul class="list-unstyled d-flex gap-3 mt-3 ">
+
+                    <li class="icon-il" id="wishlist-icon">
+                        <a href="../customerinfo/customerinfo.html?tab=wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                    </li>
+
+                    <li class="icon-il">
+                        <a href="../Cart/cart.html" id="cart-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    </li>
+
+                    <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
+                        <a href="../customerinfo/customerinfo.html">
+                            <i class="fa-regular fa-circle-user"></i>
+                        </a>
+                    </li>
+
+                </ul>
+
 
 
             </div>
-        </nav>
+
+
+        </div>
+    </nav>
 
 
 
@@ -293,98 +293,97 @@
 
                         <!-- wishlist -->
                         <div id="wishlist-container" class="wishlist-wrapper"></div>
+                    </div>
+
+                    <!-- orders -->
+                    <div class="content-section d-none" id="orders">
+                        <h2 class="section-title">Your Orders</h2>
+
+                        <div id="ordersContainer" class="orders-wrapper"></div>
+
+                        <div id="emptyOrdersMessage" class="alert-custom mt-3 d-none">
+                            You haven't placed any orders yet.
+                            <a href="../HomePage&Products/AllProducts.html">
+                                Start shopping
+                            </a>
                         </div>
+                    </div>
 
-                        <!-- orders -->
-                        <div class="content-section d-none" id="orders">
-                            <h2 class="section-title">Your Orders</h2>
-
-                            <div id="ordersContainer" class="orders-wrapper"></div>
-
-                            <div id="emptyOrdersMessage" class="alert-custom mt-3 d-none">
-                                You haven't placed any orders yet.
-                                <a href="../HomePage&Products/AllProducts.html">
-                                    Start shopping
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- tickets -->
-                        <div class="content-section d-none" id="tickets">
-                            <div class="tickets-header d-flex justify-content-between align-items-center mb-4">
-                                <div>
-                                    <h2 class="section-title mb-1">My Support Tickets</h2>
-                                    <p class="text-muted mb-0">Track your support messages</p>
-                                </div>
-
-                                <a href="../ContactUs/Contact.html" class="btn-ticket">
-                                    <i class="fa-solid fa-plus"></i>
-                                    New Message
-                                </a>
+                    <!-- tickets -->
+                    <div class="content-section d-none" id="tickets">
+                        <div class="tickets-header d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <h2 class="section-title mb-1">My Support Tickets</h2>
+                                <p class="text-muted mb-0">Track your support messages</p>
                             </div>
 
-                            <!-- Scrollable Container -->
-                            <div id="ticketsWrapper">
-                                <div id="ticketsContainer" class="tickets-list"></div>
-                            </div>
+                            <a href="../ContactUs/Contact.html" class="btn-ticket">
+                                <i class="fa-solid fa-plus"></i>
+                                New Message
+                            </a>
                         </div>
-                <!-- Logout && LogOut Model -->
-                <div class="content-section d-none" id="logout">
-                    <h2 class="section-title">Log Out</h2>
-                    <p>Are you sure you want to log out?</p>
 
-                    <button type="button" class="buttons" id="logoutBtn">
-                        LogOut
-                    </button>
+                        <!-- Scrollable Container -->
+                        <div id="ticketsWrapper">
+                            <div id="ticketsContainer" class="tickets-list"></div>
+                        </div>
+                    </div>
+                    <!-- Logout && LogOut Model -->
+                    <div class="content-section d-none" id="logout">
+                        <h2 class="section-title">Log Out</h2>
+                        <p>Are you sure you want to log out?</p>
 
-                    
+                        <button type="button" class="buttons" id="logoutBtn">
+                            LogOut
+                        </button>
+
+
+                    </div>
+
                 </div>
-                
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
 
 
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
-                
-                <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
-                    <div class="d-flex">
-                        <div class="toast-body" id="toastMessage">
-                            Message here
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                            data-bs-dismiss="toast"></button>
-                    </div>
+
+        <div id="mainToast" class="toast align-items-center text-white border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Message here
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="appConfirmModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appModalTitle">Confirm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body" id="appModalMessage">
+                    Are you sure?
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button class="btn btn-danger" id="appModalConfirm">
+                        Confirm
+                    </button>
                 </div>
 
             </div>
-            <div class="modal fade" id="appConfirmModal" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="appModalTitle">Confirm</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-
-                                            <div class="modal-body" id="appModalMessage">
-                                                Are you sure?
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    Cancel
-                                                </button>
-                                                <button class="btn btn-danger" id="appModalConfirm">
-                                                    Confirm
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
+        </div>
+    </div>
 
 
     <script src="../GeneralFunctions/showToast.js"></script>
@@ -393,6 +392,7 @@
     <script src="./main.js"></script>
     <script src="./logout.js"></script>
     <script src="./users-tickets.js"></script>
-</body> 
+    <script src="../guard.js"></script>
+</body>
 
 </html>
