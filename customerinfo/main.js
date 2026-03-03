@@ -29,6 +29,32 @@ sidebarItems.forEach(item => {
 // ======================= Handel Dashboard =======================
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+//handle admin and customer view
+if (currentUser && (currentUser.role === "seller" || currentUser.role === "admin")) {
+
+    const allowedSections = ["dashboard", "password", "logout"];
+
+    document.querySelectorAll("#sidebarMenu .list-group-item").forEach(btn => {
+        const target = btn.getAttribute("data-target");
+
+        if (!allowedSections.includes(target)) {
+            btn.classList.add("d-none");
+        }
+    });
+
+    document.querySelectorAll(".content-section").forEach(section => {
+        if (!allowedSections.includes(section.id)) {
+            section.classList.add("d-none");
+        }
+    });
+
+    document.getElementById("dashboard").classList.remove("d-none");
+
+    breadcrumbTitle.textContent = "Dashboard";
+    breadcrumbSubTitle.textContent = "Dashboard";
+}
+
 //  display data current User in account 
 if (currentUser) {
 
@@ -190,12 +216,17 @@ function renderAddresses() {
         // Delete Button Handel
         const deleteBtn = table.querySelector(".deleteBtn");
         if (deleteBtn) {
-            deleteBtn.addEventListener("click", () => {
-                if (confirm("Are you sure you want to delete this address?")) {
-                    currentUser.addresses.splice(index, 1);
-                    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-                    renderAddresses();
-                }
+            deleteBtn.addEventListener("click", async () => {
+                const confirmed = await showConfirmModal(
+                    "Are you sure you want to delete this address?",
+                    "Delete Address"
+                );
+
+                if (!confirmed) return;
+
+                currentUser.addresses.splice(index, 1);
+                localStorage.setItem("currentUser", JSON.stringify(currentUser));
+                renderAddresses();
             });
         }
     });
@@ -469,7 +500,7 @@ function getOrderAction(order) {
     return "";
 }
 
-function cancelOrder(orderId) {
+async function cancelOrder(orderId) {
     let allOrders = JSON.parse(localStorage.getItem("orders")) || [];
     let products = JSON.parse(localStorage.getItem("products")) || [];
 
@@ -491,8 +522,12 @@ function cancelOrder(orderId) {
         return;
     }
 
-    const confirmCancel = confirm("Are you sure you want to cancel this order?");
-    if (!confirmCancel) return;
+    const confirmed = await showConfirmModal(
+        "Are you sure you want to cancel this order?",
+        "Cancel Order"
+    );
+
+    if (!confirmed) return;
 
     // return the quantity to the stock
     order.items.forEach(item => {
@@ -532,3 +567,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+function showConfirmModal(message, title = "Confirm") {
+    return new Promise((resolve) => {
+
+        const modalEl = document.getElementById("appConfirmModal");
+        const titleEl = document.getElementById("appModalTitle");
+        const msgEl = document.getElementById("appModalMessage");
+        const confirmBtn = document.getElementById("appModalConfirm");
+
+        if (!modalEl) {
+            resolve(confirm(message));
+            return;
+        }
+
+        titleEl.textContent = title;
+        msgEl.textContent = message;
+
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+
+        const cancelBtns = modalEl.querySelectorAll(
+            ".btn-secondary, .btn-close"
+        );
+
+        confirmBtn.onclick = () => {
+            modal.hide();
+            resolve(true);
+        };
+
+        cancelBtns.forEach(btn => {
+            btn.onclick = () => {
+                modal.hide();
+                resolve(false);
+            };
+        });
+
+    });
+}

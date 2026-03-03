@@ -1,9 +1,19 @@
 //====================== Login Function ===================
 document.addEventListener("DOMContentLoaded", () => {
 
-    const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
 
-    confirmLogoutBtn.addEventListener("click", () => {
+    if (!logoutBtn) return;
+
+    logoutBtn.addEventListener("click", async () => {
+
+        const confirmed = await showConfirmModal(
+            "Are you sure you want to log out?",
+            "Confirm Logout"
+        );
+
+        if (!confirmed) return;
+
         localStorage.removeItem("currentUser");
         sessionStorage.clear();
         window.location.href = "../login/login.html";
