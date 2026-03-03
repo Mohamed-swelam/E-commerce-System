@@ -629,7 +629,18 @@ function displayProduct(product) {
 
 
 
+// ----------------------------- search  in products ----------------------
+const productSearch = document.getElementById('product-search');
+productSearch.addEventListener('input', (e) => {
+    const searchInput = e.target.value.toLowerCase();
 
+    const filteredProducts = allProducts.filter(product =>
+        product.name.toLowerCase().includes(searchInput)
+    );
+
+    currentPage = 1; // reset pagination
+    renderPaginatedProducts(filteredProducts);
+});
 
 // ------------------------------ charts for products --------------------- 
 
