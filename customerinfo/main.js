@@ -73,7 +73,12 @@ if (currentUser) {
 
 //  if user no login => not Allow enter the Page .
 if (!currentUser) {
-    window.location.href = "../login/login.html";
+    showToast("Please login first", "error");
+
+    setTimeout(() => {
+        window.location.href = "../login/login.html";
+    }, 1500)
+    return;
 }
 
 //  Handel Edit Btn 
