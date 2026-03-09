@@ -670,9 +670,80 @@ new Chart(brand, {
 });
 
 
+const editDiscountCheckbox = document.getElementById("edit-product-discount");
+const editDiscountValue = document.getElementById("edit-product-discount-value");
 
+editDiscountCheckbox.addEventListener("change", function () {
+    editDiscountValue.disabled = !this.checked;
+});
 
+function openModal(mode, id) {
 
+    const product = allProducts.find(p => p.product_id == id);
+    if (!product) return;
+
+    document.getElementById('f-id').value = product.product_id;
+    document.getElementById('f-name').value = product.name;
+    document.getElementById('f-brand').value = product.brand;
+    document.getElementById('f-cat').value = product.category;
+    document.getElementById('f-price').value = product.oldPrice || product.price;
+    document.getElementById('f-qty').value = product.quantity;
+    document.getElementById('f-img').value = product.image;
+
+    if (product.discount && product.discount > 0) {
+        editDiscountCheckbox.checked = true;
+        editDiscountValue.disabled = false;
+        editDiscountValue.value = product.discount;
+    } else {
+        editDiscountCheckbox.checked = false;
+        editDiscountValue.disabled = true;
+        editDiscountValue.value = "";
+    }
+
+    const modal = new bootstrap.Modal(document.getElementById('prodModal'));
+    modal.show();
+}
+
+document.getElementById('editProductForm').addEventListener('submit', function (e) {
+
+    e.preventDefault();
+
+    const id = document.getElementById('f-id').value;
+
+    let products = JSON.parse(localStorage.getItem('products'));
+
+    const index = products.findIndex(p => p.product_id == id);
+
+    const price = parseFloat(document.getElementById('f-price').value);
+    const discountChecked = document.getElementById('edit-product-discount').checked;
+    const discountValue = parseFloat(document.getElementById('edit-product-discount-value').value) || 0;
+
+    let finalPrice = price;
+    let oldPrice = null;
+
+    if (discountChecked && discountValue > 0) {
+        finalPrice = price - (price * discountValue / 100);
+        oldPrice = price;
+    }
+
+    products[index].name = document.getElementById('f-name').value;
+    products[index].brand = document.getElementById('f-brand').value;
+    products[index].category = document.getElementById('f-cat').value;
+    products[index].price = Number(finalPrice.toFixed(2));
+    products[index].oldPrice = oldPrice;
+    products[index].discount = discountChecked ? discountValue : 0;
+    products[index].quantity = Number(document.getElementById('f-qty').value);
+    products[index].image = document.getElementById('f-img').value;
+
+    localStorage.setItem('products', JSON.stringify(products));
+
+    bootstrap.Modal.getInstance(document.getElementById('prodModal')).hide();
+
+    allProducts = JSON.parse(localStorage.getItem('products'));
+
+    applyFilters();
+
+});
 
 
 

@@ -333,7 +333,7 @@
                         <div class="CBOX">
                             <div class="TOTAL"><small>TOTAL PRODUCTS</small><span id="stat-prods">0</span></div>
                             <div class="NEW"><small>NEW ORDERS</small><span id="stat-orders">0</span></div>
-                            <div class="PENDING"><small>REVENUE</small><span id="stat-rev">0 EGP</span></div>
+                            <div class="PENDING"><small>REVENUE</small><span id="stat-rev">$0</span></div>
                         </div>
 
                         <div class="card-custom mt-4">
@@ -525,7 +525,8 @@
                 o.items.some(item => sellerProductIds.includes(item.productId))
             );
 
-            const sellerRevenue = sellerOrders.reduce((s, o) => {
+            const sellerRevenue = sellerOrders.filter(o => o.status === "shipped" || o.status === "delivered")
+            .reduce((s, o) => {
                 let total = 0;
                 o.items.forEach(item => {
                     if (sellerProductIds.includes(item.productId)) {
@@ -609,7 +610,9 @@
             ];
 
             const monthlyRevenue = Array(12).fill(0);
-            sellerOrders.forEach(o => {
+            sellerOrders
+                .filter(o => o.status === "shipped" || o.status === "delivered")
+                .forEach(o => {
                 const date = new Date(o.createdAt);
                 if (isNaN(date)) return;
 

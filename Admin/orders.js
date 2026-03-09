@@ -14,7 +14,7 @@ function displayOrders() {
         ordersTableBody.innerHTML += `<tr>
             <td class="fw-bold">${order.orderId}</td>
             <td>${order.customerName}</td>
-            <td>${order.total}</td>
+            <td>${order.total}$</td>
             <td class="text-capitalize"><span class="badge">${order.status}</span></td>
             <td><button class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-eye"></i></button></td>
         </tr>
@@ -81,6 +81,7 @@ viewButtons.forEach((button, index) => {
                 <div class="col-12 text-center mt-4 st-col select-status-container">
                     <select class="form-select form-select-sm w-auto mx-auto mb-3" aria-label=".form-select-sm example" id="order-status-select">
                         <option value="pending" ${orders[index].status == "pending" ? "selected" : ""}>Pending</option>
+                        <option value="processing" ${orders[index].status == "processing" ? "selected" : ""}>Processing</option>
                         <option value="shipped" ${orders[index].status == "shipped" ? "selected" : ""}>Shipped</option>
                         <option value="delivered" ${orders[index].status == "delivered" ? "selected" : ""}>Delivered</option>
                         <option hidden value="cancelled" ${orders[index].status == "cancelled" ? "selected" : ""}>Cancelled</option>
@@ -121,7 +122,10 @@ badgeElements.forEach((badge) => {
     const status = badge.innerText.toLowerCase();
     if (status === 'shipped') {
         badge.classList.add('bg-secondary');
-    } else if (status === 'delivered') {
+    } else if (status === 'processing') {
+        badge.classList.add('bg-warning');
+    }
+    else if (status === 'delivered') {
         badge.classList.add('bg-success');
     } else if (status === 'cancelled') {
         const stcol = document.querySelectorAll('.st-col');

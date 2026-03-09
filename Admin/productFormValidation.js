@@ -13,7 +13,7 @@ const categoriesSelect = document.getElementById('product-category');
 const brandsSelect = document.getElementById('product-brand');
 const productDiscount = document.getElementById('product-discount');
 const productDiscountValue = document.getElementById('product-discount-value')
-
+const image_path = document.getElementById('image-path');
 
 
 // Get unique categories and brands from the products in localStorage
@@ -72,8 +72,12 @@ addProductForm.addEventListener('submit', (e) => {
             dailySale: true,
             monthSale: false,
             reviews: [],
-            image: 'https://t4.ftcdn.net/jpg/03/13/59/81/360_F_313598127_M2n9aSAYVsfYuSSVytPuYpLAwSEp5lxH.jpg',
             seller_id: 1
+        }
+        if (image_path.value.trim() === '') {
+            newProduct.image = 'https://t4.ftcdn.net/jpg/03/13/59/81/360_F_313598127_M2n9aSAYVsfYuSSVytPuYpLAwSEp5lxH.jpg';
+        } else {
+            newProduct.image = image_path.value.trim();
         }
         products.push(newProduct);
         localStorage.removeItem('products');

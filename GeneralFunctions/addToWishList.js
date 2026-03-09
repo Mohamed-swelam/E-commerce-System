@@ -11,6 +11,11 @@ function addToWishlist(product, heartIcon) {
     }
 
 
+    if (loggeduser.role === "admin" || loggeduser.role === "seller") {
+        showToast("Only customers can add to wish list", "error");
+        return;
+    }
+
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
     const existsIndex = wishlist.findIndex(item =>

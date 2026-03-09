@@ -114,10 +114,11 @@ cancelBtn.addEventListener("click", function () {
     editFormContainer.classList.add("d-none");
 });
 
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
 // Handel Save Button 
 saveBtn.addEventListener("click", function () {
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
 
     const editedFullName = document.getElementById("editName").value.trim();
     const editedEmail = document.getElementById("editEmail").value.trim();
@@ -228,7 +229,15 @@ function renderAddresses() {
                 if (!confirmed) return;
 
                 currentUser.addresses.splice(index, 1);
+                const userIndex = users.findIndex(user => user.id === currentUser.id);
+
+                if (userIndex !== -1) {
+                    users[userIndex].addresses = currentUser.addresses;
+                }
+
+                localStorage.setItem("users", JSON.stringify(users));
                 localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
                 renderAddresses();
             });
         }
@@ -297,6 +306,13 @@ saveAddrBtn.addEventListener("click", () => {
         currentUser.addresses.push(newAddr);
     }
 
+    const userIndex = users.findIndex(user => user.id === currentUser.id);
+
+    if (userIndex !== -1) {
+        users[userIndex].addresses = currentUser.addresses;
+    }
+
+    localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     renderAddresses();
     addressForm.classList.add("d-none");
@@ -609,3 +625,62 @@ function showConfirmModal(message, title = "Confirm") {
 
     });
 }
+
+
+
+function handleNavbarAuth() {
+    const userProfile = document.getElementById("userProfile");
+    const adminDashboard = document.getElementById("admin-dashboard");
+    const sellerDashboard = document.getElementById("seller-dashboard");
+    const cartIcon = document.getElementById("cart-icon");
+    const wishlistIcon = document.getElementById("wishlist-icon");
+    const contactLink = document.getElementById("contact-link");
+
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (currentUser) {
+        // userProfile.style.display = "block";
+
+        if (currentUser.role === "admin" || currentUser.role === "seller") {
+
+            userProfile && (userProfile.style.display = "block");
+            cartIcon && (cartIcon.style.display = "none");
+            wishlistIcon && (wishlistIcon.style.display = "none");
+
+
+            if (currentUser.role === "admin") {
+                adminDashboard?.classList.remove("d-none");
+                sellerDashboard?.classList.add("d-none");
+                contactLink?.classList.add("d-none");
+            } else if (currentUser.role === "seller") {
+                sellerDashboard?.classList.remove("d-none");
+                adminDashboard?.classList.add("d-none");
+                contactLink?.classList.add("d-block");
+            }
+        }
+
+        else {
+            userProfile && (userProfile.style.display = "block");
+            cartIcon && (cartIcon.style.display = "block");
+            wishlistIcon && (wishlistIcon.style.display = "block");
+            contactLink?.classList.add("d-block");
+
+            adminDashboard?.classList.add("d-none");
+            sellerDashboard?.classList.add("d-none");
+        }
+
+    }
+
+    else {
+
+        userProfile && (userProfile.style.display = "none");
+        cartIcon && (cartIcon.style.display = "none");
+        wishlistIcon && (wishlistIcon.style.display = "none");
+
+        contactLink?.classList.add("d-none");
+
+        adminDashboard?.classList.add("d-none");
+        sellerDashboard?.classList.add("d-none");
+    }
+}
+handleNavbarAuth();
