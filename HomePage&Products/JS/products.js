@@ -263,6 +263,7 @@ document.querySelectorAll("#price").forEach(divPrice => {
             })
 
             if (e.target.checked) {
+                pricePrds = [];
                 start = +e.target.value.split(' - ')[0];
                 end = +e.target.value.split(' - ')[1];
                 if (brand !== undefined) {
