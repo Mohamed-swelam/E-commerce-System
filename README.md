@@ -1,7 +1,3 @@
-Here is your professionally structured **GitHub-ready README.md** based on a deep analysis of your project structure, architecture, and technologies used:
-
----
-
 # 🛒 CST E-Commerce Platform
 
 A fully front-end E-Commerce web application built using **HTML, CSS, and Vanilla JavaScript**.
