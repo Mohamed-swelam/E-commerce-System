@@ -193,19 +193,19 @@ h3 {
 
 /* End of Listing */
 /* Start of Feature  */
-#feature .text-block {
+/* #feature .text-block {
     background-color: var(--dark-primary);
     color: var(--light);
-}
+} */
 
 #feature p {
     width: 90%;
     padding-block: 0.9375rem;
 }
 
-#feature button {
+/* #feature button {
     background-color: var(--btn-feature-bgcolor);
-}
+} */
 
 /* End of Feature  */
 /* Start Footer */
