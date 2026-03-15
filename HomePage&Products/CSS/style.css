@@ -210,20 +210,20 @@ h3 {
 /* End of Feature  */
 /* Start Footer */
 footer {
-    background-color: var(--dark-primary);
+    /* background-color: var(--dark-primary); */
     color: var(--light);
     padding: 2.5rem 0.625rem;
 }
 
 footer input {
-    background-color: var(--btn-feature-bgcolor);
+    /* background-color: var(--btn-feature-bgcolor); */
     padding: 1.25rem;
     border-color: transparent;
 }
 
-footer input::placeholder {
+/* footer input::placeholder {
     color: var(--light);
-}
+} */
 
 footer button {
     color: var(--dark-primary);
