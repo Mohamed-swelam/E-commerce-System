@@ -130,7 +130,8 @@ footer button {
 
 .after-brdr::after {
     content: '';
-    background-color: var(--primary);
+    background-color: #fff;
+    /* background-color: var(--primary); */
     width: 100%;
     height: 0.125rem;
     position: absolute;
@@ -139,9 +140,11 @@ footer button {
 }
 
 hr {
-    background-color: var(--primary);
-    ;
+    background-color: #fff;
 }
+/* hr {
+    background-color: var(--primary);
+} */
 
 footer ul>li i {
     font-size: 1.5625rem;

@@ -40,7 +40,7 @@ h3 {
 
 .bottom-bar {
     background-color: var(--light-gray);
-    margin-block: 1.875rem;
+    /* margin-block: 1.875rem; */
 }
 
 .bottom-bar ul>li>a {
@@ -179,9 +179,9 @@ h3 {
     -o-transition: all 0.5s;
 }
 
-#cart:hover {
+/* #cart:hover {
     background-color: var(--deep-dark-primary);
-}
+} */
 
 /* End of Diff  */
 /* Start of Listing */
@@ -239,7 +239,8 @@ footer button {
 
 .after-brdr::after {
     content: '';
-    background-color: var(--primary);
+    /* background-color: var(--primary); */
+    background-color: #fff;
     width: 100%;
     height: 0.125rem;
     position: absolute;
@@ -276,3 +277,4 @@ footer a:hover {
 }
 
 /* End Footer */
+

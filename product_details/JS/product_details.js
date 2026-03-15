@@ -81,13 +81,13 @@ async function getProducts() {
 
     const relatedProducts = products
         .filter(p =>
-            p.category === product.category &&
-            p.product_id !== product.product_id
+            p.category == product.category
         )
         .sort(() => 0.5 - Math.random())
-        .slice(0, 4);
+        .slice(0, 6);
 
     // console.log(randomProducts);
+    console.log(relatedProducts);
     displayRelatedProducts(relatedProducts);
 
     document.addEventListener("click", function (e) {
