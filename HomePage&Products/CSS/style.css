@@ -248,8 +248,7 @@ footer button {
 }
 
 hr {
-    background-color: var(--primary);
-    ;
+    background-color: #fff
 }
 
 
@@ -263,7 +262,7 @@ footer ul>li i {
 }
 
 footer ul>li i:hover {
-    color: var(--primary)
+    color: #fff
 }
 
 footer a {
