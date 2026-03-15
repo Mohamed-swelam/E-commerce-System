@@ -24,13 +24,15 @@ body {
 }
 
 .active {
-    color: #3599db !important;
-    ;
+    /* color: #3599db !important; */
+    font-weight: bold !important;
+    border-bottom: 1px solid black  !important;
 }
 
 /* Start NavBr */
 .navbar-brand {
-    color: var(--deep-dark-primary) !important;
+    /* color: var(--deep-dark-primary) !important; */
+    color: black !important;
     font-size: 2.1875rem !important;
 }
 
