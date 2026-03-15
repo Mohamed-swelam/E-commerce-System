@@ -7,10 +7,10 @@ const replyModalElement = document.getElementById('reply-modal');
 
 
 // ---------------- Display Tickets ----------------
-function displayTickets() {
+function displayTickets(data = allTickets) {
     const ticketsContainer = document.getElementById('tickets-container');
     ticketsContainer.innerHTML = '';
-    allTickets.forEach((ticket) => {
+    data.forEach((ticket) => {
         ticketsContainer.innerHTML += `
         <div class="col-12 col-md-6 col-lg-4 mb-4">
             <div class="card h-100">
@@ -32,7 +32,7 @@ function displayTickets() {
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">From: ${ticket.email}</small>
-                    <small class="text-muted float-end">${(ticket.createdAt).slice(0, 10)}</small>
+                    <small class="text-muted float-end">${(ticket.createdAt).slice(0, 10)}, id: ${ticket.id}</small>
                 </div>
             </div>
         </div>
@@ -226,3 +226,14 @@ new Chart(tickets, {
 
 
 
+// ----------------------------- search  in tickets ----------------------
+const ticketsSearch = document.getElementById('tickets-search');
+ticketsSearch.addEventListener('input', (e) => {
+    const searchInput = e.target.value;
+
+    const filteredOrders = allTickets.filter(ticket =>
+        ticket.id.toString().includes(searchInput)
+    );
+
+    displayTickets(filteredOrders);
+});
