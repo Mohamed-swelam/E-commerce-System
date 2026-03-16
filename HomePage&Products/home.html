@@ -158,7 +158,7 @@
         <section id="listing">
             <div class="container">
                 <h2 class="my-5 fw-bold">Discover Our Latest Products</h2>
-                <div class="row w-100 m-auto" id="row-data">
+                <div class="row w-100 m-auto tex-center" id="row-data">
                 </div>
             </div>
         </section>
@@ -226,14 +226,14 @@
                         <!-- Slides -->
                     </div>
                     <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
+                    <!-- <div class="swiper-pagination"></div> -->
 
                     <!-- If we need navigation buttons -->
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
 
                     <!-- If we need scrollbar -->
-                    <div class="swiper-scrollbar"></div>
+                    <!-- <div class="swiper-scrollbar"></div> -->
                 </div>
             </div>
         </section>
@@ -290,6 +290,20 @@
             </div>
         </section>
 
+        <!-- Products On Sale -->
+        <section class="my-5" id="sale-products">
+            <div class="container">
+                <h2 class="mb-4 fw-bold">Products On Sale</h2>
+
+                <div class="swiper saleSwiper" style="width:100%; height:600px;">
+                    <div class="swiper-wrapper" id="sale-wrapper"></div>
+
+                    <!-- <div class="swiper-pagination"></div> -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
     </main>
     <!-- End Main -->
 
@@ -411,7 +425,27 @@
                 prevEl: '.swiper-button-prev',
             },
             centeredSlides: true,
-            slidesPerView: 4,
+            slidesPerView: 1,
+
+            breakpoints: {
+
+                576: {
+                    slidesPerView: 1
+                },
+
+                768: {
+                    slidesPerView: 2
+                },
+
+                992: {
+                    slidesPerView: 3
+                },
+
+                1200: {
+                    slidesPerView: 4
+                }
+
+            },
             autoplay: true,
             autoHeight: true
 
@@ -419,6 +453,46 @@
             // scrollbar: {
             //     el: '.swiper-scrollbar',
             // },
+        });
+
+        const saleSwiper = new Swiper('.saleSwiper', {
+            loop: true,
+            centeredSlides: true,
+            slidesPerView: 1,
+
+            breakpoints: {
+
+                576: {
+                    slidesPerView: 1
+                },
+
+                768: {
+                    slidesPerView: 2
+                },
+
+                992: {
+                    slidesPerView: 3
+                },
+
+                1200: {
+                    slidesPerView: 4
+                }
+
+            },
+            spaceBetween: 20,
+            autoplay: {
+                delay: 3000
+            },
+
+            navigation: {
+                nextEl: '.saleSwiper .swiper-button-next',
+                prevEl: '.saleSwiper .swiper-button-prev',
+            },
+
+            pagination: {
+                el: '.saleSwiper .swiper-pagination',
+                clickable: true
+            }
         });
     </script>
 </body>

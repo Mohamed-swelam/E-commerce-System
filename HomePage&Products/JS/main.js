@@ -96,7 +96,7 @@ const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 (async function () {
   await initializeProducts();
   displayProducts(0, document.getElementById("row-data"));
-  displayProducts(4, document.getElementById("row-data-two"));
+  displayProducts(50, document.getElementById("row-data-two"));
 })();
 
 function displayProducts(x, container) {
@@ -118,132 +118,112 @@ function displayProducts(x, container) {
           );
         }
         productBox += `
-                      <div class="col-12 col-md-3 my-3 my-md-0" >
-                        <div class="card position-relative w-100"
-                            style="cursor:pointer;height: 500px;" 
-                            onclick="showDetails(${productArray[i].product_id})">
-                          <img src="${productArray[i].image}" 
-                              class="card-img-top" 
-                              alt="${productArray[i].name}" width="200px">
-                              
-                          <div class="card-body">
-                            <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
-                            <p class="card-text">
-                              ${getPriceUI(productArray[i])}
-                            </p>
+                      <div class="col-12 col-sm-6 col-md-3 my-3 my-md-0" >
+                        <div class="card shadow-sm border-0 position-relative p-3 w-100"
+        style="width:260px;height:460px;cursor:pointer;border-radius:15px;"
+        onclick="showDetails(${productArray[i].product_id})">
+
+        <div class="text-center">
+            <img src="${productArray[i].image}" 
+                 alt="${productArray[i].name}"
+                 style="width:200px;height:200px;object-fit:contain">
+        </div>
+
+        <div class="card-body text-center">
+
+            <h6 class="fw-bold mb-2">
+                ${productArray[i].name.slice(0, 20)}
+            </h6>
+
+            <div class="mb-3">
+                ${getPriceUI(productArray[i])}
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center gap-3 text-center w-100" id="cart">
+                        <button class="btn btn-dark"
+                          onclick="event.stopPropagation();addToCart(${productArray[i].product_id})">
+                          Add To Cart
+                        </button> 
+                        <span>
+                          ${getHeartIcon(productArray[i])}
+                        </span>
                           </div>
-                            
-                          <div class="d-flex justify-content-between align-items-center gap-3 text-center w-100" id="cart">
-                            <button class="btn btn-dark"
-                              onclick="event.stopPropagation();addToCart(${productArray[i].product_id})">
-                              Add To Cart
-                            </button> 
-                            <span>
-                              <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
-                              onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(productArray[i])}, ${this})'>
-                              </i>
-                            </span>
-                          </div>
-                          ${getDiscountUI(productArray[i])}
-                        </div>
+        </div>
+
+        ${getDiscountUI(productArray[i])}
+
+    </div>
                       </div>
                       `;
       }
     }
+
+    // <div class="card position-relative w-100"
+    //                         style="cursor:pointer;height: 500px;" 
+    //                         onclick="showDetails(${productArray[i].product_id})">
+    //                       <img src="${productArray[i].image}" 
+    //                           class="card-img-top" 
+    //                           alt="${productArray[i].name}" width="200px">
+
+    //                       <div class="card-body">
+    //                         <h5 class="card-title">${productArray[i].name.slice(0, 15)}</h5>
+    //                         <p class="card-text">
+    //                           ${getPriceUI(productArray[i])}
+    //                         </p>
+    //                       </div>
+
+    //                       <div class="d-flex justify-content-between align-items-center gap-3 text-center w-100" id="cart">
+    //                         <button class="btn btn-dark"
+    //                           onclick="event.stopPropagation();addToCart(${productArray[i].product_id})">
+    //                           Add To Cart
+    //                         </button> 
+    //                         <span>
+    //                           <i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
+    //                           onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(productArray[i])}, ${this})'>
+    //                           </i>
+    //                         </span>
+    //                       </div>
+    //                       ${getDiscountUI(productArray[i])}
+    //                     </div>
+
     else {
-      productBox = `<div class="col-12 col-md-3">
-                        <div class="card position-relative w-100"
-                            style="background-color:transparent !important;height: 500px;cursor:pointer;"
-                            onclick="showDetails(${productArray[20].product_id})">
-                          <img src="${productArray[20].image}" class="card-img-top" width="200px">
-                          <div class="card-body">
-                            <h5 class="card-title">${productArray[20].name.slice(0, 15)}</h5>
-                            <p class="card-text">
-                              ${getPriceUI(productArray[20])}
-                            </p>
-                          </div>
-                          <div class="text-center w-100 d-flex justify-content-between align-items-center gap-3" id="cart">
-                            <button class="btn btn-dark"
-                              onclick="event.stopPropagation();addToCart(${productArray[20].product_id})">
-                              Add To Cart
-                            </button>
-                            <span>
-                              ${getHeartIcon(productArray[20])}
-                            </span>
-                          </div>
-                          ${getDiscountUI(productArray[20])}
-                        </div>
-</div>
-<div class="col-12 col-md-3">
-                        <div class="card position-relative"
-                            style="background-color:transparent !important;height: 500px;cursor:pointer;"
-                            onclick="showDetails(${productArray[21].product_id})">
-                          <img src="${productArray[21].image}" class="card-img-top" width="200px">
-                          <div class="card-body">
-                            <h5 class="card-title">${productArray[21].name.slice(0, 15)}</h5>
-                            <p class="card-text">
-                              ${getPriceUI(productArray[21])}
-                            </p>
-                          </div>
-                          <div class="text-center w-100 d-flex justify-content-between align-items-center gap-3" id="cart">
-                            <button class="btn btn-dark"
-                              onclick="event.stopPropagation();addToCart(${productArray[21].product_id})">
-                              Add To Cart
-                            </button>
-                            <span>
-                              ${getHeartIcon(productArray[20])}
-                            </span>
-                          </div>
-                          ${getDiscountUI(productArray[21])}
-                        </div>
-</div>
-<div class="col-12 col-md-3">
-                    <div class="card position-relative"
-                        style="background-color:transparent !important;height: 500px;cursor:pointer;"
-                        onclick="showDetails(${productArray[52].product_id})">
-                      <img src="${productArray[52].image}" class="card-img-top" width="200">
-                      <div class="card-body">
-                        <h5 class="card-title">${productArray[50].name.slice(0, 15)}</h5>
-                        <p class="card-text">
-                          ${getPriceUI(productArray[52])}
-                        </p>
-                      </div>
-                      <div class="text-center w-100 d-flex justify-content-between align-items-center gap-3" id="cart">
-                        <button class="btn btn-dark"
-                          onclick="event.stopPropagation();addToCart(${productArray[52].product_id})">
-                          Add To Cart
-                        </button>
-                        <span>
-                          ${getHeartIcon(productArray[52])}
-                        </span>
-                      </div>
-                      ${getDiscountUI(productArray[52])}
-                    </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                    <div class="card position-relative"
-                        style="background-color:transparent !important;height: 500px;cursor:pointer;"
-                        onclick="showDetails(${productArray[50].product_id})">
-                      <img src="${productArray[50].image}" class="card-img-top" width="200">
-                      <div class="card-body">
-                        <h5 class="card-title">${productArray[50].name.slice(0, 15)}</h5>
-                        <p class="card-text">
-                          ${getPriceUI(productArray[50])}
-                        </p>
-                      </div>
-                      <div class="text-center w-100 d-flex justify-content-between align-items-center gap-3" id="cart">
-                        <button class="btn btn-dark"
-                          onclick="event.stopPropagation();addToCart(${productArray[50].product_id})">
-                          Add To Cart
-                        </button>
-                        <span>
-                          ${getHeartIcon(productArray[50])}
-                        </span>
-                      </div>
-                      ${getDiscountUI(productArray[50])}
-                    </div>
-                    </div>
-`
+      for (let o = 42; o < x; o++) {
+        productBox += `<div class="col-12 col-sm-6 col-md-3 my-3">
+                        <div class="card shadow-sm border-0 position-relative p-3 w-100"
+        style="width:260px;height:460px;cursor:pointer;border-radius:15px;"
+        onclick="showDetails(${productArray[o].product_id})">
+
+        <div class="text-center">
+            <img src="${productArray[o].image}" 
+                 alt="${productArray[o].name}"
+                 style="width:200px;height:200px;object-fit:contain">
+        </div>
+
+        <div class="card-body text-center">
+
+            <h6 class="fw-bold mb-2">
+                ${productArray[o].name.slice(0, 20)}
+            </h6>
+
+            <div class="mb-3">
+                ${getPriceUI(productArray[o])}
+            </div>
+
+            <button class="btn btn-dark w-100"
+                onclick="event.stopPropagation();addToCart(${productArray[o].product_id})">
+                Add To Cart
+            </button>
+
+        </div>
+
+        ${getDiscountUI(productArray[o])}
+
+    </div>
+
+  </div>
+</div>`
+
+      }
 
     }
     // console.log(productBox);
@@ -474,42 +454,133 @@ for (let btn of collectionButtons) {
 }
 
 
+// let swipperWrapper = document.querySelector(".swiper-wrapper");
+// let appleProducts = products.filter(p => p.brand == "apple");
+// for (let i = 0; i < appleProducts.length; i++) {
+//   swipperWrapper.innerHTML += `
+//   <div class="swiper-slide mx-3" >
+//                         <div class="card position-relative w-100"
+//                             style="cursor:pointer;height: 500px;" 
+//                             onclick="showDetails(${appleProducts[i].product_id})">
+//                           <img src="${appleProducts[i].image}" 
+//                               class="" 
+//                               alt="${appleProducts[i].name}" width="200">
+
+//                           <div class="card-body">
+//                             <h5 class="card-title">${appleProducts[i].name.slice(0, 15)}</h5>
+//                             <p class="card-text">
+//                               ${getPriceUI(appleProducts[i])}
+//                             </p>
+//                           </div>
+
+//                           <div class="d-flex justify-content-between align-items-center gap-3 text-center w-100" id="cart">
+//                             <button class="btn btn-dark"
+//                               onclick="event.stopPropagation();addToCart(${appleProducts[i].product_id})">
+//                               Add To Cart
+//                             </button> 
+//                             <span>
+
+//                             </span>
+//                           </div>
+//                           ${getDiscountUI(appleProducts[i])}
+//                         </div>
+//                       </div>
+//   `
+// }
 let swipperWrapper = document.querySelector(".swiper-wrapper");
-let appleProducts = products.filter(p => p.brand == "apple");
-for (let i = 0; i < appleProducts.length; i++) {
+
+let appleProducts = products.filter(p => p.brand.toLowerCase() === "apple");
+
+appleProducts.forEach(product => {
+
   swipperWrapper.innerHTML += `
-  <div class="swiper-slide mx-3" >
-                        <div class="card position-relative w-100"
-                            style="cursor:pointer;height: 500px;" 
-                            onclick="showDetails(${appleProducts[i].product_id})">
-                          <img src="${appleProducts[i].image}" 
-                              class="" 
-                              alt="${appleProducts[i].name}" width="200">
-                              
-                          <div class="card-body">
-                            <h5 class="card-title">${appleProducts[i].name.slice(0, 15)}</h5>
-                            <p class="card-text">
-                              ${getPriceUI(appleProducts[i])}
-                            </p>
-                          </div>
-                            
-                          <div class="d-flex justify-content-between align-items-center gap-3 text-center w-100" id="cart">
-                            <button class="btn btn-dark"
-                              onclick="event.stopPropagation();addToCart(${appleProducts[i].product_id})">
-                              Add To Cart
-                            </button> 
-                            <span>
-                              
-                            </span>
-                          </div>
-                          ${getDiscountUI(appleProducts[i])}
-                        </div>
-                      </div>
-  `
-}
+
+  <div class="swiper-slide d-flex justify-content-center">
+
+    <div class="card shadow-sm border-0 position-relative p-3"
+        style="width:260px;height:460px;cursor:pointer;border-radius:15px;"
+        onclick="showDetails(${product.product_id})">
+
+        <div class="text-center">
+            <img src="${product.image}" 
+                 alt="${product.name}"
+                 style="width:200px;height:200px;object-fit:contain">
+        </div>
+
+        <div class="card-body text-center">
+
+            <h6 class="fw-bold mb-2">
+                ${product.name.slice(0, 20)}
+            </h6>
+
+            <div class="mb-3">
+                ${getPriceUI(product)}
+            </div>
+
+            <button class="btn btn-dark w-100"
+                onclick="event.stopPropagation();addToCart(${product.product_id})">
+                Add To Cart
+            </button>
+
+        </div>
+
+        ${getDiscountUI(product)}
+
+    </div>
+
+  </div>
+
+  `;
+
+});
 console.log(appleProducts);
 
 
+let saleWrapper = document.querySelector("#sale-wrapper");
+
+let saleProducts = products.filter(p => p.discount && p.discount > 0);
+
+saleProducts.forEach(product => {
+
+  saleWrapper.innerHTML += `
+  
+  <div class="swiper-slide d-flex justify-content-center">
+    
+    <div class="card shadow-sm border-0 position-relative p-3"
+        style="width:260px;height:460px;cursor:pointer;border-radius:15px;"
+        onclick="showDetails(${product.product_id})">
+
+        <div class="text-center">
+            <img src="${product.image}" 
+                 alt="${product.name}"
+                 style="width:200px;height:200px;object-fit:contain">
+        </div>
+
+        <div class="card-body text-center">
+
+            <h6 class="fw-bold mb-2">
+                ${product.name.slice(0, 20)}
+            </h6>
+
+            <div class="mb-3">
+                ${getPriceUI(product)}
+            </div>
+
+            <button class="btn btn-dark w-100"
+                onclick="event.stopPropagation();addToCart(${product.product_id})">
+                Add To Cart
+            </button>
+
+        </div>
+
+        ${getDiscountUI(product)}
+
+    </div>
+
+  </div>
+
+  `;
+});
 /*<i class="${isWishlisted ? 'fa-solid text-danger' : 'fa-regular'} fa-heart"
   onclick='event.stopPropagation(); addToWishlist(${JSON.stringify(appleProducts[i])}, ${this})'>
 </i>*/
