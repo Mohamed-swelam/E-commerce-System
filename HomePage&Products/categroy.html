@@ -35,7 +35,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav">
 
 
                     <ul>
@@ -51,6 +51,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="contact-link" href="../ContactUs/Contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-none" id="wellcome"></a>
                         </li>
                         <li class="nav-item d-none" id="admin-dashboard">
                             <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
@@ -75,19 +78,25 @@
 
                         <li class="icon-il" id="wishlist-icon">
                             <a href="../customerinfo/customerinfo.html?tab=wishlist">
-                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-heart fs-5"></i>
                             </a>
                         </li>
 
-                        <li class="icon-il">
+                        <li class="icon-il position-relative">
                             <a href="../Cart/cart.html" id="cart-icon">
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i class="fa-solid fa-cart-shopping fs-5">
+                                </i>
+                                <span id="cart-items-number"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    0
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
                             </a>
                         </li>
 
                         <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
                             <a href="../customerinfo/customerinfo.html">
-                                <i class="fa-regular fa-circle-user"></i>
+                                <i class="fa-regular fa-circle-user fs-5"></i>
                             </a>
                         </li>
 
@@ -175,29 +184,38 @@
 
 
     <!-- Start Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
+    <footer class="bg-dark">
+        <div class="container bg-dark">
+            <div class="row pt-5">
+                <div class="col-12 text-center mb-5 pb-5">
+                    <h2 class="h1"><a href="#" style="text-decoration: none; color: #fff;">Avion</a>
+                    </h2>
+                </div>
                 <div class="col-6  col-lg-2">
                     <ul class="list-unstyled">
                         <h5>Categroies</h5>
-                        <li><a href="../HomePage&Products/categroy.html?categroy=TV"> Tvs</a></li>
-                        <li><a href="../HomePage&Products/categroy.html?categroy=Gaming">Gaming</a></li>
-                        <li><a href="../HomePage&Products/categroy.html?categroy=Computers">Computers</a></li>
-                        <li><a href="../HomePage&Products/categroy.html?categroy=Bluetooth">Bluetooth</a></li>
-                        <li><a href="../HomePage&Products/categroy.html?categroy=Accessories">Accessories</a></li>
-                        <li><a href="../HomePage&Products/categroy.html?categroy=Phones">Phones</a></li>
+                        <li><a href="../HomePage&Products/categroy.html?categroy=TV" class="text-white-50"> Tvs</a></li>
+                        <li><a href="../HomePage&Products/categroy.html?categroy=Gaming"
+                                class="text-white-50">Gaming</a></li>
+                        <li><a href="../HomePage&Products/categroy.html?categroy=Computers"
+                                class="text-white-50">Computers</a></li>
+                        <li><a href="../HomePage&Products/categroy.html?categroy=Bluetooth"
+                                class="text-white-50">Bluetooth</a></li>
+                        <li><a href="../HomePage&Products/categroy.html?categroy=Accessories"
+                                class="text-white-50">Accessories</a></li>
+                        <li><a href="../HomePage&Products/categroy.html?categroy=Phones"
+                                class="text-white-50">Phones</a></li>
                     </ul>
                 </div>
 
                 <div class="col-6  col-lg-2">
                     <ul class="list-unstyled">
                         <h5>Menu</h5>
-                        <li><a href="#">New arrivals</a></li>
-                        <li><a href="#">Best sellers</a></li>
-                        <li><a href="#">Recently viewed</a></li>
-                        <li><a href="#">Popular this week</a></li>
-                        <li><a href="../HomePage&Products/AllProducts.html">All products</a></li>
+                        <li><a href="#" class="text-white-50">New arrivals</a></li>
+                        <li><a href="#" class="text-white-50">Best sellers</a></li>
+                        <li><a href="#" class="text-white-50">Recently viewed</a></li>
+                        <li><a href="#" class="text-white-50">Popular this week</a></li>
+                        <li><a href="../HomePage&Products/AllProducts.html" class="text-white-50">All products</a></li>
                     </ul>
                 </div>
 
@@ -205,16 +223,17 @@
                 <div class="col-12  col-lg-2">
                     <ul class="list-unstyled">
                         <h5>Our company</h5>
-                        <li><a href="../About/about.html">About us</a></li>
-                        <li><a href="#">Vacancies</a></li>
-                        <li> <a href="../ContactUs/Contact.html">Contact us</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Returns policy</a></li>
+                        <li><a href="../About/about.html" class="text-white-50">About us</a></li>
+                        <li><a href="#" class="text-white-50">Vacancies</a></li>
+                        <li> <a href="../ContactUs/Contact.html" class="text-white-50">Contact us</a></li>
+                        <li><a href="#" class="text-white-50">Privacy</a></li>
+                        <li><a href="#" class="text-white-50">Returns policy</a></li>
                     </ul>
                 </div>
 
                 <div class="col-12 col-lg-6">
                     <h6>Join our mailing list</h6>
+                    <p class="text-white-50">Be the first to hear about the latest offers.</p>
                     <div class="d-flex  justify-content-center after-brdr">
                         <input type="email" placeholder="your@email.com" style="width:75%">
                         <button style="width:25%;">Sign Up</button>
@@ -222,11 +241,11 @@
                 </div>
 
                 <hr class="d-none d-lg-block">
-                <div class="row justify-content-between  align-items-center">
+                <div class="row justify-content-between  align-items-center m-auto">
 
                     <h6 class="p-3 text-center col-lg-3">Copyright 2026 Avion LTD</h6>
 
-                    <ul class="list-unstyled col-lg-3  gap-3 d-none d-lg-flex ">
+                    <ul class="list-unstyled col-lg-3  gap-3 d-flex text-white-50">
                         <li><span><i class="fa-brands fa-linkedin"></i></span></li>
                         <li><span><i class="fa-brands fa-facebook"></i></span></li>
                         <li><span><i class="fa-brands fa-instagram"></i></span></li>

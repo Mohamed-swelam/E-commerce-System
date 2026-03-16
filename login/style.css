@@ -2,13 +2,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', Verdana, sans-serif;
 }
 :root{
-    --dark-primary: #2A254B;
+    --dark-primary: #212529;
+}
+body{
+    background-image: url('../HomePage&Products/imgs/Download free image of Elegant minimalist abstract mobile wallpaper about minimalist iphone wallp___.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.homeLogin{
+/* .homeLogin{
     position: relative; 
     background-image: url("../HomePage&Products/imgs/home7.jpg");
     width: 100%;
@@ -18,16 +24,17 @@
     background-position: center;
     padding: 25px 0px;
     color: white !important;
-}
+} */
+
 
 /* overlay */
-.homeLogin::before {
+/* .homeLogin::before {
     content: "";
     position: absolute;
     inset: 0;   
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1;
-}
+} */
 
 .homeLogin>* {
     position: relative;
@@ -45,7 +52,7 @@
 }
 
 .btnlog button {
-    background-color: transparent;
+    /* background-color: transparent; */
     border: 1px solid white;
     padding: 3px 10px;
     border-radius: 4px;
@@ -78,32 +85,32 @@
 }
 
 input ,.form-select {
-    height: 30px;
+    /* height: 30px; */
     font-size: 13px !important;
-    color: #383838 !important;
+    /* color: #383838 !important; */
 }
 
 input::placeholder ,select::placeholder {
     font-size: 13px !important;
-    color: gray !important;
+    /* color: gray !important; */
 }
-.form-control,
+/* .form-control,
 .form-select {
     width: 100%;
     box-sizing: border-box;
-}
-.select {margin:10px 0px ;}
+} */
+/* .select {margin:10px 0px ;} */
 
 .btnlog button:focus,
 .form-select:focus {
     box-shadow: none !important;
 }
 
-.btnlog button:hover  {
+/* .btnlog button:hover  {
     background-color: transparent;
     border: 1px solid gray;
     color: white;
-}
+} */
 
 
 .btnlog button ,.btnlog a{
@@ -111,16 +118,16 @@ input::placeholder ,select::placeholder {
     display: flex;
     justify-content: center;
     margin: 5px auto !important;
-    color: white ;
+    /* color: white ; */
 
 }
-.btnlog a{
+/* .btnlog a{
     margin-top: 15px !important;
     font-size: 15px;
-}
-.btnlog a:hover{
+} */
+/* .btnlog a:hover{
     color: var(--dark-primary) !important;
-}
+} */
 
 /* Animation of Form  */
 

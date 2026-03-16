@@ -34,7 +34,7 @@ body {
 
 
 .contact-header {
-    background: linear-gradient(135deg, #1B254B, #283772);
+    background: linear-gradient(135deg, #000, #4f4f4f);
     color: #ffffff;
     border-radius: 25px 25px 0 0;
     padding: 35px;
@@ -103,7 +103,7 @@ body {
     padding: 12px 42px;
     font-weight: 600;
     font-size: 15px;
-    background: linear-gradient(135deg, #1B254B, #283772);
+    background: linear-gradient(135deg, #000, #4f4f4f);
     border: none;
     color: #fff;
     transition: all 0.3s ease;

@@ -24,7 +24,7 @@ h3 {
 
 /* =============================  Start NavBr =============================*/
 .navbar-brand {
-    color: #a3b1cc !important;
+    /* color: #a3b1cc !important; */
     font-size: 2.1875rem !important;
 }
 
@@ -118,9 +118,9 @@ h3 {
     color: gray;
 }
 
-.account-content a {
+/* .account-content a {
     color: var(--dark-primary);
-}
+} */
 
 .account-content h5 span {
     font-size: 16px !important;

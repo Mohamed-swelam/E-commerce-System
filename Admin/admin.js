@@ -750,25 +750,28 @@ document.getElementById('editProductForm').addEventListener('submit', function (
 
 // // let userProfile = document.getElementById('profile');
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-const logOutBtn = document.getElementById('log-out-btn');
+const logOutBtn = document.getElementById('logout-btn');
 logOutBtn.addEventListener('click', () => {
     localStorage.removeItem('currentUser');
     location.href = '../../HomePage&Products/home.html';
 })
 // // localStorage.removeItem("currentUser");
-// if (currentUser) {
-//     document.getElementById('login-link').style.display = "none";
-//     document.getElementById('logout-btn').style.display = "block";
-//     if (currentUser.role === "admin") {
-//         document.getElementById("admin-dashboard").classList.remove("d-none");
-//         document.getElementById("seller-dashboard").classList.add("d-none");
-//     }
-//     else if (currentUser.role === "seller") {
-//         document.getElementById("seller-dashboard").classList.remove("d-none");
-//         document.getElementById("admin-dashboard").classList.add("d-none");
-//     }
+let wellcome = document.getElementById('wellcome')
+if (currentUser) {
+    wellcome.classList.remove('d-none');
+    wellcome.innerHTML = `Wellcome <span class="text-danger"> ${currentUser.firstName}</span>`
+    document.getElementById('login-link').style.display = "none";
+    document.getElementById('logout-btn').classList.remove = "d-none";
+    if (currentUser.role === "admin") {
+        document.getElementById("admin-dashboard").classList.remove("d-none");
+        document.getElementById("seller-dashboard").classList.add("d-none");
+    }
+    else if (currentUser.role === "seller") {
+        document.getElementById("seller-dashboard").classList.remove("d-none");
+        document.getElementById("admin-dashboard").classList.add("d-none");
+    }
 
-// } else {
-//     document.getElementById('login-link').style.display = "block";
-//     document.getElementById('logout-btn').style.display = "none";
-// }
+} else {
+    document.getElementById('login-link').style.display = "block";
+    document.getElementById('logout-btn').classList.add = "d-none";
+}

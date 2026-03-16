@@ -39,7 +39,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNav">
 
                 <ul class="navbar-nav  ms-auto">
                     <li class="nav-item">
@@ -48,8 +48,11 @@
                     <li class="nav-item">
                         <a class="nav-link" id="contact-link" href="../ContactUs/Contact.html">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-none" id="wellcome"></a>
+                    </li>
                     <li class="nav-item d-none" id="admin-dashboard">
-                            <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
+                        <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
                     </li>
                     <li class="nav-item d-none" id="seller-dashboard">
                         <a class="nav-link" href="../seller-dashboard.html">Dashboard</a>
@@ -63,19 +66,25 @@
 
                     <li class="icon-il" id="wishlist-icon">
                         <a href="../customerinfo/customerinfo.html?tab=wishlist">
-                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-heart fs-5"></i>
                         </a>
                     </li>
 
-                    <li class="icon-il">
+                    <li class="icon-il position-relative">
                         <a href="../Cart/cart.html" id="cart-icon">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                            <i class="fa-solid fa-cart-shopping fs-5">
+                            </i>
+                            <span id="cart-items-number"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
                         </a>
                     </li>
 
                     <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
                         <a href="../customerinfo/customerinfo.html">
-                            <i class="fa-regular fa-circle-user"></i>
+                            <i class="fa-regular fa-circle-user fs-5"></i>
                         </a>
                     </li>
 
@@ -162,7 +171,8 @@
                             </tr>
                         </table>
 
-                        <button class="buttons " id="editBtn">Update Details</button>
+                        <button class="btn btn-dark shadow-sm rounded rounded-5 px-3 py-2 " id="editBtn">Update
+                            Details</button>
                         <!-- Edit Form -->
                         <div id="editFormContainer" class="mt-4 d-none">
 
@@ -193,7 +203,8 @@
                     <!-- Addresses -->
                     <div class="content-section d-none" id="addresses">
                         <h2 class="section-title">Your Addresses</h2>
-                        <button class="buttons" id="addAddressBtn">Add New Address</button>
+                        <button class="btn btn-dark shadow-sm rounded rounded-5 px-3 py-2" id="addAddressBtn">Add New
+                            Address</button>
                         <h2 class="section-title">Default addresses</h2>
 
                         <!-- to ADD Adresses  -->
@@ -236,7 +247,7 @@
 
                         <p class="text-muted">For security, please confirm your current password.</p>
 
-                        <button id="showPasswordFormBtn" class="buttons ">
+                        <button id="showPasswordFormBtn" class="btn btn-dark shadow-sm rounded rounded-5 px-3 py-2">
                             Update Password
                         </button>
 
@@ -319,7 +330,7 @@
                                 <p class="text-muted mb-0">Track your support messages</p>
                             </div>
 
-                            <a href="../ContactUs/Contact.html" class="btn-ticket">
+                            <a href="../ContactUs/Contact.html" class="btn btn-dark">
                                 <i class="fa-solid fa-plus"></i>
                                 New Message
                             </a>
@@ -335,7 +346,7 @@
                         <h2 class="section-title">Log Out</h2>
                         <p>Are you sure you want to log out?</p>
 
-                        <button type="button" class="buttons" id="logoutBtn">
+                        <button type="button" class="btn btn-dark shadow-sm rounded rounded-5 px-3 py-2" id="logoutBtn">
                             LogOut
                         </button>
 

@@ -14,12 +14,15 @@ body {
 }
 
 .active {
-    color: #3599db !important;
+    /* color: #3599db !important; */
+    font-weight: bold !important;
+    border-bottom: 1px solid black  !important;
 }
 
 /* Start NavBr */
 .navbar-brand {
-    color: var(--deep-dark-primary) !important;
+    /* color: var(--deep-dark-primary) !important; */
+    color: black !important;
     font-size: 2.1875rem !important;
 }
 
@@ -62,9 +65,9 @@ body {
     box-shadow: none !important;
 }
 
-ul span i {
+/* ul span i {
     color: #3599db;
-}
+} */
 
 .form-control:focus {
     box-shadow: none;
@@ -98,20 +101,20 @@ ul span i {
 
 /* Start Footer */
 footer {
-    background-color: var(--dark-primary);
+    /* background-color: var(--dark-primary); */
     color: var(--light);
     padding: 2.5rem 0.625rem;
 }
 
 footer input {
-    background-color: var(--btn-feature-bgcolor);
+    /* background-color: var(--btn-feature-bgcolor); */
     padding: 1.25rem;
     border-color: transparent;
 }
 
-footer input::placeholder {
+/* footer input::placeholder {
     color: var(--light);
-}
+} */
 
 footer button {
     color: var(--dark-primary) !important;
@@ -127,7 +130,8 @@ footer button {
 
 .after-brdr::after {
     content: '';
-    background-color: var(--primary);
+    background-color: #fff;
+    /* background-color: var(--primary); */
     width: 100%;
     height: 0.125rem;
     position: absolute;
@@ -136,9 +140,11 @@ footer button {
 }
 
 hr {
-    background-color: var(--primary);
-    ;
+    background-color: #fff;
 }
+/* hr {
+    background-color: var(--primary);
+} */
 
 footer ul>li i {
     font-size: 1.5625rem;

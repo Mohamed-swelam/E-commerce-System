@@ -24,13 +24,15 @@ body {
 }
 
 .active {
-    color: #3599db !important;
-    ;
+    /* color: #3599db !important; */
+    font-weight: bold !important;
+    border-bottom: 1px solid black  !important;
 }
 
 /* Start NavBr */
 .navbar-brand {
-    color: var(--deep-dark-primary) !important;
+    /* color: var(--deep-dark-primary) !important; */
+    color: black !important;
     font-size: 2.1875rem !important;
 }
 
@@ -48,7 +50,7 @@ body {
 
 .bottom-bar {
     background-color: var(--light-gray);
-    margin-block: 1.25rem;
+    /* margin-block: 1.25rem; */
 }
 
 .bottom-bar ul>li>a {
@@ -67,9 +69,9 @@ body {
     box-shadow: none !important;
 }
 
-ul span i {
+/* ul span i {
     color: #3599db;
-}
+} */
 
 
 .form-control:focus {
@@ -194,9 +196,9 @@ ul span i {
     -o-transition: all 0.5s;
 }
 
-#cart:hover {
+/* #cart:hover {
     background-color: var(--deep-dark-primary);
-}
+} */
 
 .discount {
     transform: rotate(-35deg);
@@ -244,23 +246,23 @@ ul span i {
 
 /* Start Footer */
 footer {
-    background-color: var(--dark-primary);
+    /* background-color: var(--dark-primary); */
     color: var(--light);
     padding: 2.5rem 0.625rem;
 }
 
 footer input {
-    background-color: var(--btn-feature-bgcolor);
+    /* background-color: var(--btn-feature-bgcolor); */
     padding: 1.25rem;
     border-color: transparent;
 }
 
-footer input::placeholder {
+/* footer input::placeholder {
     color: var(--light);
-}
+} */
 
 footer button {
-    color: var(--dark-primary);
+    /* color: var(--dark-primary); */
     border-color: transparent;
 }
 
@@ -282,8 +284,7 @@ footer button {
 }
 
 hr {
-    background-color: var(--primary);
-    ;
+    background-color: #fff;
 }
 
 footer ul>li i {
@@ -296,7 +297,7 @@ footer ul>li i {
 }
 
 footer ul>li i:hover {
-    color: var(--primary)
+    color: #fff
 }
 
 footer a {

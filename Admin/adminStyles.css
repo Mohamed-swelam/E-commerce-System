@@ -6,8 +6,8 @@
 }
 
 :root{
-    --primary-color: #1b254b;
-    --secondary-color: #f4f7fe;
+    --primary-color: #212529;
+    --secondary-color: #F9F9F9;
     --white : #fff
 }
 
@@ -20,7 +20,7 @@
 
 .tabs-container{
     background-color: var(--primary-color) ;
-    color: #a3b1cc;
+    color: rgba(255, 255, 255, 0.573);
 }
 .main-tab{
     cursor: pointer;
@@ -33,7 +33,7 @@
 
 /* to highlight active tab in dashboard */
 .active-tab{
-    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     color: white;
     /* color: black; */
     /* box-shadow: 1px 1px 10px black; */
@@ -66,4 +66,41 @@
 
 .customers-table {
     padding: 3rem !important;
+}
+
+
+.active {
+    /* color: #3599db !important; */
+    font-weight: bold !important;
+    border-bottom: 1px solid black  !important;
+}
+
+/* Start NavBr */
+.navbar-brand {
+    /* color: var(--deep-dark-primary) !important; */
+    color: black !important;
+    font-size: 2.1875rem !important;
+}
+
+.nav-link {
+    padding-inline: 1.875rem !important;
+}
+
+.navbar-nav {
+    --bs-nav-link-color: var(--primary);
+}
+
+.icon-il>a {
+    color: var(--dark-primary);
+}
+.logout-link {
+    width: fit-content;
+    color: #dc3545 !important;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.logout-link:hover {
+    color: #fff !important;
+    background-color: #dc3545 !important;
 }

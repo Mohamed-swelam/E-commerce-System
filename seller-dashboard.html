@@ -14,10 +14,50 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        .active {
+            /* color: #3599db !important; */
+            font-weight: bold !important;
+            border-bottom: 1px solid black !important;
+        }
+
+        /* Start NavBr */
+        .navbar-brand {
+            /* color: var(--deep-dark-primary) !important; */
+            color: black !important;
+            font-size: 2.1875rem !important;
+        }
+
+        .nav-link {
+            padding-inline: 1.875rem !important;
+        }
+
+        .navbar-nav {
+            --bs-nav-link-color: var(--primary);
+        }
+
+        .icon-il>a {
+            color: var(--dark-primary);
+        }
+
+        .logout-link {
+            width: fit-content;
+            color: #dc3545 !important;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .logout-link:hover {
+            color: #fff !important;
+            background-color: #dc3545 !important;
+        }
+
         :root {
-            --main-blue: #1b254b;
-            --bg: #f4f7fe;
+            --main-blue: #212529;
+            --bg: #F9F9F9;
         }
 
         body {
@@ -36,7 +76,7 @@
         #sidebar {
             grid-area: sidebar;
             background: var(--main-blue);
-            color: #a3b1cc;
+            color: rgba(255, 255, 255, 0.507);
             padding: 20px;
         }
 
@@ -309,21 +349,81 @@
 </head>
 
 <body>
+    <!-- Start NavBar -->
+    <section id="nav" class="sticky-top">
+        <nav class="navbar navbar-expand-lg  bg-white px-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../HomePage&Products/home.html">Avion</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav  ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../About/about.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-link" href="./ContactUs/Contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item d-none" id="admin-dashboard">
+                            <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item d-none" id="seller-dashboard">
+                            <a class="nav-link" href="../seller-dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-none" id="wellcome"></a>
+                        </li>
+                        <li class="nav-item" id="login-link">
+                            <button class="btn btn-dark" href="../login/login.html">Login</button>
+                        </li>
+                        <li id="logout-btn" class="nav-item">
+                            <a class="logout-link nav-link logout-link rounded-pill border border-danger text-danger"
+                                id="logout-link">Logout</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled d-flex gap-3 mt-3 ">
+                        <!-- <li class="icon-il" id="wishlist-icon">
+                            <a href="../customerinfo/customerinfo.html?tab=wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                        </li>
+                        <li class="icon-il">
+                            <a href="../Cart/cart.html" id="cart-icon">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li> -->
+                        <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
+                            <a href="../customerinfo/customerinfo.html">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- End NavBar -->
     <section id="mainwrapper">
         <aside id="sidebar">
-            <h4 class="text-center mb-4 border-bottom pb-3">Seller DashBoard</h4>
+            <h4 class="text-center mb-4 border-bottom pb-3 text-light">Seller DashBoard</h4>
             <ul>
-                <li class="active-nav" onclick="switchTab('overview')">📊 Overview</li>
-                <li onclick="openModal('add')">➕ Add Product</li>
-                <li onclick="switchTab('orders')">📦 Orders</li>
-                <li onclick="window.location.href='./HomePage&Products/home.html'">🛖 Home</li>
+                <!-- <li class="active-nav" onclick="switchTab('overview')">📊 Overview</li> -->
+                <li class="active-nav" onclick="switchTab('overview')">Overview</li>
+                <!-- <li onclick="openModal('add')">➕ Add Product</li> -->
+                <li onclick="openModal('add')">Add Product</li>
+                <!-- <li onclick="switchTab('orders')">📦 Orders</li> -->
+                <li onclick="switchTab('orders')">Orders</li>
+                <!-- <li onclick="window.location.href='./HomePage&Products/home.html'">🛖 Home</li> -->
+                <li onclick="window.location.href='./HomePage&Products/home.html'">Home</li>
             </ul>
-
+            <!-- 
             <div id="seller-name-display" class="mt-5 p-2 bg-white bg-opacity-10 text-center rounded small"></div>
             <button id="logoutBtn" class="w-100 mt-4 py-2 text-white"
                 style="background-color: #1b254b; border:none; border-radius:8px; cursor:pointer; ">
                 🔒 Logout
-            </button>
+            </button> -->
         </aside>
 
         <main id="main">
@@ -394,7 +494,7 @@
     <div class="modal fade" id="prodModal" tabindex="-1">
         <div class="modal-dialog">
             <form id="productForm" class="modal-content">
-                <div class="modal-header  text-white" style="background-color:#1b254b;">
+                <div class="modal-header  text-white" style="background-color:#212529;">
                     <h5 class="modal-title text-white">Product Details</h5>
                     <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
@@ -434,7 +534,7 @@
                         <textarea id="f-desc" class="form-control" rows="3"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer"><button style="background-color: #0a1c58;" type="submit"
+                <div class="modal-footer"><button style="background-color: #212529;" type="submit"
                         class="btn btn-primary w-100">Save Changes</button></div>
             </form>
         </div>
@@ -526,18 +626,18 @@
             );
 
             const sellerRevenue = sellerOrders.filter(o => o.status === "shipped" || o.status === "delivered")
-            .reduce((s, o) => {
-                let total = 0;
-                o.items.forEach(item => {
-                    if (sellerProductIds.includes(item.productId)) {
-                        const prod = myProds.find(p => p.product_id == item.productId);
-                        total += prod.price * item.quantity;
-                    }
-                });
-                return s + total;
-            }, 0);
+                .reduce((s, o) => {
+                    let total = 0;
+                    o.items.forEach(item => {
+                        if (sellerProductIds.includes(item.productId)) {
+                            const prod = myProds.find(p => p.product_id == item.productId);
+                            total += prod.price * item.quantity;
+                        }
+                    });
+                    return s + total;
+                }, 0);
 
-            document.getElementById('seller-name-display').innerText = `Logged in: ${user.fullName}`;
+            // document.getElementById('seller-name-display').innerText = `Logged in: ${user.fullName}`;
             document.getElementById('stat-prods').innerText = myProds.length;
             document.getElementById('stat-orders').innerText = sellerOrders.filter(o => o.status === 'pending').length;
             document.getElementById('stat-rev').innerText = `${sellerRevenue.toFixed(2)} $`;
@@ -613,23 +713,23 @@
             sellerOrders
                 .filter(o => o.status === "shipped" || o.status === "delivered")
                 .forEach(o => {
-                const date = new Date(o.createdAt);
-                if (isNaN(date)) return;
+                    const date = new Date(o.createdAt);
+                    if (isNaN(date)) return;
 
-                const monthIndex = date.getMonth();
+                    const monthIndex = date.getMonth();
 
-                let sellerTotal = 0;
-                o.items.forEach(item => {
-                    if (sellerProductIds.includes(item.productId)) {
-                        const prod = myProds.find(p => p.product_id == item.productId);
-                        if (prod) {
-                            sellerTotal += prod.price * item.quantity;
+                    let sellerTotal = 0;
+                    o.items.forEach(item => {
+                        if (sellerProductIds.includes(item.productId)) {
+                            const prod = myProds.find(p => p.product_id == item.productId);
+                            if (prod) {
+                                sellerTotal += prod.price * item.quantity;
+                            }
                         }
-                    }
-                });
+                    });
 
-                monthlyRevenue[monthIndex] += sellerTotal;
-            });
+                    monthlyRevenue[monthIndex] += sellerTotal;
+                });
 
             const gradient = ctx.createLinearGradient(0, 0, 0, 200);
             gradient.addColorStop(0, 'rgba(99,53,255,0.3)');
@@ -847,11 +947,38 @@
             renderDashboard();
             bootstrap.Modal.getInstance(document.getElementById('prodModal')).hide();
         };
-        document.getElementById('logoutBtn').onclick = () => {
-            localStorage.removeItem('currentUser');
-            window.location.href = './login/login.html';
-        };
+        // document.getElementById('logoutBtn').onclick = () => {
+        //     localStorage.removeItem('currentUser');
+        //     window.location.href = './login/login.html';
+        // };
         initApp();
+
+
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const logOutBtn = document.getElementById('logout-btn');
+        let wellcome = document.getElementById('wellcome')
+        logOutBtn.addEventListener('click', () => {
+            localStorage.removeItem('currentUser');
+            location.href = '../../HomePage&Products/home.html';
+        })
+        if (currentUser) {
+            wellcome.classList.remove('d-none');
+            wellcome.innerHTML = `Wellcome <span class="text-danger"> ${currentUser.firstName}</span>`
+            document.getElementById('login-link').style.display = "none";
+            document.getElementById('logout-btn').classList.remove = "d-none";
+            if (currentUser.role === "admin") {
+                document.getElementById("admin-dashboard").classList.remove("d-none");
+                document.getElementById("seller-dashboard").classList.add("d-none");
+            }
+            else if (currentUser.role === "seller") {
+                document.getElementById("seller-dashboard").classList.remove("d-none");
+                document.getElementById("admin-dashboard").classList.add("d-none");
+            }
+
+        } else {
+            document.getElementById('login-link').style.display = "block";
+            document.getElementById('logout-btn').classList.add = "d-none";
+        }
     </script>
     <script src="../guard.js"></script>
 </body>

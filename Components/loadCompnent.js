@@ -1,11 +1,22 @@
+// async function loadComponent(id, file, callback) {
+//     const res = await fetch(file);
+//     const html = await res.text();
+//     document.getElementById(id).innerHTML = html;
+
+
+//     if (callback) callback();
+// }
+
 async function loadComponent(id, file, callback) {
+    const element = document.getElementById(id);
+    if (!element) return;
     const res = await fetch(file);
     const html = await res.text();
-    document.getElementById(id).innerHTML = html;
-
-
+    element.innerHTML = html;
     if (callback) callback();
 }
+
+
 
 
 function ensureGlobalModal() {
@@ -91,16 +102,24 @@ function handleNavbarAuth() {
     const wishlistIcon = document.getElementById("wishlist-icon");
     const logoutBtn = document.getElementById("logout-btn");
     const contactLink = document.getElementById("contact-link");
-
+    let cartItemsNumber = document.getElementById("cart-items-number");
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
+    let wellcome = document.getElementById('wellcome')
+    let carts = JSON.parse(localStorage.getItem('carts'));
     if (!userProfile || !loginLink) return;
 
     if (currentUser) {
         // userProfile.style.display = "block";
         loginLink.style.display = "none";
+        wellcome.classList.remove('d-none');
+        wellcome.innerHTML = `Wellcome <span class="text-danger"> ${currentUser.firstName}</span>`
         logoutBtn?.classList.remove("d-none");
-
+        let currentUserCart = carts.filter(c => c.userId == currentUser.id)[0]
+        let count = 0;
+        currentUserCart.items.forEach(i => {
+            count += i.quantity;
+        });
+        cartItemsNumber.innerHTML = count
         if (currentUser.role === "admin" || currentUser.role === "seller") {
 
             userProfile && (userProfile.style.display = "block");
@@ -120,6 +139,7 @@ function handleNavbarAuth() {
         }
 
         else {
+            // wellcome.classList.add('d-none')
             userProfile && (userProfile.style.display = "block");
             cartIcon && (cartIcon.style.display = "block");
             wishlistIcon && (wishlistIcon.style.display = "block");
@@ -164,3 +184,14 @@ loadComponent("navbar", "../Components/navbar.html", () => {
     handleNavbarAuth();
 });
 loadComponent("footer", "../components/footer.html");
+
+// window.addEventListener("load", () => {
+
+//     loadComponent("navbar", "../Components/navbar.html", () => {
+//         ensureGlobalModal();
+//         handleNavbarAuth();
+//     });
+
+//     loadComponent("footer", "../Components/footer.html");
+
+// });

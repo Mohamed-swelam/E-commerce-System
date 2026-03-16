@@ -48,7 +48,6 @@ async function displaycart() {
 
     let carts = JSON.parse(localStorage.getItem("carts")) || [];
     let userCart = carts.find(c => c.userId === currentUser.id);
-    console.log(userCart);
     let btn = document.getElementById("go_Checkout");
     if (!userCart || userCart.items.length === 0) {
 

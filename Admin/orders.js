@@ -8,19 +8,19 @@ totalOrders.innerText = orders.length;
 
 const ordersTableBody = document.getElementById('orders-table-body');
 
-function displayOrders() {
+function displayOrders(data = orders) {
     ordersTableBody.innerHTML = '';
-    orders.forEach((order) => {
+
+    data.forEach((order) => {
         ordersTableBody.innerHTML += `<tr>
             <td class="fw-bold">${order.orderId}</td>
             <td>${order.customerName}</td>
             <td>${order.total}$</td>
             <td class="text-capitalize"><span class="badge">${order.status}</span></td>
             <td><button class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-eye"></i></button></td>
-        </tr>
-        `;
-    })
-};
+        </tr>`;
+    });
+}
 
 displayOrders();
 
@@ -155,4 +155,18 @@ new Chart(ordersStatues, {
             borderWidth: 1
         }]
     }
+});
+
+
+
+// ----------------------------- search  in orders ----------------------
+const ordersSearch = document.getElementById('orders-search');
+ordersSearch.addEventListener('input', (e) => {
+    const searchInput = e.target.value;
+
+    const filteredOrders = orders.filter(order =>
+        order.orderId.toString().includes(searchInput)
+    );
+
+    displayOrders(filteredOrders);
 });

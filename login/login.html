@@ -16,155 +16,171 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 <body>
 
-    <div class="homeLogin">
+    <div class="homeLogin p-0 m-0 vh-100" id="loginForm">
 
         <!--section of Form (Login Form ) -->
-        <section class="form" id="loginForm">
+        <!-- <section class="form" id="loginForm"> -->
 
-            <!-- display (Msg error) here instead of Alert  -->
-            <div id="loginMessage"></div>
+        <!-- display (Msg error) here instead of Alert  -->
+        <div id="loginMessage"></div>
+
+        <!-- <div class="row w-100 vh-100 m-auto p-0"> -->
+        <!-- <div class="col-12 col-md-4"> -->
+        <!-- <video class="w-100" src="../HomePage&Products/videos/be3c4db340fef719b66041c57a18237f.mp4" muted
+                    autoplay></video> -->
+        <!-- <img src="../HomePage&Products/imgs/Download free image of Elegant minimalist abstract mobile wallpaper about minimalist iphone wallp___.jpg"
+                    alt="" width="100%"> -->
+        <!-- </div> -->
+        <!--Form structure (Login Form )  -->
+        <div class="form vw-100 vh-100 d-flex align-items-center justify-content-center">
+            <div
+                style="margin: auto; background-color: rgba(255, 255, 255, 0.479); padding: 2rem; border-radius: 8px;backdrop-filter: blur(2px);">
+                <div class="logo">
+                    <!-- <a href="../../E-commerce-System/HomePage&Products/home.html"> -->
+                    <a href="../HomePage&Products/home.html" class="text-secondary border border-3 rounded-circle p-2">
+                        <!-- <img src="../HomePage&Products/imgs/favicon.png" /> -->
+                        <i class="fa-regular fa-house"></i>
+                    </a>
+                </div>
+                <form class="needs-validation" novalidate>
+                    <h4 class="h1 text-center my-5">Wellcome back! </h4>
+                    <!-- Email address input  -->
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="loginEmail" required
+                            placeholder="name@example.com">
+                        <div class="invalid-feedback">
+                            Please Enter a Valid Email .
+                        </div>
+                    </div>
+                    <!--  Password input -->
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control " id="loginPassword" placeholder="password" required>
+                        <div class="invalid-feedback">
+                            Please Enter password.
+                        </div>
+                    </div>
 
 
-            <div class="logo">
-                <!-- <a href="../../E-commerce-System/HomePage&Products/home.html"> -->
-                <a href="../HomePage&Products/home.html">
-                    <img src="../HomePage&Products/imgs/favicon.png" />
-                </a>
+                    <div class="d-flex justify-content-center align-items-center flex-column gap-2">
+                        <button class="btn btn-dark" type="submit">Login </button>
+                        <small>Not a Member? no worries<a href="#" id="showRegister" style="font-style: italic;"
+                                class="text-secondary">Create Your Account </a> Now</small>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <!-- </div> -->
+        <!-- </section> -->
+    </div>
+
+
+    <!--section of Form (Register Form ) -->
+    <section class="form mt-4" id="registerForm"
+        style="display: none;background-color: rgba(255, 255, 255, 0.479);backdrop-filter: blur(2px);">
+        <!-- display (Msg error ) here  instead of Alert  -->
+        <div id="registerMessage"></div>
+        <div class="logo">
+            <!-- <a href="../../E-commerce-System/HomePage&Products/home.html"> -->
+            <a href="../HomePage&Products/home.html" class="text-secondary border border-3 rounded-circle p-2">
+                <!-- <img src="../HomePage&Products/imgs/favicon.png" /> -->
+                <i class="fa-regular fa-house"></i>
+            </a>
+        </div>
+
+        <!--Form structure (Register Form )  -->
+        <form class="row g-2 needs-validation" novalidate>
+            <h4>Create Account </h4>
+
+            <!-- First name -->
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="First name" required>
+                <div class="invalid-feedback">
+                    Please choose a username.
+                </div>
             </div>
 
-            <!--Form structure (Login Form )  -->
-            <form class="row g-2 needs-validation" novalidate>
-                <h4>LOGIN Now </h4>
+            <!-- Last name -->
+            <div class="col-md-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last name" required>
 
-                <!-- Email address input  -->
-                <div class="mb-3">
-                    <label for="loginEmail" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="loginEmail" required placeholder="name@example.com">
-                    <div class="invalid-feedback">
-                        Please Enter a Valid Email .
-                    </div>
-                </div>
-                <!--  Password input -->
-                <div class="mb-3">
-                    <label for="loginPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="loginPassword" placeholder="password" required>
-                    <div class="invalid-feedback">
-                        Please Enter password.
-                    </div>
-                </div>
-
-
-                <div class="btnlog">
-                    <button class="btn" type="submit">Login </button>
-                    <a href="#" id="showRegister">Create Account </a>
-                </div>
-
-            </form>
-        </section>
-
-
-        <!--section of Form (Register Form ) -->
-        <section class="form" id="registerForm" style="display: none;">
-
-
-            <!-- display (Msg error ) here  instead of Alert  -->
-            <div id="registerMessage"></div>
-
-
-
-            <div class="logo">
-                <!-- <a href="../../E-commerce-System/HomePage&Products/home.html"> -->
-                <a href="/E-commerce-System/HomePage&Products/home.html">
-                    <img src="../HomePage&Products/imgs/favicon.png" />
-                </a>
+            </div>
+            <!-- select Role -->
+            <div class="select mt-4">
+                <label for="roleSelect">
+                    do you want to register as a Seller OR Customer ..? </label>
+                <select class="form-select" id="roleSelect" aria-label="Default select example">
+                    <option value="" hidden selected>Select Role</option>
+                    <option value="seller">Seller </option>
+                    <option value="customer">Customer </option>
+                </select>
             </div>
 
-            <!--Form structure (Register Form )  -->
-            <form class="row g-2 needs-validation" novalidate>
-                <h4>Create Account </h4>
 
-                <!-- First name -->
-                <div class="col-md-6">
-                    <label for="firstName" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="First name" required>
-                    <div class="invalid-feedback">
-                        Please choose a username.
-                    </div>
+            <!-- Email address -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" required placeholder="name@example.com">
+                <div class="invalid-feedback">
+                    Please Enter an Email .
                 </div>
+            </div>
 
-                <!-- Last name -->
-                <div class="col-md-6">
-                    <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="Last name" required>
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Password</label>
 
+                <input type="password" class="form-control" id="password" placeholder="password" required>
+                <div class="invalid-feedback">
+                    Please Enter password.
                 </div>
-                <!-- select Role -->
-                <div class="select">
-                    <label for="roleSelect">
-                        do you want to register as a Seller OR Customer ..? </label>
-                    <select class="form-select" id="roleSelect" aria-label="Default select example">
-                        <option value="" disabled selected>Select Role</option>
-                        <option value="seller">Seller </option>
-                        <option value="customer">Customer </option>
-                    </select>
+            </div>
+
+            <!-- city -->
+            <div class="col-6">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" placeholder="Enter City" required>
+                <div class="invalid-feedback">
+                    Please provide a valid city.
                 </div>
+            </div>
 
 
-                <!-- Email address -->
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" required placeholder="name@example.com">
-                    <div class="invalid-feedback">
-                        Please Enter an Email .
-                    </div>
+            <!-- phone  -->
+            <div class="col-6">
+                <label for="phone" class="form-label">phone</label>
+                <input type="tel" id="phone" placeholder="123-45-678" class="form-control" id="phone"
+                    placeholder="Enter Phone number " required>
+                <div class="invalid-feedback">
+                    Please provide a valid phone.
                 </div>
-
-                <!-- Password -->
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Password</label>
-
-                    <input type="password" class="form-control" id="password" placeholder="password" required>
-                    <div class="invalid-feedback">
-                        Please Enter password.
-                    </div>
-                </div>
-
-                <!-- city -->
-                <div class="col-md-12">
-                    <label for="city" class="form-label">City</label>
-                    <input type="text" class="form-control" id="city" placeholder="Enter City" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid city.
-                    </div>
-                </div>
+            </div>
 
 
-                <!-- phone  -->
-                <div class="col-md-12">
-                    <label for="phone" class="form-label">phone</label>
-                    <input type="tel" id="phone" placeholder="123-45-678" class="form-control" id="phone"
-                        placeholder="Enter Phone number " required>
-                    <div class="invalid-feedback">
-                        Please provide a valid phone.
-                    </div>
-                </div>
+            <!-- login button  -->
+            <div class="btnlog">
+                <button class="btn btn-dark" type="submit"> Create Account </button>
+                <small><a href="#" id="showLogin" class="text-secondary" style="font-style: italic;">Already have an
+                        account?</a></small>
+            </div>
+
+        </form>
 
 
-                <!-- login button  -->
-                <div class="btnlog">
-                    <button class="btn" type="submit"> Create Account </button>
-                    <a href="#" id="showLogin">Already have an account?</a>
-                </div>
-
-            </form>
-
-
-        </section>
+    </section>
     </div>
 
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
