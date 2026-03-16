@@ -1,6 +1,6 @@
-const currentPath = window.location.pathname;
+const currentPath1 = window.location.pathname;
 
-if (currentPath.includes("admin-dashboard.html")) {
+if (currentPath1.includes("admin-dashboard.html")) {
     const user = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!user || user.role !== 'admin') {

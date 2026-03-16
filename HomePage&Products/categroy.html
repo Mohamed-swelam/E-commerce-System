@@ -35,7 +35,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav">
 
 
                     <ul>
@@ -51,6 +51,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="contact-link" href="../ContactUs/Contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-none" id="wellcome"></a>
                         </li>
                         <li class="nav-item d-none" id="admin-dashboard">
                             <a class="nav-link" href="../Admin/admin-dashboard.html">Dashboard</a>
@@ -75,19 +78,25 @@
 
                         <li class="icon-il" id="wishlist-icon">
                             <a href="../customerinfo/customerinfo.html?tab=wishlist">
-                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-heart fs-5"></i>
                             </a>
                         </li>
 
-                        <li class="icon-il">
+                        <li class="icon-il position-relative">
                             <a href="../Cart/cart.html" id="cart-icon">
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i class="fa-solid fa-cart-shopping fs-5">
+                                </i>
+                                <span id="cart-items-number"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    0
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
                             </a>
                         </li>
 
                         <li class="icon-il" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="profile">
                             <a href="../customerinfo/customerinfo.html">
-                                <i class="fa-regular fa-circle-user"></i>
+                                <i class="fa-regular fa-circle-user fs-5"></i>
                             </a>
                         </li>
 

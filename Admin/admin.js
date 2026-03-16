@@ -756,7 +756,10 @@ logOutBtn.addEventListener('click', () => {
     location.href = '../../HomePage&Products/home.html';
 })
 // // localStorage.removeItem("currentUser");
+let wellcome = document.getElementById('wellcome')
 if (currentUser) {
+    wellcome.classList.remove('d-none');
+    wellcome.innerHTML = `Wellcome <span class="text-danger"> ${currentUser.firstName}</span>`
     document.getElementById('login-link').style.display = "none";
     document.getElementById('logout-btn').classList.remove = "d-none";
     if (currentUser.role === "admin") {

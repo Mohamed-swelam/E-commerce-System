@@ -358,7 +358,7 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse gap-5 " id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav  ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="../About/about.html">About Us</a>
@@ -371,6 +371,9 @@
                         </li>
                         <li class="nav-item d-none" id="seller-dashboard">
                             <a class="nav-link" href="../seller-dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-none" id="wellcome"></a>
                         </li>
                         <li class="nav-item" id="login-link">
                             <button class="btn btn-dark" href="../login/login.html">Login</button>
@@ -953,11 +956,14 @@
 
         let currentUser = JSON.parse(localStorage.getItem("currentUser"));
         const logOutBtn = document.getElementById('logout-btn');
+        let wellcome = document.getElementById('wellcome')
         logOutBtn.addEventListener('click', () => {
             localStorage.removeItem('currentUser');
             location.href = '../../HomePage&Products/home.html';
         })
         if (currentUser) {
+            wellcome.classList.remove('d-none');
+            wellcome.innerHTML = `Wellcome <span class="text-danger"> ${currentUser.firstName}</span>`
             document.getElementById('login-link').style.display = "none";
             document.getElementById('logout-btn').classList.remove = "d-none";
             if (currentUser.role === "admin") {

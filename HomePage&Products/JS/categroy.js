@@ -448,3 +448,23 @@ function handleNavbarAuth() {
     }
 }
 handleNavbarAuth();
+
+
+let cartItemsNumber = document.getElementById('cart-items-number');
+// let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+let carts = JSON.parse(localStorage.getItem('carts'));
+let wellcome = document.getElementById('wellcome')
+if (currentUser) {
+    wellcome.classList.remove('d-none');
+    wellcome.innerHTML = `Wellcome <span class="text-danger"> ${currentUser.firstName}</span>`
+    cartItemsNumber.classList.remove('d-none')
+    let currentUserCart = carts.filter(c => c.userId == currentUser.id)[0]
+    let count = 0;
+    currentUserCart.items.forEach(i => {
+        console.log(i.quantity);
+        count += i.quantity;
+    });
+    cartItemsNumber.innerHTML = count
+} else {
+    cartItemsNumber.classList.add('d-none')
+}
