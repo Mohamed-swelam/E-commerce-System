@@ -118,9 +118,9 @@ h3 {
     color: gray;
 }
 
-.account-content a {
+/* .account-content a {
     color: var(--dark-primary);
-}
+} */
 
 .account-content h5 span {
     font-size: 16px !important;

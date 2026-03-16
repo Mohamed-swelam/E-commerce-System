@@ -696,7 +696,6 @@ if (currentUser) {
     let currentUserCart = carts.filter(c => c.userId == currentUser.id)[0]
     let count = 0;
     currentUserCart.items.forEach(i => {
-        console.log(i.quantity);
         count += i.quantity;
     });
     cartItemsNumber.innerHTML = count

@@ -1,11 +1,22 @@
+// async function loadComponent(id, file, callback) {
+//     const res = await fetch(file);
+//     const html = await res.text();
+//     document.getElementById(id).innerHTML = html;
+
+
+//     if (callback) callback();
+// }
+
 async function loadComponent(id, file, callback) {
+    const element = document.getElementById(id);
+    if (!element) return;
     const res = await fetch(file);
     const html = await res.text();
-    document.getElementById(id).innerHTML = html;
-
-
+    element.innerHTML = html;
     if (callback) callback();
 }
+
+
 
 
 function ensureGlobalModal() {
@@ -91,7 +102,7 @@ function handleNavbarAuth() {
     const wishlistIcon = document.getElementById("wishlist-icon");
     const logoutBtn = document.getElementById("logout-btn");
     const contactLink = document.getElementById("contact-link");
-    let cartItemsNumber = document.getElementById('cart-items-number');
+    let cartItemsNumber = document.getElementById("cart-items-number");
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     let wellcome = document.getElementById('wellcome')
     let carts = JSON.parse(localStorage.getItem('carts'));
@@ -128,7 +139,7 @@ function handleNavbarAuth() {
         }
 
         else {
-            wellcome.classList.add('d-none')
+            // wellcome.classList.add('d-none')
             userProfile && (userProfile.style.display = "block");
             cartIcon && (cartIcon.style.display = "block");
             wishlistIcon && (wishlistIcon.style.display = "block");
@@ -174,4 +185,13 @@ loadComponent("navbar", "../Components/navbar.html", () => {
 });
 loadComponent("footer", "../components/footer.html");
 
+// window.addEventListener("load", () => {
 
+//     loadComponent("navbar", "../Components/navbar.html", () => {
+//         ensureGlobalModal();
+//         handleNavbarAuth();
+//     });
+
+//     loadComponent("footer", "../Components/footer.html");
+
+// });
